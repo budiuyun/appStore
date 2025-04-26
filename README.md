@@ -2,15 +2,15 @@
 
 本仓库是一个多租户的 Helm Charts 托管平台，允许多个用户/组织创建和维护自己的 Chart 集合。
 
-# 如何贡献应用 (更新: Fork-PR 模式)
+# 如何贡献应用 (更新: Fork-PR-审核模式)
 1. Fork本仓库到您自己的GitHub账户
 2. 在fork仓库的charts/stable/目录下创建您的应用目录
 3. 遵循模板创建必要文件
 4. 提交Pull Request到本仓库的main分支
-5. 审核通过并合并后，系统会自动为您创建`helm-您的用户名`分支
-6. 使用`https://raw.githubusercontent.com/{仓库所有者}/{仓库名}/helm-{您的用户名}/`作为Helm仓库URL
+5. **审核通过后，系统立即为您创建`helm-您的用户名`分支，无需等待PR合并**
+6. 您可以立即使用`https://raw.githubusercontent.com/{仓库所有者}/{仓库名}/helm-{您的用户名}/`作为Helm仓库URL
 
-## 多租户使用方式 (Fork-PR工作流)
+## 多租户使用方式 (改进的Fork-PR工作流)
 
 ### 租户接入流程
 
@@ -19,14 +19,15 @@
 3. 提交更改到您的fork仓库
 4. 创建Pull Request到本仓库的main分支
 5. CI系统会自动检查您的Chart格式和合规性
-6. 审核通过并合并后，系统会自动创建一个名为 `helm-{您的用户名}` 的分支，其中包含打包好的 Chart 和 index.yaml
-7. 在应用平台中使用 URL: `https://raw.githubusercontent.com/{仓库所有者}/{仓库名}/helm-{您的用户名}/` 添加您的应用仓库
+6. **当管理员批准您的PR后，系统立即创建一个名为 `helm-{您的用户名}` 的分支，包含打包好的 Chart 和 index.yaml**
+7. **您无需等待PR合并，可以立即使用Helm仓库URL**
+8. 在应用平台中使用 URL: `https://raw.githubusercontent.com/{仓库所有者}/{仓库名}/helm-{您的用户名}/` 添加您的应用仓库
 
 ### 更新您的 Chart
 
 1. 在您的fork仓库中更新Chart
 2. 创建新的Pull Request到本仓库
-3. 审核通过并合并后，系统会自动更新您的 `helm-{您的用户名}` 分支
+3. **PR审核通过后，系统会自动更新您的 `helm-{您的用户名}` 分支**
 
 ## Chart 严格格式要求
 

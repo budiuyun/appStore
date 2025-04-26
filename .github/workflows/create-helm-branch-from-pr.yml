@@ -1,36 +1,23 @@
-# 这个工作流已被禁用，改由create-helm-branch-from-pr.yml替代
-# 它在PR合并后创建helm分支，但我们现在改为在PR被批准时直接创建，无需合并
-
-name: Create Helm Branch After PR (DISABLED)
+name: Create Helm Branch From PR
 
 on:
-  # 禁用触发条件
-  workflow_dispatch:
-    inputs:
-      disabled:
-        description: "此工作流已被禁用"
-        required: false
-
-# 原工作流内容保留作为参考
-# jobs:
-#   create-helm-branch:
-#     if: github.event.pull_request.merged == true
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Disabled
-#         run: echo "此工作流已被禁用"
+  pull_request_review:
+    types: [submitted]
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   create-helm-branch:
-    if: github.event.pull_request.merged == true
+    # 仅当PR被批准时执行
+    if: github.event.review.state == 'approved'
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout PR
         uses: actions/checkout@v3
         with:
+          ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
           
@@ -39,6 +26,8 @@ jobs:
         run: |
           echo "PR_AUTHOR=${{ github.event.pull_request.user.login }}" >> $GITHUB_ENV
           echo "PR作者: ${{ github.event.pull_request.user.login }}"
+          echo "PR分支: ${{ github.event.pull_request.head.ref }}"
+          echo "PR SHA: ${{ github.event.pull_request.head.sha }}"
           
       - name: Configure Git
         run: |
@@ -126,7 +115,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const prNumber = context.issue.number;
+            const prNumber = context.payload.pull_request.number;
             const repoOwner = context.repo.owner;
             const repoName = context.repo.repo;
             const author = process.env.PR_AUTHOR;
@@ -141,11 +130,34 @@ jobs:
                            `helm repo add ${author}-repo ${repoUrl}\n` +
                            `helm repo update\n` +
                            `helm search repo ${author}-repo\n` +
-                           `\`\`\``;
+                           `\`\`\`\n\n` +
+                           `✅ 您无需等待PR合并，可以直接使用上述URL！`;
             
             await github.rest.issues.createComment({
               owner: repoOwner,
               repo: repoName,
               issue_number: prNumber,
               body: message
+            });
+            
+      - name: Close PR (Optional)
+        if: false  # 默认不启用，可以根据需要改为true
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            
+            await github.rest.pulls.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: prNumber,
+              state: 'closed'
+            });
+            
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              body: '此PR已关闭，因为Helm分支已创建成功。无需合并到main分支。'
             }); 
