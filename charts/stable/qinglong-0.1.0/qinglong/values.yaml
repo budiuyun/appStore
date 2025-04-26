@@ -1,0 +1,44 @@
+replicaCount: 1
+
+image:
+  imageRegistry: "registry-2.yunna.net"
+  repository: whyour/qinglong
+  tag: "2.17.11"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 5700
+  externalPort: 80
+
+# 网络带宽限制配置
+networkLimits:
+  enabled: true
+  egress: "1M"
+  ingress: "1M"
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 500m
+    memory: 512Mi
+
+persistence:
+  enabled: true
+  path: /ql/data
+  size: 5Gi
+  storageClass: "local"
+  accessMode: ReadWriteOnce
+
+env:
+  env1:
+    name: TZ
+    value: "Asia/Shanghai"
+  env2:
+    name: ENABLE_HANGUP
+    value: "true"
+  env3:
+    name: ENABLE_WEB_PANEL
+    value: "true"
