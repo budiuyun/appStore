@@ -6,10 +6,10 @@ entries:
       yunna.net/category-zh: 博客系统
     apiVersion: v2
     appVersion: "2.20"
-    created: "2025-04-26T15:21:49.112315238Z"
+    created: "2025-04-26T15:34:40.539652192Z"
     description: 'Halo 是一个功能强大的开源博客系统,基于 Java 构建,支持自定义主题、插件管理和内容组织。 通过此 Chart 可以将
       Halo 部署到 Kubernetes 集群上,实现高效的博客发布与管理。 该 Chart 支持持久化存储配置,并允许定制服务端口和数据库连接等参数。 '
-    digest: 4b02b25daff3fea235bd157a6ed4c2657a6614f5b07641f91fe6914f96c25044
+    digest: be29125dda36fd22bb5ae4fab2ab6c876574e368d36d1a87cc9bd50b2b8c1b60
     home: https://hub.docker.com/r/halohub/halo
     icon: https://assets.yunna.net/i/2024/12/13/ss9q9h.png
     keywords:
@@ -26,34 +26,4 @@ entries:
     urls:
     - halo-v1.0.0.tgz
     version: v1.0.0
-  qinglong:
-  - annotations:
-      yunna.net/category: Task Management
-      yunna.net/category-zh: 任务管理
-    apiVersion: v2
-    appVersion: 2.17.11
-    created: "2025-04-26T15:21:49.112715168Z"
-    description: 'Qinglong(青龙)是一个支持 Python3、JavaScript、Shell、Typescript 的定时任务管理平台,
-      具有在线编辑脚本、定时执行、日志查看、文件管理等功能。适合需要自动化任务调度和脚本管理的用户使用。 '
-    digest: 09415a1c725e9faf77e39e048db6ac0a004f4a526be96c7a4af834cab839078c
-    home: https://github.com/whyour/qinglong
-    icon: https://assets.yunna.net/i/2024/12/13/srhh08.png
-    keywords:
-    - Qinglong
-    - Automation
-    - Task Management
-    - Cron Jobs
-    - Script Management
-    maintainers:
-    - email: whyour@qinglong.com
-      name: whyour
-    - email: team@qinglong.com
-      name: Qinglong Team
-    name: qinglong
-    sources:
-    - https://github.com/whyour/qinglong
-    - https://hub.docker.com/r/whyour/qinglong
-    urls:
-    - qinglong-v1.0.0.tgz
-    version: v1.0.0
-generated: "2025-04-26T15:21:49.11175069Z"
+generated: "2025-04-26T15:34:40.539068816Z"
