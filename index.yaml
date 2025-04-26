@@ -1,0 +1,29 @@
+apiVersion: v1
+entries:
+  halo:
+  - annotations:
+      yunna.net/category: Blog System
+      yunna.net/category-zh: 博客系统
+    apiVersion: v2
+    appVersion: "2.20"
+    created: "2025-04-26T13:34:24.687532661Z"
+    description: 'Halo 是一个功能强大的开源博客系统,基于 Java 构建,支持自定义主题、插件管理和内容组织。 通过此 Chart 可以将
+      Halo 部署到 Kubernetes 集群上,实现高效的博客发布与管理。 该 Chart 支持持久化存储配置,并允许定制服务端口和数据库连接等参数。 '
+    digest: cdd8576cc72b81ca49f4ed2762ca641c1da47f53605d763f76bad4b56a279a86
+    home: https://hub.docker.com/r/halohub/halo
+    icon: https://assets.yunna.net/i/2024/12/13/ss9q9h.png
+    keywords:
+    - Blog
+    - CMS
+    - Website
+    - Halo
+    maintainers:
+    - email: support@halo.com
+      name: halohub
+    name: halo
+    sources:
+    - https://github.com/halo-dev/halo
+    urls:
+    - halo-v1.0.0.tgz
+    version: v1.0.0
+generated: "2025-04-26T13:34:24.686980139Z"
