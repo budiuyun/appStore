@@ -1,0 +1,24 @@
+annotations:
+  yunna.net/category: Task Management
+  yunna.net/category-zh: 任务管理
+apiVersion: v2
+appVersion: 2.17.11
+description: 'Qinglong(青龙)是一个支持 Python3、JavaScript、Shell、Typescript 的定时任务管理平台, 具有在线编辑脚本、定时执行、日志查看、文件管理等功能。适合需要自动化任务调度和脚本管理的用户使用。 '
+home: https://github.com/whyour/qinglong
+icon: https://assets.yunna.net/i/2024/12/13/srhh08.png
+keywords:
+- Qinglong
+- Automation
+- Task Management
+- Cron Jobs
+- Script Management
+maintainers:
+- email: whyour@qinglong.com
+  name: whyour
+- email: team@qinglong.com
+  name: Qinglong Team
+name: qinglong
+sources:
+- https://github.com/whyour/qinglong
+- https://hub.docker.com/r/whyour/qinglong
+version: v1.0.0
