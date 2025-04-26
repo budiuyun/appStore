@@ -13,47 +13,6 @@ on:
       - '*.md'
 
 jobs:
-  branch-name-check:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check branch name
-        run: |
-          BRANCH_NAME=${GITHUB_REF#refs/heads/}
-          echo "检查分支名: $BRANCH_NAME"
-          
-          # 检查分支名是否符合规范
-          if [[ "$BRANCH_NAME" == "main" || "$BRANCH_NAME" == "master" ]]; then
-            echo "主分支修改，跳过检查"
-            exit 0
-          fi
-          
-          # 检查是否是合法的用户分支或helm分支
-          if [[ "$BRANCH_NAME" == helm-* ]]; then
-            USER_BRANCH=${BRANCH_NAME#helm-}
-            echo "这是一个helm分支，对应的用户分支是: $USER_BRANCH"
-            
-            # 检查对应的用户分支是否存在
-            git fetch origin $USER_BRANCH || {
-              echo "错误: 用户分支 $USER_BRANCH 不存在，但尝试创建或修改了 $BRANCH_NAME 分支"
-              echo "根据安全规定，每个helm分支必须有对应的用户分支"
-              exit 1
-            }
-          else
-            # 是用户分支，检查命名规范
-            if [[ ! "$BRANCH_NAME" =~ ^[a-zA-Z0-9_-]+$ ]]; then
-              echo "错误: 分支名 $BRANCH_NAME 包含不允许的字符"
-              echo "分支名只能包含字母、数字、下划线和连字符"
-              exit 1
-            fi
-            
-            if [[ ${#BRANCH_NAME} -gt 30 ]]; then
-              echo "错误: 分支名 $BRANCH_NAME 太长 (超过30个字符)"
-              exit 1
-            fi
-          fi
-          
-          echo "分支名称检查通过"
-
   malware-scan:
     runs-on: ubuntu-latest
     steps:

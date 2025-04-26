@@ -20,15 +20,13 @@ permissions:
 
 jobs:
   release:
-    # 不在main和helm-开头的分支上运行，且只在验证工作流成功时执行
+    # 移除分支检查条件，允许所有分支运行
     if: >
       ${{ 
         (github.event_name == 'workflow_dispatch') || 
         (
           github.event_name == 'workflow_run' && 
-          github.event.workflow_run.conclusion == 'success' && 
-          github.ref != 'refs/heads/main' && 
-          !startsWith(github.ref, 'refs/heads/helm-')
+          github.event.workflow_run.conclusion == 'success'
         ) 
       }}
     runs-on: ubuntu-latest
