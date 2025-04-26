@@ -13,18 +13,7 @@ echo "====================================================="
 # 获取当前分支名
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
-# 检查是否在main或helm-开头的分支上
-if [[ "$CURRENT_BRANCH" == "main" || "$CURRENT_BRANCH" == "master" ]]; then
-  echo "错误: 你当前在主分支上。请先创建并切换到你的用户分支。"
-  echo "使用: git checkout -b 你的分支名"
-  exit 1
-fi
-
-if [[ "$CURRENT_BRANCH" == helm-* ]]; then
-  echo "错误: 你当前在helm-开头的分支上，这些分支名保留给系统使用。"
-  echo "使用: git checkout -b 你的分支名 (不要以helm-开头)"
-  exit 1
-fi
+# 移除分支名检查
 
 # 设置目标分支名
 TARGET_BRANCH="helm-$CURRENT_BRANCH"

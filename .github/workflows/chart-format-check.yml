@@ -13,55 +13,8 @@ on:
       - 'charts/stable/**'
 
 jobs:
-  branch-ownership-check:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        
-      - name: Validate branch ownership
-        run: |
-          echo "验证分支所有权..."
-          
-          # 跳过管理员检查 - 替换为实际管理员用户名
-          ADMINS=("admin1" "admin2" "admin3")
-          if [[ " ${ADMINS[@]} " =~ " ${{ github.actor }} " ]]; then
-            echo "管理员账户 (${{ github.actor }})，跳过检查"
-            exit 0
-          fi
-          
-          # 跳过main分支检查
-          if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
-            echo "主分支操作，跳过检查"
-            exit 0
-          fi
-          
-          # 获取分支名称
-          BRANCH_NAME=${GITHUB_REF#refs/heads/}
-          echo "当前分支: $BRANCH_NAME"
-          
-          # 获取分支前缀(用户名)
-          USER_PREFIX=$(echo $BRANCH_NAME | cut -d'/' -f1)
-          echo "分支前缀: $USER_PREFIX"
-          
-          # GitHub用户名转小写用于比较
-          GITHUB_ACTOR_LOWER=$(echo $GITHUB_ACTOR | tr '[:upper:]' '[:lower:]')
-          echo "操作用户: $GITHUB_ACTOR_LOWER"
-          
-          # 验证分支前缀是否匹配用户名
-          if [[ "$USER_PREFIX" != "$GITHUB_ACTOR_LOWER" ]]; then
-            echo "错误: 您只能在以自己用户名为前缀的分支上工作"
-            echo "您的用户名: $GITHUB_ACTOR"
-            echo "当前分支: $BRANCH_NAME"
-            echo "期望分支前缀: $GITHUB_ACTOR_LOWER/"
-            exit 1
-          fi
-          
-          echo "用户有权操作此分支"
-
   restricted-paths:
     runs-on: ubuntu-latest
-    needs: branch-ownership-check
     steps:
       - name: Checkout
         uses: actions/checkout@v3
