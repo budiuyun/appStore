@@ -732,7 +732,8 @@ jobs:
             fi
             
             # 检查Service类型是否为ClusterIP
-            if ! echo "$template_output" | grep -A5 "kind: Service" | grep -q "type: ClusterIP"; then
+            service_sections=$(echo "$template_output" | awk '/kind: Service/,/---/' | cat)
+            if ! echo "$service_sections" | grep -q "type: ClusterIP"; then
               echo "错误: 渲染后的Service类型必须为ClusterIP"
               exit 1
             fi
