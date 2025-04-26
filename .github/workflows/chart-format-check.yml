@@ -3,12 +3,12 @@ name: Chart Format Check
 on:
   push:
     branches:
-      - '**'
+      - main
     paths:
       - 'charts/stable/**'
   pull_request:
     branches:
-      - '**'
+      - main
     paths:
       - 'charts/stable/**'
 

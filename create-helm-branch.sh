@@ -1,28 +1,45 @@
 #!/bin/bash
 
 # 手动创建和推送helm分支的脚本
-# 说明：此脚本可供所有仓库用户使用，用于创建和更新自己的helm分支
-# 使用方法：确保你在自己的用户分支上，然后运行此脚本
+# 说明：此脚本可供管理员使用，用于手动为特定用户创建helm分支
+# 使用方法：./create-helm-branch.sh <用户名>
 
 echo "====================================================="
-echo "  Helm Chart 分支自动创建工具"
-echo "  - 此工具将为当前分支创建对应的helm-xxx分支"
-echo "  - 所有用户均可使用此工具处理自己的分支"
+echo "  Helm Chart 用户分支手动创建工具"
+echo "  - 此工具用于为特定用户创建/更新helm分支"
+echo "  - 仅供管理员维护使用"
 echo "====================================================="
 
-# 获取当前分支名
+# 检查是否提供了用户名参数
+if [ -z "$1" ]; then
+  echo "错误: 请提供用户名作为参数"
+  echo "用法: ./create-helm-branch.sh <用户名>"
+  exit 1
+fi
+
+# 获取用户名参数
+USER_NAME="$1"
+
+# 检查当前是否在main分支
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-
-# 移除分支名检查
+if [[ "$CURRENT_BRANCH" != "main" ]]; then
+  echo "警告: 你当前不在main分支上，建议切换到main分支执行此脚本"
+  echo "是否继续? (y/n)"
+  read continue_answer
+  if [[ "$continue_answer" != "y" && "$continue_answer" != "Y" ]]; then
+    echo "操作已取消"
+    exit 0
+  fi
+fi
 
 # 设置目标分支名
-TARGET_BRANCH="helm-$CURRENT_BRANCH"
-echo "当前用户分支: $CURRENT_BRANCH"
+TARGET_BRANCH="helm-$USER_NAME"
+echo "用户名: $USER_NAME"
 echo "目标Helm分支: $TARGET_BRANCH"
 
 # 确认操作
 echo 
-echo "此操作将创建或更新分支 $TARGET_BRANCH"
+echo "此操作将为用户 $USER_NAME 创建或更新分支 $TARGET_BRANCH"
 echo "确认继续? (y/n)"
 read confirm
 if [[ "$confirm" != "y" && "$confirm" != "Y" ]]; then
@@ -78,10 +95,26 @@ fi
 echo "复制打包好的文件..."
 cp -r $OUTPUT_DIR/* .
 
+# 创建README文件
+echo "# Helm Repository for $USER_NAME" > README.md
+echo "Generated manually by admin" >> README.md
+echo "Owner: $USER_NAME" >> README.md
+echo "Last updated: $(date)" >> README.md
+echo "" >> README.md
+echo "## Usage" >> README.md
+echo '```bash' >> README.md
+echo "# Add this Helm repository" >> README.md
+echo "helm repo add $USER_NAME-repo https://raw.githubusercontent.com/\$REPO_OWNER/\$REPO_NAME/$TARGET_BRANCH/" >> README.md
+echo "# Update repositories" >> README.md
+echo "helm repo update" >> README.md
+echo "# List available charts" >> README.md
+echo "helm search repo $USER_NAME-repo" >> README.md
+echo '```' >> README.md
+
 # 提交并推送
 echo "提交并推送..."
-git add *.tgz index.yaml
-git commit -m "Update Helm charts for user branch $CURRENT_BRANCH"
+git add *.tgz index.yaml README.md
+git commit -m "Update Helm charts for user $USER_NAME (manual)"
 git push -f origin $TARGET_BRANCH
 
 # 返回原分支
@@ -94,7 +127,7 @@ REPO_URL=$(git config --get remote.origin.url | sed -E 's|.*github.com[:/](.*).g
 APP_REPO_URL="https://raw.githubusercontent.com/$REPO_URL/$TARGET_BRANCH/"
 
 echo "====================================================="
-echo "完成! 分支 $TARGET_BRANCH 已创建/更新"
+echo "完成! 用户 $USER_NAME 的分支 $TARGET_BRANCH 已创建/更新"
 echo "包含所有打包好的Charts和index.yaml"
 echo "====================================================="
 echo "应用仓库URL:"
@@ -102,6 +135,6 @@ echo "$APP_REPO_URL"
 echo "====================================================="
 echo "使用说明:"
 echo "1. 复制上面的URL"
-echo "2. 在你的容器平台中添加应用仓库"
+echo "2. 在容器平台中添加应用仓库"
 echo "3. 使用上述URL作为仓库地址"
 echo "=====================================================" 
