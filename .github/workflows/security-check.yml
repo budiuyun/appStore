@@ -1,0 +1,167 @@
+name: Security Check
+
+on:
+  push:
+    branches:
+      - '**'
+    paths-ignore:
+      - '*.md'
+  pull_request:
+    branches:
+      - '**'
+    paths-ignore:
+      - '*.md'
+
+jobs:
+  branch-name-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check branch name
+        run: |
+          BRANCH_NAME=${GITHUB_REF#refs/heads/}
+          echo "检查分支名: $BRANCH_NAME"
+          
+          # 检查分支名是否符合规范
+          if [[ "$BRANCH_NAME" == "main" || "$BRANCH_NAME" == "master" ]]; then
+            echo "主分支修改，跳过检查"
+            exit 0
+          fi
+          
+          # 检查是否是合法的用户分支或helm分支
+          if [[ "$BRANCH_NAME" == helm-* ]]; then
+            USER_BRANCH=${BRANCH_NAME#helm-}
+            echo "这是一个helm分支，对应的用户分支是: $USER_BRANCH"
+            
+            # 检查对应的用户分支是否存在
+            git fetch origin $USER_BRANCH || {
+              echo "错误: 用户分支 $USER_BRANCH 不存在，但尝试创建或修改了 $BRANCH_NAME 分支"
+              echo "根据安全规定，每个helm分支必须有对应的用户分支"
+              exit 1
+            }
+          else
+            # 是用户分支，检查命名规范
+            if [[ ! "$BRANCH_NAME" =~ ^[a-zA-Z0-9_-]+$ ]]; then
+              echo "错误: 分支名 $BRANCH_NAME 包含不允许的字符"
+              echo "分支名只能包含字母、数字、下划线和连字符"
+              exit 1
+            fi
+            
+            if [[ ${#BRANCH_NAME} -gt 30 ]]; then
+              echo "错误: 分支名 $BRANCH_NAME 太长 (超过30个字符)"
+              exit 1
+            fi
+          fi
+          
+          echo "分支名称检查通过"
+
+  malware-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Set up ClamAV
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y clamav clamav-daemon
+          sudo systemctl stop clamav-freshclam || true
+          sudo systemctl stop clamav-daemon || true
+          sudo chmod 777 /var/log/clamav/freshclam.log || sudo touch /var/log/clamav/freshclam.log && sudo chmod 777 /var/log/clamav/freshclam.log
+          sudo freshclam --quiet || true
+          
+      - name: Scan for malware
+        run: |
+          echo "执行病毒扫描..."
+          clamscan --recursive --infected . || {
+            EXIT_CODE=$?
+            # 如果返回码是1，表示发现病毒
+            if [ $EXIT_CODE -eq 1 ]; then
+              echo "警告: 检测到可疑文件!"
+              exit 1
+            # 如果是其他错误码，可能是扫描过程中的问题，但没有发现病毒
+            else
+              echo "扫描过程中出现非致命错误，但未发现病毒"
+            fi
+          }
+          
+          echo "病毒扫描通过"
+          
+  check-file-types:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        
+      - name: Check for suspicious file types
+        run: |
+          echo "检查可疑文件类型..."
+          
+          # 禁止的文件扩展名列表
+          FORBIDDEN_EXTENSIONS=("exe" "dll" "so" "dylib" "bat" "cmd" "sh" "ps1" "vbs" "js" "jar" "war")
+          
+          # 特殊允许的脚本文件名称
+          ALLOWED_SCRIPTS=("package-all.sh" "create-helm-branch.sh")
+          
+          # 检查每个文件
+          FOUND_FORBIDDEN=0
+          
+          while read -r file; do
+            filename=$(basename "$file")
+            extension="${filename##*.}"
+            
+            # 跳过根目录下的允许脚本
+            if [[ " ${ALLOWED_SCRIPTS[@]} " =~ " ${filename} " ]] && [[ "$file" == "./"* || "$file" == "$filename" ]]; then
+              echo "允许的脚本: $file"
+              continue
+            fi
+            
+            # 检查扩展名
+            if [[ " ${FORBIDDEN_EXTENSIONS[@]} " =~ " ${extension} " ]]; then
+              echo "发现禁止的文件类型: $file"
+              FOUND_FORBIDDEN=1
+            fi
+          done < <(find . -type f -not -path "*/\.*" -not -path "./charts/*/templates/*")
+          
+          if [ $FOUND_FORBIDDEN -eq 1 ]; then
+            echo "错误: 仓库中存在禁止的可执行文件或脚本"
+            echo "出于安全考虑，此仓库仅允许Helm Chart文件和少量指定的脚本"
+            exit 1
+          fi
+          
+          echo "文件类型检查通过"
+          
+  size-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        
+      - name: Check repository size
+        run: |
+          echo "检查仓库大小..."
+          
+          # 获取当前分支总大小 (MB)
+          TOTAL_SIZE=$(du -sm . | cut -f1)
+          echo "当前分支大小: ${TOTAL_SIZE}MB"
+          
+          # 设置大小限制 (MB)
+          SIZE_LIMIT=500
+          
+          if [ $TOTAL_SIZE -gt $SIZE_LIMIT ]; then
+            echo "错误: 仓库大小超过限制 (${TOTAL_SIZE}MB > ${SIZE_LIMIT}MB)"
+            echo "请删除不必要的文件，或拆分为多个Chart"
+            exit 1
+          fi
+          
+          # 检查单个文件大小限制
+          MAX_FILE_SIZE=50 # MB
+          
+          large_files=$(find . -type f -size +${MAX_FILE_SIZE}M)
+          if [ ! -z "$large_files" ]; then
+            echo "错误: 发现超过${MAX_FILE_SIZE}MB的大文件:"
+            echo "$large_files"
+            echo "请删除或减小这些文件的大小"
+            exit 1
+          fi
+          
+          echo "大小检查通过" 

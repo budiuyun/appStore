@@ -1,0 +1,166 @@
+name: Release Charts
+
+on:
+  workflow_run:
+    workflows: ["Chart Format Check"]
+    types:
+      - completed
+    branches:
+      - '**'
+  # 添加手动触发选项
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: '要处理的分支名称(不包含refs/heads/前缀)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    # 不在main和helm-开头的分支上运行，且只在验证工作流成功时执行
+    if: >
+      ${{ 
+        (github.event_name == 'workflow_dispatch') || 
+        (
+          github.event_name == 'workflow_run' && 
+          github.event.workflow_run.conclusion == 'success' && 
+          github.ref != 'refs/heads/main' && 
+          !startsWith(github.ref, 'refs/heads/helm-')
+        ) 
+      }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get branch name
+        id: branch-name
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" && "${{ github.event.inputs.branch }}" != "" ]]; then
+            echo "BRANCH_NAME=${{ github.event.inputs.branch }}" >> $GITHUB_ENV
+            echo "手动触发模式，处理分支: ${{ github.event.inputs.branch }}"
+          elif [[ "${{ github.event_name }}" == "workflow_run" ]]; then
+            echo "BRANCH_NAME=${{ github.event.workflow_run.head_branch }}" >> $GITHUB_ENV
+            echo "工作流触发模式，处理分支: ${{ github.event.workflow_run.head_branch }}"
+            
+            # 提取用户名前缀
+            USER_PREFIX=$(echo "${{ github.event.workflow_run.head_branch }}" | cut -d'/' -f1)
+            echo "BRANCH_OWNER=$USER_PREFIX" >> $GITHUB_ENV
+            echo "分支所有者: $USER_PREFIX"
+          else
+            echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV
+            echo "自动触发模式，处理分支: ${GITHUB_REF#refs/heads/}"
+            
+            # 提取用户名前缀
+            USER_PREFIX=$(echo ${GITHUB_REF#refs/heads/} | cut -d'/' -f1)
+            echo "BRANCH_OWNER=$USER_PREFIX" >> $GITHUB_ENV
+            echo "分支所有者: $USER_PREFIX"
+          fi
+
+      - name: Debug info
+        run: |
+          echo "当前事件: ${{ github.event_name }}"
+          echo "当前分支: ${{ github.ref }}"
+          echo "处理分支: ${{ env.BRANCH_NAME }}"
+          echo "分支所有者: ${{ env.BRANCH_OWNER }}"
+          echo "工作目录: $(pwd)"
+          echo "仓库结构:"
+          ls -la
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Debug Directory Structure
+        run: |
+          echo "查看仓库目录结构"
+          find charts -type d | sort
+          echo "----------------------------"
+          ls -la charts/stable/
+
+      - name: Install Helm
+        uses: azure/setup-helm@v3
+        with:
+          version: v3.10.0
+
+      - name: Package Charts
+        run: |
+          mkdir -p .release
+          # 使用递归查找所有的Chart
+          find charts/stable -name Chart.yaml | while read chart_yaml; do
+            chart_dir=$(dirname "$chart_yaml")
+            echo "找到Chart: $chart_dir"
+            helm package "$chart_dir" -d .release || echo "打包 $chart_dir 失败"
+          done
+          
+          # 显示打包结果
+          echo "打包完成的Charts:"
+          ls -la .release/
+
+      - name: Create index.yaml
+        run: |
+          cd .release
+          helm repo index .
+          echo "index.yaml内容:"
+          cat index.yaml
+
+      - name: Deploy to user's Helm Charts branch
+        run: |
+          # 创建或切换到用户专属的helm分支
+          TARGET_BRANCH="helm-${{ env.BRANCH_NAME }}"
+          echo "目标分支: $TARGET_BRANCH"
+          
+          # 尝试切换到目标分支，如果不存在则创建
+          git fetch origin $TARGET_BRANCH || true
+          if git show-ref --verify --quiet refs/remotes/origin/$TARGET_BRANCH; then
+            echo "分支 $TARGET_BRANCH 已存在，切换到该分支"
+            git checkout $TARGET_BRANCH
+            git pull origin $TARGET_BRANCH
+            git rm -rf *.tgz index.yaml || true
+          else
+            echo "创建新分支 $TARGET_BRANCH"
+            git checkout --orphan $TARGET_BRANCH
+            git rm -rf .
+          fi
+          
+          # 复制打包好的文件
+          cp -r .release/* .
+          
+          # 创建README文件记录所有权信息
+          echo "# Helm Repository for ${{ env.BRANCH_NAME }}" > README.md
+          echo "Generated from branch: ${{ env.BRANCH_NAME }}" >> README.md
+          echo "Owner: ${{ env.BRANCH_OWNER }}" >> README.md
+          echo "Last updated: $(date)" >> README.md
+          echo "" >> README.md
+          echo "## Usage" >> README.md
+          echo '```bash' >> README.md
+          echo "# Add this Helm repository" >> README.md
+          echo "helm repo add ${{ env.BRANCH_OWNER }}-repo https://raw.githubusercontent.com/${{ github.repository }}/$TARGET_BRANCH/" >> README.md
+          echo "# Update repositories" >> README.md
+          echo "helm repo update" >> README.md
+          echo "# List available charts" >> README.md
+          echo "helm search repo ${{ env.BRANCH_OWNER }}-repo" >> README.md
+          echo '```' >> README.md
+          
+          # 提交并推送
+          git add *.tgz index.yaml README.md
+          git commit -m "Update Helm charts for user branch ${{ env.BRANCH_NAME }}"
+          
+          # 使用PAT令牌进行推送
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          git push -f origin $TARGET_BRANCH
+          
+          echo "Charts已发布到分支: $TARGET_BRANCH"
+          echo "用户可使用以下URL添加应用仓库:"
+          echo "https://raw.githubusercontent.com/${{ github.repository }}/$TARGET_BRANCH/"
+          
+          # 验证文件是否存在
+          echo "尝试验证文件可访问性:"
+          curl -s -o /dev/null -w "%{http_code}" https://raw.githubusercontent.com/${{ github.repository }}/$TARGET_BRANCH/index.yaml 

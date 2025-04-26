@@ -1,0 +1,221 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "required": ["replicaCount", "image", "service", "networkLimits", "resources", "persistence"],
+  "properties": {
+    "replicaCount": {
+      "type": "integer",
+      "title": "副本数量",
+      "description": "应用程序部署的Pod副本数",
+      "minimum": 1,
+      "default": 1
+    },
+    "image": {
+      "type": "object",
+      "required": ["imageRegistry", "repository", "tag", "pullPolicy"],
+      "title": "镜像配置",
+      "description": "容器镜像配置",
+      "properties": {
+        "imageRegistry": {
+          "type": "string",
+          "title": "镜像仓库地址",
+          "description": "镜像仓库的域名",
+          "default": "registry-2.yunna.net"
+        },
+        "repository": {
+          "type": "string",
+          "title": "镜像名称",
+          "description": "镜像的名称，不包含仓库地址和标签"
+        },
+        "tag": {
+          "type": "string",
+          "title": "镜像标签",
+          "description": "镜像的标签，通常对应应用程序版本"
+        },
+        "pullPolicy": {
+          "type": "string",
+          "title": "镜像拉取策略",
+          "description": "Kubernetes的镜像拉取策略，出于安全和性能考虑，只允许使用IfNotPresent",
+          "enum": ["IfNotPresent"],
+          "default": "IfNotPresent"
+        }
+      }
+    },
+    "service": {
+      "type": "object",
+      "required": ["type", "port"],
+      "title": "服务配置",
+      "description": "Kubernetes Service资源配置",
+      "properties": {
+        "type": {
+          "type": "string",
+          "title": "服务类型",
+          "description": "Kubernetes服务类型，必须是ClusterIP",
+          "enum": ["ClusterIP"],
+          "default": "ClusterIP"
+        },
+        "port": {
+          "type": "integer",
+          "title": "服务端口",
+          "description": "服务暴露的端口",
+          "minimum": 1,
+          "maximum": 65535,
+          "default": 80
+        }
+      }
+    },
+    "networkLimits": {
+      "type": "object",
+      "required": ["enabled", "egress", "ingress"],
+      "title": "网络带宽限制",
+      "description": "Pod网络带宽限制配置",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "title": "启用网络限制",
+          "description": "是否启用网络带宽限制",
+          "default": true
+        },
+        "egress": {
+          "type": "string",
+          "title": "出站带宽限制",
+          "description": "出站流量带宽限制，格式为数字+单位(K,M,G)",
+          "pattern": "^[0-9]+[KMG]$",
+          "default": "1M"
+        },
+        "ingress": {
+          "type": "string",
+          "title": "入站带宽限制",
+          "description": "入站流量带宽限制，格式为数字+单位(K,M,G)",
+          "pattern": "^[0-9]+[KMG]$",
+          "default": "1M"
+        }
+      }
+    },
+    "resources": {
+      "type": "object",
+      "required": ["limits", "requests"],
+      "title": "资源配置",
+      "description": "容器资源请求和限制",
+      "properties": {
+        "limits": {
+          "type": "object",
+          "required": ["cpu", "memory"],
+          "title": "资源限制",
+          "description": "容器资源使用上限",
+          "properties": {
+            "cpu": {
+              "type": "string",
+              "title": "CPU限制",
+              "description": "CPU资源限制，可以是m(千分之一核)或直接的核心数",
+              "pattern": "^[0-9]+m?$",
+              "default": "200m"
+            },
+            "memory": {
+              "type": "string",
+              "title": "内存限制",
+              "description": "内存资源限制，可以是Mi(兆字节)或Gi(吉字节)",
+              "pattern": "^[0-9]+(Mi|Gi)$",
+              "default": "256Mi"
+            }
+          }
+        },
+        "requests": {
+          "type": "object",
+          "required": ["cpu", "memory"],
+          "title": "资源请求",
+          "description": "容器需要的最小资源量",
+          "properties": {
+            "cpu": {
+              "type": "string",
+              "title": "CPU请求",
+              "description": "CPU资源请求，单位同上",
+              "pattern": "^[0-9]+m?$",
+              "default": "100m"
+            },
+            "memory": {
+              "type": "string",
+              "title": "内存请求",
+              "description": "内存资源请求，单位同上",
+              "pattern": "^[0-9]+(Mi|Gi)$",
+              "default": "128Mi"
+            }
+          }
+        }
+      }
+    },
+    "persistence": {
+      "type": "object",
+      "required": ["enabled", "accessMode", "size", "storageClass"],
+      "title": "持久化存储",
+      "description": "数据持久化配置",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "title": "启用持久化",
+          "description": "是否启用持久化存储",
+          "default": true
+        },
+        "accessMode": {
+          "type": "string",
+          "title": "访问模式",
+          "description": "PVC的访问模式",
+          "enum": ["ReadWriteOnce", "ReadOnlyMany", "ReadWriteMany"],
+          "default": "ReadWriteOnce"
+        },
+        "size": {
+          "type": "string",
+          "title": "存储大小",
+          "description": "PVC请求的存储大小",
+          "pattern": "^[0-9]+(Mi|Gi|Ti)$",
+          "default": "1Gi"
+        },
+        "storageClass": {
+          "type": "string",
+          "title": "存储类",
+          "description": "使用的存储类名称",
+          "default": "local"
+        }
+      }
+    },
+    "env": {
+      "type": "object",
+      "title": "环境变量",
+      "description": "容器环境变量配置（可选）。用户可以根据应用需求添加任意数量的环境变量，每个环境变量需要包含name和value字段。环境变量的键名(如env1, env2)可以是任意有效的标识符，它们仅作为在配置中区分不同环境变量的标识，不会影响实际环境变量的名称。实际的环境变量名称由name字段定义。",
+      "patternProperties": {
+        "^[a-zA-Z0-9_]+$": {
+          "type": "object",
+          "required": ["name", "value"],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "环境变量名称",
+              "description": "环境变量的实际名称，如NODE_ENV, DEBUG等。此名称将在容器内部被识别。"
+            },
+            "value": {
+              "type": "string",
+              "title": "环境变量值",
+              "description": "环境变量的值。注意：所有值都会被转换为字符串，如布尔值需要使用引号，例如\"true\"或\"false\"。"
+            }
+          }
+        }
+      },
+      "examples": [
+        {
+          "database": {
+            "name": "DATABASE_URL",
+            "value": "postgres://user:password@localhost:5432/db"
+          },
+          "logging": {
+            "name": "LOG_LEVEL",
+            "value": "info"
+          },
+          "feature_flags": {
+            "name": "ENABLE_FEATURE_X",
+            "value": "true" 
+          }
+        }
+      ]
+    }
+  }
+} 

@@ -1,0 +1,26 @@
+{{- if .Values.persistence.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "template-app.fullname" . }}-pvc
+  labels:
+    {{- include "template-app.labels" . | nindent 4 }}
+  annotations:
+    # 可以添加自定义注解，例如数据备份策略
+    backup.kubernetes.io/strategy: "daily"
+spec:
+  # 访问模式：从values.yaml获取
+  # - ReadWriteOnce: 单个节点读写
+  # - ReadOnlyMany: 多个节点只读
+  # - ReadWriteMany: 多个节点读写
+  accessModes:
+    - {{ .Values.persistence.accessMode }}
+  # 资源请求：定义PVC需要的存储空间
+  resources:
+    requests:
+      # 存储大小：从values.yaml获取
+      storage: {{ .Values.persistence.size }}
+  # 存储类名称：从values.yaml获取
+  # 不同的存储类提供不同的性能和可用性特性
+  storageClassName: {{ .Values.persistence.storageClass | quote }}
+{{- end }} 

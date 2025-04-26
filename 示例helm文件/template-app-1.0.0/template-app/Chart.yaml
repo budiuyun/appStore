@@ -1,0 +1,52 @@
+# Chart.yaml 文件定义了Helm Chart的元数据
+# 此文件必须存在且包含所有必需字段
+
+# apiVersion是必需的，必须为v2
+apiVersion: v2
+
+# name是Chart的名称，必须与目录名匹配
+name: template-app
+
+# version是Chart的版本号，遵循语义化版本规范
+version: 1.0.0
+
+# appVersion是应用程序的版本号
+appVersion: "1.0.0"
+
+# 应用描述，简明扼要地说明应用的功能
+description: "模板应用示例，用于展示标准化的Helm Chart结构和配置"
+
+# 图标URL，提供应用的图标
+# 注意：icon URL是必需的，必须是可公开访问的图片URL
+# 图标最好是正方形SVG或PNG格式，尺寸建议为256x256像素
+# 图标会显示在应用市场和Helm UI中，是用户识别应用的重要视觉元素
+# 请确保URL是长期稳定的，避免使用可能过期的临时链接
+icon: https://example.com/icon.png
+
+# 关键词，用于分类和搜索
+keywords:
+  - template
+  - example
+  - web
+  - application
+
+# 源代码仓库链接
+sources:
+  - https://github.com/example/template-app
+
+# 维护者信息，必须包含name和email
+maintainers:
+  - name: maintainer
+    email: maintainer@example.com
+
+# 注解，用于提供额外的元数据
+# yunna.net分类是必需的
+annotations:
+  yunna.net/category: application
+  yunna.net/category-zh: 应用
+
+# 依赖项，如果您的Chart依赖其他Chart，可以在这里列出
+# dependencies:
+#   - name: nginx
+#     version: "1.x.x"
+#     repository: "https://charts.bitnami.com/bitnami" 

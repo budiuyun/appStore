@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "template-app.fullname" . }}
+  labels: {{- include "template-app.labels" . | nindent 4 }}
+  annotations:
+    # 可以添加自定义注解，例如提供服务说明
+    app.kubernetes.io/component: frontend
+spec:
+  # 服务类型：必须是ClusterIP
+  type: {{ .Values.service.type }}
+  # 端口定义
+  ports:
+    - port: {{ .Values.service.port }}
+      # 目标端口：与deployment.yaml中的containerPort一致
+      targetPort: 80
+      protocol: TCP
+      name: http
+  # 选择器：决定哪些Pod属于此服务
+  selector: {{- include "template-app.selectorLabels" . | nindent 4 }}
