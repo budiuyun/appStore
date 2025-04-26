@@ -1,0 +1,129 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "required": ["image", "service", "persistence"],
+    "properties": {
+      "replicaCount": {
+        "type": "integer",
+        "title": "副本数量",
+        "description": "Qinglong 任务管理器副本数量",
+        "minimum": 1,
+        "maximum": 1,
+        "default": 1
+      },
+      "image": {
+        "type": "object",
+        "required": ["imageRegistry", "repository", "tag"],
+        "title": "镜像配置",
+        "properties": {
+          "imageRegistry": {
+            "type": "string",
+            "title": "镜像仓库地址",
+            "default": "registry-2.yunna.net"
+          },
+          "repository": {
+            "type": "string",
+            "title": "镜像名称",
+            "default": "whyour/qinglong"
+          },
+          "tag": {
+            "type": "string",
+            "title": "镜像标签",
+            "default": "2.17.11"
+          },
+          "pullPolicy": {
+            "type": "string",
+            "title": "镜像拉取策略",
+            "enum": ["Always", "IfNotPresent", "Never"],
+            "default": "IfNotPresent"
+          }
+        }
+      },
+      "service": {
+        "type": "object",
+        "required": ["type", "port", "externalPort"],
+        "title": "服务配置", 
+        "properties": {
+          "type": {
+            "type": "string",
+            "title": "服务类型",
+            "enum": ["ClusterIP", "NodePort", "LoadBalancer"],
+            "default": "ClusterIP"
+          },
+          "port": {
+            "type": "integer",
+            "title": "容器端口",
+            "default": 5700
+          },
+          "externalPort": {
+            "type": "integer", 
+            "title": "服务端口",
+            "default": 80
+          }
+        }
+      },
+      "resources": {
+        "type": "object",
+        "title": "资源配置",
+        "properties": {
+          "limits": {
+            "type": "object",
+            "title": "资源限制",
+            "properties": {
+              "cpu": {
+                "type": ["string", "number"],
+                "title": "CPU限制",
+                "default": "500m"
+              },
+              "memory": {
+                "type": "string",
+                "title": "内存限制",
+                "pattern": "^[0-9]+(Mi|Gi)$",
+                "default": "1Gi"
+              }
+            }
+          },
+          "requests": {
+            "type": "object",
+            "title": "资源请求",
+            "properties": {
+              "cpu": {
+                "type": ["string", "number"],
+                "title": "CPU请求",
+                "default": "250m"
+              },
+              "memory": {
+                "type": "string",
+                "title": "内存请求",
+                "pattern": "^[0-9]+(Mi|Gi)$",
+                "default": "512Mi"
+              }
+            }
+          }
+        }
+      },
+      "persistence": {
+        "type": "object",
+        "required": ["enabled", "path", "size"],
+        "title": "持久化配置",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "title": "启用持久化",
+            "default": true
+          },
+          "path": {
+            "type": "string",
+            "title": "挂载路径",
+            "default": "/ql/data"
+          },
+          "size": {
+            "type": "string",
+            "title": "存储大小",
+            "pattern": "^[0-9]+(Mi|Gi)$",
+            "default": "5Gi"
+          }
+        }
+      }
+    }
+  }
