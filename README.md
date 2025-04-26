@@ -234,4 +234,4 @@ helm search repo my-local-repo
 
 本仓库内置了一些示例应用，可以作为参考：
 
-- [Uptime Kuma](./charts/stable/uptime-kuma-0.1.1/uptime-kuma/README.md) - 一个开源的网站监控工具1
+- [Uptime Kuma](./charts/stable/uptime-kuma-0.1.1/uptime-kuma/README.md) - 一个开源的网站监控工具
