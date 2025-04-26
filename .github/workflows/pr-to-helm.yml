@@ -1,0 +1,129 @@
+name: 直接从PR创建Helm分支
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'charts/stable/**'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  build-helm-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出PR内容
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          
+      - name: 获取PR作者
+        id: get-author
+        run: |
+          PR_AUTHOR="${{ github.event.pull_request.user.login }}"
+          echo "PR_AUTHOR=$PR_AUTHOR" >> $GITHUB_ENV
+          echo "PR作者: $PR_AUTHOR"
+          
+      - name: 配置Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: 安装Helm
+        run: |
+          curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+          chmod 700 get_helm.sh
+          ./get_helm.sh
+          helm version
+          
+      - name: 打包Charts
+        run: |
+          mkdir -p .release
+          # 使用递归查找所有的Chart
+          find charts/stable -name Chart.yaml | while read chart_yaml; do
+            chart_dir=$(dirname "$chart_yaml")
+            echo "找到Chart: $chart_dir"
+            helm package "$chart_dir" -d .release || echo "打包 $chart_dir 失败"
+          done
+          
+          # 显示打包结果
+          echo "打包完成的Charts:"
+          ls -la .release/
+
+      - name: 创建index.yaml
+        run: |
+          cd .release
+          helm repo index .
+          echo "index.yaml内容:"
+          cat index.yaml
+          cd ..
+          
+      - name: 创建或更新Helm分支
+        run: |
+          # 设置目标分支名
+          TARGET_BRANCH="helm-${{ env.PR_AUTHOR }}"
+          echo "目标分支: $TARGET_BRANCH"
+          
+          # 尝试切换到目标分支，如果不存在则创建
+          git fetch origin $TARGET_BRANCH || true
+          if git show-ref --verify --quiet refs/remotes/origin/$TARGET_BRANCH; then
+            echo "分支 $TARGET_BRANCH 已存在，更新分支"
+            git checkout $TARGET_BRANCH
+            git pull origin $TARGET_BRANCH
+            git rm -rf *.tgz index.yaml || true
+          else
+            echo "创建新分支 $TARGET_BRANCH"
+            git checkout --orphan $TARGET_BRANCH
+            git rm -rf .
+          fi
+          
+          # 复制打包好的文件
+          cp -r .release/* .
+          
+          # 创建README文件记录所有权信息
+          echo "# Helm Repository for ${{ env.PR_AUTHOR }}" > README.md
+          echo "Generated from PR: #${{ github.event.pull_request.number }}" >> README.md
+          echo "Owner: ${{ env.PR_AUTHOR }}" >> README.md
+          echo "Last updated: $(date)" >> README.md
+          echo "" >> README.md
+          echo "## Usage" >> README.md
+          echo '```bash' >> README.md
+          echo "# Add this Helm repository" >> README.md
+          echo "helm repo add ${{ env.PR_AUTHOR }}-repo https://raw.githubusercontent.com/${{ github.repository }}/$TARGET_BRANCH/" >> README.md
+          echo "# Update repositories" >> README.md
+          echo "helm repo update" >> README.md
+          echo "# List available charts" >> README.md
+          echo "helm search repo ${{ env.PR_AUTHOR }}-repo" >> README.md
+          echo '```' >> README.md
+          
+          # 提交并推送
+          git add *.tgz index.yaml README.md
+          git commit -m "从PR #${{ github.event.pull_request.number }} 更新 ${{ env.PR_AUTHOR }} 的Helm charts"
+          
+          # 推送到远程
+          git push -f origin $TARGET_BRANCH
+          
+      - name: 在PR上添加评论
+        run: |
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          REPO_OWNER="${{ github.repository_owner }}"
+          REPO_NAME="${{ github.event.repository.name }}"
+          TARGET_BRANCH="helm-${{ env.PR_AUTHOR }}"
+          REPO_URL="https://raw.githubusercontent.com/${{ github.repository }}/$TARGET_BRANCH/"
+          
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/repos/${{ github.repository }}/issues/$PR_NUMBER/comments" \
+            -d "{
+              \"body\": \"🎉 已成功创建/更新您的Helm仓库分支！\\n\\n- 分支: \`$TARGET_BRANCH\`\\n- Helm仓库URL: \`$REPO_URL\`\\n\\n使用以下命令添加此Helm仓库:\\n\`\`\`bash\\nhelm repo add ${{ env.PR_AUTHOR }}-repo $REPO_URL\\nhelm repo update\\nhelm search repo ${{ env.PR_AUTHOR }}-repo\\n\`\`\`\\n\\n✅ 您无需等待PR合并，可以直接使用上述URL！\"
+            }"
+          
+      - name: 汇报结果
+        run: |
+          echo "✅ 已成功为用户 ${{ env.PR_AUTHOR }} 创建/更新Helm分支"
+          echo "分支名称: helm-${{ env.PR_AUTHOR }}"
+          echo "仓库URL: https://raw.githubusercontent.com/${{ github.repository }}/helm-${{ env.PR_AUTHOR }}/" 

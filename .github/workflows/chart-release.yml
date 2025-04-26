@@ -1,4 +1,4 @@
-name: Release Main Charts
+name: 主仓库Helm Charts发布
 
 on:
   push:
@@ -12,7 +12,7 @@ on:
       branch:
         description: '要处理的分支名称(不包含refs/heads/前缀)'
         required: false
-        default: ''
+        default: 'main'
 
 permissions:
   contents: write
@@ -88,28 +88,28 @@ jobs:
           cp -r .release/* .
           
           # 创建README文件记录所有权信息
-          echo "# Main Helm Repository" > README.md
-          echo "Generated from main branch" >> README.md
-          echo "Last updated: $(date)" >> README.md
+          echo "# 主仓库Helm Charts" > README.md
+          echo "从main分支生成" >> README.md
+          echo "最后更新时间: $(date)" >> README.md
           echo "" >> README.md
-          echo "## Usage" >> README.md
+          echo "## 使用方法" >> README.md
           echo '```bash' >> README.md
-          echo "# Add this Helm repository" >> README.md
+          echo "# 添加此Helm仓库" >> README.md
           echo "helm repo add main-repo https://raw.githubusercontent.com/${{ github.repository }}/$TARGET_BRANCH/" >> README.md
-          echo "# Update repositories" >> README.md
+          echo "# 更新仓库" >> README.md
           echo "helm repo update" >> README.md
-          echo "# List available charts" >> README.md
+          echo "# 查看可用charts" >> README.md
           echo "helm search repo main-repo" >> README.md
           echo '```' >> README.md
           
           # 提交并推送
           git add *.tgz index.yaml README.md
-          git commit -m "Update Main Helm charts"
+          git commit -m "更新主仓库Helm Charts"
           
           # 使用PAT令牌进行推送
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
           git push -f origin $TARGET_BRANCH
           
-          echo "Charts已发布到分支: $TARGET_BRANCH"
+          echo "主仓库Charts已发布到分支: $TARGET_BRANCH"
           echo "主Helm仓库URL:"
           echo "https://raw.githubusercontent.com/${{ github.repository }}/$TARGET_BRANCH/" 
