@@ -191,18 +191,18 @@ chmod +x create-helm-branch.sh
 
 - 您的GitHub用户名: `company-xyz`
 - 仓库名称: `helm-charts-repo`（从原仓库Fork出来的）
-- 您的用户分支: `company-xyz`
+- 您的用户分支: `company-xyz`（您可以自由选择任何分支名，只要不以`helm-`开头且不是`main`或已有分支名）
 
 您需要：
 
 1. 先联系审核员（通过GitHub Issue或QQ: 179866495）获取授权
 2. Fork原仓库到您自己的GitHub账户
-3. 创建 `company-xyz` 分支
+3. 创建您的用户分支（分支名可以任意选择，比如公司名、组织名或个人标识等，只要遵循分支命名规范）
 4. 在该分支的 `charts/stable/` 下添加您的 Charts
 5. 确保 Chart 格式严格遵循标准格式
 6. 提交并推送到您的Fork仓库
-7. 系统会创建 `helm-company-xyz` 分支，包含所有打包好的 Chart
-8. 在容器平台中添加应用仓库，URL 为：`https://raw.githubusercontent.com/company-xyz/helm-charts-repo/helm-company-xyz/`
+7. 系统会创建 `helm-{您的分支名}` 分支，包含所有打包好的 Chart
+8. 在容器平台中添加应用仓库，URL 为：`https://raw.githubusercontent.com/company-xyz/helm-charts-repo/helm-{您的分支名}/`
 
 ## 本地测试
 
