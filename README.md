@@ -3,28 +3,30 @@
 本仓库是一个多租户的 Helm Charts 托管平台，允许多个用户/组织创建和维护自己的 Chart 集合。
 
 # 如何贡献应用
-1. Fork本仓库
-2. 在charts/stable/目录下创建您的应用目录
-3. 遵循模板创建必要文件
-4. 提交Pull Request
+1. 请先联系审核员获取授权（通过GitHub Issue或QQ: 179866495）
+2. Fork本仓库到您自己的GitHub账户
+3. 在您的Fork仓库中，在charts/stable/目录下创建您的应用目录
+4. 遵循模板创建必要文件
+5. 提交Pull Request或直接在您的Fork仓库中维护您的应用
 
 ## 多租户使用方式
 
 ### 租户接入流程
 
-1. Fork 或克隆本仓库
-2. 创建属于你的分支（例如：`user1`、`org-abc` 等，**不要**使用 `main` 或 `helm-` 开头的分支名）
-3. 在你的分支中的 `charts/stable/` 目录下添加你的 Helm Charts
-4. 提交并推送你的分支
-5. 系统会自动创建一个名为 `helm-{你的分支名}` 的分支，其中包含打包好的 Chart 和 index.yaml
-6. 在应用平台中使用 URL: `https://raw.githubusercontent.com/{仓库所有者}/{仓库名}/helm-{你的分支名}/` 添加你的应用仓库
+1. **先联系审核员**（通过GitHub Issue或QQ: 179866495）申请开通您的租户分支
+2. 审核通过后，Fork本仓库到您自己的GitHub账户
+3. 在您的Fork仓库中创建属于您的分支（例如：`user1`、`org-abc` 等，**不要**使用 `main` 或 `helm-` 开头的分支名）
+4. 在您的分支中的 `charts/stable/` 目录下添加您的 Helm Charts
+5. 提交并推送您的更改到您的Fork仓库
+6. 系统会自动创建一个名为 `helm-{您的分支名}` 的分支，其中包含打包好的 Chart 和 index.yaml
+7. 在应用平台中使用 URL: `https://raw.githubusercontent.com/{您的GitHub用户名}/{仓库名}/helm-{您的分支名}/` 添加您的应用仓库
 
-### 更新你的 Chart
+### 更新您的 Chart
 
-1. 切换到你的用户分支
-2. 修改你的 Chart 文件
-3. 提交并推送更改
-4. 系统会自动更新你的 `helm-{你的分支名}` 分支
+1. 切换到您的用户分支
+2. 修改您的 Chart 文件
+3. 提交并推送更改到您的Fork仓库
+4. 系统会自动更新您的 `helm-{您的分支名}` 分支
 
 ### 分支命名规范
 
@@ -133,7 +135,7 @@ charts/
 3. 添加**应用仓库**或**Helm 仓库**
 4. 填写以下信息：
    - 名称：自定义一个名称
-   - URL：`https://raw.githubusercontent.com/{仓库所有者}/{仓库名}/helm-{你的分支名}/`
+   - URL：`https://raw.githubusercontent.com/{仓库所有者}/{仓库名}/helm-{您的分支名}/`
    - 描述：可选
 5. 完成添加
 
@@ -145,10 +147,10 @@ charts/
 
 #### 方法 1：手动触发 GitHub Actions
 
-1. 在仓库页面，点击 "Actions" 标签
+1. 在您的Fork仓库页面，点击 "Actions" 标签
 2. 选择 "Release Charts" 工作流
 3. 点击 "Run workflow" 按钮
-4. 输入你的分支名称（不包含 refs/heads/ 前缀）
+4. 输入您的分支名称（不包含 refs/heads/ 前缀）
 5. 点击 "Run workflow" 按钮运行
 
 #### 方法 2：使用本地脚本（所有用户都可使用）
@@ -156,7 +158,7 @@ charts/
 仓库中提供了 `create-helm-branch.sh` 脚本，**任何有仓库写入权限的用户**都可以使用它来创建自己的 helm 分支：
 
 ```bash
-# 确保你在你的用户分支上
+# 确保您在您的用户分支上
 git checkout your-branch-name
 
 # 给脚本添加执行权限
@@ -187,25 +189,27 @@ chmod +x create-helm-branch.sh
 
 假设：
 
-- 仓库所有者: `organization`
-- 仓库名称: `helm-charts-repo`
-- 你的用户分支: `company-xyz`
+- 您的GitHub用户名: `company-xyz`
+- 仓库名称: `helm-charts-repo`（从原仓库Fork出来的）
+- 您的用户分支: `company-xyz`
 
-你需要：
+您需要：
 
-1. 创建 `company-xyz` 分支
-2. 在该分支的 `charts/stable/` 下添加你的 Charts
-3. 确保 Chart 格式严格遵循标准格式
-4. 提交并推送
-5. 系统会创建 `helm-company-xyz` 分支，包含所有打包好的 Chart
-6. 在容器平台中添加应用仓库，URL 为：`https://raw.githubusercontent.com/organization/helm-charts-repo/helm-company-xyz/`
+1. 先联系审核员（通过GitHub Issue或QQ: 179866495）获取授权
+2. Fork原仓库到您自己的GitHub账户
+3. 创建 `company-xyz` 分支
+4. 在该分支的 `charts/stable/` 下添加您的 Charts
+5. 确保 Chart 格式严格遵循标准格式
+6. 提交并推送到您的Fork仓库
+7. 系统会创建 `helm-company-xyz` 分支，包含所有打包好的 Chart
+8. 在容器平台中添加应用仓库，URL 为：`https://raw.githubusercontent.com/company-xyz/helm-charts-repo/helm-company-xyz/`
 
 ## 本地测试
 
 用户也可以在本地测试他们的 Chart：
 
 ```bash
-# 切换到你的用户分支
+# 切换到您的用户分支
 git checkout your-branch-name
 
 # 执行打包脚本
@@ -219,16 +223,18 @@ helm search repo my-local-repo
 
 ## 仓库设置（仅管理员）
 
-如果你是本仓库的管理员，确保：
+如果您是本仓库的管理员，确保：
 
 1. 在仓库设置 -> Actions -> General 中：
 
    - 将 "Workflow permissions" 设置为 "Read and write permissions"
    - 勾选 "Allow GitHub Actions to create and approve pull requests"
 
-2. 为用户提供指导，说明如何创建分支并添加 Charts
+2. 为用户提供指导，说明如何申请审核并创建分支
 
 3. 定期审核仓库分支，清理长时间未使用的分支
+
+4. 处理用户通过Issue或QQ提交的分支申请
 
 ## 内置应用示例
 
