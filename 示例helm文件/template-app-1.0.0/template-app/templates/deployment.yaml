@@ -59,21 +59,6 @@ spec:
             requests:
               cpu: {{ .Values.resources.requests.cpu | quote }}
               memory: {{ .Values.resources.requests.memory | quote }}
-          # 存活探针：检查容器是否正常运行
-          # 示例探针，需要根据实际应用调整
-          # livenessProbe:
-          #   httpGet:
-          #     path: /
-          #     port: http
-          #   initialDelaySeconds: 60
-          #   periodSeconds: 10
-          # 就绪探针：检查容器是否准备好接收流量
-          # readinessProbe:
-          #   httpGet:
-          #     path: /
-          #     port: http
-          #   initialDelaySeconds: 30
-          #   periodSeconds: 10
           # 卷挂载：将持久卷挂载到容器内
           {{- if .Values.persistence.enabled }}
           volumeMounts:

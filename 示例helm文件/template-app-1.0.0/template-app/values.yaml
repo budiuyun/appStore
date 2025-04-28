@@ -71,23 +71,3 @@ env:
   env2:
     name: DEBUG
     value: "false"
-
-# 注意：您可以根据应用需求添加更多配置部分
-# 例如：
-# 
-# 安全上下文配置
-# securityContext:
-#   runAsUser: 1000
-#   runAsGroup: 1000
-#   fsGroup: 1000
-#
-# 启动和存活探针
-# probes:
-#   liveness:
-#     path: /health
-#     port: http
-#     initialDelaySeconds: 30
-#   readiness:
-#     path: /ready
-#     port: http
-#     initialDelaySeconds: 10 
