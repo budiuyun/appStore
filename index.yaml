@@ -6,9 +6,9 @@ entries:
       yunna.net/category-zh: 数据库
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-05-03T07:24:11.204330317Z"
+    created: "2025-05-03T09:48:58.070379345Z"
     description: MySQL数据库服务与phpMyAdmin管理界面，基于niehaoran/mysql-phpmyadmin镜像
-    digest: 691e15969f9420b00ae3492a380f4f864ddc8c174f3a8851af0b12d2323f57a6
+    digest: 47cea9e076ca176142277f1d2c518f0e1970e757bed935e50376ab97626cdd2e
     icon: https://www.mysql.com/common/logos/logo-mysql-170x115.png
     keywords:
     - mysql
@@ -24,4 +24,4 @@ entries:
     urls:
     - mysql-1.0.0.tgz
     version: 1.0.0
-generated: "2025-05-03T07:24:11.20380333Z"
+generated: "2025-05-03T09:48:58.069799811Z"
