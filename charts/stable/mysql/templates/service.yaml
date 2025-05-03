@@ -6,19 +6,14 @@ metadata:
   annotations:
     app.kubernetes.io/component: database
 spec:
-  # 服务类型：必须是ClusterIP
   type: {{ .Values.service.type }}
-  # 端口定义
   ports:
     - port: {{ .Values.service.mysqlPort }}
-      # 目标端口：与deployment.yaml中的containerPort一致
       targetPort: 3306
       protocol: TCP
       name: mysql
     - port: {{ .Values.service.phpMyAdminPort }}
-      # 目标端口：与deployment.yaml中的containerPort一致
       targetPort: 80
       protocol: TCP
       name: phpmyadmin
-  # 选择器：决定哪些Pod属于此服务
   selector: {{- include "mysql.selectorLabels" . | nindent 4 }} 

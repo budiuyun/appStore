@@ -12,8 +12,8 @@
 生成应用的基本名称，可用于生成资源名称
 */}}
 {{- define "mysql.name" -}}
-{{- define "mysql" -}}
-{{- end }}
+mysql
+{{- end -}}
 
 {{/*
 定义chart辅助函数

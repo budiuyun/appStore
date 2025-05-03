@@ -7,9 +7,7 @@ metadata:
   annotations:
     app.kubernetes.io/part-of: mysql-phpmyadmin
 spec:
-  # 副本数量：从values.yaml中获取
   replicas: {{ .Values.replicaCount }}
-  # 选择器：用于选择哪些Pod属于此Deployment
   selector:
     matchLabels:
       {{- include "mysql.selectorLabels" . | nindent 6 }}
@@ -18,7 +16,6 @@ spec:
       labels:
         {{- include "mysql.labels" . | nindent 8 }}
         {{- include "mysql.selectorLabels" . | nindent 8 }}
-      # 网络带宽限制注解
       {{- if .Values.networkLimits.enabled }}
       annotations:
         kubernetes.io/egress-bandwidth: {{ .Values.networkLimits.egress | quote }}
@@ -27,10 +24,8 @@ spec:
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          # 镜像配置：使用values.yaml中定义的镜像信息
           image: "{{ .Values.image.imageRegistry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          # 端口配置：定义容器暴露的端口
           ports:
             - name: mysql
               containerPort: 3306
@@ -38,7 +33,6 @@ spec:
             - name: phpmyadmin
               containerPort: 80
               protocol: TCP
-          # 环境变量配置：根据values.yaml中的env部分设置环境变量
           {{- if .Values.env }}
           env:
             {{- if kindIs "map" .Values.env }}
@@ -53,7 +47,6 @@ spec:
             {{- end }}
             {{- end }}
           {{- end }}
-          # 资源请求和限制：确保容器有足够的资源
           resources:
             limits:
               cpu: {{ .Values.resources.limits.cpu | quote }}
@@ -61,18 +54,14 @@ spec:
             requests:
               cpu: {{ .Values.resources.requests.cpu | quote }}
               memory: {{ .Values.resources.requests.memory | quote }}
-          # 卷挂载：将持久卷挂载到容器内
           {{- if .Values.persistence.enabled }}
           volumeMounts:
             - name: data
-              # 挂载路径：MySQL数据存储路径
               mountPath: {{ .Values.persistence.path }}
           {{- end }}
-      # 卷定义：声明使用的卷类型
       {{- if .Values.persistence.enabled }}
       volumes:
         - name: data
           persistentVolumeClaim:
-            # 使用我们定义的PVC
             claimName: {{ include "mysql.fullname" . }}-pvc
       {{- end }} 
