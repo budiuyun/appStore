@@ -8,7 +8,7 @@ apiVersion: v2
 name: mysql
 
 # version是Chart的版本号，遵循语义化版本规范
-version: 1.0.0
+version: v1.0.0
 
 # appVersion是应用程序的版本号
 appVersion: "1.0.0"
