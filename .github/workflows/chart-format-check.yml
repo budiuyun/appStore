@@ -290,13 +290,13 @@ jobs:
                     exit 1
                   fi
                   
-                  # 获取第一个环境变量的标识符
+                  # 根据新的格式获取第一个环境变量的标识符
                   first_env_id=$(echo "$env_section" | grep -E '[ ]+[a-zA-Z0-9_]+:' | head -1 | tr -d ' ' | cut -d':' -f1)
-                  first_env_section=$(echo "$env_section" | sed -n "/$first_env_id:/,/[a-zA-Z0-9_]\+:/p" | grep -v -E "^[ ]+[a-zA-Z0-9_]+:" | head -2)
                   
-                  # 检查name和value字段
-                  if ! echo "$first_env_section" | grep -q "name:" || ! echo "$first_env_section" | grep -q "value:"; then
-                    echo "错误: env项必须包含name和value字段"
+                  # 检查这个环境变量下是否有name和value属性
+                  first_env_props=$(sed -n "/[ ]*$first_env_id:/,/[ ]*[a-zA-Z0-9_]\+:/p" "$values_yaml" | grep -E "[ ]+name:|[ ]+value:")
+                  if [ $(echo "$first_env_props" | wc -l) -lt 2 ]; then
+                    echo "错误: 环境变量必须同时包含name和value属性"
                     exit 1
                   fi
                 else

@@ -6,7 +6,7 @@
     "replicaCount": {
       "type": "integer",
       "title": "副本数量",
-      "description": "应用程序部署的Pod副本数",
+      "description": "MySQL应用部署的Pod副本数",
       "minimum": 1,
       "default": 1
     },
@@ -20,17 +20,19 @@
           "type": "string",
           "title": "镜像仓库地址",
           "description": "镜像仓库的域名",
-          "default": "registry-2.yunna.net"
+          "default": "docker.1ms.run"
         },
         "repository": {
           "type": "string",
           "title": "镜像名称",
-          "description": "镜像的名称，不包含仓库地址和标签"
+          "description": "镜像的名称，不包含仓库地址和标签",
+          "default": "niehaoran/mysql-phpmyadmin"
         },
         "tag": {
           "type": "string",
           "title": "镜像标签",
-          "description": "镜像的标签，通常对应应用程序版本"
+          "description": "镜像的标签，通常对应应用程序版本",
+          "default": "latest"
         },
         "pullPolicy": {
           "type": "string",
@@ -43,7 +45,7 @@
     },
     "service": {
       "type": "object",
-      "required": ["type", "port"],
+      "required": ["type", "mysqlPort", "phpMyAdminPort"],
       "title": "服务配置",
       "description": "Kubernetes Service资源配置",
       "properties": {
@@ -54,10 +56,18 @@
           "enum": ["ClusterIP"],
           "default": "ClusterIP"
         },
-        "port": {
+        "mysqlPort": {
           "type": "integer",
-          "title": "服务端口",
-          "description": "服务暴露的端口",
+          "title": "MySQL服务端口",
+          "description": "MySQL服务暴露的端口",
+          "minimum": 1,
+          "maximum": 65535,
+          "default": 3306
+        },
+        "phpMyAdminPort": {
+          "type": "integer",
+          "title": "phpMyAdmin服务端口",
+          "description": "phpMyAdmin服务暴露的端口",
           "minimum": 1,
           "maximum": 65535,
           "default": 80
@@ -109,14 +119,14 @@
               "title": "CPU限制",
               "description": "CPU资源限制，可以是m(千分之一核)或直接的核心数",
               "pattern": "^[0-9]+m?$",
-              "default": "200m"
+              "default": "500m"
             },
             "memory": {
               "type": "string",
               "title": "内存限制",
               "description": "内存资源限制，可以是Mi(兆字节)或Gi(吉字节)",
               "pattern": "^[0-9]+(Mi|Gi)$",
-              "default": "256Mi"
+              "default": "512Mi"
             }
           }
         },
@@ -131,14 +141,14 @@
               "title": "CPU请求",
               "description": "CPU资源请求，单位同上",
               "pattern": "^[0-9]+m?$",
-              "default": "100m"
+              "default": "200m"
             },
             "memory": {
               "type": "string",
               "title": "内存请求",
               "description": "内存资源请求，单位同上",
               "pattern": "^[0-9]+(Mi|Gi)$",
-              "default": "128Mi"
+              "default": "256Mi"
             }
           }
         }
@@ -168,7 +178,7 @@
           "title": "存储大小",
           "description": "PVC请求的存储大小",
           "pattern": "^[0-9]+(Mi|Gi|Ti)$",
-          "default": "1Gi"
+          "default": "5Gi"
         },
         "storageClass": {
           "type": "string",
@@ -181,43 +191,37 @@
     "env": {
       "type": "object",
       "title": "环境变量",
-      "description": "容器环境变量配置，配置应用程序所需的环境变量",
+      "description": "容器环境变量配置，包括MySQL的相关环境变量",
       "properties": {
-        "env1": {
+        "mysqlRootPassword": {
           "type": "object",
-          "title": "环境变量1",
-          "description": "第一个环境变量配置",
+          "title": "MySQL根密码",
           "properties": {
             "name": {
               "type": "string",
               "title": "变量名称",
-              "description": "环境变量的实际名称，将在容器内被识别",
-              "default": "APP_MODE"
+              "default": "MYSQL_ROOT_PASSWORD"
             },
             "value": {
               "type": "string",
               "title": "变量值",
-              "description": "环境变量的值，所有值都会被转换为字符串",
-              "default": "production"
+              "default": "root"
             }
           }
         },
-        "env2": {
+        "mysqlDatabase": {
           "type": "object",
-          "title": "环境变量2",
-          "description": "第二个环境变量配置",
+          "title": "MySQL数据库",
           "properties": {
             "name": {
               "type": "string",
               "title": "变量名称",
-              "description": "环境变量的实际名称，将在容器内被识别",
-              "default": "DEBUG"
+              "default": "MYSQL_DATABASE"
             },
             "value": {
               "type": "string",
               "title": "变量值",
-              "description": "环境变量的值，所有值都会被转换为字符串",
-              "default": "false"
+              "default": "mydb"
             }
           }
         }

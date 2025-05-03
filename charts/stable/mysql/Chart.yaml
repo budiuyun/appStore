@@ -1,0 +1,43 @@
+# Chart.yaml 文件定义了Helm Chart的元数据
+# 此文件必须存在且包含所有必需字段
+
+# apiVersion是必需的，必须为v2
+apiVersion: v2
+
+# name是Chart的名称，必须与目录名匹配
+name: mysql
+
+# version是Chart的版本号，遵循语义化版本规范
+version: 1.0.0
+
+# appVersion是应用程序的版本号
+appVersion: "1.0.0"
+
+# 应用描述，简明扼要地说明应用的功能
+description: "MySQL数据库服务与phpMyAdmin管理界面，基于niehaoran/mysql-phpmyadmin镜像"
+
+# 图标URL，提供应用的图标
+# 注意：icon URL是必需的，必须是可公开访问的图片URL
+icon: https://www.mysql.com/common/logos/logo-mysql-170x115.png
+
+# 关键词，用于分类和搜索
+keywords:
+  - mysql
+  - database
+  - phpmyadmin
+  - web
+
+# 源代码仓库链接
+sources:
+  - https://github.com/niehaoran/mysql-phpmyadmin
+
+# 维护者信息，必须包含name和email
+maintainers:
+  - name: niehaoran
+    email: niehaoran@example.com
+
+# 注解，用于提供额外的元数据
+# yunna.net分类是必需的
+annotations:
+  yunna.net/category: database
+  yunna.net/category-zh: 数据库 
