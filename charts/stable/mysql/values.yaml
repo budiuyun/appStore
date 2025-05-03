@@ -64,11 +64,9 @@ persistence:
 
 # 环境变量配置：定义容器的环境变量
 env:
-  # MySQL根用户密码
-  mysqlRootPassword:
+  env1:
     name: MYSQL_ROOT_PASSWORD
     value: "root"
-  # 可选的数据库名
-  mysqlDatabase:
+  env2:
     name: MYSQL_DATABASE
     value: "mydb" 
