@@ -1,6 +1,7 @@
 {
   "$schema": "http://json-schema.org/schema#",
   "type": "object",
+  "required": ["image", "service", "persistence"],
   "properties": {
     "replicaCount": {
       "type": "integer",
@@ -9,43 +10,134 @@
       "minimum": 1,
       "default": 1
     },
+    "image": {
+      "type": "object",
+      "required": ["imageRegistry", "repository", "tag"],
+      "title": "镜像配置",
+      "description": "容器镜像配置",
+      "properties": {
+        "imageRegistry": {
+          "type": "string",
+          "title": "镜像仓库地址",
+          "description": "镜像仓库的域名",
+          "default": "registry-2.yunna.net"
+        },
+        "repository": {
+          "type": "string",
+          "title": "镜像名称",
+          "description": "镜像的名称，不包含仓库地址和标签",
+          "default": "louislam/uptime-kuma"
+        },
+        "tag": {
+          "type": "string",
+          "title": "镜像标签",
+          "description": "镜像的标签，通常对应应用程序版本",
+          "default": "latest"
+        },
+        "pullPolicy": {
+          "type": "string",
+          "title": "镜像拉取策略",
+          "description": "Kubernetes的镜像拉取策略，出于安全和性能考虑，只允许使用IfNotPresent",
+          "enum": ["IfNotPresent"],
+          "default": "IfNotPresent"
+        }
+      }
+    },
+    "service": {
+      "type": "object",
+      "required": ["type", "port"],
+      "title": "服务配置",
+      "description": "Kubernetes Service资源配置",
+      "properties": {
+        "type": {
+          "type": "string",
+          "title": "服务类型",
+          "description": "Kubernetes服务类型，必须是ClusterIP",
+          "enum": ["ClusterIP"],
+          "default": "ClusterIP"
+        },
+        "port": {
+          "type": "integer",
+          "title": "服务端口",
+          "description": "服务暴露的端口",
+          "minimum": 1,
+          "maximum": 65535,
+          "default": 3001
+        }
+      }
+    },
+    "networkLimits": {
+      "type": "object",
+      "required": ["enabled", "egress", "ingress"],
+      "title": "网络带宽限制",
+      "description": "Pod网络带宽限制配置",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "title": "启用网络限制",
+          "description": "是否启用网络带宽限制",
+          "default": true
+        },
+        "egress": {
+          "type": "string",
+          "title": "出站带宽限制",
+          "description": "出站流量带宽限制，格式为数字+单位(K,M,G)",
+          "pattern": "^[0-9]+[KMG]$",
+          "default": "1M"
+        },
+        "ingress": {
+          "type": "string",
+          "title": "入站带宽限制",
+          "description": "入站流量带宽限制，格式为数字+单位(K,M,G)",
+          "pattern": "^[0-9]+[KMG]$",
+          "default": "1M"
+        }
+      }
+    },
     "resources": {
       "type": "object",
       "title": "资源需求",
+      "description": "容器资源请求和限制",
       "properties": {
         "limits": {
           "type": "object",
           "title": "资源限制",
+          "description": "容器资源使用上限",
           "properties": {
             "cpu": {
               "type": "string",
               "title": "CPU限制",
+              "description": "CPU资源限制，可以是m(千分之一核)或直接的核心数",
               "pattern": "^[0-9]+m?$",
-              "default": "1000m"
+              "default": "200m"
             },
             "memory": {
               "type": "string",
               "title": "内存限制",
+              "description": "内存资源限制，可以是Mi(兆字节)或Gi(吉字节)",
               "pattern": "^[0-9]+(Mi|Gi)$",
-              "default": "1024Mi"
+              "default": "256Mi"
             }
           }
         },
         "requests": {
           "type": "object",
           "title": "资源请求",
+          "description": "容器需要的最小资源量",
           "properties": {
             "cpu": {
               "type": "string",
               "title": "CPU请求",
+              "description": "CPU资源请求，单位同上",
               "pattern": "^[0-9]+m?$",
-              "default": "500m"
+              "default": "100m"
             },
             "memory": {
               "type": "string",
               "title": "内存请求",
+              "description": "内存资源请求，单位同上",
               "pattern": "^[0-9]+(Mi|Gi)$",
-              "default": "512Mi"
+              "default": "128Mi"
             }
           }
         }
@@ -53,28 +145,34 @@
     },
     "persistence": {
       "type": "object",
+      "required": ["enabled", "size"],
       "title": "持久化配置",
+      "description": "数据持久化配置",
       "properties": {
         "enabled": {
           "type": "boolean",
           "title": "启用持久化",
+          "description": "是否启用持久化存储",
           "default": true
         },
         "accessMode": {
           "type": "string",
           "title": "访问模式",
+          "description": "PVC的访问模式",
           "enum": ["ReadWriteOnce", "ReadOnlyMany", "ReadWriteMany"],
           "default": "ReadWriteOnce"
         },
         "size": {
           "type": "string",
           "title": "存储大小",
-          "pattern": "^[0-9]+(Mi|Gi)$",
+          "description": "PVC请求的存储大小",
+          "pattern": "^[0-9]+(Mi|Gi|Ti)$",
           "default": "1Gi"
         },
         "storageClass": {
           "type": "string",
           "title": "存储类",
+          "description": "使用的存储类名称",
           "default": "local"
         }
       }
@@ -82,19 +180,23 @@
     "env": {
       "type": "object",
       "title": "环境变量",
+      "description": "容器环境变量配置，配置应用程序所需的环境变量",
       "properties": {
         "env1": {
           "type": "object",
           "title": "环境变量1",
+          "description": "第一个环境变量配置",
           "properties": {
             "name": {
               "type": "string",
               "title": "变量名称",
+              "description": "环境变量的实际名称，将在容器内被识别",
               "default": "NODE_ENV"
             },
             "value": {
               "type": "string",
               "title": "变量值",
+              "description": "环境变量的值，所有值都会被转换为字符串",
               "default": "production"
             }
           }
@@ -102,15 +204,18 @@
         "env2": {
           "type": "object",
           "title": "环境变量2",
+          "description": "第二个环境变量配置",
           "properties": {
             "name": {
               "type": "string",
               "title": "变量名称",
+              "description": "环境变量的实际名称，将在容器内被识别",
               "default": "KUMA_DEBUG"
             },
             "value": {
               "type": "string",
               "title": "变量值",
+              "description": "环境变量的值，所有值都会被转换为字符串",
               "default": "false"
             }
           }

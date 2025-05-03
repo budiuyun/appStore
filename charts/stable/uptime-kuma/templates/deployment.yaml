@@ -47,7 +47,7 @@ spec:
               cpu: "{{ .Values.resources.limits.cpu }}"
           volumeMounts:
             - name: uptime-kuma-data
-              mountPath: /app/data
+              mountPath: {{ .Values.persistence.path }}
       volumes:
         - name: uptime-kuma-data
           persistentVolumeClaim:
