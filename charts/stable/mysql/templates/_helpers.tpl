@@ -12,7 +12,7 @@
 生成应用的基本名称，可用于生成资源名称
 */}}
 {{- define "mysql.name" -}}
-{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
+{{- define "mysql" -}}
 {{- end }}
 
 {{/*

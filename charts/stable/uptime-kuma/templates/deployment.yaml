@@ -21,7 +21,7 @@ spec:
       {{- end }}
     spec:
       containers:
-        - name: uptime-kuma
+        - name: {{ .Chart.Name }}
           image: "{{ .Values.image.imageRegistry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           ports:
