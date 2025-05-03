@@ -65,7 +65,7 @@ spec:
             - name: data
               # 挂载路径：应用程序存储数据的路径
               # 重要：此路径必须与应用程序期望的数据存储路径一致
-              mountPath: /data/app
+              mountPath: {{ .Values.persistence.path }}
           {{- end }}
       # 卷定义：声明使用的卷类型
       {{- if .Values.persistence.enabled }}

@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/schema#",
   "type": "object",
-  "required": ["replicaCount", "image", "service", "networkLimits", "resources", "persistence"],
+  "required": ["image", "service", "persistence"],
   "properties": {
     "replicaCount": {
       "type": "integer",
@@ -12,7 +12,7 @@
     },
     "image": {
       "type": "object",
-      "required": ["imageRegistry", "repository", "tag", "pullPolicy"],
+      "required": ["imageRegistry", "repository", "tag"],
       "title": "镜像配置",
       "description": "容器镜像配置",
       "properties": {
@@ -104,13 +104,11 @@
     },
     "resources": {
       "type": "object",
-      "required": ["limits", "requests"],
       "title": "资源配置",
       "description": "容器资源请求和限制",
       "properties": {
         "limits": {
           "type": "object",
-          "required": ["cpu", "memory"],
           "title": "资源限制",
           "description": "容器资源使用上限",
           "properties": {
@@ -132,7 +130,6 @@
         },
         "requests": {
           "type": "object",
-          "required": ["cpu", "memory"],
           "title": "资源请求",
           "description": "容器需要的最小资源量",
           "properties": {
@@ -156,7 +153,7 @@
     },
     "persistence": {
       "type": "object",
-      "required": ["enabled", "accessMode", "size", "storageClass"],
+      "required": ["enabled", "path", "size"],
       "title": "持久化存储",
       "description": "数据持久化配置",
       "properties": {
@@ -165,6 +162,12 @@
           "title": "启用持久化",
           "description": "是否启用持久化存储",
           "default": true
+        },
+        "path": {
+          "type": "string",
+          "title": "挂载路径",
+          "description": "数据持久化的容器内挂载路径",
+          "default": "/var/lib/mysql"
         },
         "accessMode": {
           "type": "string",

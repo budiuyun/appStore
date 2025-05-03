@@ -52,6 +52,8 @@ resources:
 persistence:
   # 是否启用持久化存储
   enabled: true
+  # 数据持久化的容器内挂载路径
+  path: /data/app
   # 访问模式：ReadWriteOnce(单节点读写), ReadOnlyMany(多节点只读), ReadWriteMany(多节点读写)
   accessMode: ReadWriteOnce
   # 存储大小：持久卷声明的空间大小

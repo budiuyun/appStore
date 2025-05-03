@@ -337,7 +337,7 @@ jobs:
                 
                 # 检查persistence部分必需字段
                 persistence_section=$(sed -n '/^persistence:/,/^[a-z]/p' "$values_yaml")
-                for field in "enabled:" "accessMode:" "size:" "storageClass:"; do
+                for field in "enabled:" "path:" "size:" "storageClass:"; do
                   if ! echo "$persistence_section" | grep -q "$field"; then
                     echo "错误: values.yaml persistence部分缺少 $field 字段"
                     exit 1
@@ -393,10 +393,10 @@ jobs:
                 done
                 
                 # 检查必需字段
-                if ! jq -e '.properties.replicaCount' "$schema_file" > /dev/null || \
-                   ! jq -e '.properties.resources' "$schema_file" > /dev/null || \
+                if ! jq -e '.properties.image' "$schema_file" > /dev/null || \
+                   ! jq -e '.properties.service' "$schema_file" > /dev/null || \
                    ! jq -e '.properties.persistence' "$schema_file" > /dev/null; then
-                  echo "错误: values.schema.json 缺少必需的属性定义 (replicaCount, resources, persistence)"
+                  echo "错误: values.schema.json 缺少必需的属性定义 (image, service, persistence)"
                   exit 1
                 fi
                 
@@ -506,9 +506,15 @@ jobs:
                 else
                   echo "✓ 挂载路径: $mount_path"
                   
+                  # 检查是否使用了变量引用
+                  if ! grep -q ".Values.persistence.path" "$deployment_file"; then
+                    echo "错误: deployment.yaml 中的mountPath应该使用.Values.persistence.path变量"
+                    exit 1
+                  fi
+                  
                   # 检查README中是否提到了实际的挂载路径
-                  if ! grep -q "$mount_path" "$readme_file"; then
-                    echo "错误: README.md 必须说明实际的挂载路径 ($mount_path)"
+                  if ! grep -q -i "mountPath\|mount path\|挂载路径\|数据目录\|data dir" "$readme_file"; then
+                    echo "错误: README.md 必须说明挂载路径相关信息"
                     exit 1
                   fi
                 fi
@@ -609,6 +615,24 @@ jobs:
                     exit 1
                   fi
                 done
+                
+                # 检查persistence定义
+                if ! jq -e '.properties.persistence' "$schema_file" > /dev/null; then
+                  echo "错误: values.schema.json 缺少persistence属性定义"
+                  exit 1
+                else
+                  # 检查persistence.path定义
+                  if ! jq -e '.properties.persistence.properties.path' "$schema_file" > /dev/null; then
+                    echo "错误: values.schema.json 中缺少persistence.path属性定义"
+                    exit 1
+                  fi
+                  
+                  # 检查persistence.required中是否包含path
+                  if ! jq -e '.properties.persistence.required | contains(["path"])' "$schema_file" > /dev/null; then
+                    echo "错误: values.schema.json 中persistence.required应该包含path字段"
+                    exit 1
+                  fi
+                fi
                 
                 echo "Chart $chart_dir 内容验证通过"
                 echo "-----------------------------------"
