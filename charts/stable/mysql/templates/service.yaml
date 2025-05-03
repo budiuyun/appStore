@@ -8,12 +8,8 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.mysqlPort }}
+    - port: {{ .Values.service.port }}
       targetPort: 3306
       protocol: TCP
       name: mysql
-    - port: {{ .Values.service.phpMyAdminPort }}
-      targetPort: 80
-      protocol: TCP
-      name: phpmyadmin
   selector: {{- include "mysql.selectorLabels" . | nindent 4 }} 

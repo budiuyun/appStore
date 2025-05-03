@@ -20,19 +20,19 @@
           "type": "string",
           "title": "镜像仓库地址",
           "description": "镜像仓库的域名",
-          "default": "docker.1ms.run"
+          "default": "docker.io"
         },
         "repository": {
           "type": "string",
           "title": "镜像名称",
           "description": "镜像的名称，不包含仓库地址和标签",
-          "default": "niehaoran/mysql-phpmyadmin"
+          "default": "mysql"
         },
         "tag": {
           "type": "string",
           "title": "镜像标签",
           "description": "镜像的标签，通常对应应用程序版本",
-          "default": "latest"
+          "default": "8.0"
         },
         "pullPolicy": {
           "type": "string",
@@ -45,7 +45,7 @@
     },
     "service": {
       "type": "object",
-      "required": ["type", "mysqlPort", "phpMyAdminPort"],
+      "required": ["type", "port"],
       "title": "服务配置",
       "description": "Kubernetes Service资源配置",
       "properties": {
@@ -56,21 +56,13 @@
           "enum": ["ClusterIP"],
           "default": "ClusterIP"
         },
-        "mysqlPort": {
+        "port": {
           "type": "integer",
           "title": "MySQL服务端口",
           "description": "MySQL服务暴露的端口",
           "minimum": 1,
           "maximum": 65535,
           "default": 3306
-        },
-        "phpMyAdminPort": {
-          "type": "integer",
-          "title": "phpMyAdmin服务端口",
-          "description": "phpMyAdmin服务暴露的端口",
-          "minimum": 1,
-          "maximum": 65535,
-          "default": 80
         }
       }
     },
@@ -194,32 +186,73 @@
     "env": {
       "type": "object",
       "title": "环境变量",
+      "description": "MySQL容器的环境变量配置",
       "properties": {
         "env1": {
           "type": "object",
-          "title": "环境变量1",
+          "title": "Root密码",
+          "description": "MySQL root用户的密码",
           "properties": {
             "name": {
               "type": "string",
-              "title": "变量名称"
+              "title": "变量名称",
+              "default": "MYSQL_ROOT_PASSWORD"
             },
             "value": {
               "type": "string",
-              "title": "变量值"
+              "title": "变量值",
+              "default": "root"
             }
           }
         },
         "env2": {
           "type": "object",
-          "title": "环境变量2",
+          "title": "数据库名",
+          "description": "默认创建的数据库名称",
           "properties": {
             "name": {
               "type": "string",
-              "title": "变量名称"
+              "title": "变量名称",
+              "default": "MYSQL_DATABASE"
             },
             "value": {
               "type": "string",
-              "title": "变量值"
+              "title": "变量值",
+              "default": "mydb"
+            }
+          }
+        },
+        "env3": {
+          "type": "object",
+          "title": "用户名",
+          "description": "MySQL普通用户名",
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "default": "MYSQL_USER"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "default": "user"
+            }
+          }
+        },
+        "env4": {
+          "type": "object",
+          "title": "用户密码",
+          "description": "MySQL普通用户密码",
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "default": "MYSQL_PASSWORD"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "default": "password"
             }
           }
         }

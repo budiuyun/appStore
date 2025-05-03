@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "mysql.labels" . | nindent 4 }}
   annotations:
-    app.kubernetes.io/part-of: mysql-phpmyadmin
+    app.kubernetes.io/part-of: mysql
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -29,9 +29,6 @@ spec:
           ports:
             - name: mysql
               containerPort: 3306
-              protocol: TCP
-            - name: phpmyadmin
-              containerPort: 80
               protocol: TCP
           {{- if .Values.env }}
           env:

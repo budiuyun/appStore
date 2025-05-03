@@ -1,19 +1,18 @@
 apiVersion: v2
 name: mysql
 version: v1.0.0
-appVersion: "1.0.0"
-description: "MySQL数据库服务与phpMyAdmin管理界面，基于niehaoran/mysql-phpmyadmin镜像"
+appVersion: "8.0"
+description: "官方MySQL数据库服务"
 icon: https://www.mysql.com/common/logos/logo-mysql-170x115.png
 keywords:
   - mysql
   - database
-  - phpmyadmin
-  - web
 sources:
-  - https://github.com/niehaoran/mysql-phpmyadmin
+  - https://github.com/mysql/mysql-server
+  - https://hub.docker.com/_/mysql
 maintainers:
-  - name: niehaoran
-    email: niehaoran@example.com
+  - name: 系统管理员
+    email: admin@example.com
 annotations:
   yunna.net/category: database
   yunna.net/category-zh: 数据库 

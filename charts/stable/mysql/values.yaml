@@ -1,15 +1,14 @@
 replicaCount: 1
 
 image:
-  imageRegistry: "docker.1ms.run"
-  repository: niehaoran/mysql-phpmyadmin
-  tag: "latest"
+  imageRegistry: "docker.io"
+  repository: mysql
+  tag: "8.0"
   pullPolicy: IfNotPresent
 
 service:
   type: ClusterIP
-  mysqlPort: 3306
-  phpMyAdminPort: 80
+  port: 3306
 
 networkLimits:
   enabled: true
@@ -37,4 +36,10 @@ env:
     value: "root"
   env2:
     name: MYSQL_DATABASE
-    value: "mydb" 
+    value: "mydb"
+  env3:
+    name: MYSQL_USER
+    value: "user"
+  env4:
+    name: MYSQL_PASSWORD
+    value: "password" 
