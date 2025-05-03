@@ -1,29 +1,27 @@
 apiVersion: v1
 entries:
-  halo:
+  mysql:
   - annotations:
-      yunna.net/category: Blog System
-      yunna.net/category-zh: 博客系统
+      yunna.net/category: database
+      yunna.net/category-zh: 数据库
     apiVersion: v2
-    appVersion: "2.20"
-    created: "2025-04-26T15:34:40.539652192Z"
-    description: 'Halo 是一个功能强大的开源博客系统,基于 Java 构建,支持自定义主题、插件管理和内容组织。 通过此 Chart 可以将
-      Halo 部署到 Kubernetes 集群上,实现高效的博客发布与管理。 该 Chart 支持持久化存储配置,并允许定制服务端口和数据库连接等参数。 '
-    digest: be29125dda36fd22bb5ae4fab2ab6c876574e368d36d1a87cc9bd50b2b8c1b60
-    home: https://hub.docker.com/r/halohub/halo
-    icon: https://assets.yunna.net/i/2024/12/13/ss9q9h.png
+    appVersion: 1.0.0
+    created: "2025-05-03T07:22:21.927827415Z"
+    description: MySQL数据库服务与phpMyAdmin管理界面，基于niehaoran/mysql-phpmyadmin镜像
+    digest: b58ba39f00ce6c3148afd80253ef41e2bd7c1c8111d84d4ff942e43a62d79f12
+    icon: https://www.mysql.com/common/logos/logo-mysql-170x115.png
     keywords:
-    - Blog
-    - CMS
-    - Website
-    - Halo
+    - mysql
+    - database
+    - phpmyadmin
+    - web
     maintainers:
-    - email: support@halo.com
-      name: halohub
-    name: halo
+    - email: niehaoran@example.com
+      name: niehaoran
+    name: mysql
     sources:
-    - https://github.com/halo-dev/halo
+    - https://github.com/niehaoran/mysql-phpmyadmin
     urls:
-    - halo-v1.0.0.tgz
-    version: v1.0.0
-generated: "2025-04-26T15:34:40.539068816Z"
+    - mysql-1.0.0.tgz
+    version: 1.0.0
+generated: "2025-05-03T07:22:21.927279819Z"
