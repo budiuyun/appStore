@@ -194,37 +194,32 @@
     "env": {
       "type": "object",
       "title": "环境变量",
-      "description": "容器环境变量配置，包括MySQL的相关环境变量",
       "properties": {
-        "mysqlRootPassword": {
+        "env1": {
           "type": "object",
-          "title": "MySQL根密码",
+          "title": "环境变量1",
           "properties": {
             "name": {
               "type": "string",
-              "title": "变量名称",
-              "default": "MYSQL_ROOT_PASSWORD"
+              "title": "变量名称"
             },
             "value": {
               "type": "string",
-              "title": "变量值",
-              "default": "root"
+              "title": "变量值"
             }
           }
         },
-        "mysqlDatabase": {
+        "env2": {
           "type": "object",
-          "title": "MySQL数据库",
+          "title": "环境变量2",
           "properties": {
             "name": {
               "type": "string",
-              "title": "变量名称",
-              "default": "MYSQL_DATABASE"
+              "title": "变量名称"
             },
             "value": {
               "type": "string",
-              "title": "变量值",
-              "default": "mydb"
+              "title": "变量值"
             }
           }
         }
