@@ -4,17 +4,8 @@
 此名称将被截断为63个字符
 */}}
 {{- define "mysql.fullname" -}}
-{{- if .Values.fullnameOverride }}
-{{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
-{{- else }}
-{{- $name := default .Chart.Name .Values.nameOverride }}
-{{- if contains $name .Release.Name }}
-{{- .Release.Name | trunc 63 | trimSuffix "-" }}
-{{- else }}
-{{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" }}
-{{- end }}
-{{- end }}
-{{- end }}
+{{- .Release.Name | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
 
 {{/*
 定义name辅助函数
