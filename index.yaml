@@ -6,9 +6,9 @@ entries:
       yunna.net/category-zh: 数据库
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-05-03T11:12:58.986424699Z"
+    created: "2025-05-03T11:23:39.253536909Z"
     description: MySQL数据库服务与phpMyAdmin管理界面，基于niehaoran/mysql-phpmyadmin镜像
-    digest: 0433446acae61cb0206c53f9d22dbd41d64f9dfa10c851ce6c96896f545a3faa
+    digest: c36df909509fee288800f740bd48689f8b29560309b0029e3d308502ce4f2580
     icon: https://www.mysql.com/common/logos/logo-mysql-170x115.png
     keywords:
     - mysql
@@ -30,10 +30,10 @@ entries:
       yunna.net/category-zh: 监控工具
     apiVersion: v2
     appVersion: latest
-    created: "2025-05-03T11:12:58.986855707Z"
+    created: "2025-05-03T11:23:39.253957533Z"
     description: 'Uptime Kuma 是一个开源、轻量的自托管监控工具，支持对网站、服务器和 API 的正常运行时间进行实时监控，帮助用户快速了解服务的运行状况。它提供友好的用户界面、支持多种通知方式（如邮件、Telegram、Slack
       等）以及历史记录追踪功能。 '
-    digest: 932950fe92ce00eb7bbdefe2d488c1d1a3f024cf3f7f1eac7de4a014f5115038
+    digest: c45f9390ce9db1a000b32002a06f89c6ab884dca37935aa55f1eb10518602ffa
     home: https://github.com/louislam/uptime-kuma
     icon: https://assets.yunna.net/i/2024/12/13/sr129s.png
     keywords:
@@ -50,4 +50,4 @@ entries:
     urls:
     - uptime-kuma-v1.0.0.tgz
     version: v1.0.0
-generated: "2025-05-03T11:12:58.985832369Z"
+generated: "2025-05-03T11:23:39.252981604Z"
