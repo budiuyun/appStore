@@ -38,7 +38,7 @@
           "type": "string",
           "title": "镜像拉取策略",
           "description": "Kubernetes的镜像拉取策略，出于安全和性能考虑，只允许使用IfNotPresent",
-          "enum": ["IfNotPresent"],
+          "enum": ["IfNotPresent", "Always"],
           "default": "IfNotPresent"
         }
       }
