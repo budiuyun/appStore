@@ -118,9 +118,6 @@ jobs:
           CATEGORIES_FILE="$TEMP_DIR/categories.txt"
           touch $CATEGORIES_FILE
           
-          # 创建JSON基本结构
-          CATEGORY_JSON="{\"categories\":{},\"count\":0}"
-          
           # 查找所有Chart.yaml并提取分类信息
           find charts/stable -name Chart.yaml | while read chart_file; do
             # 获取应用名(目录名)
@@ -140,7 +137,7 @@ jobs:
               echo "$category" >> $CATEGORIES_FILE
             fi
             
-            # 提取Chart.yaml中的所有字段（除了annotations下的budiu/category-zh）
+            # 提取Chart.yaml中的所有字段
             name=$(grep "^name:" "$chart_file" | sed 's/name: *\(.*\)/\1/')
             version=$(grep "^version:" "$chart_file" | sed 's/version: *\(.*\)/\1/')
             apiVersion=$(grep "^apiVersion:" "$chart_file" | sed 's/apiVersion: *\(.*\)/\1/')
@@ -157,23 +154,9 @@ jobs:
             # 获取keywords信息（可能有多行）
             keywords=$(awk '/^keywords:/,/^[a-z]/' "$chart_file" | grep -v "^keywords:" | grep -v "^[a-z]" | sed 's/^-//' | tr -d '\n')
             
-            # 创建应用信息JSON
+            # 创建应用信息JSON (单行方式)
             mkdir -p "$TEMP_DIR/$category"
-            APP_JSON=$(cat << EOF
-{
-  "name": "$name",
-  "version": "$version",
-  "apiVersion": "$apiVersion",
-  "appVersion": "$appVersion",
-  "description": "$description",
-  "icon": "$icon",
-  "maintainers": "$maintainers",
-  "sources": "$sources",
-  "keywords": "$keywords",
-  "path": "./stable/$app_name"
-}
-EOF
-)
+            APP_JSON="{\"name\":\"$name\",\"version\":\"$version\",\"apiVersion\":\"$apiVersion\",\"appVersion\":\"$appVersion\",\"description\":\"$description\",\"icon\":\"$icon\",\"maintainers\":\"$maintainers\",\"sources\":\"$sources\",\"keywords\":\"$keywords\",\"path\":\"./stable/$app_name\"}"
             
             # 检查是否已有同名应用
             if [ -f "$TEMP_DIR/$category/$name.versions" ]; then
@@ -245,7 +228,7 @@ EOF
                     
                     # 添加versions字段
                     all_versions=$(echo "$versions" | cut -d':' -f1 | tr '\n' ',' | sed 's/,$//')
-                    APP_JSON=$(echo "$APP_JSON" | sed 's/}$//' | sed 's/$/,\n  "versions": ["'"$all_versions"'"]\n}/')
+                    APP_JSON=$(echo "$APP_JSON" | sed 's/}$//' | sed 's/$/,"versions":\[\"'"${all_versions//,/\",\"}"'"\]\}/')
                   else
                     # 只有一个版本
                     APP_JSON=$(cat "$app_file")
