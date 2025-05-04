@@ -14,4 +14,4 @@ maintainers:
   - name: 系统管理员
     email: admin@example.com
 annotations:
-  budiu/app-category-zh: "数据库"
+  app-category: "数据库"
