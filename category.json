@@ -1,0 +1,14 @@
+{
+  "categories": {
+    "其他": [
+{"name":"uptime-kuma","version":"v1.0.0"}
+
+    ]
+,
+    "数据库": [
+{"name":"mysql","version":"v1.0.0"}
+
+    ]
+  },
+  "count": 2
+}

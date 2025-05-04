@@ -5,9 +5,9 @@ entries:
       budiu/app-category-zh: 数据库
     apiVersion: v2
     appVersion: "8.0"
-    created: "2025-05-04T18:23:56.880437191Z"
+    created: "2025-05-04T18:32:50.446366875Z"
     description: 官方MySQL数据库服务
-    digest: ba296055231d5664913e4810b8210d15d474053604800d3db1e54decc4b7fe9f
+    digest: 4774cfe85d0741e24957e1ca44ee47aaea2f5d9e8b0a44aa39302ef426ba51d5
     icon: https://www.mysql.com/common/logos/logo-mysql-170x115.png
     maintainers:
     - email: 179866495@qq.com
@@ -24,19 +24,19 @@ entries:
       budiu/category-zh: 监控工具
     apiVersion: v2
     appVersion: latest
-    created: "2025-05-04T18:23:56.880852487Z"
+    created: "2025-05-04T18:32:50.446786552Z"
     description: 'Uptime Kuma 是一个开源、轻量的自托管监控工具，支持对网站、服务器和 API 的正常运行时间进行实时监控，帮助用户快速了解服务的运行状况。它提供友好的用户界面、支持多种通知方式（如邮件、Telegram、Slack
       等）以及历史记录追踪功能。 '
-    digest: 53e0ce465544c23a9ae5d8d818fffcd8ef42af8c232eadf69afbc40da6095b76
+    digest: a4ad41b91ae3cfa69ee22d14bb15d60639902da2d61b5bcbfdc863e1d692079e
     home: https://github.com/louislam/uptime-kuma
     icon: https://assets.yunna.net/i/2024/12/13/sr129s.png
     maintainers:
-    - email: support@uptime-kuma.com
-      name: Louis Lam
+    - email: 179866495@qq.com
+      name: niehaoran
     name: uptime-kuma
     sources:
     - https://github.com/louislam/uptime-kuma
     urls:
     - uptime-kuma-v1.0.0.tgz
     version: v1.0.0
-generated: "2025-05-04T18:23:56.879928961Z"
+generated: "2025-05-04T18:32:50.445834718Z"
