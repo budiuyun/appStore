@@ -6,11 +6,6 @@ description: 'Uptime Kuma 是一个开源、轻量的自托管监控工具，支
   等）以及历史记录追踪功能。 '
 home: https://github.com/louislam/uptime-kuma
 icon: https://assets.yunna.net/i/2024/12/13/sr129s.png
-keywords:
-- Monitoring
-- Self-hosted
-- Uptime
-- Uptime Kuma
 maintainers:
 - email: support@uptime-kuma.com
   name: Louis Lam

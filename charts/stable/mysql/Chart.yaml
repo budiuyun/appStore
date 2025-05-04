@@ -4,9 +4,6 @@ version: v1.0.0
 appVersion: "8.0"
 description: "官方MySQL数据库服务"
 icon: https://www.mysql.com/common/logos/logo-mysql-170x115.png
-keywords:
-  - mysql
-  - database
 sources:
   - https://github.com/mysql/mysql-server
   - https://hub.docker.com/_/mysql

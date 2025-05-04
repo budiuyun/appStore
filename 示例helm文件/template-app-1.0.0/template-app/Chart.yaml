@@ -42,8 +42,7 @@ maintainers:
 # 注解，用于提供额外的元数据
 # yunna.net分类是必需的
 annotations:
-  yunna.net/category: application
-  yunna.net/category-zh: 应用
+  budiu/app-category-zh: 应用分类
 
 # 依赖项，如果您的Chart依赖其他Chart，可以在这里列出
 # dependencies:
