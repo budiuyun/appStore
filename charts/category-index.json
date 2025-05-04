@@ -1,0 +1,21 @@
+{
+  "categories": [
+    {
+      "name": "mysql",
+      "version": "v1.0.0",
+      "icon": "https://www.mysql.com/common/logos/logo-mysql-170x115.png",
+      "description": "官方MySQL数据库服务",
+      "category": "数据库",
+      "path": "charts/stable/mysql"
+    },
+    {
+      "name": "uptime-kuma",
+      "version": "v1.0.0",
+      "icon": "https://assets.yunna.net/i/2024/12/13/sr129s.png",
+      "description": "'Uptime Kuma 是一个开源、轻量的自托管监控工具，支持对网站、服务器和 API 的正常运行时间进行实时监控，帮助用户快速了解服务的运行状况。它提供友好的用户界面、支持多种通知方式（如邮件、Telegram、Slack",
+      "category": "监控工具",
+      "path": "charts/stable/uptime-kuma"
+    }
+  ],
+  "generated": "2025-05-04 17:31:58"
+}
