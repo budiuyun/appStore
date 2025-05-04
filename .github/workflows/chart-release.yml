@@ -137,26 +137,23 @@ jobs:
               echo "$category" >> $CATEGORIES_FILE
             fi
             
-            # 提取Chart.yaml中的所有字段
-            name=$(grep "^name:" "$chart_file" | sed 's/name: *\(.*\)/\1/')
-            version=$(grep "^version:" "$chart_file" | sed 's/version: *\(.*\)/\1/')
-            apiVersion=$(grep "^apiVersion:" "$chart_file" | sed 's/apiVersion: *\(.*\)/\1/')
-            appVersion=$(grep "^appVersion:" "$chart_file" | sed 's/appVersion: *\(.*\)/\1/' | sed 's/"//g')
-            description=$(grep "^description:" "$chart_file" | sed -E 's/description: *"?([^"]*)"?.*/\1/')
-            icon=$(grep "^icon:" "$chart_file" | sed 's/icon: *\(.*\)/\1/')
-            
-            # 获取maintainers信息（可能有多行）
-            maintainers=$(awk '/^maintainers:/,/^[a-z]/' "$chart_file" | grep -v "^maintainers:" | grep -v "^[a-z]" | sed 's/^-//' | tr -d '\n')
-            
-            # 获取sources信息（可能有多行）
-            sources=$(awk '/^sources:/,/^[a-z]/' "$chart_file" | grep -v "^sources:" | grep -v "^[a-z]" | sed 's/^-//' | tr -d '\n')
-            
-            # 获取keywords信息（可能有多行）
-            keywords=$(awk '/^keywords:/,/^[a-z]/' "$chart_file" | grep -v "^keywords:" | grep -v "^[a-z]" | sed 's/^-//' | tr -d '\n')
-            
-            # 创建应用信息JSON (单行方式)
+            # 将整个Chart.yaml转换为JSON对象
             mkdir -p "$TEMP_DIR/$category"
-            APP_JSON="{\"name\":\"$name\",\"version\":\"$version\",\"apiVersion\":\"$apiVersion\",\"appVersion\":\"$appVersion\",\"description\":\"$description\",\"icon\":\"$icon\",\"maintainers\":\"$maintainers\",\"sources\":\"$sources\",\"keywords\":\"$keywords\",\"path\":\"./stable/$app_name\"}"
+            
+            # 使用基于yaml2json的简单转换方式
+            # 先将整个Chart.yaml内容读入
+            chart_content=$(cat "$chart_file")
+            
+            # 提取name和version，这两个是必需的
+            name=$(echo "$chart_content" | grep "^name:" | sed 's/name: *\(.*\)/\1/')
+            version=$(echo "$chart_content" | grep "^version:" | sed 's/version: *\(.*\)/\1/')
+            
+            # 生成一个临时YAML文件，添加path字段
+            echo "$chart_content" > "$TEMP_DIR/temp_chart.yaml"
+            echo "path: ./stable/$app_name" >> "$TEMP_DIR/temp_chart.yaml"
+            
+            # 使用Python转换YAML到JSON (大多数系统都内置Python)
+            APP_JSON=$(python3 -c "import json, yaml, sys; try: data = yaml.safe_load(open('$TEMP_DIR/temp_chart.yaml')); print(json.dumps(data)) if isinstance(data, dict) else print(json.dumps({'content': data})); except Exception as e: print('{\"name\":\"$name\",\"version\":\"$version\",\"path\":\"./stable/$app_name\",\"error\":\"转换失败\"}')")
             
             # 检查是否已有同名应用
             if [ -f "$TEMP_DIR/$category/$name.versions" ]; then
