@@ -14,5 +14,4 @@ maintainers:
   - name: 系统管理员
     email: admin@example.com
 annotations:
-  yunna.net/category: database
-  yunna.net/category-zh: 数据库 
+  budiu/app-category-zh: "数据库"
