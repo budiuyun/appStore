@@ -97,17 +97,15 @@ generate_app_catalog() {
     fi
   fi
   
-  # 设置输出目录
-  OUTPUT_FILE="./charts/app-catalog.md"
+  # 设置输出文件
+  OUTPUT_FILE="./category.json"
   CHARTS_DIR="./charts/stable"
   
-  # 清空或创建输出文件
-  echo "# 应用目录" > $OUTPUT_FILE
-  echo "" >> $OUTPUT_FILE
-  echo "按照类别组织的Helm应用列表，自动生成于 $(date '+%Y-%m-%d %H:%M:%S')" >> $OUTPUT_FILE
-  echo "" >> $OUTPUT_FILE
+  # 创建JSON结构
+  echo "{" > $OUTPUT_FILE
+  echo "  \"categories\": {" >> $OUTPUT_FILE
   
-  # 创建临时文件存储分类和应用信息
+  # 临时目录用于分类处理
   TEMP_DIR=$(mktemp -d)
   CATEGORIES_FILE="$TEMP_DIR/categories.txt"
   touch $CATEGORIES_FILE
@@ -115,13 +113,20 @@ generate_app_catalog() {
   # 查找所有Chart.yaml文件并提取分类信息
   for chart_file in $(find $CHARTS_DIR -name Chart.yaml); do
     # 获取应用名(目录名)
-    app_name=$(basename $(dirname $chart_file))
+    app_dir=$(dirname "$chart_file")
+    app_name=$(basename "$app_dir")
     
     # 提取应用描述
     app_desc=$(grep "^description:" $chart_file | sed 's/description: *"\(.*\)"/\1/')
     if [ -z "$app_desc" ]; then
       app_desc=$(grep "^description:" $chart_file | sed 's/description: *\(.*\)/\1/')
     fi
+    
+    # 提取版本
+    app_version=$(grep "^version:" $chart_file | sed 's/version: *\(.*\)/\1/')
+    
+    # 提取图标
+    app_icon=$(grep "^icon:" $chart_file | sed 's/icon: *\(.*\)/\1/')
     
     # 提取分类
     category=$(grep -A1 "annotations:" $chart_file | grep "budiu/app-category-zh" | sed 's/.*budiu\/app-category-zh: *"\(.*\)".*/\1/')
@@ -131,53 +136,65 @@ generate_app_catalog() {
       category="其他"
     fi
     
-    # 创建分类目录（如果不存在）
-    mkdir -p "$TEMP_DIR/$category"
-    
-    # 将应用信息写入分类文件
-    echo "- **[$app_name](./stable/$app_name)** - $app_desc" > "$TEMP_DIR/$category/$app_name"
-    
-    # 记录分类名称
+    # 记录分类
     if ! grep -q "^$category$" $CATEGORIES_FILE; then
       echo "$category" >> $CATEGORIES_FILE
-    fi
-  done
-  
-  # 生成分类导航
-  echo "## 分类目录" >> $OUTPUT_FILE
-  echo "" >> $OUTPUT_FILE
-  
-  sort $CATEGORIES_FILE | while read category; do
-    clean_category=$(echo "$category" | sed 's/ /-/g')
-    echo "- [$category](#$clean_category)" >> $OUTPUT_FILE
-  done
-  
-  echo "" >> $OUTPUT_FILE
-  
-  # 生成各分类下的应用列表
-  sort $CATEGORIES_FILE | while read category; do
-    echo "## $category" >> $OUTPUT_FILE
-    echo "" >> $OUTPUT_FILE
-    
-    if [ -d "$TEMP_DIR/$category" ]; then
-      cat "$TEMP_DIR/$category"/* >> $OUTPUT_FILE
+      mkdir -p "$TEMP_DIR/$category"
     fi
     
-    echo "" >> $OUTPUT_FILE
+    # 将应用信息写入临时文件
+    echo "{" > "$TEMP_DIR/$category/$app_name.json"
+    echo "  \"name\": \"$app_name\"," >> "$TEMP_DIR/$category/$app_name.json"
+    echo "  \"description\": \"$app_desc\"," >> "$TEMP_DIR/$category/$app_name.json" 
+    echo "  \"version\": \"$app_version\"," >> "$TEMP_DIR/$category/$app_name.json"
+    echo "  \"icon\": \"$app_icon\"," >> "$TEMP_DIR/$category/$app_name.json"
+    echo "  \"path\": \"./stable/$app_name\"" >> "$TEMP_DIR/$category/$app_name.json"
+    echo "}" >> "$TEMP_DIR/$category/$app_name.json"
   done
   
-  # 统计信息
-  cat_count=$(cat $CATEGORIES_FILE | wc -l)
-  app_count=$(find $TEMP_DIR -type f -not -path "*categories.txt" | wc -l)
+  # 处理所有分类添加到JSON
+  first_category=true
+  sort $CATEGORIES_FILE | while read category; do
+    if [ "$first_category" = true ]; then
+      first_category=false
+    else
+      echo "," >> $OUTPUT_FILE
+    fi
+    
+    # 添加分类名
+    echo "    \"$category\": [" >> $OUTPUT_FILE
+    
+    # 添加应用列表
+    first_app=true
+    for app_file in "$TEMP_DIR/$category"/*.json; do
+      if [ "$first_app" = true ]; then
+        first_app=false
+      else
+        echo "," >> $OUTPUT_FILE
+      fi
+      
+      cat "$app_file" >> $OUTPUT_FILE
+    done
+    
+    echo "" >> $OUTPUT_FILE
+    echo "    ]" >> $OUTPUT_FILE
+  done
   
-  echo "应用目录生成完毕，共包含 $cat_count 个分类，$app_count 个应用"
+  # 关闭JSON结构
+  echo "  }" >> $OUTPUT_FILE
+  echo "}" >> $OUTPUT_FILE
+  
+  # 格式化JSON（如果jq可用）
+  if command -v jq &> /dev/null; then
+    jq . $OUTPUT_FILE > $OUTPUT_FILE.tmp && mv $OUTPUT_FILE.tmp $OUTPUT_FILE
+  fi
   
   # 清理临时文件
   rm -rf $TEMP_DIR
   
   # 提交更改
   git add $OUTPUT_FILE
-  git commit -m "自动更新应用目录 [skip ci]" || echo "没有更改需要提交"
+  git commit -m "自动更新应用分类 [skip ci]" || echo "没有更改需要提交"
   
   # 推送到远程
   echo "正在推送更改到远程分支: $HELM_BRANCH"
@@ -189,7 +206,7 @@ generate_app_catalog() {
   # 恢复暂存的更改（如果有）
   git stash pop 2>/dev/null || true
   
-  echo "目录已生成并推送到 $HELM_BRANCH 分支"
+  echo "JSON分类文件已生成并推送到 $HELM_BRANCH 分支"
 }
 
 # 如果直接以参数方式调用此功能
