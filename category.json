@@ -8,9 +8,18 @@
         "appVersion": "8.0",
         "description": "官方MySQL数据库服务",
         "icon": "https://www.mysql.com/common/logos/logo-mysql-170x115.png",
-        "maintainers": "",
-        "sources": "",
-        "keywords": "",
+        "home": "null",
+        "sources": [
+          "https://github.com/mysql/mysql-server",
+          "https://hub.docker.com/_/mysql"
+        ],
+        "maintainers": [
+          {
+            "name": "niehaoran",
+            "email": "179866495@qq.com"
+          }
+        ],
+        "keywords": [],
         "path": "./stable/mysql"
       }
     ],
