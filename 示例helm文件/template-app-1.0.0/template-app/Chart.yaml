@@ -40,7 +40,7 @@ maintainers:
     email: maintainer@example.com
 
 # 注解，用于提供额外的元数据
-# yunna.net分类是必需的
+# budiu分类是必需的
 annotations:
   budiu/app-category-zh: 应用分类
 

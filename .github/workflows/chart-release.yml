@@ -108,113 +108,6 @@ jobs:
           helm repo index .
           echo "index.yaml内容:"
           cat index.yaml
-          
-      - name: Generate Category JSON
-        run: |
-          echo "生成应用分类JSON..."
-          CHARTS_DIR="./charts/stable"
-          CATEGORY_FILE="category.json"
-          
-          # 创建JSON结构
-          echo "{" > $CATEGORY_FILE
-          echo "  \"categories\": {" >> $CATEGORY_FILE
-          
-          # 临时目录用于分类处理
-          TEMP_DIR=$(mktemp -d)
-          CATEGORIES_FILE="$TEMP_DIR/categories.txt"
-          touch $CATEGORIES_FILE
-          
-          # 查找所有Chart.yaml文件并提取分类信息
-          find $CHARTS_DIR -name Chart.yaml | while read chart_file; do
-            # 获取应用名(目录名)
-            app_dir=$(dirname "$chart_file")
-            app_name=$(basename "$app_dir")
-            
-            # 提取应用描述
-            app_desc=$(grep "^description:" "$chart_file" | sed 's/description: *"\(.*\)"/\1/')
-            if [ -z "$app_desc" ]; then
-              app_desc=$(grep "^description:" "$chart_file" | sed 's/description: *\(.*\)/\1/')
-            fi
-            
-            # 提取版本
-            app_version=$(grep "^version:" "$chart_file" | sed 's/version: *\(.*\)/\1/')
-            
-            # 提取图标
-            app_icon=$(grep "^icon:" "$chart_file" | sed 's/icon: *\(.*\)/\1/')
-            
-            # 提取分类，只使用budiu/app-category-zh
-            category=""
-            while IFS= read -r line; do
-              if [[ "$line" == *"budiu/app-category-zh"* ]]; then
-                category=$(echo "$line" | sed 's/.*budiu\/app-category-zh: *"\(.*\)".*/\1/')
-                break
-              fi
-            done < "$chart_file"
-            
-            # 如果没有分类，设为"其他"
-            if [ -z "$category" ]; then
-              category="其他"
-            fi
-            
-            # 记录分类
-            if ! grep -q "^$category$" $CATEGORIES_FILE; then
-              echo "$category" >> $CATEGORIES_FILE
-              mkdir -p "$TEMP_DIR/$category"
-            fi
-            
-            # 将应用信息写入临时文件
-            echo "{" > "$TEMP_DIR/$category/$app_name.json"
-            echo "  \"name\": \"$app_name\"," >> "$TEMP_DIR/$category/$app_name.json"
-            echo "  \"description\": \"$app_desc\"," >> "$TEMP_DIR/$category/$app_name.json" 
-            echo "  \"version\": \"$app_version\"," >> "$TEMP_DIR/$category/$app_name.json"
-            echo "  \"icon\": \"$app_icon\"," >> "$TEMP_DIR/$category/$app_name.json"
-            echo "  \"path\": \"./stable/$app_name\"" >> "$TEMP_DIR/$category/$app_name.json"
-            echo "}" >> "$TEMP_DIR/$category/$app_name.json"
-          done
-          
-          # 处理所有分类添加到JSON
-          first_category=true
-          sort $CATEGORIES_FILE | while read category; do
-            if [ "$first_category" = true ]; then
-              first_category=false
-            else
-              echo "," >> $CATEGORY_FILE
-            fi
-            
-            # 添加分类名
-            echo "    \"$category\": [" >> $CATEGORY_FILE
-            
-            # 添加应用列表
-            first_app=true
-            for app_file in "$TEMP_DIR/$category"/*.json; do
-              if [ "$first_app" = true ]; then
-                first_app=false
-              else
-                echo "," >> $CATEGORY_FILE
-              fi
-              
-              cat "$app_file" >> $CATEGORY_FILE
-            done
-            
-            echo "" >> $CATEGORY_FILE
-            echo "    ]" >> $CATEGORY_FILE
-          done
-          
-          # 关闭JSON结构
-          echo "  }" >> $CATEGORY_FILE
-          echo "}" >> $CATEGORY_FILE
-          
-          # 格式化JSON（如果jq可用）
-          if command -v jq &> /dev/null; then
-            jq . $CATEGORY_FILE > $CATEGORY_FILE.tmp && mv $CATEGORY_FILE.tmp $CATEGORY_FILE
-          fi
-          
-          # 清理临时文件
-          rm -rf $TEMP_DIR
-          
-          echo "应用分类JSON生成完毕"
-          echo "分类文件内容预览:"
-          head -n 30 $CATEGORY_FILE
 
       - name: Deploy to user's Helm Charts branch
         run: |
@@ -228,16 +121,15 @@ jobs:
             echo "分支 $TARGET_BRANCH 已存在，切换到该分支"
             git checkout $TARGET_BRANCH
             git pull origin $TARGET_BRANCH
-            git rm -rf *.tgz index.yaml category.json || true
+            git rm -rf *.tgz index.yaml || true
           else
             echo "创建新分支 $TARGET_BRANCH"
             git checkout --orphan $TARGET_BRANCH
             git rm -rf .
           fi
           
-          # 复制打包好的文件和分类文件
+          # 复制打包好的文件
           cp -r .release/* .
-          cp category.json .
           
           # 创建README文件记录所有权信息
           echo "# Helm Repository for ${{ env.BRANCH_NAME }}" > README.md
@@ -254,13 +146,10 @@ jobs:
           echo "# List available charts" >> README.md
           echo "helm search repo ${{ env.BRANCH_OWNER }}-repo" >> README.md
           echo '```' >> README.md
-          echo "" >> README.md
-          echo "## Available Categories" >> README.md
-          echo "See [category.json](./category.json) for a categorized list of available applications." >> README.md
           
           # 提交并推送
-          git add *.tgz index.yaml category.json README.md
-          git commit -m "Update Helm charts and category JSON for user branch ${{ env.BRANCH_NAME }}"
+          git add *.tgz index.yaml README.md
+          git commit -m "Update Helm charts for user branch ${{ env.BRANCH_NAME }}"
           
           # 使用PAT令牌进行推送
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
@@ -272,5 +161,4 @@ jobs:
           
           # 验证文件是否存在
           echo "尝试验证文件可访问性:"
-          curl -s -o /dev/null -w "index.yaml: %{http_code}\n" https://raw.githubusercontent.com/${{ github.repository }}/$TARGET_BRANCH/index.yaml
-          curl -s -o /dev/null -w "category.json: %{http_code}\n" https://raw.githubusercontent.com/${{ github.repository }}/$TARGET_BRANCH/category.json 
+          curl -s -o /dev/null -w "%{http_code}" https://raw.githubusercontent.com/${{ github.repository }}/$TARGET_BRANCH/index.yaml 

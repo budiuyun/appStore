@@ -217,13 +217,13 @@ jobs:
                 fi
                 
                 # 检查 annotations 必需的字段
-                if ! grep -q "budiu/app-category:" "$chart_yaml"; then
-                  echo "错误: Chart.yaml annotations 缺少 'budiu/app-category' 字段"
+                if ! grep -q "yunna.net/category:" "$chart_yaml"; then
+                  echo "错误: Chart.yaml annotations 缺少 'yunna.net/category' 字段"
                   exit 1
                 fi
                 
-                if ! grep -q "budiu/app-category-zh:" "$chart_yaml"; then
-                  echo "错误: Chart.yaml annotations 缺少 'budiu/app-category-zh' 字段"
+                if ! grep -q "yunna.net/category-zh:" "$chart_yaml"; then
+                  echo "错误: Chart.yaml annotations 缺少 'yunna.net/category-zh' 字段"
                   exit 1
                 fi
                 

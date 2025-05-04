@@ -1,5 +1,0 @@
-# 指定charts目录的路径
-chartsPath: "/charts"
-
-# 输出目录文件路径
-outputPath: "/charts/app-catalog.md" 
