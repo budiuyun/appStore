@@ -5,16 +5,13 @@ entries:
       budiu/app-category-zh: 数据库
     apiVersion: v2
     appVersion: "8.0"
-    created: "2025-05-04T17:43:19.150430129Z"
+    created: "2025-05-04T18:23:56.880437191Z"
     description: 官方MySQL数据库服务
-    digest: 9b2875d9215381f41d4dc1cc51a50ebb91fc5d516c8a2c20ec325921b9eabf25
+    digest: ba296055231d5664913e4810b8210d15d474053604800d3db1e54decc4b7fe9f
     icon: https://www.mysql.com/common/logos/logo-mysql-170x115.png
-    keywords:
-    - mysql
-    - database
     maintainers:
-    - email: admin@example.com
-      name: 系统管理员
+    - email: 179866495@qq.com
+      name: niehaoran
     name: mysql
     sources:
     - https://github.com/mysql/mysql-server
@@ -24,20 +21,15 @@ entries:
     version: v1.0.0
   uptime-kuma:
   - annotations:
-      budiu/app-category-zh: 监控工具
+      budiu/category-zh: 监控工具
     apiVersion: v2
     appVersion: latest
-    created: "2025-05-04T17:43:19.150851688Z"
+    created: "2025-05-04T18:23:56.880852487Z"
     description: 'Uptime Kuma 是一个开源、轻量的自托管监控工具，支持对网站、服务器和 API 的正常运行时间进行实时监控，帮助用户快速了解服务的运行状况。它提供友好的用户界面、支持多种通知方式（如邮件、Telegram、Slack
       等）以及历史记录追踪功能。 '
-    digest: e29777356b44d186b8c0fc92230867980c1fbd942ff08a382f31efc122bcb776
+    digest: 53e0ce465544c23a9ae5d8d818fffcd8ef42af8c232eadf69afbc40da6095b76
     home: https://github.com/louislam/uptime-kuma
     icon: https://assets.yunna.net/i/2024/12/13/sr129s.png
-    keywords:
-    - Monitoring
-    - Self-hosted
-    - Uptime
-    - Uptime Kuma
     maintainers:
     - email: support@uptime-kuma.com
       name: Louis Lam
@@ -47,4 +39,4 @@ entries:
     urls:
     - uptime-kuma-v1.0.0.tgz
     version: v1.0.0
-generated: "2025-05-04T17:43:19.149873637Z"
+generated: "2025-05-04T18:23:56.879928961Z"
