@@ -119,7 +119,7 @@ jobs:
           touch $CATEGORIES_FILE
           
           # 创建JSON基本结构
-          CATEGORY_JSON="{\"categories\":{},\"count\":0}"
+          CATEGORY_JSON="{\"categories\":{},\"applications\":{},\"count\":0}"
           
           # 查找所有Chart.yaml并提取分类信息
           find charts/stable -name Chart.yaml | while read chart_file; do
@@ -131,28 +131,36 @@ jobs:
             name=$(grep "^name:" "$chart_file" | sed 's/name: *\(.*\)/\1/')
             version=$(grep "^version:" "$chart_file" | sed 's/version: *\(.*\)/\1/')
             
-            # 提取分类（budiu/app-category-zh字段）
-            category=$(grep -A2 "^annotations:" "$chart_file" | grep "budiu/app-category-zh" | sed -E 's/.*budiu\/app-category-zh: *"?([^"]*)"?.*/\1/')
-            
-            # 如果没有找到分类，设为"其他"
+            # 提取分类（判断是否有yunna.net/category-zh字段，优先使用，否则使用英文分类或默认为"其他"）
+            category=$(grep -A5 "^annotations:" "$chart_file" | grep "yunna.net/category-zh" | sed -E 's/.*yunna\.net\/category-zh: *"?([^"]*)"?.*/\1/')
             if [ -z "$category" ]; then
-              category="其他"
+              category=$(grep -A5 "^annotations:" "$chart_file" | grep "yunna.net/category" | sed -E 's/.*yunna\.net\/category: *"?([^"]*)"?.*/\1/')
+              if [ -z "$category" ]; then
+                category="其他"
+              fi
             fi
+            
+            # 提取整个Chart.yaml内容并转为JSON格式
+            chart_content=$(cat "$chart_file" | base64 -w 0)
             
             # 记录分类
             if ! grep -q "^$category$" $CATEGORIES_FILE; then
               echo "$category" >> $CATEGORIES_FILE
             fi
             
-            # 记录应用信息
+            # 记录应用信息（包括完整的Chart.yaml内容）
             mkdir -p "$TEMP_DIR/$category"
-            echo "{\"name\":\"$name\",\"version\":\"$version\"}" > "$TEMP_DIR/$category/$app_name.json"
+            echo "{\"name\":\"$name\",\"version\":\"$version\",\"chartYaml\":\"$chart_content\"}" > "$TEMP_DIR/$category/$app_name-$version.json"
+            
+            # 同时记录应用的所有版本
+            mkdir -p "$TEMP_DIR/apps/$app_name"
+            echo "{\"name\":\"$name\",\"version\":\"$version\",\"category\":\"$category\",\"chartYaml\":\"$chart_content\"}" > "$TEMP_DIR/apps/$app_name/$version.json"
           done
           
           # 统计分类数量
           CATEGORY_COUNT=$(wc -l < $CATEGORIES_FILE)
           
-          # 构建完整JSON
+          # 构建完整JSON（分类部分）
           echo "{" > category.json
           echo "  \"categories\": {" >> category.json
           
@@ -188,12 +196,53 @@ jobs:
           done
           
           echo "  }," >> category.json
+          
+          # 添加applications部分（按应用名组织不同版本）
+          echo "  \"applications\": {" >> category.json
+          
+          first_app=true
+          if [ -d "$TEMP_DIR/apps" ]; then
+            for app_dir in "$TEMP_DIR/apps"/*; do
+              if [ -d "$app_dir" ]; then
+                app_name=$(basename "$app_dir")
+                
+                if [ "$first_app" = true ]; then
+                  first_app=false
+                else
+                  echo "," >> category.json
+                fi
+                
+                # 添加应用名
+                echo "    \"$app_name\": {" >> category.json
+                echo "      \"versions\": [" >> category.json
+                
+                # 添加版本列表
+                first_version=true
+                for version_file in "$app_dir"/*.json; do
+                  if [ -f "$version_file" ]; then
+                    if [ "$first_version" = true ]; then
+                      first_version=false
+                    else
+                      echo "," >> category.json
+                    fi
+                    cat "$version_file" >> category.json
+                  fi
+                done
+                
+                echo "" >> category.json
+                echo "      ]" >> category.json
+                echo "    }" >> category.json
+              fi
+            done
+          fi
+          
+          echo "  }," >> category.json
           echo "  \"count\": $CATEGORY_COUNT" >> category.json
           echo "}" >> category.json
           
-          # 显示生成的JSON
-          echo "生成的category.json内容:"
-          cat category.json
+          # 显示生成的JSON结构（不显示全部内容，可能太大）
+          echo "生成的category.json结构概览:"
+          jq 'keys' category.json || echo "无法使用jq解析JSON，但文件已生成"
           
           # 移动到发布目录
           cp category.json .release/
