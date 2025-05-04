@@ -1,7 +1,7 @@
 # Helm Repository for main
 Generated from branch: main
 Owner: main
-Last updated: Sun May  4 19:07:09 UTC 2025
+Last updated: Sun May  4 19:11:01 UTC 2025
 
 ## Usage
 ```bash
