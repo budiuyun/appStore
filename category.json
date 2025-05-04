@@ -1,13 +1,19 @@
 {
   "categories": {
-    "其他": [
-{"name":"uptime-kuma","version":"v1.0.0"}
-
-    ]
-,
+    "其他": [],
     "数据库": [
-{"name":"mysql","version":"v1.0.0"}
-
+      {
+        "name": "mysql",
+        "version": "v1.0.0",
+        "apiVersion": "v2",
+        "appVersion": "8.0",
+        "description": "官方MySQL数据库服务",
+        "icon": "https://www.mysql.com/common/logos/logo-mysql-170x115.png",
+        "maintainers": "",
+        "sources": "",
+        "keywords": "",
+        "path": "./stable/mysql"
+      }
     ]
   },
   "count": 2
