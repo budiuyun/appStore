@@ -1,6 +1,5 @@
 {
   "categories": {
-    "其他": [],
     "数据库": [
       {
         "name": "mysql",
@@ -14,7 +13,8 @@
         "keywords": "",
         "path": "./stable/mysql"
       }
-    ]
+    ],
+    "监控工具": []
   },
   "count": 2
 }
