@@ -372,10 +372,17 @@ jobs:
           # 移动到发布目录
           cp "$TEMP_DIR/category.json" .release/
           
-          # 保存调试信息（可选）
-          tar -czf debug_info.tar.gz -C "$TEMP_DIR" debug
-          
-          # 清理临时文件 (保留TEMP_DIR以继续使用)
+          # 保存调试信息到具名目录
+          mkdir -p debug_info
+          cp -r "$TEMP_DIR/debug"/* debug_info/
+          ls -la debug_info/
+
+      - name: Upload debug info
+        uses: actions/upload-artifact@v2
+        with:
+          name: chart-debug-info
+          path: debug_info/
+          retention-days: 3
 
       - name: Deploy to user's Helm Charts branch
         run: |
