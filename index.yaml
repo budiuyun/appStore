@@ -5,9 +5,9 @@ entries:
       budiu/app-category-zh: 数据库
     apiVersion: v2
     appVersion: "8.0"
-    created: "2025-05-04T17:32:15.743529913Z"
+    created: "2025-05-04T17:43:19.150430129Z"
     description: 官方MySQL数据库服务
-    digest: f6faddfd645488d3432304a5db45845c70cb90a5c346e60f48cdcf55fe8f19c2
+    digest: 9b2875d9215381f41d4dc1cc51a50ebb91fc5d516c8a2c20ec325921b9eabf25
     icon: https://www.mysql.com/common/logos/logo-mysql-170x115.png
     keywords:
     - mysql
@@ -27,10 +27,10 @@ entries:
       budiu/app-category-zh: 监控工具
     apiVersion: v2
     appVersion: latest
-    created: "2025-05-04T17:32:15.743955811Z"
+    created: "2025-05-04T17:43:19.150851688Z"
     description: 'Uptime Kuma 是一个开源、轻量的自托管监控工具，支持对网站、服务器和 API 的正常运行时间进行实时监控，帮助用户快速了解服务的运行状况。它提供友好的用户界面、支持多种通知方式（如邮件、Telegram、Slack
       等）以及历史记录追踪功能。 '
-    digest: 5d94ddbb08c25f70e2f3321f113cbb21846d31224f3cbe3f66246df70b805396
+    digest: e29777356b44d186b8c0fc92230867980c1fbd942ff08a382f31efc122bcb776
     home: https://github.com/louislam/uptime-kuma
     icon: https://assets.yunna.net/i/2024/12/13/sr129s.png
     keywords:
@@ -47,4 +47,4 @@ entries:
     urls:
     - uptime-kuma-v1.0.0.tgz
     version: v1.0.0
-generated: "2025-05-04T17:32:15.742979091Z"
+generated: "2025-05-04T17:43:19.149873637Z"
