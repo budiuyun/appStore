@@ -1,0 +1,42 @@
+name: 更新应用目录
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'charts/stable/**/Chart.yaml'
+  pull_request:
+    branches: [ main, master ]
+    paths:
+      - 'charts/stable/**/Chart.yaml'
+  # 也可以手动触发
+  workflow_dispatch:
+
+jobs:
+  update-catalog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: 设置脚本执行权限
+        run: chmod +x charts/generate-catalog.sh charts/update-catalog.sh
+
+      - name: 更新应用目录
+        run: |
+          cd charts
+          ./update-catalog.sh
+
+      - name: 提交更新的目录文件
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add charts/app-catalog.md
+          git commit -m "自动更新应用目录 [skip ci]" || echo "没有更改需要提交"
+          
+      - name: 推送更改
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }} 

@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: catalog-generator
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-weight": "-5"
+    "helm.sh/hook-delete-policy": hook-succeeded
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: catalog-generator
+        image: alpine:latest
+        command:
+        - /bin/sh
+        - -c
+        - |
+          apk add --no-cache bash findutils grep
+          cd /charts
+          bash ./generate-catalog.sh
+        volumeMounts:
+        - name: charts-volume
+          mountPath: /charts
+      volumes:
+      - name: charts-volume
+        hostPath:
+          path: {{ .Values.chartsPath | default "/charts" }}
+          type: Directory 

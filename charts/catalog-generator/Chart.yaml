@@ -1,0 +1,8 @@
+apiVersion: v2
+name: catalog-generator
+description: "自动生成应用目录的Chart"
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+annotations:
+  budiu/app-category-zh: "系统工具" 
