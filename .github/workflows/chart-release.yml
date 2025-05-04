@@ -37,6 +37,15 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      # 添加显式依赖，解决缺少 upload-artifact@v3 的问题
+      - name: Setup action dependencies
+        uses: actions/upload-artifact@v2
+        with:
+          name: dummy-artifact
+          path: .github/workflows/chart-release.yml
+          retention-days: 1
+          if-no-files-found: ignore
+
       - name: Get branch name
         id: branch-name
         run: |
