@@ -37,14 +37,7 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # 添加显式依赖，解决缺少 upload-artifact@v3 的问题
-      - name: Setup action dependencies
-        uses: actions/upload-artifact@v2
-        with:
-          name: dummy-artifact
-          path: .github/workflows/chart-release.yml
-          retention-days: 1
-          if-no-files-found: ignore
+      # 移除显式依赖，简化工作流
 
       - name: Get branch name
         id: branch-name
@@ -84,6 +77,18 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Install Required Tools
+        run: |
+          echo "安装必要工具..."
+          # 安装Python依赖（用于YAML处理）
+          sudo apt-get update && sudo apt-get install -y python3-yaml python3-pip
+          # 安装jq（用于JSON处理）
+          sudo apt-get install -y jq
+          # 检查工具安装
+          python3 --version
+          pip3 --version
+          jq --version
 
       - name: Debug Directory Structure
         run: |
