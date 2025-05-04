@@ -67,6 +67,36 @@ echo "helm repo add local-repo file://$PWD/$OUTPUT_DIR"
 generate_app_catalog() {
   echo "正在生成应用目录..."
   
+  # 获取当前分支
+  CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  HELM_BRANCH="helm-$CURRENT_BRANCH"
+  
+  echo "当前分支: $CURRENT_BRANCH"
+  echo "目标helm分支: $HELM_BRANCH"
+  
+  # 保存当前修改（如果有）
+  git stash
+  
+  # 创建或切换到helm分支
+  if git show-ref --verify --quiet refs/heads/$HELM_BRANCH; then
+    # 本地分支存在，切换
+    echo "切换到已存在的分支: $HELM_BRANCH"
+    git checkout $HELM_BRANCH
+    # 拉取最新更改（如果远程分支存在）
+    if git ls-remote --heads origin $HELM_BRANCH | grep -q $HELM_BRANCH; then
+      git pull origin $HELM_BRANCH
+    fi
+  else
+    # 检查远程是否存在
+    if git ls-remote --heads origin $HELM_BRANCH | grep -q $HELM_BRANCH; then
+      echo "创建本地分支跟踪远程分支: $HELM_BRANCH"
+      git checkout -b $HELM_BRANCH origin/$HELM_BRANCH
+    else
+      echo "创建新的helm分支: $HELM_BRANCH"
+      git checkout -b $HELM_BRANCH
+    fi
+  fi
+  
   # 设置输出目录
   OUTPUT_FILE="./charts/app-catalog.md"
   CHARTS_DIR="./charts/stable"
@@ -144,6 +174,22 @@ generate_app_catalog() {
   
   # 清理临时文件
   rm -rf $TEMP_DIR
+  
+  # 提交更改
+  git add $OUTPUT_FILE
+  git commit -m "自动更新应用目录 [skip ci]" || echo "没有更改需要提交"
+  
+  # 推送到远程
+  echo "正在推送更改到远程分支: $HELM_BRANCH"
+  git push origin $HELM_BRANCH
+  
+  # 切回原分支
+  git checkout $CURRENT_BRANCH
+  
+  # 恢复暂存的更改（如果有）
+  git stash pop 2>/dev/null || true
+  
+  echo "目录已生成并推送到 $HELM_BRANCH 分支"
 }
 
 # 如果直接以参数方式调用此功能

@@ -20,6 +20,27 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: 获取当前分支名
+        id: get_branch
+        run: |
+          CURRENT_BRANCH=${GITHUB_REF#refs/heads/}
+          echo "current_branch=$CURRENT_BRANCH" >> $GITHUB_OUTPUT
+          echo "helm_branch=helm-$CURRENT_BRANCH" >> $GITHUB_OUTPUT
+
+      - name: 创建或切换到helm分支
+        run: |
+          HELM_BRANCH="${{ steps.get_branch.outputs.helm_branch }}"
+          
+          # 检查远程是否存在该分支
+          if git ls-remote --heads origin $HELM_BRANCH | grep -q $HELM_BRANCH; then
+            # 远程分支存在，切换到该分支
+            git checkout $HELM_BRANCH || git checkout -b $HELM_BRANCH
+            git pull origin $HELM_BRANCH
+          else
+            # 远程分支不存在，创建新分支
+            git checkout -b $HELM_BRANCH
+          fi
+
       - name: 生成应用目录
         run: |
           # 设置输出目录
@@ -124,8 +145,8 @@ jobs:
           git add charts/app-catalog.md
           git commit -m "自动更新应用目录 [skip ci]" || echo "没有更改需要提交"
           
-      - name: 推送更改
+      - name: 推送到helm分支
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }} 
+          branch: ${{ steps.get_branch.outputs.helm_branch }} 
