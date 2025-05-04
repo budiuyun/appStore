@@ -183,8 +183,8 @@ jobs:
           CATEGORY_COUNT=$(wc -l < $CATEGORIES_FILE)
           
           # 构建完整JSON
-          echo "{" > category.json
-          echo "  \"categories\": {" >> category.json
+          echo "{" > "$TEMP_DIR/category.json"
+          echo "  \"categories\": {" >> "$TEMP_DIR/category.json"
           
           # 添加所有分类
           first_category=true
@@ -192,11 +192,11 @@ jobs:
             if [ "$first_category" = true ]; then
               first_category=false
             else
-              echo "," >> category.json
+              echo "," >> "$TEMP_DIR/category.json"
             fi
             
             # 添加分类名
-            echo "    \"$category\": [" >> category.json
+            echo "    \"$category\": [" >> "$TEMP_DIR/category.json"
             
             # 添加应用列表
             first_app=true
@@ -242,41 +242,43 @@ jobs:
                 if [ "$first_app" = true ]; then
                   first_app=false
                 else
-                  echo "," >> category.json
+                  echo "," >> "$TEMP_DIR/category.json"
                 fi
                 
-                echo "$APP_JSON" >> category.json
+                echo "$APP_JSON" >> "$TEMP_DIR/category.json"
               done
             fi
             
-            echo "" >> category.json
-            echo "    ]" >> category.json
+            echo "" >> "$TEMP_DIR/category.json"
+            echo "    ]" >> "$TEMP_DIR/category.json"
           done
           
-          echo "  }," >> category.json
-          echo "  \"count\": $CATEGORY_COUNT" >> category.json
-          echo "}" >> category.json
+          echo "  }," >> "$TEMP_DIR/category.json"
+          echo "  \"count\": $CATEGORY_COUNT" >> "$TEMP_DIR/category.json"
+          echo "}" >> "$TEMP_DIR/category.json"
           
           # 尝试格式化JSON
           if command -v jq &> /dev/null; then
-            jq . category.json > category.json.tmp && mv category.json.tmp category.json
+            jq . "$TEMP_DIR/category.json" > "$TEMP_DIR/category.json.tmp" && mv "$TEMP_DIR/category.json.tmp" "$TEMP_DIR/category.json"
           fi
           
           # 显示生成的JSON
           echo "生成的category.json内容:"
-          cat category.json
+          cat "$TEMP_DIR/category.json"
           
           # 移动到发布目录
-          cp category.json .release/
+          cp "$TEMP_DIR/category.json" .release/
           
-          # 清理临时文件
-          rm -rf $TEMP_DIR
+          # 清理临时文件 (保留TEMP_DIR以继续使用)
 
       - name: Deploy to user's Helm Charts branch
         run: |
           # 创建或切换到用户专属的helm分支
           TARGET_BRANCH="helm-${{ env.BRANCH_NAME }}"
           echo "目标分支: $TARGET_BRANCH"
+          
+          # 确保没有未跟踪的文件阻止分支切换
+          rm -f category.json
           
           # 尝试切换到目标分支，如果不存在则创建
           git fetch origin $TARGET_BRANCH || true
