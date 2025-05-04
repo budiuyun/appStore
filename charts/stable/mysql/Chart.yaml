@@ -8,7 +8,7 @@ sources:
   - https://github.com/mysql/mysql-server
   - https://hub.docker.com/_/mysql
 maintainers:
-  - name: 系统管理员
-    email: admin@example.com
+  - name: niehaoran
+    email: 179866495@qq.com
 annotations:
   budiu/app-category-zh: "数据库"
