@@ -118,8 +118,11 @@ jobs:
           CATEGORIES_FILE="$TEMP_DIR/categories.txt"
           touch $CATEGORIES_FILE
           
-          # 创建JSON基本结构
-          CATEGORY_JSON="{\"categories\":{},\"count\":0}"
+          # 安装必要的工具
+          sudo apt-get update && sudo apt-get install -y yq jq
+          
+          # 创建应用版本映射
+          mkdir -p "$TEMP_DIR/apps"
           
           # 查找所有Chart.yaml并提取分类信息
           find charts/stable -name Chart.yaml | while read chart_file; do
@@ -127,14 +130,15 @@ jobs:
             app_dir=$(dirname "$chart_file")
             app_name=$(basename "$app_dir")
             
-            # 提取版本和名称
-            name=$(grep "^name:" "$chart_file" | sed 's/name: *\(.*\)/\1/')
-            version=$(grep "^version:" "$chart_file" | sed 's/version: *\(.*\)/\1/')
+            # 使用yq转换YAML为JSON
+            chart_json=$(yq -o=json eval '.' "$chart_file")
             
-            # 提取分类（budiu/app-category-zh字段）
-            category=$(grep -A2 "^annotations:" "$chart_file" | grep "budiu/app-category-zh" | sed -E 's/.*budiu\/app-category-zh: *"?([^"]*)"?.*/\1/')
+            # 从JSON中提取基本信息
+            name=$(echo "$chart_json" | jq -r '.name // "未知"')
+            version=$(echo "$chart_json" | jq -r '.version // "0.0.0"')
             
-            # 如果没有找到分类，设为"其他"
+            # 提取分类，只使用budiu/app-category-zh
+            category=$(echo "$chart_json" | jq -r '.annotations."budiu/app-category-zh" // ""')
             if [ -z "$category" ]; then
               category="其他"
             fi
@@ -144,9 +148,12 @@ jobs:
               echo "$category" >> $CATEGORIES_FILE
             fi
             
-            # 记录应用信息
-            mkdir -p "$TEMP_DIR/$category"
-            echo "{\"name\":\"$name\",\"version\":\"$version\"}" > "$TEMP_DIR/$category/$app_name.json"
+            # 记录应用的分类
+            mkdir -p "$TEMP_DIR/apps/$app_name"
+            echo "$category" > "$TEMP_DIR/apps/$app_name/category.txt"
+            
+            # 记录应用的各个版本
+            echo "$chart_json" > "$TEMP_DIR/apps/$app_name/v$version.json"
           done
           
           # 统计分类数量
@@ -168,20 +175,46 @@ jobs:
             # 添加分类名
             echo "    \"$category\": [" >> category.json
             
-            # 添加应用列表
+            # 添加该分类下的所有应用
             first_app=true
-            if [ -d "$TEMP_DIR/$category" ]; then
-              for app_file in "$TEMP_DIR/$category"/*.json; do
-                if [ -f "$app_file" ]; then
+            for app_dir in "$TEMP_DIR/apps"/*; do
+              if [ -d "$app_dir" ]; then
+                app_cat=$(cat "$app_dir/category.txt")
+                app_name=$(basename "$app_dir")
+                
+                # 只添加属于当前分类的应用
+                if [ "$app_cat" = "$category" ]; then
                   if [ "$first_app" = true ]; then
                     first_app=false
                   else
                     echo "," >> category.json
                   fi
-                  cat "$app_file" >> category.json
+                  
+                  # 添加应用名和版本
+                  echo "      {\"$app_name\": {" >> category.json
+                  
+                  # 添加所有版本
+                  first_version=true
+                  for version_file in "$app_dir"/v*.json; do
+                    if [ -f "$version_file" ]; then
+                      version=$(basename "$version_file" | sed 's/v\(.*\)\.json/\1/')
+                      
+                      if [ "$first_version" = true ]; then
+                        first_version=false
+                      else
+                        echo "," >> category.json
+                      fi
+                      
+                      echo "        \"$version\": " >> category.json
+                      cat "$version_file" >> category.json
+                    fi
+                  done
+                  
+                  echo "" >> category.json
+                  echo "      }}" >> category.json
                 fi
-              done
-            fi
+              fi
+            done
             
             echo "" >> category.json
             echo "    ]" >> category.json
@@ -191,9 +224,9 @@ jobs:
           echo "  \"count\": $CATEGORY_COUNT" >> category.json
           echo "}" >> category.json
           
-          # 显示生成的JSON
-          echo "生成的category.json内容:"
-          cat category.json
+          # 显示生成的JSON结构示例
+          echo "生成的category.json结构示例:"
+          jq -c '.categories | keys[0] as $cat | {分类: $cat, 示例应用: .[$cat][0]}' category.json || echo "无法使用jq解析JSON，但文件已生成"
           
           # 移动到发布目录
           cp category.json .release/
@@ -207,12 +240,19 @@ jobs:
           TARGET_BRANCH="helm-${{ env.BRANCH_NAME }}"
           echo "目标分支: $TARGET_BRANCH"
           
+          # 清理工作目录中可能存在的未跟踪文件
+          echo "清理工作目录..."
+          rm -f category.json
+          git clean -f
+          
           # 尝试切换到目标分支，如果不存在则创建
           git fetch origin $TARGET_BRANCH || true
           if git show-ref --verify --quiet refs/remotes/origin/$TARGET_BRANCH; then
             echo "分支 $TARGET_BRANCH 已存在，切换到该分支"
             git checkout $TARGET_BRANCH
             git pull origin $TARGET_BRANCH
+            # 删除现有文件确保干净
+            rm -f category.json
             git rm -rf *.tgz index.yaml category.json || true
           else
             echo "创建新分支 $TARGET_BRANCH"
