@@ -155,9 +155,10 @@ jobs:
                 else
                   echo "✓ 存在templates目录"
                   
-                  # 检查必需的template文件
-                  required_templates=("deployment.yaml" "service.yaml" "pvc.yaml" "_helpers.tpl")
-                  for template in "${required_templates[@]}"; do
+                  # 检查必需的template文件，允许deployment.yaml或statefulset.yaml
+                  # 首先检查基本必需文件
+                  basic_templates=("service.yaml" "pvc.yaml" "_helpers.tpl")
+                  for template in "${basic_templates[@]}"; do
                     if [ ! -f "$templates_dir/$template" ]; then
                       echo "错误: 缺少必需的template文件 $template"
                       exit 1
@@ -165,6 +166,22 @@ jobs:
                       echo "✓ 存在 templates/$template"
                     fi
                   done
+                  
+                  # 然后检查工作负载文件（支持deployment.yaml或statefulset.yaml）
+                  if [ -f "$templates_dir/deployment.yaml" ]; then
+                    echo "✓ 存在 templates/deployment.yaml (无状态部署)"
+                    # 记录工作负载类型
+                    workload_type="Deployment"
+                    workload_file="$templates_dir/deployment.yaml"
+                  elif [ -f "$templates_dir/statefulset.yaml" ]; then
+                    echo "✓ 存在 templates/statefulset.yaml (有状态部署)"
+                    # 记录工作负载类型
+                    workload_type="StatefulSet"
+                    workload_file="$templates_dir/statefulset.yaml"
+                  else
+                    echo "错误: 缺少工作负载定义文件 deployment.yaml 或 statefulset.yaml"
+                    exit 1
+                  fi
                 fi
                 
                 # 检查Chart.yaml内容
@@ -241,6 +258,24 @@ jobs:
                     exit 1
                   fi
                 done
+                
+                # 检查工作负载类型(可选，但推荐)
+                if grep -q "^workloadType:" "$values_yaml"; then
+                  echo "✓ 存在workloadType配置，明确指定工作负载类型"
+                  
+                  # 提取工作负载类型值
+                  workload_type_value=$(grep "^workloadType:" "$values_yaml" | awk '{print $2}' | tr -d '"')
+                  echo "✓ 工作负载类型配置为: $workload_type_value"
+                  
+                  # 检查与实际使用的模板是否一致
+                  if [ "$workload_type_value" = "Deployment" ] && [ "$workload_type" != "Deployment" ]; then
+                    echo "警告: values.yaml 中 workloadType 为 Deployment，但使用了 statefulset.yaml"
+                  elif [ "$workload_type_value" = "StatefulSet" ] && [ "$workload_type" != "StatefulSet" ]; then
+                    echo "警告: values.yaml 中 workloadType 为 StatefulSet，但使用了 deployment.yaml"
+                  fi
+                else
+                  echo "提示: 建议在values.yaml中添加workloadType字段，用于明确指定工作负载类型"
+                fi
                 
                 # 检查env部分(可选)
                 if grep -q "^env:" "$values_yaml"; then
@@ -425,170 +460,122 @@ jobs:
                   exit 1
                 fi
                 
-                # 检查模板文件内容
-                echo "验证模板文件内容..."
+                # 检查工作负载文件内容
+                echo "验证工作负载文件内容..."
                 
-                # 检查deployment.yaml
-                deployment_file="$templates_dir/deployment.yaml"
-                if ! grep -q "apiVersion: apps/v1" "$deployment_file" || \
-                   ! grep -q "kind: Deployment" "$deployment_file"; then
-                  echo "错误: deployment.yaml 必须定义一个有效的Kubernetes Deployment资源"
-                  exit 1
+                # 根据检测到的工作负载类型进行相应的验证
+                if [ "$workload_type" = "Deployment" ]; then
+                  # 检查deployment.yaml
+                  if ! grep -q "apiVersion: apps/v1" "$workload_file" || \
+                     ! grep -q "kind: Deployment" "$workload_file"; then
+                    echo "错误: deployment.yaml 必须定义一个有效的Kubernetes Deployment资源"
+                    exit 1
+                  fi
+                  
+                  # 检查与values.yaml的一致性
+                  echo "检查deployment.yaml与values.yaml的一致性..."
+                  
+                  # 检查replicas是否引用values
+                  if ! grep -q "replicas: {{ .Values.replicaCount }}" "$workload_file"; then
+                    echo "错误: deployment.yaml 中的replicas必须引用.Values.replicaCount"
+                    exit 1
+                  fi
+                else
+                  # 检查statefulset.yaml
+                  if ! grep -q "apiVersion: apps/v1" "$workload_file" || \
+                     ! grep -q "kind: StatefulSet" "$workload_file"; then
+                    echo "错误: statefulset.yaml 必须定义一个有效的Kubernetes StatefulSet资源"
+                    exit 1
+                  fi
+                  
+                  # 检查与values.yaml的一致性
+                  echo "检查statefulset.yaml与values.yaml的一致性..."
+                  
+                  # 检查serviceName是否存在
+                  if ! grep -q "serviceName:" "$workload_file"; then
+                    echo "错误: statefulset.yaml 必须包含serviceName字段"
+                    exit 1
+                  fi
+                  
+                  # 检查replicas是否引用values
+                  if ! grep -q "replicas: {{ .Values.replicaCount }}" "$workload_file"; then
+                    echo "错误: statefulset.yaml 中的replicas必须引用.Values.replicaCount"
+                    exit 1
+                  fi
+                  
+                  # 检查是否有volumeClaimTemplates（对于StatefulSet特有）
+                  if grep -q "volumeClaimTemplates:" "$workload_file"; then
+                    echo "✓ StatefulSet 包含 volumeClaimTemplates 配置"
+                  else
+                    echo "警告: StatefulSet 通常应该包含 volumeClaimTemplates 配置"
+                  fi
                 fi
                 
-                # 检查与values.yaml的一致性
-                echo "检查deployment.yaml与values.yaml的一致性..."
-                
-                # 检查replicas是否引用values
-                if ! grep -q "replicas: {{ .Values.replicaCount }}" "$deployment_file"; then
-                  echo "错误: deployment.yaml 中的replicas必须引用.Values.replicaCount"
-                  exit 1
-                fi
+                # 通用的工作负载检查项（适用于Deployment和StatefulSet）
                 
                 # 检查镜像配置
-                if ! grep -q ".Values.image.repository" "$deployment_file" || \
-                   ! grep -q ".Values.image.tag" "$deployment_file" || \
-                   ! grep -q ".Values.image.pullPolicy" "$deployment_file"; then
-                  echo "错误: deployment.yaml 中镜像配置必须引用所有image相关的values"
+                if ! grep -q ".Values.image.repository" "$workload_file" || \
+                   ! grep -q ".Values.image.tag" "$workload_file" || \
+                   ! grep -q ".Values.image.pullPolicy" "$workload_file"; then
+                  echo "错误: 工作负载文件中镜像配置必须引用所有image相关的values"
                   exit 1
                 fi
                 
                 # 检查资源配置
-                if ! grep -q ".Values.resources.requests.memory" "$deployment_file" || \
-                   ! grep -q ".Values.resources.requests.cpu" "$deployment_file" || \
-                   ! grep -q ".Values.resources.limits.memory" "$deployment_file" || \
-                   ! grep -q ".Values.resources.limits.cpu" "$deployment_file"; then
-                  echo "错误: deployment.yaml 中资源配置必须引用所有resources相关的values"
+                if ! grep -q ".Values.resources.requests.memory" "$workload_file" || \
+                   ! grep -q ".Values.resources.requests.cpu" "$workload_file" || \
+                   ! grep -q ".Values.resources.limits.memory" "$workload_file" || \
+                   ! grep -q ".Values.resources.limits.cpu" "$workload_file"; then
+                  echo "错误: 工作负载文件中资源配置必须引用所有resources相关的values"
                   exit 1
                 fi
                 
                 # 获取卷挂载路径
-                mount_path=$(grep -oP 'mountPath: \K[^ ]+' "$deployment_file" | head -1)
+                mount_path=$(grep -oP 'mountPath: \K[^ ]+' "$workload_file" | head -1)
                 
                 if [ -z "$mount_path" ]; then
-                  echo "错误: deployment.yaml 必须包含卷挂载路径(mountPath)"
+                  echo "错误: 工作负载文件必须包含卷挂载路径(mountPath)"
                   exit 1
                 else
                   echo "✓ 挂载路径: $mount_path"
                   
                   # 检查是否使用了变量引用
-                  if ! grep -q ".Values.persistence.path" "$deployment_file"; then
-                    echo "错误: deployment.yaml 中的mountPath应该使用.Values.persistence.path变量"
+                  if ! grep -q ".Values.persistence.path" "$workload_file"; then
+                    echo "错误: 工作负载文件中的mountPath应该使用.Values.persistence.path变量"
                     exit 1
                   fi
                 fi
                 
-                # 如果values.yaml中有env设置，检查deployment.yaml是否使用了它
-                if grep -q "^env:" "$values_yaml" && ! grep -q ".Values.env" "$deployment_file"; then
-                  echo "错误: values.yaml 定义了env，但deployment.yaml未使用"
+                # 如果values.yaml中有env设置，检查工作负载文件是否使用了它
+                if grep -q "^env:" "$values_yaml" && ! grep -q ".Values.env" "$workload_file"; then
+                  echo "错误: values.yaml 定义了env，但工作负载文件未使用"
                   exit 1
                 fi
                 
                 # 检查网络限制
-                if ! grep -q ".Values.networkLimits.enabled" "$deployment_file"; then
-                  echo "错误: deployment.yaml 必须包含networkLimits条件判断"
+                if ! grep -q ".Values.networkLimits.enabled" "$workload_file"; then
+                  echo "错误: 工作负载文件必须包含networkLimits条件判断"
                   exit 1
                 fi
                 
-                if ! grep -q "kubernetes.io/egress-bandwidth" "$deployment_file" || \
-                   ! grep -q "kubernetes.io/ingress-bandwidth" "$deployment_file" || \
-                   ! grep -q ".Values.networkLimits.egress" "$deployment_file" || \
-                   ! grep -q ".Values.networkLimits.ingress" "$deployment_file"; then
-                  echo "错误: deployment.yaml 必须正确设置网络带宽限制注解"
+                if ! grep -q "kubernetes.io/egress-bandwidth" "$workload_file" || \
+                   ! grep -q "kubernetes.io/ingress-bandwidth" "$workload_file" || \
+                   ! grep -q ".Values.networkLimits.egress" "$workload_file" || \
+                   ! grep -q ".Values.networkLimits.ingress" "$workload_file"; then
+                  echo "错误: 工作负载文件必须正确设置网络带宽限制注解"
                   exit 1
                 fi
                 
-                # 检查service.yaml
-                service_file="$templates_dir/service.yaml"
-                if ! grep -q "apiVersion: v1" "$service_file" || \
-                   ! grep -q "kind: Service" "$service_file"; then
-                  echo "错误: service.yaml 必须定义一个有效的Kubernetes Service资源"
-                  exit 1
-                fi
-                
-                # 检查与values.yaml的一致性
-                echo "检查service.yaml与values.yaml的一致性..."
-                
-                # 检查service类型
-                if ! grep -q "type: {{ .Values.service.type }}" "$service_file"; then
-                  echo "错误: service.yaml 中的type必须引用.Values.service.type"
-                  exit 1
-                fi
-                
-                # 检查service端口
-                if ! grep -q "port: {{ .Values.service.port }}" "$service_file"; then
-                  echo "错误: service.yaml 中的port必须引用.Values.service.port"
-                  exit 1
-                fi
-                
-                # 检查targetPort是否与服务容器端口一致
-                container_port=$(grep -oP 'containerPort: \K\d+' "$deployment_file" | head -1)
-                target_port=$(grep -oP 'targetPort: \K\d+' "$service_file" | head -1)
-                
-                if [ -z "$container_port" ] || [ -z "$target_port" ] || [ "$container_port" != "$target_port" ]; then
-                  echo "错误: service.yaml中的targetPort必须与deployment.yaml中的containerPort一致"
-                  exit 1
-                fi
-                
-                # 检查pvc.yaml
-                pvc_file="$templates_dir/pvc.yaml"
-                if ! grep -q "apiVersion: v1" "$pvc_file" || \
-                   ! grep -q "kind: PersistentVolumeClaim" "$pvc_file"; then
-                  echo "错误: pvc.yaml 必须定义一个有效的Kubernetes PersistentVolumeClaim资源"
-                  exit 1
-                fi
-                
-                # 检查与values.yaml的一致性
-                echo "检查pvc.yaml与values.yaml的一致性..."
-                
-                # 检查accessMode
-                if ! grep -q "{{ .Values.persistence.accessMode }}" "$pvc_file"; then
-                  echo "错误: pvc.yaml 中的accessModes必须引用.Values.persistence.accessMode"
-                  exit 1
-                fi
-                
-                # 检查存储大小
-                if ! grep -q "{{ .Values.persistence.size }}" "$pvc_file"; then
-                  echo "错误: pvc.yaml 中的storage必须引用.Values.persistence.size"
-                  exit 1
-                fi
-                
-                # 检查storageClass
-                if ! grep -q "{{ .Values.persistence.storageClass" "$pvc_file"; then
-                  echo "错误: pvc.yaml 中的storageClassName必须引用.Values.persistence.storageClass"
-                  exit 1
-                fi
-                
-                # 检查_helpers.tpl
-                helpers_file="$templates_dir/_helpers.tpl"
-                if ! grep -q "{{- define" "$helpers_file"; then
-                  echo "错误: _helpers.tpl 必须定义模板函数"
-                  exit 1
-                fi
-                
-                # 检查_helpers.tpl中是否定义了必要的helper函数
-                required_helpers=("fullname" "name" "labels" "selectorLabels")
-                for helper in "${required_helpers[@]}"; do
-                  if ! grep -q "define.*${helper}" "$helpers_file"; then
-                    echo "错误: _helpers.tpl 缺少必要的helper函数 '$helper'"
-                    exit 1
-                  fi
-                done
-                
-                # 检查persistence定义
-                if ! jq -e '.properties.persistence' "$schema_file" > /dev/null; then
-                  echo "错误: values.schema.json 缺少persistence属性定义"
-                  exit 1
-                else
-                  # 检查persistence.path定义
-                  if ! jq -e '.properties.persistence.properties.path' "$schema_file" > /dev/null; then
-                    echo "错误: values.schema.json 中缺少persistence.path属性定义"
+                # 检查workloadType的schema定义(如果存在)
+                if grep -q "^workloadType:" "$values_yaml"; then
+                  if ! jq -e '.properties.workloadType' "$schema_file" > /dev/null; then
+                    echo "错误: values.yaml 中定义了 workloadType，但在 values.schema.json 中未定义"
                     exit 1
                   fi
                   
-                  # 检查persistence.required中是否包含path
-                  if ! jq -e '.properties.persistence.required | contains(["path"])' "$schema_file" > /dev/null; then
-                    echo "错误: values.schema.json 中persistence.required应该包含path字段"
+                  # 检查workloadType是否只允许有效值
+                  if ! jq -e '.properties.workloadType.enum | contains(["Deployment", "StatefulSet"])' "$schema_file" > /dev/null; then
+                    echo "错误: values.schema.json 中 workloadType 应限制为 Deployment 或 StatefulSet"
                     exit 1
                   fi
                 fi
@@ -655,9 +642,15 @@ jobs:
             # 额外验证：渲染后检查关键资源是否存在
             template_output=$(helm template "$chart_dir")
             
-            # 检查是否生成了Deployment资源
-            if ! echo "$template_output" | grep -q "kind: Deployment"; then
-              echo "错误: 渲染后的模板没有生成Deployment资源"
+            # 检查是否生成了工作负载资源(Deployment或StatefulSet)
+            if echo "$template_output" | grep -q "kind: Deployment"; then
+              echo "✓ 检测到工作负载类型: Deployment"
+              workload_type="Deployment"
+            elif echo "$template_output" | grep -q "kind: StatefulSet"; then
+              echo "✓ 检测到工作负载类型: StatefulSet"
+              workload_type="StatefulSet"
+            else
+              echo "错误: 渲染后的模板没有生成Deployment或StatefulSet资源"
               exit 1
             fi
             
@@ -674,10 +667,18 @@ jobs:
               exit 1
             fi
             
-            # 检查是否生成了PersistentVolumeClaim资源
-            if ! echo "$template_output" | grep -q "kind: PersistentVolumeClaim"; then
-              echo "错误: 渲染后的模板没有生成PersistentVolumeClaim资源"
-              exit 1
+            # 检查是否生成了持久化存储资源
+            if [ "$workload_type" = "Deployment" ]; then
+              # 对于Deployment，检查是否生成了PVC
+              if ! echo "$template_output" | grep -q "kind: PersistentVolumeClaim"; then
+                echo "错误: 渲染后的模板没有生成PersistentVolumeClaim资源"
+                exit 1
+              fi
+            else
+              # 对于StatefulSet，检查是否有volumeClaimTemplates
+              if ! echo "$template_output" | grep -q "volumeClaimTemplates:"; then
+                echo "警告: StatefulSet模板未定义volumeClaimTemplates，可能无法正确管理持久化存储"
+              fi
             fi
             
             # 检查是否生成了NetworkPolicy资源
@@ -736,6 +737,20 @@ jobs:
             if ! jq -e '.properties.service.properties.type.enum | contains(["ClusterIP"])' "$schema_file" > /dev/null; then
               echo "错误: values.schema.json 中 service.type 必须限制为 ClusterIP"
               exit 1
+            fi
+            
+            # 检查workloadType的schema定义(如果存在)
+            if grep -q "^workloadType:" "$values_file"; then
+              if ! jq -e '.properties.workloadType' "$schema_file" > /dev/null; then
+                echo "错误: values.yaml 中定义了 workloadType，但在 values.schema.json 中未定义"
+                exit 1
+              fi
+              
+              # 检查workloadType是否只允许有效值
+              if ! jq -e '.properties.workloadType.enum | contains(["Deployment", "StatefulSet"])' "$schema_file" > /dev/null; then
+                echo "错误: values.schema.json 中 workloadType 应限制为 Deployment 或 StatefulSet"
+                exit 1
+              fi
             fi
           done
           
