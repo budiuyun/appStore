@@ -119,7 +119,7 @@ jobs:
           touch $CATEGORIES_FILE
           
           # 安装必要的工具
-          sudo apt-get update && sudo apt-get install -y yq jq
+          sudo apt-get update && sudo apt-get install -y python3-yaml jq
           
           # 创建应用版本映射
           mkdir -p "$TEMP_DIR/apps"
@@ -130,8 +130,8 @@ jobs:
             app_dir=$(dirname "$chart_file")
             app_name=$(basename "$app_dir")
             
-            # 使用yq转换YAML为JSON
-            chart_json=$(yq read -j "$chart_file")
+            # 使用Python解析YAML为JSON
+            chart_json=$(python3 -c 'import json, yaml; f=open("'"$chart_file"'", "r"); data=yaml.safe_load(f); print(json.dumps(data)); f.close()')
             
             # 从JSON中提取基本信息
             name=$(echo "$chart_json" | jq -r '.name // "未知"')
