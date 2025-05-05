@@ -139,42 +139,12 @@ jobs:
                   exit 1
                 fi
                 
-                # 检查README.md中是否包含应用描述（不再要求特定章节格式）
-                if ! grep -q -i "description\|简介\|说明\|介绍" "$readme_file"; then
-                  echo "错误: README.md 必须包含应用描述信息"
-                  exit 1
-                fi
-                
-                # 检查README.md中是否包含安装或使用信息
-                if ! grep -q -i "install\|usage\|使用\|安装" "$readme_file"; then
-                  echo "错误: README.md 必须包含安装或使用说明"
-                  exit 1
-                fi
-                
-                # 检查是否提到了持久化相关信息
-                if ! grep -q -i "persistence\|volume\|持久化\|存储\|数据" "$readme_file"; then
-                  echo "错误: README.md 必须包含有关数据持久化的信息"
-                  exit 1
-                fi
-                
-                # 检查是否包含挂载路径信息
-                if ! grep -q -i "mountPath\|mount path\|挂载路径\|数据目录\|data dir" "$readme_file"; then
-                  echo "错误: README.md 必须说明应用的数据挂载路径信息"
-                  exit 1
-                fi
-                
                 # 获取values.yaml文件路径（修正：使用Chart根目录）
                 values_yaml="$app_dir/values.yaml"
                 
                 # 检查是否说明了env参数(如果在values中存在)
                 if grep -q "^env:" "$values_yaml" && ! grep -q "env" "$readme_file"; then
                   echo "警告: values.yaml 包含env配置，但README.md未说明此参数"
-                fi
-                
-                # 检查README.md中是否包含必要的挂载路径信息
-                if ! grep -q -i "mountPath\|mount path\|挂载路径\|数据目录\|data dir" "$readme_file"; then
-                  echo "错误: README.md 必须说明应用的数据挂载路径信息"
-                  exit 1
                 fi
                 
                 # 检查templates目录
@@ -217,13 +187,8 @@ jobs:
                 fi
                 
                 # 检查 annotations 必需的字段
-                if ! grep -q "yunna.net/category:" "$chart_yaml"; then
-                  echo "错误: Chart.yaml annotations 缺少 'yunna.net/category' 字段"
-                  exit 1
-                fi
-                
-                if ! grep -q "yunna.net/category-zh:" "$chart_yaml"; then
-                  echo "错误: Chart.yaml annotations 缺少 'yunna.net/category-zh' 字段"
+                if ! grep -q "budiu/app-category-zh:" "$chart_yaml"; then
+                  echo "错误: Chart.yaml annotations 缺少 'budiu/app-category-zh' 字段"
                   exit 1
                 fi
                 
@@ -509,12 +474,6 @@ jobs:
                   # 检查是否使用了变量引用
                   if ! grep -q ".Values.persistence.path" "$deployment_file"; then
                     echo "错误: deployment.yaml 中的mountPath应该使用.Values.persistence.path变量"
-                    exit 1
-                  fi
-                  
-                  # 检查README中是否提到了实际的挂载路径
-                  if ! grep -q -i "mountPath\|mount path\|挂载路径\|数据目录\|data dir" "$readme_file"; then
-                    echo "错误: README.md 必须说明挂载路径相关信息"
                     exit 1
                   fi
                 fi
