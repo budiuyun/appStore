@@ -75,7 +75,33 @@
 | keywords | 关键词，用于分类和搜索 | 是 | `keywords: ["web", "app"]` |
 | sources | 源代码仓库链接 | 是 | `sources: ["https://github.com/example/app"]` |
 | maintainers | 维护者信息，必须包含name和email | 是 | `maintainers: [{name: "维护者", email: "email@example.com"}]` |
-| annotations | 注解，用于提供额外的元数据 | 是 | `annotations: {yunna.net/category: "application"}` |
+| annotations | 注解，用于提供额外的元数据 | 是 | `annotations: {budiu/app-category-zh: "数据库"}` |
+
+### 应用分类说明
+
+应用分类是不丢云平台对应用进行归类管理的重要标识。在Chart.yaml中，必须通过`annotations`部分指定应用分类：
+
+```yaml
+annotations:
+  budiu/app-category-zh: "数据库"  # 必须使用budiu/app-category-zh作为分类标识
+```
+
+#### 分类示例
+
+以下是平台推荐的应用分类：
+
+| 分类名称 | 适用范围 | 示例应用 |
+|---------|---------|---------|
+| 数据库 | 各类数据库系统 | MySQL, PostgreSQL, MongoDB |
+| 中间件 | 消息队列、缓存等 | Redis, RabbitMQ, Kafka |
+| 开发工具 | 开发辅助工具 | Git, Jenkins, Maven |
+| 监控工具 | 性能监控、日志分析 | Prometheus, ELK, Grafana |
+| 应用工具 | 通用应用支持 | Nginx, Tomcat |
+| Web应用 | 网站和Web服务 | WordPress, Drupal |
+| 存储系统 | 分布式存储 | MinIO, Ceph |
+| 其他 | 不属于上述分类的应用 | 自定义应用 |
+
+请选择最匹配您应用特性的分类。如不确定，可使用"其他"分类。
 
 ### values.yaml 关键配置
 

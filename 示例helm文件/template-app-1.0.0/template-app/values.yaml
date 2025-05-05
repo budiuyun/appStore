@@ -1,17 +1,14 @@
-# values.yaml 文件包含Chart的默认配置值
-# 用户可以在安装或升级Chart时覆盖这些值
-
 # 副本数量：应用程序部署的Pod副本数
 replicaCount: 1
 
 # 镜像配置：定义容器镜像信息
 image:
-  # 镜像仓库地址：用于拉取镜像的仓库域名
-  imageRegistry: "registry-2.yunna.net"
+  # 镜像仓库地址：用于拉取镜像的仓库域名，最好是镜像加速站或者国内能访问的镜像站
+  imageRegistry: "docker.io"
   # 镜像名称：不包含仓库地址和标签
   repository: template/app
   # 镜像标签：通常对应应用程序版本
-  tag: "latest"
+  tag: "1.0.0"
   # 镜像拉取策略：必须使用IfNotPresent(如果本地有则使用本地)
   # 注意：根据安全和性能要求，只允许使用IfNotPresent策略
   # 不允许使用Always或Never策略，以避免不必要的网络流量或部署失败
@@ -68,7 +65,7 @@ env:
     # 环境变量名称
     name: APP_MODE
     # 环境变量值
-    value: production
+    value: "production"
   # 第二个环境变量
   env2:
     name: DEBUG

@@ -42,10 +42,4 @@ maintainers:
 # 注解，用于提供额外的元数据
 # budiu分类是必需的
 annotations:
-  budiu/app-category-zh: 应用分类
-
-# 依赖项，如果您的Chart依赖其他Chart，可以在这里列出
-# dependencies:
-#   - name: nginx
-#     version: "1.x.x"
-#     repository: "https://charts.bitnami.com/bitnami" 
+  budiu/app-category-zh: "应用工具"

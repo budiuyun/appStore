@@ -6,7 +6,7 @@ metadata:
     {{- include "template-app.labels" . | nindent 4 }}
   annotations:
     # 可以添加自定义注解，例如描述此Deployment的用途
-    app.kubernetes.io/part-of: template-example
+    app.kubernetes.io/part-of: template-app
 spec:
   # 副本数量：从values.yaml中获取
   replicas: {{ .Values.replicaCount }}
@@ -33,7 +33,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           # 端口配置：定义容器暴露的端口
           ports:
-            - name: http
+            - name: app-port
               containerPort: 80
               protocol: TCP
           # 环境变量配置：根据values.yaml中的env部分设置环境变量
