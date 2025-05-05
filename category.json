@@ -1,29 +1,26 @@
 {
   "categories": {
-    "数据库": [
-      {
-        "name": "mysql",
-        "version": "v1.0.0",
-        "apiVersion": "v2",
-        "appVersion": "8.0",
-        "description": "官方MySQL数据库服务",
-        "icon": "https://www.mysql.com/common/logos/logo-mysql-170x115.png",
-        "home": "null",
-        "sources": [
-          "https://github.com/mysql/mysql-server",
-          "https://hub.docker.com/_/mysql"
-        ],
-        "maintainers": [
-          {
-            "name": "niehaoran",
-            "email": "179866495@qq.com"
-          }
-        ],
-        "keywords": [],
-        "path": "./stable/mysql"
-      }
-    ],
-    "监控工具": []
+    "其他": [
+{"name":"mysql","version":"v1.0.0","chartYaml":"YXBpVmVyc2lvbjogdjIKbmFtZTogbXlzcWwKdmVyc2lvbjogdjEuMC4wCmFwcFZlcnNpb246ICI4LjAiCmRlc2NyaXB0aW9uOiAi5a6Y5pa5TXlTUUzmlbDmja7lupPmnI3liqEiCmljb246IGh0dHBzOi8vd3d3Lm15c3FsLmNvbS9jb21tb24vbG9nb3MvbG9nby1teXNxbC0xNzB4MTE1LnBuZwpzb3VyY2VzOgogIC0gaHR0cHM6Ly9naXRodWIuY29tL215c3FsL215c3FsLXNlcnZlcgogIC0gaHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9fL215c3FsCm1haW50YWluZXJzOgogIC0gbmFtZTogbmllaGFvcmFuCiAgICBlbWFpbDogMTc5ODY2NDk1QHFxLmNvbQphbm5vdGF0aW9uczoKICBidWRpdS9hcHAtY2F0ZWdvcnktemg6ICLmlbDmja7lupMiCg=="}
+,
+{"name":"uptime-kuma","version":"v1.0.0","chartYaml":"YW5ub3RhdGlvbnM6CiAgYnVkaXUvYXBwLWNhdGVnb3J5LXpoOiAi55uR5o6n5bel5YW3IgphcGlWZXJzaW9uOiB2MgphcHBWZXJzaW9uOiBsYXRlc3QKZGVzY3JpcHRpb246ICdVcHRpbWUgS3VtYSDmmK/kuIDkuKrlvIDmupDjgIHovbvph4/nmoToh6rmiZjnrqHnm5Hmjqflt6XlhbfvvIzmlK/mjIHlr7nnvZHnq5njgIHmnI3liqHlmajlkowgQVBJIOeahOato+W4uOi/kOihjOaXtumXtOi/m+ihjOWunuaXtuebkeaOp++8jOW4ruWKqeeUqOaIt+W/q+mAn+S6huino+acjeWKoeeahOi/kOihjOeKtuWGteOAguWug+aPkOS+m+WPi+WlveeahOeUqOaIt+eVjOmdouOAgeaUr+aMgeWkmuenjemAmuefpeaWueW8j++8iOWmgumCruS7tuOAgVRlbGVncmFt44CBU2xhY2sKICDnrYnvvInku6Xlj4rljoblj7LorrDlvZXov73ouKrlip/og73jgIIgJwpob21lOiBodHRwczovL2dpdGh1Yi5jb20vbG91aXNsYW0vdXB0aW1lLWt1bWEKaWNvbjogaHR0cHM6Ly9hc3NldHMueXVubmEubmV0L2kvMjAyNC8xMi8xMy9zcjEyOXMucG5nCm1haW50YWluZXJzOgotIGVtYWlsOiAxNzk4NjY0OTVAcXEuY29tCiAgbmFtZTogbmllaGFvcmFuCm5hbWU6IHVwdGltZS1rdW1hCnNvdXJjZXM6Ci0gaHR0cHM6Ly9naXRodWIuY29tL2xvdWlzbGFtL3VwdGltZS1rdW1hCnZlcnNpb246IHYxLjAuMAo="}
+
+    ]
   },
-  "count": 2
+  "applications": {
+    "mysql": {
+      "versions": [
+{"name":"mysql","version":"v1.0.0","category":"其他","chartYaml":"YXBpVmVyc2lvbjogdjIKbmFtZTogbXlzcWwKdmVyc2lvbjogdjEuMC4wCmFwcFZlcnNpb246ICI4LjAiCmRlc2NyaXB0aW9uOiAi5a6Y5pa5TXlTUUzmlbDmja7lupPmnI3liqEiCmljb246IGh0dHBzOi8vd3d3Lm15c3FsLmNvbS9jb21tb24vbG9nb3MvbG9nby1teXNxbC0xNzB4MTE1LnBuZwpzb3VyY2VzOgogIC0gaHR0cHM6Ly9naXRodWIuY29tL215c3FsL215c3FsLXNlcnZlcgogIC0gaHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9fL215c3FsCm1haW50YWluZXJzOgogIC0gbmFtZTogbmllaGFvcmFuCiAgICBlbWFpbDogMTc5ODY2NDk1QHFxLmNvbQphbm5vdGF0aW9uczoKICBidWRpdS9hcHAtY2F0ZWdvcnktemg6ICLmlbDmja7lupMiCg=="}
+
+      ]
+    }
+,
+    "uptime-kuma": {
+      "versions": [
+{"name":"uptime-kuma","version":"v1.0.0","category":"其他","chartYaml":"YW5ub3RhdGlvbnM6CiAgYnVkaXUvYXBwLWNhdGVnb3J5LXpoOiAi55uR5o6n5bel5YW3IgphcGlWZXJzaW9uOiB2MgphcHBWZXJzaW9uOiBsYXRlc3QKZGVzY3JpcHRpb246ICdVcHRpbWUgS3VtYSDmmK/kuIDkuKrlvIDmupDjgIHovbvph4/nmoToh6rmiZjnrqHnm5Hmjqflt6XlhbfvvIzmlK/mjIHlr7nnvZHnq5njgIHmnI3liqHlmajlkowgQVBJIOeahOato+W4uOi/kOihjOaXtumXtOi/m+ihjOWunuaXtuebkeaOp++8jOW4ruWKqeeUqOaIt+W/q+mAn+S6huino+acjeWKoeeahOi/kOihjOeKtuWGteOAguWug+aPkOS+m+WPi+WlveeahOeUqOaIt+eVjOmdouOAgeaUr+aMgeWkmuenjemAmuefpeaWueW8j++8iOWmgumCruS7tuOAgVRlbGVncmFt44CBU2xhY2sKICDnrYnvvInku6Xlj4rljoblj7LorrDlvZXov73ouKrlip/og73jgIIgJwpob21lOiBodHRwczovL2dpdGh1Yi5jb20vbG91aXNsYW0vdXB0aW1lLWt1bWEKaWNvbjogaHR0cHM6Ly9hc3NldHMueXVubmEubmV0L2kvMjAyNC8xMi8xMy9zcjEyOXMucG5nCm1haW50YWluZXJzOgotIGVtYWlsOiAxNzk4NjY0OTVAcXEuY29tCiAgbmFtZTogbmllaGFvcmFuCm5hbWU6IHVwdGltZS1rdW1hCnNvdXJjZXM6Ci0gaHR0cHM6Ly9naXRodWIuY29tL2xvdWlzbGFtL3VwdGltZS1rdW1hCnZlcnNpb246IHYxLjAuMAo="}
+
+      ]
+    }
+  },
+  "count": 1
 }
