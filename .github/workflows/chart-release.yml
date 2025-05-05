@@ -121,40 +121,43 @@ jobs:
           # 创建JSON基本结构
           CATEGORY_JSON="{\"categories\":{},\"applications\":{},\"count\":0}"
           
+          # 安装必要的工具
+          sudo apt-get update && sudo apt-get install -y yq jq
+          
           # 查找所有Chart.yaml并提取分类信息
           find charts/stable -name Chart.yaml | while read chart_file; do
             # 获取应用名(目录名)
             app_dir=$(dirname "$chart_file")
             app_name=$(basename "$app_dir")
             
-            # 提取版本和名称
-            name=$(grep "^name:" "$chart_file" | sed 's/name: *\(.*\)/\1/')
-            version=$(grep "^version:" "$chart_file" | sed 's/version: *\(.*\)/\1/')
+            # 使用yq转换YAML为JSON
+            chart_json=$(yq -o=json eval '.' "$chart_file")
             
-            # 提取分类（判断是否有yunna.net/category-zh字段，优先使用，否则使用英文分类或默认为"其他"）
-            category=$(grep -A5 "^annotations:" "$chart_file" | grep "yunna.net/category-zh" | sed -E 's/.*yunna\.net\/category-zh: *"?([^"]*)"?.*/\1/')
+            # 从JSON中提取基本信息
+            name=$(echo "$chart_json" | jq -r '.name // "未知"')
+            version=$(echo "$chart_json" | jq -r '.version // "0.0.0"')
+            
+            # 提取分类
+            category=$(echo "$chart_json" | jq -r '.annotations."yunna.net/category-zh" // .annotations."budiu/app-category-zh" // ""')
             if [ -z "$category" ]; then
-              category=$(grep -A5 "^annotations:" "$chart_file" | grep "yunna.net/category" | sed -E 's/.*yunna\.net\/category: *"?([^"]*)"?.*/\1/')
+              category=$(echo "$chart_json" | jq -r '.annotations."yunna.net/category" // .annotations."budiu/app-category" // ""')
               if [ -z "$category" ]; then
                 category="其他"
               fi
             fi
-            
-            # 提取整个Chart.yaml内容并转为JSON格式
-            chart_content=$(cat "$chart_file" | base64 -w 0)
             
             # 记录分类
             if ! grep -q "^$category$" $CATEGORIES_FILE; then
               echo "$category" >> $CATEGORIES_FILE
             fi
             
-            # 记录应用信息（包括完整的Chart.yaml内容）
+            # 记录应用信息（包括完整的Chart信息作为JSON）
             mkdir -p "$TEMP_DIR/$category"
-            echo "{\"name\":\"$name\",\"version\":\"$version\",\"chartYaml\":\"$chart_content\"}" > "$TEMP_DIR/$category/$app_name-$version.json"
+            echo "{\"name\":\"$name\",\"version\":\"$version\",\"chart\":$chart_json}" > "$TEMP_DIR/$category/$app_name-$version.json"
             
             # 同时记录应用的所有版本
             mkdir -p "$TEMP_DIR/apps/$app_name"
-            echo "{\"name\":\"$name\",\"version\":\"$version\",\"category\":\"$category\",\"chartYaml\":\"$chart_content\"}" > "$TEMP_DIR/apps/$app_name/$version.json"
+            echo "{\"name\":\"$name\",\"version\":\"$version\",\"category\":\"$category\",\"chart\":$chart_json}" > "$TEMP_DIR/apps/$app_name/$version.json"
           done
           
           # 统计分类数量
@@ -240,9 +243,9 @@ jobs:
           echo "  \"count\": $CATEGORY_COUNT" >> category.json
           echo "}" >> category.json
           
-          # 显示生成的JSON结构（不显示全部内容，可能太大）
-          echo "生成的category.json结构概览:"
-          jq 'keys' category.json || echo "无法使用jq解析JSON，但文件已生成"
+          # 显示生成的JSON结构示例
+          echo "生成的category.json结构示例:"
+          jq -c '.applications | keys | .[0] as $app | {应用名: $app, 示例版本: {name: .[$app].versions[0].name, version: .[$app].versions[0].version}}' category.json || echo "无法使用jq解析JSON，但文件已生成"
           
           # 移动到发布目录
           cp category.json .release/
