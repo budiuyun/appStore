@@ -131,7 +131,7 @@ jobs:
             app_name=$(basename "$app_dir")
             
             # 使用yq转换YAML为JSON
-            chart_json=$(yq -o=json eval '.' "$chart_file")
+            chart_json=$(yq read -j "$chart_file")
             
             # 从JSON中提取基本信息
             name=$(echo "$chart_json" | jq -r '.name // "未知"')
