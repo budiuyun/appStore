@@ -256,6 +256,11 @@ jobs:
           TARGET_BRANCH="helm-${{ env.BRANCH_NAME }}"
           echo "目标分支: $TARGET_BRANCH"
           
+          # 清理工作目录中可能存在的未跟踪文件
+          echo "清理工作目录..."
+          rm -f category.json
+          git clean -f
+          
           # 尝试切换到目标分支，如果不存在则创建
           git fetch origin $TARGET_BRANCH || true
           if git show-ref --verify --quiet refs/remotes/origin/$TARGET_BRANCH; then
