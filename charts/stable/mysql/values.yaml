@@ -17,7 +17,7 @@ networkLimits:
 
 resources:
   limits:
-    cpu: 200m
+    cpu: 220m
     memory: 512Mi
   requests:
     cpu: 100m
