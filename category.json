@@ -3,7 +3,7 @@
     "数据库": [
       {"mysql": {
         "v1.0.0": 
-{"apiVersion": "v2", "name": "mysql", "version": "v1.0.0", "appVersion": "8.0", "description": "\u5b98\u65b9MySQL\u6570\u636e\u5e93\u670d\u52a1", "icon": "https://www.mysql.com/common/logos/logo-mysql-170x115.png", "sources": ["https://github.com/mysql/mysql-server", "https://hub.docker.com/_/mysql"], "maintainers": [{"name": "niehaoran", "email": "179866495@qq.com"}], "annotations": {"budiu/app-category-zh": "\u6570\u636e\u5e93"}}
+{"apiVersion": "v2", "name": "mysql", "version": "v1.0.0", "appVersion": "8.0", "description": "\u5b98\u65b9MySQL\u6570\u636e\u5e93\u670d\u52a1", "icon": "https://tuchuang.yunnaio.cn/i/2025/05/13/6823652c31c05.png", "sources": ["https://github.com/mysql/mysql-server", "https://hub.docker.com/_/mysql"], "maintainers": [{"name": "niehaoran", "email": "179866495@qq.com"}], "annotations": {"budiu/app-category-zh": "\u6570\u636e\u5e93"}}
 
       }}
 

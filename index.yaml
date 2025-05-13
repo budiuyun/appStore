@@ -5,10 +5,10 @@ entries:
       budiu/app-category-zh: 数据库
     apiVersion: v2
     appVersion: "8.0"
-    created: "2025-05-13T15:28:18.443908613Z"
+    created: "2025-05-13T15:29:31.32597748Z"
     description: 官方MySQL数据库服务
-    digest: e175cbcb6e6674011c6208ef98faf5e80b023ab4c77027184d680fc5ae36f161
-    icon: https://www.mysql.com/common/logos/logo-mysql-170x115.png
+    digest: 8f6ceb4f1a4623b3435dd746c3550668f8f73e42fcf90b88ab13fb814acd9362
+    icon: https://tuchuang.yunnaio.cn/i/2025/05/13/6823652c31c05.png
     maintainers:
     - email: 179866495@qq.com
       name: niehaoran
@@ -24,10 +24,10 @@ entries:
       budiu/app-category-zh: 监控工具
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-05-13T15:28:18.444326212Z"
+    created: "2025-05-13T15:29:31.326397144Z"
     description: '''Uptime Kuma 是一个开源、轻量的自托管监控工具，支持对网站、服务器和 API 的正常运行时间进行实时监控，帮助用户快速了解服务的运行状况。它提供友好的用户界面、支持多种通知方式（如邮件、Telegram、Slack   等）以及历史记录追踪功能。
       '''
-    digest: 975bedc6b08f58c31362165e883cc68bd7e506957751c657dda83a7f3e32800f
+    digest: 74216c8fc9bad3d6620900bb96d69bc0a39ad58218cb6263b4342822ca72dcaf
     icon: https://tuchuang.yunnaio.cn/i/2025/05/13/6823632a4fc3c.png
     maintainers:
     - email: 179866495@qq.com
@@ -36,4 +36,4 @@ entries:
     urls:
     - uptime-kuma-v1.0.0.tgz
     version: v1.0.0
-generated: "2025-05-13T15:28:18.443411195Z"
+generated: "2025-05-13T15:29:31.325469251Z"
