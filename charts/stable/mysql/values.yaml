@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  imageRegistry: "docker.io"
+  imageRegistry: "docker.1ms.run"
   repository: mysql
   tag: "8.0"
   pullPolicy: IfNotPresent
