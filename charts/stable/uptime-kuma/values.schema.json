@@ -1,121 +1,168 @@
 {
-  "$schema": "http://json-schema.org/schema#",
+  "$schema": "https://json-schema.org/draft-07/schema#",
   "type": "object",
-  "required": ["image", "service", "persistence"],
+  "title": "uptime-kuma Helm Chart 配置",
+  "required": [
+    "replicaCount",
+    "workloadType",
+    "image",
+    "service",
+    "networkLimits",
+    "resources"
+  ],
   "properties": {
     "replicaCount": {
       "type": "integer",
       "title": "副本数量",
-      "description": "要部署的副本数量",
-      "minimum": 1,
-      "default": 1
+      "description": "Deployment的副本数量",
+      "default": 1,
+      "minimum": 1
+    },
+    "workloadType": {
+      "type": "string",
+      "title": "工作负载类型",
+      "description": "指定部署为有状态集(StatefulSet)或无状态部署(Deployment)",
+      "enum": [
+        "Deployment",
+        "StatefulSet"
+      ],
+      "default": "Deployment"
     },
     "image": {
       "type": "object",
-      "required": ["imageRegistry", "repository", "tag"],
-      "title": "镜像配置",
-      "description": "容器镜像配置",
+      "title": "容器镜像",
+      "required": [
+        "repository",
+        "tag",
+        "pullPolicy"
+      ],
       "properties": {
         "imageRegistry": {
           "type": "string",
           "title": "镜像仓库地址",
-          "description": "镜像仓库的域名",
-          "default": "registry-2.yunna.net"
+          "description": "容器镜像的仓库地址",
+          "default": "docker.io"
         },
         "repository": {
           "type": "string",
           "title": "镜像名称",
-          "description": "镜像的名称，不包含仓库地址和标签",
-          "default": "louislam/uptime-kuma"
+          "description": "容器镜像的名称"
         },
         "tag": {
           "type": "string",
           "title": "镜像标签",
-          "description": "镜像的标签，通常对应应用程序版本",
+          "description": "容器镜像的标签",
           "default": "latest"
         },
         "pullPolicy": {
           "type": "string",
           "title": "镜像拉取策略",
-          "description": "Kubernetes的镜像拉取策略，出于安全和性能考虑，只允许使用IfNotPresent",
-          "enum": ["IfNotPresent", "Always"],
+          "description": "镜像拉取策略，只能是IfNotPresent",
+          "enum": [
+            "IfNotPresent"
+          ],
           "default": "IfNotPresent"
         }
       }
     },
     "service": {
       "type": "object",
-      "required": ["type", "port"],
       "title": "服务配置",
-      "description": "Kubernetes Service资源配置",
+      "required": [
+        "type",
+        "ports"
+      ],
       "properties": {
         "type": {
           "type": "string",
           "title": "服务类型",
-          "description": "Kubernetes服务类型，必须是ClusterIP",
-          "enum": ["ClusterIP"],
+          "description": "Kubernetes服务类型",
+          "enum": [
+            "ClusterIP"
+          ],
           "default": "ClusterIP"
         },
-        "port": {
-          "type": "integer",
-          "title": "服务端口",
-          "description": "服务暴露的端口",
-          "minimum": 1,
-          "maximum": 65535,
-          "default": 3001
+        "ports": {
+          "type": "object",
+          "title": "服务端口配置",
+          "description": "服务暴露的端口配置，键为端口名称，值为端口号",
+          "patternProperties": {
+            "^.*$": {
+              "type": "integer",
+              "title": "端口号",
+              "description": "服务端口号",
+              "minimum": 1,
+              "maximum": 65535
+            }
+          },
+          "additionalProperties": false,
+          "examples": [
+            {
+              "http": 80,
+              "https": 443,
+              "metrics": 8080
+            }
+          ]
         }
       }
     },
     "networkLimits": {
       "type": "object",
-      "required": ["enabled", "egress", "ingress"],
       "title": "网络带宽限制",
-      "description": "Pod网络带宽限制配置",
+      "required": [
+        "enabled",
+        "egress",
+        "ingress"
+      ],
       "properties": {
         "enabled": {
           "type": "boolean",
-          "title": "启用网络限制",
+          "title": "启用网络带宽限制",
           "description": "是否启用网络带宽限制",
           "default": true
         },
         "egress": {
           "type": "string",
           "title": "出站带宽限制",
-          "description": "出站流量带宽限制，格式为数字+单位(K,M,G)",
-          "pattern": "^[0-9]+[KMG]$",
-          "default": "1M"
+          "description": "容器出站带宽限制，格式为数字+K/M/G，例如1M",
+          "default": "1M",
+          "pattern": "^[0-9]+[KMG]$"
         },
         "ingress": {
           "type": "string",
           "title": "入站带宽限制",
-          "description": "入站流量带宽限制，格式为数字+单位(K,M,G)",
-          "pattern": "^[0-9]+[KMG]$",
-          "default": "1M"
+          "description": "容器入站带宽限制，格式为数字+K/M/G，例如1M",
+          "default": "1M",
+          "pattern": "^[0-9]+[KMG]$"
         }
       }
     },
     "resources": {
       "type": "object",
-      "title": "资源需求",
-      "description": "容器资源请求和限制",
+      "title": "资源配置",
+      "required": [
+        "limits",
+        "requests"
+      ],
       "properties": {
         "limits": {
           "type": "object",
           "title": "资源限制",
-          "description": "容器资源使用上限",
+          "required": [
+            "cpu",
+            "memory"
+          ],
           "properties": {
             "cpu": {
               "type": "string",
               "title": "CPU限制",
-              "description": "CPU资源限制，可以是m(千分之一核)或直接的核心数",
-              "pattern": "^[0-9]+m?$",
+              "description": "CPU资源限制，可以是m或核心数",
               "default": "200m"
             },
             "memory": {
               "type": "string",
               "title": "内存限制",
-              "description": "内存资源限制，可以是Mi(兆字节)或Gi(吉字节)",
-              "pattern": "^[0-9]+(Mi|Gi)$",
+              "description": "内存资源限制，可以是Mi或Gi",
               "default": "256Mi"
             }
           }
@@ -123,20 +170,21 @@
         "requests": {
           "type": "object",
           "title": "资源请求",
-          "description": "容器需要的最小资源量",
+          "required": [
+            "cpu",
+            "memory"
+          ],
           "properties": {
             "cpu": {
               "type": "string",
               "title": "CPU请求",
-              "description": "CPU资源请求，单位同上",
-              "pattern": "^[0-9]+m?$",
+              "description": "CPU资源请求，可以是m或核心数",
               "default": "100m"
             },
             "memory": {
               "type": "string",
               "title": "内存请求",
-              "description": "内存资源请求，单位同上",
-              "pattern": "^[0-9]+(Mi|Gi)$",
+              "description": "内存资源请求，可以是Mi或Gi",
               "default": "128Mi"
             }
           }
@@ -145,34 +193,44 @@
     },
     "persistence": {
       "type": "object",
-      "required": ["enabled", "size"],
-      "title": "持久化配置",
-      "description": "数据持久化配置",
+      "title": "持久化存储",
+      "required": [
+        "enabled"
+      ],
       "properties": {
         "enabled": {
           "type": "boolean",
-          "title": "启用持久化",
+          "title": "启用持久化存储",
           "description": "是否启用持久化存储",
           "default": true
         },
+        "path": {
+          "type": "string",
+          "title": "数据挂载路径",
+          "description": "容器内挂载持久化存储的路径",
+          "default": "/data"
+        },
         "accessMode": {
           "type": "string",
-          "title": "访问模式",
-          "description": "PVC的访问模式",
-          "enum": ["ReadWriteOnce", "ReadOnlyMany", "ReadWriteMany"],
+          "title": "存储访问模式",
+          "description": "持久化存储的访问模式",
+          "enum": [
+            "ReadWriteOnce",
+            "ReadOnlyMany",
+            "ReadWriteMany"
+          ],
           "default": "ReadWriteOnce"
         },
         "size": {
           "type": "string",
           "title": "存储大小",
-          "description": "PVC请求的存储大小",
-          "pattern": "^[0-9]+(Mi|Gi|Ti)$",
+          "description": "持久化存储的大小，例如1Gi",
           "default": "1Gi"
         },
         "storageClass": {
           "type": "string",
-          "title": "存储类",
-          "description": "使用的存储类名称",
+          "title": "存储类名称",
+          "description": "Kubernetes存储类的名称",
           "default": "local"
         }
       }
@@ -180,43 +238,75 @@
     "env": {
       "type": "object",
       "title": "环境变量",
-      "description": "容器环境变量配置，配置应用程序所需的环境变量",
+      "description": "应用程序环境变量配置",
       "properties": {
         "env1": {
           "type": "object",
-          "title": "环境变量1",
-          "description": "第一个环境变量配置",
+          "title": "应用模式",
+          "description": "应用运行的模式",
+          "required": [
+            "name",
+            "value"
+          ],
           "properties": {
             "name": {
               "type": "string",
               "title": "变量名称",
-              "description": "环境变量的实际名称，将在容器内被识别",
+              "description": "环境变量的名称",
               "default": "NODE_ENV"
             },
             "value": {
               "type": "string",
               "title": "变量值",
-              "description": "环境变量的值，所有值都会被转换为字符串",
+              "description": "环境变量的值",
               "default": "production"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "应用模式"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "应用运行的模式"
             }
           }
         },
         "env2": {
           "type": "object",
-          "title": "环境变量2",
-          "description": "第二个环境变量配置",
+          "title": "调试模式",
+          "description": "是否开启调试模式",
+          "required": [
+            "name",
+            "value"
+          ],
           "properties": {
             "name": {
               "type": "string",
               "title": "变量名称",
-              "description": "环境变量的实际名称，将在容器内被识别",
+              "description": "环境变量的名称",
               "default": "KUMA_DEBUG"
             },
             "value": {
               "type": "string",
               "title": "变量值",
-              "description": "环境变量的值，所有值都会被转换为字符串",
+              "description": "环境变量的值",
               "default": "false"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "调试模式"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "是否开启调试模式"
             }
           }
         }

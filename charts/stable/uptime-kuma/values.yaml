@@ -1,21 +1,18 @@
 replicaCount: 1
-
+workloadType: Deployment
 image:
-  imageRegistry: "registry-2.yunna.net"
+  imageRegistry: docker.1ms.run
   repository: louislam/uptime-kuma
-  tag: "latest"
+  tag: latest
   pullPolicy: IfNotPresent
-
 service:
   type: ClusterIP
-  port: 3001
-
-# 网络带宽限制配置
+  ports:
+    port: 3001
 networkLimits:
   enabled: true
-  egress: "1M"
-  ingress: "1M"
-
+  egress: 1M
+  ingress: 1M
 resources:
   limits:
     cpu: 128m
@@ -23,17 +20,20 @@ resources:
   requests:
     cpu: 64m
     memory: 128Mi
-
 persistence:
   enabled: true
+  path: /app/data
   accessMode: ReadWriteOnce
   size: 1Gi
-  storageClass: "local"
-  path: /app/data
+  storageClass: local
 env:
   env1:
     name: NODE_ENV
     value: production
+    description: 应用运行的模式
+    title: 应用模式
   env2:
     name: KUMA_DEBUG
-    value: "false"
+    value: 'false'
+    description: 是否开启调试模式
+    title: 调试模式
