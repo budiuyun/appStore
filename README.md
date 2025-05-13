@@ -4,7 +4,21 @@
 
 ## 一、快速入门
 
+> **📢 重要更新：** 我们现在提供了应用生成器工具！访问 [不丢云应用生成器](https://budiuyun.github.io/AppStoreGenerators/) 可以快速生成符合规范的应用模板，无需手动创建所有文件。
+
 ### 1. 基本流程
+
+开始创建您的应用有两种方式：
+
+#### A. 使用应用生成器（推荐）
+
+1. 访问 [不丢云应用生成器](https://budiuyun.github.io/AppStoreGenerators/)
+2. 按照界面引导填写所有必要的应用信息
+   - 应用图标需要提供URL，可使用[不丢云图床](https://tuchuang.yunnaio.cn/upload)上传并获取链接
+3. 生成并下载Helm Chart文件包
+4. 根据需要对生成的文件进行进一步调整
+
+#### B. 手动创建（高级用户）
 
 开始创建您的应用只需几个简单步骤：
 
@@ -76,6 +90,8 @@
 | sources | 源代码仓库链接 | 是 | `sources: ["https://github.com/example/app"]` |
 | maintainers | 维护者信息，必须包含name和email | 是 | `maintainers: [{name: "维护者", email: "email@example.com"}]` |
 | annotations | 注解，用于提供额外的元数据 | 是 | `annotations: {budiu/app-category-zh: "数据库"}` |
+
+> **📢 应用图标上传说明：** 您可以使用不丢云官方提供的图片托管服务 [图床](https://tuchuang.yunnaio.cn/upload) 上传您的应用图标。上传后，复制获得的URL作为 `icon` 字段的值。请确保上传的图标分辨率合适且清晰可辨。
 
 ### 应用分类说明
 
@@ -169,6 +185,8 @@ values.schema.json 文件用于定义 values.yaml 的数据结构和验证规则
 
 ## 三、在不丢云平台添加您的仓库
 
+您可以使用[不丢云应用生成器](https://budiuyun.github.io/AppStoreGenerators/)快速创建符合规范的应用，或按照以下步骤手动添加您的仓库：
+
 ### 1. 申请开通分支
 
 1. **联系管理员申请分支**
@@ -208,5 +226,6 @@ values.schema.json 文件用于定义 values.yaml 的数据结构和验证规则
 - **功能建议**：提交功能建议或改进意见
 - **寻求帮助**：如需技术支持，请联系QQ：179866495
 - **贡献改进**：欢迎提交Pull Request改进文档或工具
+- **应用生成器**：访问[不丢云应用生成器](https://budiuyun.github.io/AppStoreGenerators/)，体验更简便的应用创建方式
 
 我们会积极响应您的反馈，持续优化平台和工具链，为您提供更好的应用托管和部署体验。
