@@ -1,0 +1,37 @@
+name: Sync to Gitee
+
+on:
+  workflow_run:
+    workflows: ["Chart Format Check", "Release Charts", "Security Check"]
+    types:
+      - completed
+    branches:
+      - '**'
+  # 手动触发
+  workflow_dispatch:
+
+jobs:
+  sync:
+    # 仅当触发的工作流成功完成时执行
+    if: github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 设置Gitee同步
+        uses: Yikun/hub-mirror-action@master
+        with:
+          # 这里需要设置GitHub和Gitee的Personal Access Token
+          src: github/${{ github.repository_owner }}
+          dst: gitee/budiuyun
+          dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+          dst_token: ${{ secrets.GITEE_TOKEN }}
+          static_list: "${{ github.event.repository.name }}"
+          force_update: true
+          # 同步GitHub分支到Gitee
+          account_type: org
+          # debug选项，方便调试
+          debug: true 
