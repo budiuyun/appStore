@@ -1,39 +1,20 @@
 apiVersion: v1
 entries:
-  mysql:
+  lskypro:
   - annotations:
-      budiu/app-category-zh: 数据库
-    apiVersion: v2
-    appVersion: "8.0"
-    created: "2025-05-14T14:53:34.376388151Z"
-    description: 官方MySQL数据库服务
-    digest: 8689110c5601dabef4f3f5dec0d1978c4807034a67b57b203124e9bda13b77ca
-    icon: https://tuchuang.yunnaio.cn/i/2025/05/13/6823652c31c05.png
-    maintainers:
-    - email: 179866495@qq.com
-      name: niehaoran
-    name: mysql
-    sources:
-    - https://github.com/mysql/mysql-server
-    - https://hub.docker.com/_/mysql
-    urls:
-    - mysql-v1.0.0.tgz
-    version: v1.0.0
-  uptime-kuma:
-  - annotations:
-      budiu/app-category-zh: 监控工具
+      budiu/app-category-zh: 图床
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-05-14T14:53:34.376803371Z"
-    description: '''Uptime Kuma 是一个开源、轻量的自托管监控工具，支持对网站、服务器和 API 的正常运行时间进行实时监控，帮助用户快速了解服务的运行状况。它提供友好的用户界面、支持多种通知方式（如邮件、Telegram、Slack   等）以及历史记录追踪功能。
-      '''
-    digest: 8c9ca1fc4f5c62d8aa4767e6a0b062a0c33c42aa3c0a8371c6393be1d1f80158
-    icon: https://tuchuang.yunnaio.cn/i/2025/05/13/6823632a4fc3c.png
+    created: "2025-05-14T14:55:44.646484702Z"
+    description: Lsky Pro 是一个开源的图床软件，主要用于帮助用户方便快捷地上传图片并生成分享链接。它支持多种上传方式，包括本地上传、URL导入、拖拽上传等，用户可以根据自己的需求选择合适的上传方式。此外，Lsky
+      Pro 还具备批量上传、图片预览、远程下载、自定义水印等功能，大大提升了图片管理的效率和体验。其后端采用PHP开发，前端使用Vue.js，整体设计简洁美观，易于安装和配置。用户还可以通过插件扩展功能，满足个性化需求。
+    digest: b48af06db2c8cdd6e3fa32e10fc850ad388449c71d28b42d5750ec49adcdb2f1
+    icon: https://tuchuang.yunnaio.cn/i/2025/05/14/68248df58342a.png
     maintainers:
     - email: 179866495@qq.com
-      name: niehaoran
-    name: uptime-kuma
+      name: budiu
+    name: lskypro
     urls:
-    - uptime-kuma-v1.0.0.tgz
+    - lskypro-v1.0.0.tgz
     version: v1.0.0
-generated: "2025-05-14T14:53:34.375871755Z"
+generated: "2025-05-14T14:55:44.645874756Z"
