@@ -1,13 +1,30 @@
 apiVersion: v1
 entries:
+  lskypro:
+  - annotations:
+      budiu/app-category-zh: 图床
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2025-05-14T14:34:00.004780832Z"
+    description: Lsky Pro 是一个开源的图床软件，主要用于帮助用户方便快捷地上传图片并生成分享链接。它支持多种上传方式，包括本地上传、URL导入、拖拽上传等，用户可以根据自己的需求选择合适的上传方式。此外，Lsky
+      Pro 还具备批量上传、图片预览、远程下载、自定义水印等功能，大大提升了图片管理的效率和体验。其后端采用PHP开发，前端使用Vue.js，整体设计简洁美观，易于安装和配置。用户还可以通过插件扩展功能，满足个性化需求。
+    digest: 54ab2d7f941e513527baa28357e68c3ac20b795ecd771b955ce3eafc3778d84d
+    icon: https://tuchuang.yunnaio.cn/i/2025/05/14/68248df58342a.png
+    maintainers:
+    - email: 179866495@qq.com
+      name: budiu
+    name: lskypro
+    urls:
+    - lskypro-v1.0.0.tgz
+    version: v1.0.0
   mysql:
   - annotations:
       budiu/app-category-zh: 数据库
     apiVersion: v2
     appVersion: "8.0"
-    created: "2025-05-14T14:31:41.66978968Z"
+    created: "2025-05-14T14:34:00.005153591Z"
     description: 官方MySQL数据库服务
-    digest: bc3ec72a32300949b7900d8ee6ac4670a0bf6cfcb33d511ab936a9ee9d064453
+    digest: 95f3a5930e12036d5d69c22ce53a57d189a8860f366435b81f6d9607a90422d8
     icon: https://tuchuang.yunnaio.cn/i/2025/05/13/6823652c31c05.png
     maintainers:
     - email: 179866495@qq.com
@@ -24,10 +41,10 @@ entries:
       budiu/app-category-zh: 监控工具
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-05-14T14:31:41.670172549Z"
+    created: "2025-05-14T14:34:00.005533755Z"
     description: '''Uptime Kuma 是一个开源、轻量的自托管监控工具，支持对网站、服务器和 API 的正常运行时间进行实时监控，帮助用户快速了解服务的运行状况。它提供友好的用户界面、支持多种通知方式（如邮件、Telegram、Slack   等）以及历史记录追踪功能。
       '''
-    digest: 92c59f334d006f745c81d6ddca688b9cf087ecf82bb5d4986429133fd4dba127
+    digest: 224c5e0c346a0a6fb1e0540d33964d66722292b1859e39eaab8dbb455eb2428b
     icon: https://tuchuang.yunnaio.cn/i/2025/05/13/6823632a4fc3c.png
     maintainers:
     - email: 179866495@qq.com
@@ -36,4 +53,4 @@ entries:
     urls:
     - uptime-kuma-v1.0.0.tgz
     version: v1.0.0
-generated: "2025-05-14T14:31:41.669261982Z"
+generated: "2025-05-14T14:34:00.004181866Z"
