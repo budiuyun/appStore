@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "Lsky Pro.fullname" . }}
+  labels:
+    {{- include "Lsky Pro.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    {{- range $name, $port := .Values.service.ports }}
+    - port: {{ $port }}
+      targetPort: {{ $name }}
+      protocol: TCP
+      name: {{ $name }}
+    {{- end }}
+  selector:
+    {{- include "Lsky Pro.selectorLabels" . | nindent 4 }}
