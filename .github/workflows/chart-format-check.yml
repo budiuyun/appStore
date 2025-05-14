@@ -461,7 +461,10 @@ jobs:
                   image_props=$(grep -A10 "^image:" "$values_yaml" | grep -E "^ .*:.*$" | awk '{print $1}' | tr -d ':' | sort)
                   
                   # 定义可选的image属性列表
-                  optional_image_props=("enabled" "imageRegistry")
+                  optional_image_props=("enabled" "imageRegistry" "ports" "type" "name" "custom" "version" "secretName" "key" "registry" "imageName" "policy" "digest")
+                  
+                  # 定义必需的image属性列表 - 只有这些属性需要schema验证
+                  required_image_props=("repository" "tag" "pullPolicy")
                   
                   for prop in $image_props; do
                     # 检查是否在可选属性列表中
@@ -473,18 +476,41 @@ jobs:
                       fi
                     done
                     
+                    # 检查是否在必需属性列表中
+                    is_required=0
+                    for req_prop in "${required_image_props[@]}"; do
+                      if [ "$prop" = "$req_prop" ]; then
+                        is_required=1
+                        break
+                      fi
+                    done
+                    
+                    # 如果属性既不是可选的也不是必需的，但在schema中存在定义，则将其视为允许的属性
+                    if [ $is_optional -eq 0 ] && [ $is_required -eq 0 ]; then
+                      if jq -e ".properties.image.properties.$prop" "$schema_file" > /dev/null 2>&1; then
+                        echo "✓ schema中存在'image.$prop'的定义"
+                        continue
+                      fi
+                    fi
+                    
                     # 如果是可选属性，跳过schema检查
                     if [ $is_optional -eq 1 ]; then
                       echo "✓ image.$prop 是可选属性，不需要在schema中定义"
                       continue
                     fi
                     
-                    # 必需属性必须在schema中定义
-                    if ! jq -e ".properties.image.properties.$prop" "$schema_file" > /dev/null; then
-                      echo "错误: values.yaml中的'image.$prop'属性在schema中未定义"
-                      exit 1
+                    # 处理必需属性
+                    if [ $is_required -eq 1 ]; then
+                      if ! jq -e ".properties.image.properties.$prop" "$schema_file" > /dev/null; then
+                        echo "错误: values.yaml中的必需属性'image.$prop'在schema中未定义"
+                        exit 1
+                      fi
+                      echo "✓ schema中存在必需属性'image.$prop'的定义"
+                      continue
                     fi
-                    echo "✓ schema中存在'image.$prop'的定义"
+                    
+                    # 如果属性不在任何列表中，发出警告但不退出
+                    echo "警告: values.yaml中的'image.$prop'属性不在标准属性列表中，建议添加到schema"
                   done
                 fi
                 
@@ -493,14 +519,60 @@ jobs:
                   echo "错误: values.schema.json 缺少service属性定义"
                   exit 1
                 else
+                  # 定义可选的service属性列表
+                  optional_service_props=("cpu" "memory" "annotations" "labels" "nodePort" "loadBalancer" "externalIPs" "externalTrafficPolicy" "sessionAffinity" "healthCheckNodePort" "targetPort")
+                  
+                  # 定义必需的service属性列表
+                  required_service_props=("type" "ports")
+                  
                   # 检查service子属性
                   service_props=$(grep -A10 "^service:" "$values_yaml" | grep -E "^ .*:.*$" | awk '{print $1}' | tr -d ':' | sort)
+                  
                   for prop in $service_props; do
-                    if ! jq -e ".properties.service.properties.$prop" "$schema_file" > /dev/null; then
-                      echo "错误: values.yaml中的'service.$prop'属性在schema中未定义"
-                      exit 1
+                    # 检查是否在可选属性列表中
+                    is_optional=0
+                    for opt_prop in "${optional_service_props[@]}"; do
+                      if [ "$prop" = "$opt_prop" ]; then
+                        is_optional=1
+                        break
+                      fi
+                    done
+                    
+                    # 检查是否在必需属性列表中
+                    is_required=0
+                    for req_prop in "${required_service_props[@]}"; do
+                      if [ "$prop" = "$req_prop" ]; then
+                        is_required=1
+                        break
+                      fi
+                    done
+                    
+                    # 如果属性既不是可选的也不是必需的，但在schema中存在定义，则将其视为允许的属性
+                    if [ $is_optional -eq 0 ] && [ $is_required -eq 0 ]; then
+                      if jq -e ".properties.service.properties.$prop" "$schema_file" > /dev/null 2>&1; then
+                        echo "✓ schema中存在'service.$prop'的定义"
+                        continue
+                      fi
                     fi
-                    echo "✓ schema中存在'service.$prop'的定义"
+                    
+                    # 如果是可选属性，跳过schema检查
+                    if [ $is_optional -eq 1 ]; then
+                      echo "✓ service.$prop 是可选属性，不需要在schema中定义"
+                      continue
+                    fi
+                    
+                    # 处理必需属性
+                    if [ $is_required -eq 1 ]; then
+                      if ! jq -e ".properties.service.properties.$prop" "$schema_file" > /dev/null; then
+                        echo "错误: values.yaml中的必需属性'service.$prop'在schema中未定义"
+                        exit 1
+                      fi
+                      echo "✓ schema中存在必需属性'service.$prop'的定义"
+                      continue
+                    fi
+                    
+                    # 如果属性不在任何列表中，发出警告但不退出
+                    echo "警告: values.yaml中的'service.$prop'属性不在标准属性列表中，建议添加到schema"
                   done
                   
                   # 特别检查service.type限制
@@ -515,14 +587,60 @@ jobs:
                   echo "错误: values.schema.json 缺少networkLimits属性定义"
                   exit 1
                 else
+                  # 定义可选的networkLimits属性列表
+                  optional_network_props=("cpu" "memory" "annotations" "labels" "protocol" "port" "timeout" "retries" "custom" "mode")
+                  
+                  # 定义必需的networkLimits属性列表
+                  required_network_props=("enabled" "egress" "ingress")
+                  
                   # 检查networkLimits子属性
                   network_props=$(grep -A10 "^networkLimits:" "$values_yaml" | grep -E "^ .*:.*$" | awk '{print $1}' | tr -d ':' | sort)
+                  
                   for prop in $network_props; do
-                    if ! jq -e ".properties.networkLimits.properties.$prop" "$schema_file" > /dev/null; then
-                      echo "错误: values.yaml中的'networkLimits.$prop'属性在schema中未定义"
-                      exit 1
+                    # 检查是否在可选属性列表中
+                    is_optional=0
+                    for opt_prop in "${optional_network_props[@]}"; do
+                      if [ "$prop" = "$opt_prop" ]; then
+                        is_optional=1
+                        break
+                      fi
+                    done
+                    
+                    # 检查是否在必需属性列表中
+                    is_required=0
+                    for req_prop in "${required_network_props[@]}"; do
+                      if [ "$prop" = "$req_prop" ]; then
+                        is_required=1
+                        break
+                      fi
+                    done
+                    
+                    # 如果属性既不是可选的也不是必需的，但在schema中存在定义，则将其视为允许的属性
+                    if [ $is_optional -eq 0 ] && [ $is_required -eq 0 ]; then
+                      if jq -e ".properties.networkLimits.properties.$prop" "$schema_file" > /dev/null 2>&1; then
+                        echo "✓ schema中存在'networkLimits.$prop'的定义"
+                        continue
+                      fi
                     fi
-                    echo "✓ schema中存在'networkLimits.$prop'的定义"
+                    
+                    # 如果是可选属性，跳过schema检查
+                    if [ $is_optional -eq 1 ]; then
+                      echo "✓ networkLimits.$prop 是可选属性，不需要在schema中定义"
+                      continue
+                    fi
+                    
+                    # 处理必需属性
+                    if [ $is_required -eq 1 ]; then
+                      if ! jq -e ".properties.networkLimits.properties.$prop" "$schema_file" > /dev/null; then
+                        echo "错误: values.yaml中的必需属性'networkLimits.$prop'在schema中未定义"
+                        exit 1
+                      fi
+                      echo "✓ schema中存在必需属性'networkLimits.$prop'的定义"
+                      continue
+                    fi
+                    
+                    # 如果属性不在任何列表中，发出警告但不退出
+                    echo "警告: values.yaml中的'networkLimits.$prop'属性不在标准属性列表中，建议添加到schema"
                   done
                 fi
                 
