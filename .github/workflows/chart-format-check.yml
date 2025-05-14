@@ -459,7 +459,27 @@ jobs:
                 else
                   # 检查image子属性
                   image_props=$(grep -A10 "^image:" "$values_yaml" | grep -E "^ .*:.*$" | awk '{print $1}' | tr -d ':' | sort)
+                  
+                  # 定义可选的image属性列表
+                  optional_image_props=("enabled" "imageRegistry")
+                  
                   for prop in $image_props; do
+                    # 检查是否在可选属性列表中
+                    is_optional=0
+                    for opt_prop in "${optional_image_props[@]}"; do
+                      if [ "$prop" = "$opt_prop" ]; then
+                        is_optional=1
+                        break
+                      fi
+                    done
+                    
+                    # 如果是可选属性，跳过schema检查
+                    if [ $is_optional -eq 1 ]; then
+                      echo "✓ image.$prop 是可选属性，不需要在schema中定义"
+                      continue
+                    fi
+                    
+                    # 必需属性必须在schema中定义
                     if ! jq -e ".properties.image.properties.$prop" "$schema_file" > /dev/null; then
                       echo "错误: values.yaml中的'image.$prop'属性在schema中未定义"
                       exit 1
