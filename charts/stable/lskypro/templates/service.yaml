@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "uptime-kuma.fullname" . }}
+  name: {{ include "Lsky Pro.fullname" . }}
   labels:
-    {{- include "uptime-kuma.labels" . | nindent 4 }}
+    {{- include "Lsky Pro.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -14,4 +14,4 @@ spec:
       name: {{ $name }}
     {{- end }}
   selector:
-    {{- include "uptime-kuma.selectorLabels" . | nindent 4 }}
+    {{- include "Lsky Pro.selectorLabels" . | nindent 4 }}

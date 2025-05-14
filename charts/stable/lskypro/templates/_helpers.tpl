@@ -1,14 +1,14 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "uptime-kuma.name" -}}
+{{- define "Lsky Pro.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Create a default fully qualified app name.
 */}}
-{{- define "uptime-kuma.fullname" -}}
+{{- define "Lsky Pro.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -24,16 +24,16 @@ Create a default fully qualified app name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "uptime-kuma.chart" -}}
+{{- define "Lsky Pro.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "uptime-kuma.labels" -}}
-helm.sh/chart: {{ include "uptime-kuma.chart" . }}
-{{ include "uptime-kuma.selectorLabels" . }}
+{{- define "Lsky Pro.labels" -}}
+helm.sh/chart: {{ include "Lsky Pro.chart" . }}
+{{ include "Lsky Pro.selectorLabels" . }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
@@ -41,7 +41,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "uptime-kuma.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "uptime-kuma.name" . }}
+{{- define "Lsky Pro.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "Lsky Pro.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}

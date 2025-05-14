@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft-07/schema#",
   "type": "object",
-  "title": "uptime-kuma Helm Chart 配置",
+  "title": "Lsky Pro Helm Chart 配置",
   "required": [
     "replicaCount",
     "workloadType",
@@ -242,8 +242,8 @@
       "properties": {
         "env1": {
           "type": "object",
-          "title": "应用模式",
-          "description": "应用运行的模式",
+          "title": "数据库连接方式",
+          "description": "MySQL数据库连接类型",
           "required": [
             "name",
             "value"
@@ -253,32 +253,32 @@
               "type": "string",
               "title": "变量名称",
               "description": "环境变量的名称",
-              "default": "NODE_ENV"
+              "default": "DB_CONNECTION"
             },
             "value": {
               "type": "string",
               "title": "变量值",
               "description": "环境变量的值",
-              "default": "production"
+              "default": "mysql"
             },
             "title": {
               "type": "string",
               "title": "中文名称",
               "description": "环境变量的中文名称",
-              "default": "应用模式"
+              "default": "数据库连接方式"
             },
             "description": {
               "type": "string",
               "title": "描述",
               "description": "环境变量的详细描述",
-              "default": "应用运行的模式"
+              "default": "MySQL数据库连接类型"
             }
           }
         },
         "env2": {
           "type": "object",
-          "title": "调试模式",
-          "description": "是否开启调试模式",
+          "title": "数据库主机地址",
+          "description": "MySQL数据库服务器主机名",
           "required": [
             "name",
             "value"
@@ -288,25 +288,165 @@
               "type": "string",
               "title": "变量名称",
               "description": "环境变量的名称",
-              "default": "KUMA_DEBUG"
+              "default": "DB_HOST"
             },
             "value": {
               "type": "string",
               "title": "变量值",
               "description": "环境变量的值",
-              "default": "false"
+              "default": "127.0.0.1"
             },
             "title": {
               "type": "string",
               "title": "中文名称",
               "description": "环境变量的中文名称",
-              "default": "调试模式"
+              "default": "数据库主机地址"
             },
             "description": {
               "type": "string",
               "title": "描述",
               "description": "环境变量的详细描述",
-              "default": "是否开启调试模式"
+              "default": "MySQL数据库服务器主机名"
+            }
+          }
+        },
+        "env3": {
+          "type": "object",
+          "title": "数据库端口",
+          "description": "MySQL数据库连接端口",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "DB_PORT"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "3306"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "数据库端口"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "MySQL数据库连接端口"
+            }
+          }
+        },
+        "env4": {
+          "type": "object",
+          "title": "数据库名称",
+          "description": "LskyPro使用的数据库名",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "DB_DATABASE"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "lskypro"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "数据库名称"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "LskyPro使用的数据库名"
+            }
+          }
+        },
+        "env5": {
+          "type": "object",
+          "title": "数据库用户名",
+          "description": "连接数据库的用户名",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "DB_USERNAME"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "root"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "数据库用户名"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "连接数据库的用户名"
+            }
+          }
+        },
+        "env6": {
+          "type": "object",
+          "title": "数据库密码",
+          "description": "连接数据库的密码",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "DB_PASSWORD"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "MyPassword"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "数据库密码"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "连接数据库的密码"
             }
           }
         }

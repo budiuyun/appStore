@@ -1,21 +1,21 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
-  name: {{ include "mysql.fullname" . }}
+  name: {{ include "Lsky Pro.fullname" . }}
   labels:
-    {{- include "mysql.labels" . | nindent 4 }}
+    {{- include "Lsky Pro.labels" . | nindent 4 }}
   annotations:
-    app.kubernetes.io/part-of: mysql
+    app.kubernetes.io/part-of: Lsky Pro
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "mysql.selectorLabels" . | nindent 6 }}
+      {{- include "Lsky Pro.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "mysql.labels" . | nindent 8 }}
-        {{- include "mysql.selectorLabels" . | nindent 8 }}
+        {{- include "Lsky Pro.labels" . | nindent 8 }}
+        {{- include "Lsky Pro.selectorLabels" . | nindent 8 }}
       {{- if .Values.networkLimits.enabled }}
       annotations:
         kubernetes.io/egress-bandwidth: {{ .Values.networkLimits.egress | quote }}
@@ -27,8 +27,8 @@ spec:
           image: "{{ .Values.image.imageRegistry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - name: mysql
-              containerPort: 3306
+            - name: webport
+              containerPort: 80
               protocol: TCP
           {{- if .Values.env }}
           env:
@@ -60,5 +60,5 @@ spec:
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: {{ include "mysql.fullname" . }}-pvc
-      {{- end }} 
+            claimName: {{ include "Lsky Pro.fullname" . }}-pvc
+      {{- end }}

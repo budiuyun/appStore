@@ -2,16 +2,16 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "mysql.fullname" . }}-pvc
+  name: {{ include "Lsky Pro.fullname" . }}-pvc
   labels:
-    {{- include "mysql.labels" . | nindent 4 }}
-  annotations:
-    backup.kubernetes.io/strategy: "daily"
+    {{- include "Lsky Pro.labels" . | nindent 4 }}
 spec:
   accessModes:
     - {{ .Values.persistence.accessMode }}
   resources:
     requests:
       storage: {{ .Values.persistence.size }}
-  storageClassName: {{ .Values.persistence.storageClass | quote }}
-{{- end }} 
+  {{- if .Values.persistence.storageClass }}
+  storageClassName: {{ .Values.persistence.storageClass }}
+  {{- end }}
+{{- end }}
