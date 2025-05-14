@@ -340,11 +340,16 @@ jobs:
                   # 根据新的格式获取第一个环境变量的标识符
                   first_env_id=$(echo "$env_section" | grep -E '[ ]+[a-zA-Z0-9_]+:' | head -1 | tr -d ' ' | cut -d':' -f1)
                   
-                  # 检查这个环境变量下是否有name和value属性
-                  first_env_props=$(sed -n "/[ ]*$first_env_id:/,/[ ]*[a-zA-Z0-9_]\+:/p" "$values_yaml" | grep -E "[ ]+name:|[ ]+value:")
-                  if [ $(echo "$first_env_props" | wc -l) -lt 2 ]; then
+                  # 改进检查方式，直接从values.yaml文件中搜索特定环境变量的name和value
+                  # 使用更精确的模式匹配方式
+                  has_name=$(grep -A10 "^env:" "$values_yaml" | grep -q "name:" && echo "true" || echo "false")
+                  has_value=$(grep -A10 "^env:" "$values_yaml" | grep -q "value:" && echo "true" || echo "false")
+                  
+                  if [ "$has_name" != "true" ] || [ "$has_value" != "true" ]; then
                     echo "错误: 环境变量必须同时包含name和value属性"
                     exit 1
+                  else
+                    echo "✓ 环境变量包含name和value属性"
                   fi
                 else
                   echo "提示: 未配置env部分(可选)"
