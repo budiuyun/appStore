@@ -31,12 +31,6 @@ jobs:
       }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Get branch name
         id: branch-name
         run: |
@@ -61,6 +55,14 @@ jobs:
             echo "分支所有者: $USER_PREFIX"
           fi
 
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # 确保检出当前触发的分支
+          ref: ${{ env.BRANCH_NAME }}
+
       - name: Debug info
         run: |
           echo "当前事件: ${{ github.event_name }}"
@@ -70,6 +72,8 @@ jobs:
           echo "工作目录: $(pwd)"
           echo "仓库结构:"
           ls -la
+          echo "Charts目录结构:"
+          find charts/stable -type d -maxdepth 2 | sort
 
       - name: Configure Git
         run: |
