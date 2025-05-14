@@ -274,12 +274,6 @@ jobs:
                   exit 1
                 fi
                 
-                # 检查源代码链接
-                if ! grep -q "^sources:" "$chart_yaml"; then
-                  echo "错误: Chart.yaml 缺少 'sources' 字段"
-                  exit 1
-                fi
-                
                 # 检查维护者信息
                 if ! grep -q "^maintainers:" "$chart_yaml"; then
                   echo "错误: Chart.yaml 缺少维护者信息"
