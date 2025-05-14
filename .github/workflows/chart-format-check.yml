@@ -461,7 +461,7 @@ jobs:
                   image_props=$(grep -A10 "^image:" "$values_yaml" | grep -E "^ .*:.*$" | awk '{print $1}' | tr -d ':' | sort)
                   
                   # 定义可选的image属性列表
-                  optional_image_props=("enabled" "imageRegistry")
+                  optional_image_props=("enabled" "imageRegistry" "ports")
                   
                   for prop in $image_props; do
                     # 检查是否在可选属性列表中
