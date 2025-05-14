@@ -1,7 +1,7 @@
 # Helm Repository for budiu
 Generated from branch: budiu
 Owner: budiu
-Last updated: Wed May 14 14:02:28 UTC 2025
+Last updated: Wed May 14 14:31:50 UTC 2025
 
 ## Usage
 ```bash
