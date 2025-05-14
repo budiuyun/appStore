@@ -16,9 +16,33 @@ jobs:
   malware-scan:
     runs-on: ubuntu-latest
     steps:
+      - name: Get branch name
+        id: branch-name
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "BRANCH_NAME=${{ github.event.pull_request.head.ref }}" >> $GITHUB_ENV
+            echo "处理PR分支: ${{ github.event.pull_request.head.ref }}"
+          else
+            echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+            echo "处理推送分支: ${GITHUB_REF#refs/heads/}"
+          fi
+      
       - name: Checkout code
         uses: actions/checkout@v4
-        
+        with:
+          fetch-depth: 0
+          # 确保检出当前触发的分支
+          ref: ${{ env.BRANCH_NAME }}
+          
+      - name: Debug info
+        run: |
+          echo "当前事件: ${{ github.event_name }}"
+          echo "当前分支: ${{ github.ref }}"
+          echo "处理分支: ${{ env.BRANCH_NAME }}"
+          echo "工作目录: $(pwd)"
+          echo "Charts目录结构:"
+          find charts/stable -type d | sort || echo "未找到charts目录"
+      
       - name: Set up ClamAV
         run: |
           sudo apt-get update

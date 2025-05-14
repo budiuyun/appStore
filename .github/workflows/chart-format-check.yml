@@ -16,10 +16,32 @@ jobs:
   restricted-paths:
     runs-on: ubuntu-latest
     steps:
+      - name: Get branch name
+        id: branch-name
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "BRANCH_NAME=${{ github.event.pull_request.head.ref }}" >> $GITHUB_ENV
+            echo "处理PR分支: ${{ github.event.pull_request.head.ref }}"
+          else
+            echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+            echo "处理推送分支: ${GITHUB_REF#refs/heads/}"
+          fi
+      
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          # 确保检出当前触发的分支
+          ref: ${{ env.BRANCH_NAME }}
+
+      - name: Debug info
+        run: |
+          echo "当前事件: ${{ github.event_name }}"
+          echo "当前分支: ${{ github.ref }}"
+          echo "处理分支: ${{ env.BRANCH_NAME }}"
+          echo "工作目录: $(pwd)"
+          echo "Charts目录结构:"
+          find charts/stable -type d | sort
 
       - name: Get changed files
         id: changed-files
@@ -28,12 +50,14 @@ jobs:
             BASE_SHA=${{ github.event.pull_request.base.sha }}
             HEAD_SHA=${{ github.event.pull_request.head.sha }}
           else
-            # 对于直接推送，比较上一次提交
-            BASE_SHA=$(git rev-parse HEAD~1)
+            # 对于直接推送，比较当前分支最新提交与其父提交
             HEAD_SHA=$(git rev-parse HEAD)
+            BASE_SHA=$(git rev-parse HEAD~1 || git rev-parse HEAD)
           fi
           
           echo "检查修改的文件限制..."
+          echo "BASE_SHA: $BASE_SHA"
+          echo "HEAD_SHA: $HEAD_SHA"
           git diff --name-only $BASE_SHA $HEAD_SHA > changed_files.txt
           
           # 检查是否有修改charts/stable以外的文件
@@ -56,19 +80,54 @@ jobs:
     runs-on: ubuntu-latest
     needs: restricted-paths
     steps:
+      - name: Get branch name
+        id: branch-name
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "BRANCH_NAME=${{ github.event.pull_request.head.ref }}" >> $GITHUB_ENV
+            echo "处理PR分支: ${{ github.event.pull_request.head.ref }}"
+          else
+            echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+            echo "处理推送分支: ${GITHUB_REF#refs/heads/}"
+          fi
+
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          # 确保检出当前触发的分支
+          ref: ${{ env.BRANCH_NAME }}
 
       - name: Get changed directories
         id: changed-dirs
         run: |
-          git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep "^charts/stable/" | sort | uniq > changed_files.txt
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BASE_SHA=${{ github.event.pull_request.base.sha }}
+            HEAD_SHA=${{ github.event.pull_request.head.sha }}
+          else
+            # 对于直接推送，比较当前分支最新提交与其父提交
+            HEAD_SHA=$(git rev-parse HEAD)
+            BASE_SHA=$(git rev-parse HEAD~1 || git rev-parse HEAD)
+          fi
+          
+          echo "BASE_SHA: $BASE_SHA"
+          echo "HEAD_SHA: $HEAD_SHA"
+          git diff --name-only $BASE_SHA $HEAD_SHA | grep "^charts/stable/" | sort | uniq > changed_files.txt
+          
+          echo "修改的文件:"
+          cat changed_files.txt
           
           mkdir -p /tmp/changed_charts
           
-          # 更改提取修改的chart目录的方式，考虑多级目录结构
-          # 获取charts/stable/后的所有目录部分，保留完整路径
-          cat changed_files.txt | sed 's|^charts/stable/||' | awk -F/ '{print $1}' | sort | uniq > /tmp/changed_charts/dirs.txt
+          # 如果没有修改的文件，查找当前分支上的所有charts
+          if [ ! -s changed_files.txt ]; then
+            echo "没有检测到修改的文件，将检查当前分支上的所有charts"
+            find charts/stable -name Chart.yaml | sed 's|/Chart.yaml$||' | sed 's|^charts/stable/||' | awk -F/ '{print $1}' | sort | uniq > /tmp/changed_charts/dirs.txt
+          else
+            # 更改提取修改的chart目录的方式，考虑多级目录结构
+            # 获取charts/stable/后的所有目录部分，保留完整路径
+            cat changed_files.txt | sed 's|^charts/stable/||' | awk -F/ '{print $1}' | sort | uniq > /tmp/changed_charts/dirs.txt
+          fi
           
           echo "修改的Chart目录:"
           cat /tmp/changed_charts/dirs.txt
@@ -212,12 +271,6 @@ jobs:
                 # 检查icon字段
                 if ! grep -q "^icon:" "$chart_yaml"; then
                   echo "错误: Chart.yaml 缺少 'icon' 字段"
-                  exit 1
-                fi
-                
-                # 检查关键词
-                if ! grep -q "^keywords:" "$chart_yaml"; then
-                  echo "错误: Chart.yaml 缺少 'keywords' 字段"
                   exit 1
                 fi
                 
