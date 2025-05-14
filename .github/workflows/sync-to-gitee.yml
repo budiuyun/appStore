@@ -33,5 +33,8 @@ jobs:
           force_update: true
           # 同步GitHub分支到Gitee
           account_type: org
+          # 同步所有分支，包括helm-*前缀的分支
+          black_list: ""
+          white_list: ".*"
           # debug选项，方便调试
           debug: true 
