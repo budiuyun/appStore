@@ -5,10 +5,10 @@ entries:
       budiu/app-category-zh: 图床
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-05-14T14:55:44.646484702Z"
+    created: "2025-05-14T15:02:36.286469733Z"
     description: Lsky Pro 是一个开源的图床软件，主要用于帮助用户方便快捷地上传图片并生成分享链接。它支持多种上传方式，包括本地上传、URL导入、拖拽上传等，用户可以根据自己的需求选择合适的上传方式。此外，Lsky
       Pro 还具备批量上传、图片预览、远程下载、自定义水印等功能，大大提升了图片管理的效率和体验。其后端采用PHP开发，前端使用Vue.js，整体设计简洁美观，易于安装和配置。用户还可以通过插件扩展功能，满足个性化需求。
-    digest: b48af06db2c8cdd6e3fa32e10fc850ad388449c71d28b42d5750ec49adcdb2f1
+    digest: 118bcf8be7dcf7679a8e2eac66ae6b25db84491c2c441749233eb08e6da57d96
     icon: https://tuchuang.yunnaio.cn/i/2025/05/14/68248df58342a.png
     maintainers:
     - email: 179866495@qq.com
@@ -17,4 +17,4 @@ entries:
     urls:
     - lskypro-v1.0.0.tgz
     version: v1.0.0
-generated: "2025-05-14T14:55:44.645874756Z"
+generated: "2025-05-14T15:02:36.285891357Z"
