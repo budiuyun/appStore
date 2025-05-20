@@ -35,6 +35,13 @@ jobs:
           account_type: org
           # 同步所有分支，包括helm-*前缀的分支
           black_list: ""
-          white_list: ".*"
+          white_list: "^appStore$"
           # debug选项，方便调试
-          debug: true 
+          debug: true
+          # 添加日志输出
+          log_level: debug
+          # 确保同步所有分支
+          sync_branches: true
+          # 添加重试机制
+          retry_count: 3
+          retry_interval: 60 
