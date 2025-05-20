@@ -113,20 +113,25 @@ jobs:
               chart_name=$(basename "$chart_dir")
               chart_version=$(grep "^version:" "$chart_yaml" | awk '{print $2}' | tr -d '"')
               tgz_file=".release/${chart_name}-${chart_version}.tgz"
-              # 创建临时目录
-              temp_dir=$(mktemp -d)
-              # 解压tgz文件
-              tar -xzf "$tgz_file" -C "$temp_dir"
-              # 确保values.yaml中包含icon
-              if ! grep -q "^icon:" "$temp_dir/$chart_name/values.yaml"; then
-                echo "icon: $icon_value" >> "$temp_dir/$chart_name/values.yaml"
+              
+              if [ -f "$tgz_file" ]; then
+                # 创建临时目录
+                temp_dir=$(mktemp -d)
+                # 解压tgz文件
+                tar -xzf "$tgz_file" -C "$temp_dir"
+                # 确保values.yaml中包含icon
+                if ! grep -q "^icon:" "$temp_dir/$chart_name/values.yaml"; then
+                  echo "icon: $icon_value" >> "$temp_dir/$chart_name/values.yaml"
+                fi
+                # 重新打包
+                cd "$temp_dir"
+                tar -czf "$OLDPWD/$tgz_file" "$chart_name"
+                cd "$OLDPWD"
+                # 清理临时目录
+                rm -rf "$temp_dir"
+              else
+                echo "警告: 未找到打包文件 $tgz_file"
               fi
-              # 重新打包
-              cd "$temp_dir"
-              tar -czf "$tgz_file" "$chart_name"
-              cd - > /dev/null
-              # 清理临时目录
-              rm -rf "$temp_dir"
             else
               # 正常打包
               helm package "$chart_dir" -d .release || echo "打包 $chart_dir 失败"
