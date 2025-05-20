@@ -15,7 +15,7 @@ networkLimits:
   ingress: 1M
 resources:
   limits:
-    cpu: 128m
+    cpu: 100m
     memory: 256Mi
   requests:
     cpu: 64m
