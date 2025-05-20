@@ -10,6 +10,8 @@ service:
   type: ClusterIP
   port: 3306
 
+
+
 networkLimits:
   enabled: true
   egress: "1M"
@@ -43,3 +45,5 @@ env:
   env4:
     name: MYSQL_PASSWORD
     value: "password" 
+
+icon: https://tuchuang.yunnaio.cn/i/2025/05/13/6823652c31c05.png
