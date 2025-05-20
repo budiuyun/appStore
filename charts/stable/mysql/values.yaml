@@ -45,5 +45,3 @@ env:
   env4:
     name: MYSQL_PASSWORD
     value: "password" 
-
-icon: https://tuchuang.yunnaio.cn/i/2025/05/13/6823652c31c05.png

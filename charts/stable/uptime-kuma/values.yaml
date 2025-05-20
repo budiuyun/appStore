@@ -37,5 +37,3 @@ env:
     value: 'false'
     description: 是否开启调试模式
     title: 调试模式
-
-icon: https://tuchuang.yunnaio.cn/i/2025/05/13/6823632a4fc3c.png
