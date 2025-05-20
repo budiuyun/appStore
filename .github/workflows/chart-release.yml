@@ -99,7 +99,38 @@ jobs:
           find charts/stable -name Chart.yaml | while read chart_yaml; do
             chart_dir=$(dirname "$chart_yaml")
             echo "找到Chart: $chart_dir"
-            helm package "$chart_dir" -d .release || echo "打包 $chart_dir 失败"
+            
+            # 检查values.yaml中是否有icon
+            values_file="$chart_dir/values.yaml"
+            if [ -f "$values_file" ] && grep -q "^icon:" "$values_file"; then
+              # 如果values.yaml中有icon，确保它被包含在打包中
+              echo "检测到values.yaml中的icon字段，确保它被包含在打包中"
+              # 保存icon值
+              icon_value=$(grep "^icon:" "$values_file" | awk '{print $2}' | tr -d '"')
+              # 打包Chart
+              helm package "$chart_dir" -d .release || echo "打包 $chart_dir 失败"
+              # 获取打包后的文件名
+              chart_name=$(basename "$chart_dir")
+              chart_version=$(grep "^version:" "$chart_yaml" | awk '{print $2}' | tr -d '"')
+              tgz_file=".release/${chart_name}-${chart_version}.tgz"
+              # 创建临时目录
+              temp_dir=$(mktemp -d)
+              # 解压tgz文件
+              tar -xzf "$tgz_file" -C "$temp_dir"
+              # 确保values.yaml中包含icon
+              if ! grep -q "^icon:" "$temp_dir/$chart_name/values.yaml"; then
+                echo "icon: $icon_value" >> "$temp_dir/$chart_name/values.yaml"
+              fi
+              # 重新打包
+              cd "$temp_dir"
+              tar -czf "$tgz_file" "$chart_name"
+              cd - > /dev/null
+              # 清理临时目录
+              rm -rf "$temp_dir"
+            else
+              # 正常打包
+              helm package "$chart_dir" -d .release || echo "打包 $chart_dir 失败"
+            fi
           done
           
           # 显示打包结果
