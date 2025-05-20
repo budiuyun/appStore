@@ -13,15 +13,15 @@ service:
 
 networkLimits:
   enabled: true
-  egress: "2M"
-  ingress: "2M"
+  egress: "1M"
+  ingress: "1M"
 
 resources:
   limits:
-    cpu: 200m
+    cpu: 150m
     memory: 512Mi
   requests:
-    cpu: 128m
+    cpu: 100m
     memory: 256Mi
 
 persistence:
