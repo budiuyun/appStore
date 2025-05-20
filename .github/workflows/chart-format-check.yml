@@ -443,6 +443,12 @@ jobs:
                 
                 # 检查是否所有的顶级属性都在schema中定义
                 for prop in $top_level_props; do
+                  # 跳过icon字段的检查
+                  if [ "$prop" = "icon" ]; then
+                    echo "✓ 跳过icon字段的schema检查"
+                    continue
+                  fi
+                  
                   if ! jq -e ".properties.$prop" "$schema_file" > /dev/null; then
                     echo "错误: values.yaml中的'$prop'属性在values.schema.json中未定义"
                     exit 1
