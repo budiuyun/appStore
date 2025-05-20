@@ -88,6 +88,24 @@ jobs:
           # 检查每个文件
           FOUND_FORBIDDEN=0
           
+          # 检查 values.yaml 中的 icon URL
+          echo "检查 values.yaml 中的 icon URL..."
+          find charts/stable -name values.yaml | while read values_file; do
+            if grep -q "^icon:" "$values_file"; then
+              icon_url=$(grep "^icon:" "$values_file" | awk '{print $2}' | tr -d '"')
+              if [[ ! $icon_url =~ ^https?:// ]]; then
+                echo "错误: $values_file 中的 icon URL 格式不正确"
+                exit 1
+              fi
+              # 检查 URL 是否指向允许的域名
+              if [[ ! $icon_url =~ ^https?://(tuchuang\.yunnaio\.cn|raw\.githubusercontent\.com|github\.com|githubusercontent\.com) ]]; then
+                echo "警告: $values_file 中的 icon URL 指向未授权的域名: $icon_url"
+                echo "只允许使用 tuchuang.yunnaio.cn 或 GitHub 相关域名"
+                exit 1
+              fi
+            fi
+          done
+          
           while read -r file; do
             filename=$(basename "$file")
             extension="${filename##*.}"

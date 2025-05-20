@@ -147,6 +147,17 @@ jobs:
               category="其他"
             fi
             
+            # 检查values.yaml中的icon
+            values_file="$app_dir/values.yaml"
+            if [ -f "$values_file" ]; then
+              values_json=$(python3 -c 'import json, yaml; f=open("'"$values_file"'", "r"); data=yaml.safe_load(f); print(json.dumps(data)); f.close()')
+              icon=$(echo "$values_json" | jq -r '.icon // ""')
+              if [ ! -z "$icon" ]; then
+                # 如果values.yaml中有icon，添加到chart_json中
+                chart_json=$(echo "$chart_json" | jq --arg icon "$icon" '.icon = $icon')
+              fi
+            fi
+            
             # 记录分类
             if ! grep -q "^$category$" $CATEGORIES_FILE; then
               echo "$category" >> $CATEGORIES_FILE

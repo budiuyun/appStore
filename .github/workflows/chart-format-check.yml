@@ -268,9 +268,9 @@ jobs:
                   exit 1
                 fi
                 
-                # 检查icon字段
-                if ! grep -q "^icon:" "$chart_yaml"; then
-                  echo "错误: Chart.yaml 缺少 'icon' 字段"
+                # 检查icon字段（允许在Chart.yaml或values.yaml中定义）
+                if ! grep -q "^icon:" "$chart_yaml" && ! grep -q "^icon:" "$values_yaml"; then
+                  echo "错误: 必须在 Chart.yaml 或 values.yaml 中定义 'icon' 字段"
                   exit 1
                 fi
                 
@@ -306,22 +306,28 @@ jobs:
                   fi
                 done
                 
-                # 检查工作负载类型(可选，但推荐)
-                if grep -q "^workloadType:" "$values_yaml"; then
-                  echo "✓ 存在workloadType配置，明确指定工作负载类型"
-                  
-                  # 提取工作负载类型值
-                  workload_type_value=$(grep "^workloadType:" "$values_yaml" | awk '{print $2}' | tr -d '"')
-                  echo "✓ 工作负载类型配置为: $workload_type_value"
-                  
-                  # 检查与实际使用的模板是否一致
-                  if [ "$workload_type_value" = "Deployment" ] && [ "$workload_type" != "Deployment" ]; then
-                    echo "警告: values.yaml 中 workloadType 为 Deployment，但使用了 statefulset.yaml"
-                  elif [ "$workload_type_value" = "StatefulSet" ] && [ "$workload_type" != "StatefulSet" ]; then
-                    echo "警告: values.yaml 中 workloadType 为 StatefulSet，但使用了 deployment.yaml"
+                # 检查icon字段（如果存在）
+                if grep -q "^icon:" "$values_yaml"; then
+                  icon_value=$(grep "^icon:" "$values_yaml" | awk '{print $2}' | tr -d '"')
+                  if [[ ! $icon_value =~ ^https?:// ]]; then
+                    echo "错误: values.yaml 中的 icon 字段必须是有效的 URL"
+                    exit 1
                   fi
-                else
-                  echo "提示: 建议在values.yaml中添加workloadType字段，用于明确指定工作负载类型"
+                  echo "✓ icon 字段格式正确"
+                fi
+                
+                # 检查workloadType的schema定义(如果存在)
+                if grep -q "^workloadType:" "$values_yaml"; then
+                  if ! jq -e '.properties.workloadType' "$schema_file" > /dev/null; then
+                    echo "错误: values.yaml 中定义了 workloadType，但在 values.schema.json 中未定义"
+                    exit 1
+                  fi
+                  
+                  # 检查workloadType是否只允许有效值
+                  if ! jq -e '.properties.workloadType.enum | contains(["Deployment", "StatefulSet"])' "$schema_file" > /dev/null; then
+                    echo "错误: values.schema.json 中 workloadType 应限制为 Deployment 或 StatefulSet"
+                    exit 1
+                  fi
                 fi
                 
                 # 检查env部分(可选)
