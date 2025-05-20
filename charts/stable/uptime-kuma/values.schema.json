@@ -4,11 +4,11 @@
   "title": "uptime-kuma Helm Chart 配置",
   "required": [
     "replicaCount",
-    "workloadType",
     "image",
     "service",
-    "networkLimits",
-    "resources"
+    "resources",
+    "persistence",
+    "networkLimits"
   ],
   "properties": {
     "replicaCount": {
@@ -20,13 +20,11 @@
     },
     "workloadType": {
       "type": "string",
-      "title": "工作负载类型",
-      "description": "指定部署为有状态集(StatefulSet)或无状态部署(Deployment)",
       "enum": [
         "Deployment",
         "StatefulSet"
       ],
-      "default": "Deployment"
+      "description": "工作负载类型"
     },
     "image": {
       "type": "object",
