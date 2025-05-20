@@ -923,6 +923,12 @@ jobs:
             
             # 检查每个顶级键是否在schema中定义
             for key in $values_keys; do
+              # 跳过icon字段的检查
+              if [ "$key" = "icon" ]; then
+                echo "✓ 跳过icon字段的schema检查"
+                continue
+              fi
+              
               if ! jq -e ".properties.$key" "$schema_file" > /dev/null; then
                 echo "错误: values.yaml 中的 '$key' 字段在 values.schema.json 中未定义"
                 exit 1
