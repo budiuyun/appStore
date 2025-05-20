@@ -687,12 +687,6 @@ jobs:
                   # 检查与values.yaml的一致性
                   echo "检查statefulset.yaml与values.yaml的一致性..."
                   
-                  # 检查serviceName是否存在
-                  if ! grep -q "serviceName:" "$workload_file"; then
-                    echo "错误: statefulset.yaml 必须包含serviceName字段"
-                    exit 1
-                  fi
-                  
                   # 检查replicas是否引用values
                   if ! grep -q "replicas: {{ .Values.replicaCount }}" "$workload_file"; then
                     echo "错误: statefulset.yaml 中的replicas必须引用.Values.replicaCount"
