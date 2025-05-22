@@ -372,7 +372,7 @@ jobs:
                 
                 # 检查service部分必需字段
                 service_section=$(sed -n '/^service:/,/^[a-z]/p' "$values_yaml")
-                for field in "type:" "port:"; do
+                for field in "type:" "ports:"; do
                   if ! echo "$service_section" | grep -q "$field"; then
                     echo "错误: values.yaml service部分缺少 $field 字段"
                     exit 1
