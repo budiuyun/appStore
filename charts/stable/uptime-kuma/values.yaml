@@ -10,8 +10,8 @@ service:
     port1: 3001
 networkLimits:
   enabled: true
-  egress: 1M
-  ingress: 1M
+  egress: 2M
+  ingress: 2M
 resources:
   limits:
     cpu: 100m
