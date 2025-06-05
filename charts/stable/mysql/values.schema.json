@@ -1,7 +1,11 @@
 {
   "$schema": "http://json-schema.org/schema#",
   "type": "object",
-  "required": ["image", "service", "persistence"],
+  "required": [
+    "image",
+    "service",
+    "persistence"
+  ],
   "properties": {
     "replicaCount": {
       "type": "integer",
@@ -12,7 +16,11 @@
     },
     "image": {
       "type": "object",
-      "required": ["imageRegistry", "repository", "tag"],
+      "required": [
+        "imageRegistry",
+        "repository",
+        "tag"
+      ],
       "title": "镜像配置",
       "description": "容器镜像配置",
       "properties": {
@@ -38,14 +46,20 @@
           "type": "string",
           "title": "镜像拉取策略",
           "description": "Kubernetes的镜像拉取策略，出于安全和性能考虑，只允许使用IfNotPresent",
-          "enum": ["IfNotPresent", "Always"],
+          "enum": [
+            "IfNotPresent",
+            "Always"
+          ],
           "default": "IfNotPresent"
         }
       }
     },
     "service": {
       "type": "object",
-      "required": ["type", "port"],
+      "required": [
+        "type",
+        "port"
+      ],
       "title": "服务配置",
       "description": "Kubernetes Service资源配置",
       "properties": {
@@ -53,7 +67,9 @@
           "type": "string",
           "title": "服务类型",
           "description": "Kubernetes服务类型，必须是ClusterIP",
-          "enum": ["ClusterIP"],
+          "enum": [
+            "ClusterIP"
+          ],
           "default": "ClusterIP"
         },
         "port": {
@@ -68,7 +84,11 @@
     },
     "networkLimits": {
       "type": "object",
-      "required": ["enabled", "egress", "ingress"],
+      "required": [
+        "enabled",
+        "egress",
+        "ingress"
+      ],
       "title": "网络带宽限制",
       "description": "Pod网络带宽限制配置",
       "properties": {
@@ -105,17 +125,23 @@
           "description": "容器资源使用上限",
           "properties": {
             "cpu": {
-              "type": "string",
+              "type": [
+                "string",
+                "null"
+              ],
               "title": "CPU限制",
-              "description": "CPU资源限制，可以是m(千分之一核)或直接的核心数",
-              "pattern": "^[0-9]+m?$",
+              "description": "CPU资源限制，可以是m(千分之一核)或直接的核心数，留空表示无限制",
+              "pattern": "^[0-9]+m?$|^$",
               "default": "500m"
             },
             "memory": {
-              "type": "string",
+              "type": [
+                "string",
+                "null"
+              ],
               "title": "内存限制",
-              "description": "内存资源限制，可以是Mi(兆字节)或Gi(吉字节)",
-              "pattern": "^[0-9]+(Mi|Gi)$",
+              "description": "内存资源限制，可以是Mi(兆字节)或Gi(吉字节)，留空表示无限制",
+              "pattern": "^[0-9]+(Mi|Gi)$|^$",
               "default": "512Mi"
             }
           }
@@ -126,17 +152,23 @@
           "description": "容器需要的最小资源量",
           "properties": {
             "cpu": {
-              "type": "string",
+              "type": [
+                "string",
+                "null"
+              ],
               "title": "CPU请求",
-              "description": "CPU资源请求，单位同上",
-              "pattern": "^[0-9]+m?$",
+              "description": "CPU资源请求，单位同上，留空表示无限制",
+              "pattern": "^[0-9]+m?$|^$",
               "default": "200m"
             },
             "memory": {
-              "type": "string",
+              "type": [
+                "string",
+                "null"
+              ],
               "title": "内存请求",
-              "description": "内存资源请求，单位同上",
-              "pattern": "^[0-9]+(Mi|Gi)$",
+              "description": "内存资源请求，单位同上，留空表示无限制",
+              "pattern": "^[0-9]+(Mi|Gi)$|^$",
               "default": "256Mi"
             }
           }
@@ -145,7 +177,11 @@
     },
     "persistence": {
       "type": "object",
-      "required": ["enabled", "path", "size"],
+      "required": [
+        "enabled",
+        "path",
+        "size"
+      ],
       "title": "持久化存储",
       "description": "数据持久化配置",
       "properties": {
@@ -165,7 +201,11 @@
           "type": "string",
           "title": "访问模式",
           "description": "PVC的访问模式",
-          "enum": ["ReadWriteOnce", "ReadOnlyMany", "ReadWriteMany"],
+          "enum": [
+            "ReadWriteOnce",
+            "ReadOnlyMany",
+            "ReadWriteMany"
+          ],
           "default": "ReadWriteOnce"
         },
         "size": {
@@ -259,4 +299,4 @@
       }
     }
   }
-} 
+}

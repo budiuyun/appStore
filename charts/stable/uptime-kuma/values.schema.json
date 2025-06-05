@@ -152,15 +152,23 @@
           ],
           "properties": {
             "cpu": {
-              "type": "string",
+              "type": [
+                "string",
+                "null"
+              ],
               "title": "CPU限制",
-              "description": "CPU资源限制，可以是m或核心数",
+              "description": "CPU资源限制，可以是m或核心数，留空表示无限制",
+              "pattern": "^[0-9]+m?$|^$",
               "default": "200m"
             },
             "memory": {
-              "type": "string",
+              "type": [
+                "string",
+                "null"
+              ],
               "title": "内存限制",
-              "description": "内存资源限制，可以是Mi或Gi",
+              "description": "内存资源限制，可以是Mi或Gi，留空表示无限制",
+              "pattern": "^[0-9]+(Mi|Gi)$|^$",
               "default": "256Mi"
             }
           }
@@ -174,15 +182,23 @@
           ],
           "properties": {
             "cpu": {
-              "type": "string",
+              "type": [
+                "string",
+                "null"
+              ],
               "title": "CPU请求",
-              "description": "CPU资源请求，可以是m或核心数",
+              "description": "CPU资源请求，可以是m或核心数，留空表示无限制",
+              "pattern": "^[0-9]+m?$|^$",
               "default": "100m"
             },
             "memory": {
-              "type": "string",
+              "type": [
+                "string",
+                "null"
+              ],
               "title": "内存请求",
-              "description": "内存资源请求，可以是Mi或Gi",
+              "description": "内存资源请求，可以是Mi或Gi，留空表示无限制",
+              "pattern": "^[0-9]+(Mi|Gi)$|^$",
               "default": "128Mi"
             }
           }
