@@ -10,8 +10,6 @@ service:
   ports:
     mysql: 3306
 
-
-
 networkLimits:
   enabled: true
   egress: "1M"
