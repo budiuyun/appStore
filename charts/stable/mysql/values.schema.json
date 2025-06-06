@@ -58,7 +58,7 @@
       "type": "object",
       "required": [
         "type",
-        "port"
+        "ports"
       ],
       "title": "服务配置",
       "description": "Kubernetes Service资源配置",
@@ -72,13 +72,20 @@
           ],
           "default": "ClusterIP"
         },
-        "port": {
-          "type": "integer",
-          "title": "MySQL服务端口",
-          "description": "MySQL服务暴露的端口",
-          "minimum": 1,
-          "maximum": 65535,
-          "default": 3306
+        "ports": {
+          "type": "object",
+          "title": "服务端口配置",
+          "description": "MySQL服务端口配置",
+          "properties": {
+            "port1": {
+              "type": "integer",
+              "title": "MySQL服务端口",
+              "description": "MySQL服务暴露的端口",
+              "minimum": 1,
+              "maximum": 65535,
+              "default": 3306
+            }
+          }
         }
       }
     },
