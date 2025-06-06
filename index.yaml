@@ -5,9 +5,9 @@ entries:
       budiu/app-category-zh: 数据库
     apiVersion: v2
     appVersion: "8.0"
-    created: "2025-06-06T07:45:38.567193103Z"
+    created: "2025-06-06T07:47:02.828123974Z"
     description: 官方MySQL数据库服务
-    digest: e4709b01de2013c1a0e14782bbbaf3b4452e74799ea51b7a32a84c84c73b1789
+    digest: 6db02a733a916e7610b1025a7b8c05b05b32791a568e81f85979e5fb6e081c30
     icon: https://images.budiuyun.net/i/2025/05/13/6823652c31c05.png
     maintainers:
     - email: 179866495@qq.com
@@ -24,10 +24,10 @@ entries:
       budiu/app-category-zh: 监控工具
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-06-06T07:45:38.567577245Z"
+    created: "2025-06-06T07:47:02.828591744Z"
     description: '''Uptime Kuma 是一个开源、轻量的自托管监控工具，支持对网站、服务器和 API 的正常运行时间进行实时监控，帮助用户快速了解服务的运行状况。它提供友好的用户界面、支持多种通知方式（如邮件、Telegram、Slack   等）以及历史记录追踪功能。
       '''
-    digest: b446609514b97e255d98f17279ddb654fc8a0f84b33664eb044342edc099976a
+    digest: 6d1e1c0fab364e0b4f66ff3aedfd66c3b8e8c6c1dac9f49982fc2e089bef27e1
     icon: https://images.budiuyun.net/i/2025/05/13/6823632a4fc3c.png
     maintainers:
     - email: 179866495@qq.com
@@ -36,4 +36,4 @@ entries:
     urls:
     - uptime-kuma-v1.0.0.tgz
     version: v1.0.0
-generated: "2025-06-06T07:45:38.566666281Z"
+generated: "2025-06-06T07:47:02.827570043Z"
