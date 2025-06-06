@@ -7,7 +7,8 @@ image:
 
 service:
   type: ClusterIP
-  port: 3306
+  ports:
+    mysql: 3306
 
 
 

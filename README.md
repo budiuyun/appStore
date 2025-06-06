@@ -14,7 +14,7 @@
 
 1. 访问 [不丢云应用生成器](https://budiuyun.github.io/AppStoreGenerators/)
 2. 按照界面引导填写所有必要的应用信息
-   - 应用图标需要提供URL，可使用[不丢云图床](https://tuchuang.yunnaio.cn/upload)上传并获取链接
+   - 应用图标需要提供URL，可使用[不丢云图床](https://images.budiuyun.net/upload)上传并获取链接
 3. 生成并下载Helm Chart文件包
 4. 根据需要对生成的文件进行进一步调整
 
@@ -91,7 +91,7 @@
 | maintainers | 维护者信息，必须包含name和email | 是 | `maintainers: [{name: "维护者", email: "email@example.com"}]` |
 | annotations | 注解，用于提供额外的元数据 | 是 | `annotations: {budiu/app-category-zh: "数据库"}` |
 
-> **📢 应用图标上传说明：** 您可以使用不丢云官方提供的图片托管服务 [图床](https://tuchuang.yunnaio.cn/upload) 上传您的应用图标。上传后，复制获得的URL作为 `icon` 字段的值。请确保上传的图标分辨率合适且清晰可辨。
+> **📢 应用图标上传说明：** 您可以使用不丢云官方提供的图片托管服务 [图床](https://images.budiuyun.net/upload) 上传您的应用图标。上传后，复制获得的URL作为 `icon` 字段的值。请确保上传的图标分辨率合适且清晰可辨。
 
 ### 应用分类说明
 

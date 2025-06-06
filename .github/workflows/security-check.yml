@@ -100,7 +100,7 @@ jobs:
               # 检查 URL 是否指向允许的域名
               if [[ ! $icon_url =~ ^https?://(tuchuang\.yunnaio\.cn|raw\.githubusercontent\.com|github\.com|githubusercontent\.com) ]]; then
                 echo "警告: $values_file 中的 icon URL 指向未授权的域名: $icon_url"
-                echo "只允许使用 tuchuang.yunnaio.cn 或 GitHub 相关域名"
+                echo "只允许使用 images.budiuyun.net 或 GitHub 相关域名"
                 exit 1
               fi
             fi
