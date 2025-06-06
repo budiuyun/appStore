@@ -1,0 +1,14 @@
+apiVersion: v2
+name: minecraft
+version: v1.0.0
+appVersion: 1.0.0
+description: >-
+  Minecraft 是一款广受欢迎的沙盒游戏，玩家可以在其中探索、建造、合作与战斗。本 Chart 部署 Minecraft
+  服务器，为玩家提供多人在线游戏世界，并支持自定义插件、模组和配置，满足社区服务器和私人服务器需求。该服务器支持官方版和 Forge、Paper
+  等模组版，为玩家提供丰富的游戏体验。
+icon: https://images.budiuyun.net/i/2025/06/06/6842e0ec61115.png
+maintainers:
+  - name: niehaoran
+    email: 179866495@qq.com
+annotations:
+  budiu/app-category-zh: 游戏服务器

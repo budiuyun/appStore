@@ -1,0 +1,64 @@
+replicaCount: 1
+workloadType: StatefulSet
+image:
+  imageRegistry: docker.1ms.run
+  repository: itzg/minecraft-server
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  ports:
+    server: 25565
+networkLimits:
+  enabled: true
+  egress: 1M
+  ingress: 1M
+resources:
+  limits:
+    cpu: 900m
+    memory: 2000Mi
+  requests:
+    cpu: 800m
+    memory: 1024Mi
+persistence:
+  enabled: true
+  path: /data
+  accessMode: ReadWriteOnce
+  size: 10Gi
+  storageClass: local
+env:
+  env1:
+    name: EULA
+    value: 'TRUE'
+    description: 值为"TRUE"表示接受Minecraft服务器的最终用户许可协议
+    title: 最终用户许可协议
+  env2:
+    name: TYPE
+    value: PAPER
+    description: 值为"PAPER"表示使用Paper服务器（Minecraft的一种优化服务端）
+    title: 服务器类型
+  env3:
+    name: MEMORY
+    value: 1G
+    description: 值为"1G"表示为Minecraft服务器分配1GB内存
+    title: 内存分配
+  env4:
+    name: ONLINE_MODE
+    value: 'FALSE'
+    description: 值为"FALSE"表示关闭正版验证，允许未购买Minecraft的玩家加入
+    title: 在线模式
+  env5:
+    name: VERSION
+    value: 1.20.2
+    description: 值为"1.20.2"表示使用Minecraft 1.20.2版本
+    title: 游戏版本
+  env6:
+    name: PROXY
+    value: ''
+    description: 当前为空值，用于配置服务器的网络代理
+    title: 代理设置
+  env7:
+    name: RCON_PASSWORD
+    value: budiu123
+    description: 用于远程管理Minecraft服务器的RCON密码
+    title: 远程控制台密码
