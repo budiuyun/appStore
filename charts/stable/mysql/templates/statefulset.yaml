@@ -45,24 +45,12 @@ spec:
             {{- end }}
           {{- end }}
           resources:
-            {{- if or .Values.resources.limits.cpu .Values.resources.limits.memory }}
             limits:
-              {{- if .Values.resources.limits.cpu }}
               cpu: {{ .Values.resources.limits.cpu | quote }}
-              {{- end }}
-              {{- if .Values.resources.limits.memory }}
               memory: {{ .Values.resources.limits.memory | quote }}
-              {{- end }}
-            {{- end }}
-            {{- if or .Values.resources.requests.cpu .Values.resources.requests.memory }}
             requests:
-              {{- if .Values.resources.requests.cpu }}
               cpu: {{ .Values.resources.requests.cpu | quote }}
-              {{- end }}
-              {{- if .Values.resources.requests.memory }}
               memory: {{ .Values.resources.requests.memory | quote }}
-              {{- end }}
-            {{- end }}
           {{- if .Values.persistence.enabled }}
           volumeMounts:
             - name: data
