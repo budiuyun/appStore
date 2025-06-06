@@ -201,6 +201,9 @@ jobs:
                 # 获取values.yaml文件路径（修正：使用Chart根目录）
                 values_yaml="$app_dir/values.yaml"
                 
+                # 获取values.schema.json文件路径
+                schema_file="$app_dir/values.schema.json"
+                
                 # 检查是否说明了env参数(如果在values中存在)
                 if grep -q "^env:" "$values_yaml" && ! grep -q "env" "$readme_file"; then
                   echo "警告: values.yaml 包含env配置，但README.md未说明此参数"
@@ -430,7 +433,7 @@ jobs:
                 # 确保values.schema.json是有效的JSON
                 echo "验证values.schema.json格式..."
                 # 修正：使用Chart根目录下的values.schema.json
-                schema_file="$app_dir/values.schema.json"
+                # schema_file="$app_dir/values.schema.json"
                 
                 if ! jq empty "$schema_file" 2>/dev/null; then
                   echo "错误: values.schema.json 不是有效的JSON格式"
