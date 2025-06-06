@@ -9,7 +9,7 @@
   "version": "v1.0.0",
   "appVersion": "8.0",
   "description": "官方MySQL数据库服务",
-  "icon": "https://tuchuang.yunnaio.cn/i/2025/05/13/6823652c31c05.png",
+  "icon": "https://images.budiuyun.net/i/2025/05/13/6823652c31c05.png",
   "sources": [
     "https://github.com/mysql/mysql-server",
     "https://hub.docker.com/_/mysql"
@@ -38,7 +38,7 @@
   "version": "v1.0.0",
   "appVersion": "1.0.0",
   "description": "'Uptime Kuma 是一个开源、轻量的自托管监控工具，支持对网站、服务器和 API 的正常运行时间进行实时监控，帮助用户快速了解服务的运行状况。它提供友好的用户界面、支持多种通知方式（如邮件、Telegram、Slack\n  等）以及历史记录追踪功能。 '",
-  "icon": "https://tuchuang.yunnaio.cn/i/2025/05/13/6823632a4fc3c.png",
+  "icon": "https://images.budiuyun.net/i/2025/05/13/6823652c31c05.png",
   "maintainers": [
     {
       "name": "niehaoran",
