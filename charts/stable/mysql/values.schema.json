@@ -138,7 +138,8 @@
               ],
               "title": "CPU限制",
               "description": "CPU资源限制，可以是m(千分之一核)或直接的核心数，留空表示无限制",
-              "pattern": "^[0-9]+m?$|^$"
+              "pattern": "^[0-9]+m?$|^$",
+              "default": "500m"
             },
             "memory": {
               "type": [
@@ -147,7 +148,8 @@
               ],
               "title": "内存限制",
               "description": "内存资源限制，可以是Mi(兆字节)或Gi(吉字节)，留空表示无限制",
-              "pattern": "^[0-9]+(Mi|Gi)$|^$"
+              "pattern": "^[0-9]+(Mi|Gi)$|^$",
+              "default": "512Mi"
             }
           }
         },
@@ -163,7 +165,8 @@
               ],
               "title": "CPU请求",
               "description": "CPU资源请求，单位同上，留空表示无限制",
-              "pattern": "^[0-9]+m?$|^$"
+              "pattern": "^[0-9]+m?$|^$",
+              "default": "200m"
             },
             "memory": {
               "type": [
@@ -172,7 +175,8 @@
               ],
               "title": "内存请求",
               "description": "内存资源请求，单位同上，留空表示无限制",
-              "pattern": "^[0-9]+(Mi|Gi)$|^$"
+              "pattern": "^[0-9]+(Mi|Gi)$|^$",
+              "default": "256Mi"
             }
           }
         }
