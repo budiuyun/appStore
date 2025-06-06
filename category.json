@@ -32,7 +32,23 @@
     "游戏服务器": [
       {"minecraft": {
         "v1.0.0": 
-{"apiVersion": "v2", "name": "minecraft", "version": "v1.0.0", "appVersion": "1.0.0", "description": "Minecraft \u662f\u4e00\u6b3e\u5e7f\u53d7\u6b22\u8fce\u7684\u6c99\u76d2\u6e38\u620f\uff0c\u73a9\u5bb6\u53ef\u4ee5\u5728\u5176\u4e2d\u63a2\u7d22\u3001\u5efa\u9020\u3001\u5408\u4f5c\u4e0e\u6218\u6597\u3002\u672c Chart \u90e8\u7f72 Minecraft \u670d\u52a1\u5668\uff0c\u4e3a\u73a9\u5bb6\u63d0\u4f9b\u591a\u4eba\u5728\u7ebf\u6e38\u620f\u4e16\u754c\uff0c\u5e76\u652f\u6301\u81ea\u5b9a\u4e49\u63d2\u4ef6\u3001\u6a21\u7ec4\u548c\u914d\u7f6e\uff0c\u6ee1\u8db3\u793e\u533a\u670d\u52a1\u5668\u548c\u79c1\u4eba\u670d\u52a1\u5668\u9700\u6c42\u3002\u8be5\u670d\u52a1\u5668\u652f\u6301\u5b98\u65b9\u7248\u548c Forge\u3001Paper \u7b49\u6a21\u7ec4\u7248\uff0c\u4e3a\u73a9\u5bb6\u63d0\u4f9b\u4e30\u5bcc\u7684\u6e38\u620f\u4f53\u9a8c\u3002", "icon": "https://images.budiuyun.net/i/2025/06/06/6842e0ec61115.png", "maintainers": [{"name": "niehaoran", "email": "179866495@qq.com"}], "annotations": {"budiu/app-category-zh": "\u6e38\u620f\u670d\u52a1\u5668"}}
+{
+  "apiVersion": "v2",
+  "name": "minecraft",
+  "version": "v1.0.0",
+  "appVersion": "1.0.0",
+  "description": "Minecraft 是一款广受欢迎的沙盒游戏，玩家可以在其中探索、建造、合作与战斗。本 Chart 部署 Minecraft 服务器，为玩家提供多人在线游戏世界，并支持自定义插件、模组和配置，满足社区服务器和私人服务器需求。该服务器支持官方版和 Forge、Paper 等模组版，为玩家提供丰富的游戏体验。",
+  "icon": "https://images.budiuyun.net/i/2025/06/06/6842e0ec61115.png",
+  "maintainers": [
+    {
+      "name": "niehaoran",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "游戏服务器"
+  }
+}
 
       }}
 
