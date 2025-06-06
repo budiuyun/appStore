@@ -1,0 +1,17 @@
+{{- if .Values.persistence.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "minecraft.fullname" . }}-pvc
+  labels:
+    {{- include "minecraft.labels" . | nindent 4 }}
+  annotations:
+    backup.kubernetes.io/strategy: "daily"
+spec:
+  accessModes:
+    - {{ .Values.persistence.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.size }}
+  storageClassName: {{ .Values.persistence.storageClass | quote }}
+{{- end }} 
