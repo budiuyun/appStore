@@ -1,0 +1,65 @@
+workloadType: Deployment
+replicaCount: 1
+image:
+  imageRegistry: docker.io
+  repository: dockurr/windows
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  ports:
+    web: 8006
+    rdp: 3389
+networkLimits:
+  enabled: true
+  egress: 1M
+  ingress: 1M
+resources:
+  limits:
+    cpu: '4'
+    memory: 8Gi
+  requests:
+    cpu: '2'
+    memory: 4Gi
+persistence:
+  enabled: true
+  path: /storage
+  accessMode: ReadWriteOnce
+  size: 20Gi
+  storageClass: local
+env:
+  env1:
+    name: VERSION
+    value: '2022'
+    description: 选择安装的windows版本
+    title: windows版本
+  env2:
+    name: DISK_SIZE
+    value: 20G
+    description: 设置系统磁盘大小
+    title: 磁盘大小
+  env3:
+    name: RAM_SIZE
+    value: 4G
+    description: 设置分配的内存大小
+    title: 内存大小
+  env4:
+    name: CPU_CORES
+    value: '2'
+    description: 设置分配的cpu核心数
+    title: cpu核心数
+  env5:
+    name: USERNAME
+    value: docker
+    description: 设置windows登录用户名
+    title: 用户名
+  env6:
+    name: PASSWORD
+    value: admin
+    description: 设置windows登录密码
+    title: 密码
+  env7:
+    name: LANGUAGE
+    value: Chinese
+    description: 设置windows系统语言
+    title: 语言
