@@ -833,7 +833,10 @@ jobs:
           find charts/stable -name Chart.yaml | while read chart_yaml; do
             chart_dir=$(dirname "$chart_yaml")
             echo "模板验证: $chart_dir"
-            helm template "$chart_dir" > /dev/null || {
+            # 添加--debug标志，在渲染失败时提供更详细的错误信息
+            helm template "$chart_dir" --debug > /dev/null || {
+              echo "尝试再次使用debug模式渲染以获取更多错误详情..."
+              helm template "$chart_dir" --debug
               echo "错误: 模板渲染失败，检查模板语法"
               exit 1
             }
