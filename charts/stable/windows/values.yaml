@@ -63,3 +63,5 @@ env:
     value: Chinese
     description: 设置windows系统语言
     title: 语言
+
+icon: https://images.budiuyun.net/i/2025/06/07/6843f8774bf85.png
