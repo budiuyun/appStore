@@ -22,7 +22,7 @@ resources:
     ephemeral-storage: 2Gi
   requests:
     cpu: 250m
-    memory: 512Mi
+    memory: 500Mi
     ephemeral-storage: 1Gi
 
 persistence:
