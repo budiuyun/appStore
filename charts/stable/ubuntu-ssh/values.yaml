@@ -16,7 +16,7 @@ networkLimits:
 resources:
   limits:
     cpu: 500m
-    memory: 512Mi
+    memory: 500Mi
     ephemeral-storage: 10Gi
   requests:
     cpu: 200m
