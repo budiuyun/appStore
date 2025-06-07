@@ -170,6 +170,16 @@
               "description": "内存资源限制，可以是Mi或Gi，留空表示无限制",
               "pattern": "^[0-9]+(Mi|Gi)$|^$",
               "default": "256Mi"
+            },
+            "ephemeral-storage": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "临时存储限制",
+              "description": "临时存储资源限制，可以是Mi(兆字节)或Gi(吉字节)，留空表示无限制",
+              "pattern": "^[0-9]+(Mi|Gi)$|^$",
+              "default": "1Gi"
             }
           }
         },
@@ -200,6 +210,16 @@
               "description": "内存资源请求，可以是Mi或Gi，留空表示无限制",
               "pattern": "^[0-9]+(Mi|Gi)$|^$",
               "default": "128Mi"
+            },
+            "ephemeral-storage": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "临时存储请求",
+              "description": "临时存储资源请求，可以是Mi(兆字节)或Gi(吉字节)，留空表示无限制",
+              "pattern": "^[0-9]+(Mi|Gi)$|^$",
+              "default": "512Mi"
             }
           }
         }
