@@ -1,0 +1,46 @@
+workloadType: Deployment
+replicaCount: 1
+image:
+  imageRegistry: docker.1ms.run
+  repository: niehaoran/ubuntu-ssh
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  ports:
+    ssh: 22
+networkLimits:
+  enabled: true
+  egress: 1M
+  ingress: 1M
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+    ephemeral-storage: 10Gi
+  requests:
+    cpu: 200m
+    memory: 256Mi
+    ephemeral-storage: 5Gi
+persistence:
+  enabled: true
+  path: /
+  accessMode: ReadWriteOnce
+  size: 10Gi
+  storageClass: local
+env:
+  env1:
+    name: UBUNTU_VERSION
+    value: '20.04'
+    description: Ubuntu系统版本
+    title: Ubuntu版本
+  env2:
+    name: ROOT_PASSWORD
+    value: root
+    description: SSH登录的root用户密码
+    title: Root密码
+  env3:
+    name: TZ
+    value: Asia/Shanghai
+    description: 服务器时区设置
+    title: 时区

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "ubuntu-ssh.fullname" . }}
+  labels: {{- include "ubuntu-ssh.labels" . | nindent 4 }}
+  annotations:
+    app.kubernetes.io/component: application
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.ports.ssh }}
+      targetPort: 22
+      protocol: TCP
+      name: ssh
+  selector: {{- include "ubuntu-ssh.selectorLabels" . | nindent 4 }}
