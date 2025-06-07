@@ -3,7 +3,23 @@
     "操作系统": [
       {"ubuntu-ssh": {
         "v1.0.0": 
-{"apiVersion": "v2", "name": "ubuntu-ssh", "version": "v1.0.0", "appVersion": "20.04", "description": "\u652f\u6301SSH\u7684Ubuntu\u670d\u52a1\u5668\u955c\u50cf", "icon": "https://images.budiuyun.net/i/2025/06/08/68446389305d0.png", "maintainers": [{"name": "niehaoran", "email": "179866495@qq.com"}], "annotations": {"budiu/app-category-zh": "\u64cd\u4f5c\u7cfb\u7edf"}}
+{
+  "apiVersion": "v2",
+  "name": "ubuntu-ssh",
+  "version": "v1.0.0",
+  "appVersion": "20.04",
+  "description": "支持SSH的Ubuntu服务器镜像",
+  "icon": "https://images.budiuyun.net/i/2025/06/08/68446389305d0.png",
+  "maintainers": [
+    {
+      "name": "niehaoran",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "操作系统"
+  }
+}
 
       }}
 
