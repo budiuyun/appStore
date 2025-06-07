@@ -5,10 +5,10 @@ entries:
       budiu/app-category-zh: 游戏服务器
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-06-07T08:51:16.88933959Z"
+    created: "2025-06-07T08:51:45.69739136Z"
     description: Minecraft 是一款广受欢迎的沙盒游戏，玩家可以在其中探索、建造、合作与战斗。本 Chart 部署 Minecraft 服务器，为玩家提供多人在线游戏世界，并支持自定义插件、模组和配置，满足社区服务器和私人服务器需求。该服务器支持官方版和
       Forge、Paper 等模组版，为玩家提供丰富的游戏体验。
-    digest: 0bf8683ae01f4d9b008de82c26513930508ba9eeccba1ce5ec88ba2de134e3aa
+    digest: 06aedb235f3defa5a5e208c32e544a261d6f70696b312b627ccd546bf534c2a3
     icon: https://images.budiuyun.net/i/2025/06/06/6842e0ec61115.png
     maintainers:
     - email: 179866495@qq.com
@@ -22,9 +22,9 @@ entries:
       budiu/app-category-zh: 数据库
     apiVersion: v2
     appVersion: "8.0"
-    created: "2025-06-07T08:51:16.889757937Z"
+    created: "2025-06-07T08:51:45.697773555Z"
     description: 官方MySQL数据库服务
-    digest: 56d6872379a55d98a97a1a0e73e7249dd173e48a414a2537da6faef56572d059
+    digest: 4fc53f3e4a1057ee75dee3eb59ff5c79700cd10a80000f5a9024a1a52e8e0b07
     icon: https://images.budiuyun.net/i/2025/05/13/6823652c31c05.png
     maintainers:
     - email: 179866495@qq.com
@@ -41,10 +41,10 @@ entries:
       budiu/app-category-zh: 监控工具
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-06-07T08:51:16.890139703Z"
+    created: "2025-06-07T08:51:45.698142225Z"
     description: '''Uptime Kuma 是一个开源、轻量的自托管监控工具，支持对网站、服务器和 API 的正常运行时间进行实时监控，帮助用户快速了解服务的运行状况。它提供友好的用户界面、支持多种通知方式（如邮件、Telegram、Slack   等）以及历史记录追踪功能。
       '''
-    digest: f0e7db2abf6e508bebefb1e1825408c71ce292f27d5ec92fc02e7df3f61e7bae
+    digest: 62b8d5e80bbaf32879e461b6eae4982ca607371d28c6603a80dfc4e6e35801e9
     icon: https://images.budiuyun.net/i/2025/05/13/6823632a4fc3c.png
     maintainers:
     - email: 179866495@qq.com
@@ -58,9 +58,9 @@ entries:
       budiu/app-category-zh: 操作系统
     apiVersion: v2
     appVersion: "2022"
-    created: "2025-06-07T08:51:16.890535887Z"
+    created: "2025-06-07T08:51:45.698562202Z"
     description: windows server容器化系统
-    digest: cbd4d1c6fb7088d778e0ebffabb34e12cc9d0af18de5c1f4b85e098d72dc91e3
+    digest: 40236cdc6d8ae707d4c270b1fdf91d0312cc289d27630bc00af17f26325ed61e
     icon: https://images.budiuyun.net/i/2025/06/07/6843f8774bf85.png
     maintainers:
     - email: 179866495@qq.com
@@ -69,4 +69,4 @@ entries:
     urls:
     - windows-v1.0.0.tgz
     version: v1.0.0
-generated: "2025-06-07T08:51:16.888692783Z"
+generated: "2025-06-07T08:51:45.696747742Z"
