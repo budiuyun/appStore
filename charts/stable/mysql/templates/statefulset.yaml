@@ -49,13 +49,13 @@ spec:
               cpu: {{ .Values.resources.limits.cpu | quote }}
               memory: {{ .Values.resources.limits.memory | quote }}
               {{- if hasKey .Values.resources.limits "ephemeral-storage" }}
-              ephemeral-storage: {{ .Values.resources.limits.ephemeral-storage | quote }}
+              "ephemeral-storage": {{ .Values.resources.limits.ephemeral-storage | quote }}
               {{- end }}
             requests:
               cpu: {{ .Values.resources.requests.cpu | quote }}
               memory: {{ .Values.resources.requests.memory | quote }}
               {{- if hasKey .Values.resources.requests "ephemeral-storage" }}
-              ephemeral-storage: {{ .Values.resources.requests.ephemeral-storage | quote }}
+              "ephemeral-storage": {{ .Values.resources.requests.ephemeral-storage | quote }}
               {{- end }}
           {{- if .Values.persistence.enabled }}
           volumeMounts:
