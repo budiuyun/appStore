@@ -4,7 +4,7 @@
 
 ## 一、快速入门
 
-> **📢 重要更新：** 我们现在提供了应用生成器工具！访问 [不丢云应用生成器](https://budiuyun.github.io/AppStoreGenerators/) 可以快速生成符合规范的应用模板，无需手动创建所有文件。
+> **📢 重要提示：** 我们强烈推荐使用应用生成器工具！访问 [不丢云应用生成器](https://budiuyun.github.io/AppStoreGenerators/) 可以快速生成符合规范的应用模板，无需手动创建所有文件。
 
 ### 1. 基本流程
 
@@ -66,13 +66,6 @@
 5. **持久化存储标准化**：规范化的存储配置确保数据安全和有效管理
 
 > **特别说明**：服务类型限制为ClusterIP并不会影响应用的可用性，平台会通过统一的网关和路由机制为应用提供外部访问能力。
-
-### 3. 参考示例
-
-本仓库提供了完整的示例应用，您可以参考：
-- [示例应用](./示例helm文件/template-app-1.0.0/template-app)
-
-只需复制此示例并按照您的需求修改，即可快速创建符合规范的应用。
 
 ## 二、详细参数说明
 
@@ -146,9 +139,11 @@ resources:
   limits:                      # 资源上限
     cpu: 200m                  # CPU上限，建议设置为requests的2倍
     memory: 256Mi              # 内存上限，建议根据应用实际需求设置
+    ephemeral-storage: 1Gi     # 临时存储上限，根据应用需求设置
   requests:                    # 资源请求
     cpu: 100m                  # CPU请求，最小建议50m
     memory: 128Mi              # 内存请求，最小建议64Mi
+    ephemeral-storage: 512Mi   # 临时存储请求，根据应用需求设置
 ```
 
 #### 持久化存储详解
@@ -185,7 +180,7 @@ values.schema.json 文件用于定义 values.yaml 的数据结构和验证规则
 
 ## 三、在不丢云平台添加您的仓库
 
-您可以使用[不丢云应用生成器](https://budiuyun.github.io/AppStoreGenerators/)快速创建符合规范的应用，或按照以下步骤手动添加您的仓库：
+我们强烈推荐使用[不丢云应用生成器](https://budiuyun.github.io/AppStoreGenerators/)快速创建符合规范的应用，这是最简单高效的方法。若需手动添加，请按照以下步骤：
 
 ### 1. 申请开通分支
 
