@@ -5,10 +5,10 @@ entries:
       budiu/app-category-zh: 游戏服务器
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-06-07T15:31:51.999127282Z"
+    created: "2025-06-07T15:38:46.469284515Z"
     description: Minecraft 是一款广受欢迎的沙盒游戏，玩家可以在其中探索、建造、合作与战斗。本 Chart 部署 Minecraft 服务器，为玩家提供多人在线游戏世界，并支持自定义插件、模组和配置，满足社区服务器和私人服务器需求。该服务器支持官方版和
       Forge、Paper 等模组版，为玩家提供丰富的游戏体验。
-    digest: 75d7fd02a3bd793f98cf7a3b51eafd1660167c4f2bc8c4eed3a40bb05460b046
+    digest: 37a2dbdcb3d346323c88d24bc22ff04d0d09a85878eba83fd42a66fb7f351b22
     icon: https://images.budiuyun.net/i/2025/06/06/6842e0ec61115.png
     maintainers:
     - email: 179866495@qq.com
@@ -22,9 +22,9 @@ entries:
       budiu/app-category-zh: 数据库
     apiVersion: v2
     appVersion: "8.0"
-    created: "2025-06-07T15:31:51.999562471Z"
+    created: "2025-06-07T15:38:46.469898842Z"
     description: 官方MySQL数据库服务
-    digest: 81bab2e412f6ffd985fc4dd212879ec54971fdd04eb1b54ec4668fda0031ae19
+    digest: 0d323046e182278c8f67ac81ed10971b1d57e779964468c8e8c08aed00daa85f
     icon: https://images.budiuyun.net/i/2025/05/13/6823652c31c05.png
     maintainers:
     - email: 179866495@qq.com
@@ -41,10 +41,10 @@ entries:
       budiu/app-category-zh: 监控工具
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-06-07T15:31:51.999950139Z"
+    created: "2025-06-07T15:38:46.470571561Z"
     description: '''Uptime Kuma 是一个开源、轻量的自托管监控工具，支持对网站、服务器和 API 的正常运行时间进行实时监控，帮助用户快速了解服务的运行状况。它提供友好的用户界面、支持多种通知方式（如邮件、Telegram、Slack   等）以及历史记录追踪功能。
       '''
-    digest: d79da42ef35f2b73e45870b93cc7b8cae71ddc356188f1932f4979091191dd94
+    digest: 744b6169fae6c598a0c8840e08822ee22923659608fb9e5c6105e5833715070b
     icon: https://images.budiuyun.net/i/2025/05/13/6823632a4fc3c.png
     maintainers:
     - email: 179866495@qq.com
@@ -53,4 +53,4 @@ entries:
     urls:
     - uptime-kuma-v1.0.0.tgz
     version: v1.0.0
-generated: "2025-06-07T15:31:51.997785945Z"
+generated: "2025-06-07T15:38:46.468333088Z"
