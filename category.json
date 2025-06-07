@@ -1,5 +1,30 @@
 {
   "categories": {
+    "操作系统": [
+      {"windows": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "windows",
+  "version": "v1.0.0",
+  "appVersion": "2022",
+  "description": "windows server容器化系统",
+  "icon": "https://images.budiuyun.net/i/2025/06/07/6843f8774bf85.png",
+  "maintainers": [
+    {
+      "name": "niehaoran",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "操作系统"
+  }
+}
+
+      }}
+
+    ]
+,
     "数据库": [
       {"mysql": {
         "v1.0.0": 
@@ -79,5 +104,5 @@
 
     ]
   },
-  "count": 3
+  "count": 4
 }
