@@ -1,5 +1,5 @@
 apiVersion: v2
-name: ubuntu22.04
+name: ubuntu-22-04
 version: v1.0.0
 appVersion: '22.04'
 description: 带有SSH服务的Ubuntu镜像，支持远程管理
