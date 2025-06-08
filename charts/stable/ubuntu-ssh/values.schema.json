@@ -7,6 +7,7 @@
     "replicaCount",
     "image",
     "service",
+    "securityContext",
     "networkLimits",
     "resources"
   ],
@@ -62,6 +63,95 @@
             "IfNotPresent"
           ],
           "default": "IfNotPresent"
+        }
+      }
+    },
+    "securityContext": {
+      "type": "object",
+      "title": "安全上下文配置",
+      "required": [
+        "enabled"
+      ],
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "title": "启用安全上下文",
+          "description": "是否启用安全上下文配置",
+          "default": true
+        },
+        "pod": {
+          "type": "object",
+          "title": "Pod级别安全上下文",
+          "description": "Pod级别的安全上下文配置",
+          "properties": {
+            "runAsNonRoot": {
+              "type": "boolean",
+              "title": "以非root用户运行",
+              "description": "是否以非root用户运行Pod",
+              "default": false
+            },
+            "runAsUser": {
+              "type": "integer",
+              "title": "运行用户ID",
+              "description": "指定Pod运行的用户ID",
+              "default": 0
+            },
+            "seccompProfile": {
+              "type": "object",
+              "title": "Seccomp配置文件",
+              "description": "指定Pod的Seccomp配置文件",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "title": "Seccomp类型",
+                  "description": "Seccomp配置文件类型",
+                  "enum": [
+                    "RuntimeDefault",
+                    "Localhost",
+                    "Unconfined"
+                  ],
+                  "default": "RuntimeDefault"
+                }
+              }
+            }
+          }
+        },
+        "container": {
+          "type": "object",
+          "title": "容器级别安全上下文",
+          "description": "容器级别的安全上下文配置",
+          "properties": {
+            "privileged": {
+              "type": "boolean",
+              "title": "特权模式",
+              "description": "容器是否运行在特权模式下",
+              "default": false
+            },
+            "allowPrivilegeEscalation": {
+              "type": "boolean",
+              "title": "允许特权升级",
+              "description": "是否允许容器进程获得比父进程更多的特权",
+              "default": false
+            },
+            "readOnlyRootFilesystem": {
+              "type": "boolean",
+              "title": "只读根文件系统",
+              "description": "容器的根文件系统是否为只读",
+              "default": false
+            },
+            "runAsNonRoot": {
+              "type": "boolean",
+              "title": "以非root用户运行",
+              "description": "是否以非root用户运行容器",
+              "default": false
+            },
+            "runAsUser": {
+              "type": "integer",
+              "title": "运行用户ID",
+              "description": "指定容器运行的用户ID",
+              "default": 0
+            }
+          }
         }
       }
     },
