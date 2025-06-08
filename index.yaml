@@ -5,10 +5,10 @@ entries:
       budiu/app-category-zh: 游戏服务器
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-06-08T06:06:43.653552757Z"
+    created: "2025-06-08T06:11:39.113084649Z"
     description: Minecraft 是一款广受欢迎的沙盒游戏，玩家可以在其中探索、建造、合作与战斗。本 Chart 部署 Minecraft 服务器，为玩家提供多人在线游戏世界，并支持自定义插件、模组和配置，满足社区服务器和私人服务器需求。该服务器支持官方版和
       Forge、Paper 等模组版，为玩家提供丰富的游戏体验。
-    digest: d0fc07fec902fbc232c09114b054023b8db57173f697b7e9249f08a70db90836
+    digest: 7671f06136a9c8915e4d3d9e3bb499cb04935522bb85dc25cd340d2cea6c1dcb
     icon: https://images.budiuyun.net/i/2025/06/06/6842e0ec61115.png
     maintainers:
     - email: 179866495@qq.com
@@ -22,9 +22,9 @@ entries:
       budiu/app-category-zh: 数据库
     apiVersion: v2
     appVersion: "8.0"
-    created: "2025-06-08T06:06:43.653974925Z"
+    created: "2025-06-08T06:11:39.113485507Z"
     description: 官方MySQL数据库服务
-    digest: a3a751cb7de013c95a0a16780af8b28e996235e5dfb03204f0cbc67659b58f16
+    digest: 72d004206ffcf83b3f3ce74be44bacb54b023f97a287ad202d5672438b468ffd
     icon: https://images.budiuyun.net/i/2025/05/13/6823652c31c05.png
     maintainers:
     - email: 179866495@qq.com
@@ -41,9 +41,9 @@ entries:
       budiu/app-category-zh: 操作系统
     apiVersion: v2
     appVersion: "22.04"
-    created: "2025-06-08T06:06:43.654318817Z"
+    created: "2025-06-08T06:11:39.113841081Z"
     description: 带有SSH服务的Ubuntu镜像，支持远程管理
-    digest: 612e7dbdc3e9a2cc9e5bf7f9d0758072abe13681b370a52805e73665ba7382ab
+    digest: b655c099a42527e74cd12a7058dd2b08435611b05e352b5dac80af5dd25879c0
     icon: https://images.budiuyun.net/i/2025/06/08/68446389305d0.png
     maintainers:
     - email: 179866495@qq.com
@@ -57,10 +57,10 @@ entries:
       budiu/app-category-zh: 监控工具
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-06-08T06:06:43.654707082Z"
+    created: "2025-06-08T06:11:39.114205432Z"
     description: '''Uptime Kuma 是一个开源、轻量的自托管监控工具，支持对网站、服务器和 API 的正常运行时间进行实时监控，帮助用户快速了解服务的运行状况。它提供友好的用户界面、支持多种通知方式（如邮件、Telegram、Slack   等）以及历史记录追踪功能。
       '''
-    digest: 688e745131ef020c320a1ae232212e15a06f8abcc6b32669d1607255bb01cd3a
+    digest: ae3394d58843ff538ebcd8bd967b7959964e87ca679ba281f308b05b6d2cc521
     icon: https://images.budiuyun.net/i/2025/05/13/6823632a4fc3c.png
     maintainers:
     - email: 179866495@qq.com
@@ -69,4 +69,4 @@ entries:
     urls:
     - uptime-kuma-v1.0.0.tgz
     version: v1.0.0
-generated: "2025-06-08T06:06:43.652913113Z"
+generated: "2025-06-08T06:11:39.112448501Z"
