@@ -39,15 +39,20 @@ spec:
                 mkdir -p /pv-data{{ $path }}
                 # 确保临时目录存在
                 mkdir -p /temp-data{{ $path }}
-                # 复制原始目录内容到临时存储
-                if [ -d "{{ $path }}" ] && [ "$(ls -A {{ $path }} 2>/dev/null)" ]; then
-                  echo "备份 {{ $path }} 的原始数据..."
-                  # 使用rsync或cp命令复制数据（如果rsync可用）
+                # 复制原始目录内容到临时存储，包括所有子目录
+                if [ -d "{{ $path }}" ]; then
+                  echo "备份 {{ $path }} 的原始数据(包括子目录)..."
+                  # 使用rsync或cp命令递归复制数据（如果rsync可用）
                   if command -v rsync > /dev/null 2>&1; then
-                    rsync -a {{ $path }}/ /temp-data{{ $path }}/ 2>/dev/null || true
+                    # rsync可以完整保留权限和目录结构
+                    rsync -a "{{ $path }}/" "/temp-data{{ $path }}/" 2>/dev/null || true
                   else
-                    cp -a {{ $path }}/* /temp-data{{ $path }}/ 2>/dev/null || true
-                    cp -a {{ $path }}/.[!.]* /temp-data{{ $path }}/ 2>/dev/null || true
+                    # 创建所有子目录结构
+                    find "{{ $path }}" -type d -exec mkdir -p "/temp-data{}" \; 2>/dev/null || true
+                    # 复制所有文件，保留权限
+                    find "{{ $path }}" -type f -exec cp -a {} "/temp-data{}" \; 2>/dev/null || true
+                    # 复制所有符号链接
+                    find "{{ $path }}" -type l -exec cp -a {} "/temp-data{}" \; 2>/dev/null || true
                   fi
                   echo "{{ $path }} 原始数据备份完成"
                 fi
@@ -88,18 +93,27 @@ spec:
               {{- range $index, $path := .Values.persistence.mounts }}
               # 检查是否需要初始化 - 如果强制初始化参数为true，或者没有初始化标志文件
               if [ "$FORCE_INIT" = "true" ] || [ ! -f "{{ $path }}/.data_initialized" ]; then
-                if [ -d "/temp-data{{ $path }}" ] && [ "$(ls -A /temp-data{{ $path }} 2>/dev/null)" ]; then
+                if [ -d "/temp-data{{ $path }}" ]; then
                   echo "将 {{ $path }} 的原始数据迁移到持久卷..."
                   # 确保目标目录存在
                   mkdir -p {{ $path }}
-                  # 将临时存储中的数据复制到实际挂载点
+                  # 将临时存储中的数据递归复制到实际挂载点
                   if command -v rsync > /dev/null 2>&1; then
                     # 如果有rsync就用rsync，保留权限和属性
-                    rsync -a /temp-data{{ $path }}/ {{ $path }}/ 2>/dev/null || true
+                    rsync -a "/temp-data{{ $path }}/" "{{ $path }}/" 2>/dev/null || true
                   else
-                    # 否则使用cp，确保复制隐藏文件
-                    cp -an /temp-data{{ $path }}/* {{ $path }}/ 2>/dev/null || true
-                    cp -an /temp-data{{ $path }}/.[!.]* {{ $path }}/ 2>/dev/null || true
+                    # 创建所有子目录结构
+                    find "/temp-data{{ $path }}" -type d | sed "s|^/temp-data||" | xargs -I{} mkdir -p "{}" 2>/dev/null || true
+                    # 复制所有文件，保留权限
+                    find "/temp-data{{ $path }}" -type f | while read SRC; do
+                      DEST=$(echo $SRC | sed "s|^/temp-data||")
+                      cp -a "$SRC" "$DEST" 2>/dev/null || true
+                    done
+                    # 复制所有符号链接
+                    find "/temp-data{{ $path }}" -type l | while read SRC; do
+                      DEST=$(echo $SRC | sed "s|^/temp-data||")
+                      cp -a "$SRC" "$DEST" 2>/dev/null || true
+                    done
                   fi
                   # 创建标记文件，表示该目录已完成初始化
                   touch {{ $path }}/.data_initialized
