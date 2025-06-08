@@ -14,18 +14,10 @@ spec:
       labels:
         {{- include "ubuntu-ssh.selectorLabels" . | nindent 8 }}
     spec:
-      {{- if .Values.securityContext.enabled }}
-      securityContext:
-        {{- toYaml .Values.securityContext.pod | nindent 8 }}
-      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.imageRegistry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          {{- if .Values.securityContext.enabled }}
-          securityContext:
-            {{- toYaml .Values.securityContext.container | nindent 12 }}
-          {{- end }}
           {{- if .Values.service.ports }}
           ports:
             {{- range $name, $port := .Values.service.ports }}

@@ -79,6 +79,12 @@
           "description": "是否启用安全上下文配置",
           "default": true
         },
+        "disableAppArmor": {
+          "type": "boolean",
+          "title": "禁用AppArmor",
+          "description": "是否完全禁用AppArmor配置，解决某些环境下的兼容性问题",
+          "default": true
+        },
         "pod": {
           "type": "object",
           "title": "Pod级别安全上下文",

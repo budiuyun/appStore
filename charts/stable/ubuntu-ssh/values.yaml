@@ -9,22 +9,6 @@ service:
   type: ClusterIP
   ports:
     ssh: 22
-# 添加安全上下文配置
-securityContext:
-  enabled: true
-  # Pod级别安全上下文
-  pod:
-    runAsNonRoot: false
-    runAsUser: 0
-    seccompProfile:
-      type: RuntimeDefault
-  # 容器级别安全上下文
-  container:
-    privileged: false
-    allowPrivilegeEscalation: false
-    readOnlyRootFilesystem: false
-    runAsNonRoot: false
-    runAsUser: 0
 networkLimits:
   enabled: true
   egress: 1M

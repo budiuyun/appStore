@@ -47,5 +47,8 @@ helm install my-release ./ubuntu-ssh
 
 ## 注意事项
 
-- 如果在某些环境中出现AppArmor相关的问题（如错误: failed to create containerd task），可以尝试禁用securityContext配置或调整其设置。
+- 如果在某些环境中出现AppArmor相关的问题（如错误: failed to create containerd task），这是因为某些Kubernetes环境默认启用了AppArmor但主机没有正确配置。解决方案：
+  1. 启用特权模式：设置 `securityContext.container.privileged=true`
+  2. 禁用AppArmor：确保 `securityContext.disableAppArmor=true`
+  3. 如果问题仍然存在，可能需要检查主机节点的AppArmor配置或完全禁用它（需要管理员权限）
 - 确保ROOT_PASSWORD不使用特殊字符，以免SSH登录时出现问题。
