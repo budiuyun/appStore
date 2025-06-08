@@ -5,10 +5,10 @@ entries:
       budiu/app-category-zh: 游戏服务器
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-06-08T07:28:49.573159506Z"
+    created: "2025-06-08T07:35:48.984990488Z"
     description: Minecraft 是一款广受欢迎的沙盒游戏，玩家可以在其中探索、建造、合作与战斗。本 Chart 部署 Minecraft 服务器，为玩家提供多人在线游戏世界，并支持自定义插件、模组和配置，满足社区服务器和私人服务器需求。该服务器支持官方版和
       Forge、Paper 等模组版，为玩家提供丰富的游戏体验。
-    digest: 22ec595a8f1511682f4cdcb6560efa0957a1bda2578ba0b9b608d936d583e7d6
+    digest: 09ac48b0d37b5fb153b659a556b78f429ebe441c86530a573bd63910257efc70
     icon: https://images.budiuyun.net/i/2025/06/06/6842e0ec61115.png
     maintainers:
     - email: 179866495@qq.com
@@ -22,9 +22,9 @@ entries:
       budiu/app-category-zh: 数据库
     apiVersion: v2
     appVersion: "8.0"
-    created: "2025-06-08T07:28:49.573540288Z"
+    created: "2025-06-08T07:35:48.985390386Z"
     description: 官方MySQL数据库服务
-    digest: 7d039eead75324794f1b9b6384dde822291bd6d33299425bdffd8aa39ea68ed9
+    digest: 57f08d5ff88345e46a8b62d05e14cac6054de6a07c714cc39c1d30b1c25ae09b
     icon: https://images.budiuyun.net/i/2025/05/13/6823652c31c05.png
     maintainers:
     - email: 179866495@qq.com
@@ -36,31 +36,15 @@ entries:
     urls:
     - mysql-v1.0.0.tgz
     version: v1.0.0
-  ubuntu-22-04:
-  - annotations:
-      budiu/app-category-zh: 操作系统
-    apiVersion: v2
-    appVersion: "22.04"
-    created: "2025-06-08T07:28:49.57396446Z"
-    description: 带有SSH服务的Ubuntu镜像，支持远程管理
-    digest: 94b646a3cbf91d632652c5dc104e9706f8017f7a672c28353dc55f67f6ece071
-    icon: https://images.budiuyun.net/i/2025/06/08/68446389305d0.png
-    maintainers:
-    - email: 179866495@qq.com
-      name: niehaoran
-    name: ubuntu-22-04
-    urls:
-    - ubuntu-22-04-v1.0.0.tgz
-    version: v1.0.0
   uptime-kuma:
   - annotations:
       budiu/app-category-zh: 监控工具
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-06-08T07:28:49.57434998Z"
+    created: "2025-06-08T07:35:48.985806484Z"
     description: '''Uptime Kuma 是一个开源、轻量的自托管监控工具，支持对网站、服务器和 API 的正常运行时间进行实时监控，帮助用户快速了解服务的运行状况。它提供友好的用户界面、支持多种通知方式（如邮件、Telegram、Slack   等）以及历史记录追踪功能。
       '''
-    digest: 686f0ba09c79abf568bcc35f403d1d5bdc688884926ab2a0b17f040afddf2295
+    digest: be3fff8206717162362fa38a2895bfcf0c7acdd175f96c0d864b725af34bfd36
     icon: https://images.budiuyun.net/i/2025/05/13/6823632a4fc3c.png
     maintainers:
     - email: 179866495@qq.com
@@ -69,4 +53,4 @@ entries:
     urls:
     - uptime-kuma-v1.0.0.tgz
     version: v1.0.0
-generated: "2025-06-08T07:28:49.572533027Z"
+generated: "2025-06-08T07:35:48.984288996Z"
