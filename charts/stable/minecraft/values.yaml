@@ -11,8 +11,8 @@ service:
     server: 25565
 networkLimits:
   enabled: true
-  egress: 2M
-  ingress: 2M
+  egress: 1M
+  ingress: 1M
 resources:
   limits:
     cpu: 900m
