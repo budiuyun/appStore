@@ -398,12 +398,24 @@ jobs:
                 
                 # 检查persistence部分必需字段
                 persistence_section=$(sed -n '/^persistence:/,/^[a-z]/p' "$values_yaml")
-                for field in "enabled:" "path:" "size:" "storageClass:"; do
+                for field in "enabled:" "size:" "storageClass:"; do
                   if ! echo "$persistence_section" | grep -q "$field"; then
                     echo "错误: values.yaml persistence部分缺少 $field 字段"
                     exit 1
                   fi
                 done
+
+                # 检查persistence部分的path或mounts字段
+                if ! echo "$persistence_section" | grep -q "path:" && ! echo "$persistence_section" | grep -q "mounts:"; then
+                  echo "错误: values.yaml persistence部分必须包含path字段或mounts数组"
+                  exit 1
+                else
+                  if echo "$persistence_section" | grep -q "path:"; then
+                    echo "✓ persistence使用单个path配置"
+                  elif echo "$persistence_section" | grep -q "mounts:"; then
+                    echo "✓ persistence使用mounts数组配置"
+                  fi
+                fi
                 
                 # 检查networkLimits部分必需字段
                 network_limits_section=$(sed -n '/^networkLimits:/,/^[a-z]/p' "$values_yaml")
@@ -746,8 +758,8 @@ jobs:
                   echo "✓ 挂载路径: $mount_path"
                   
                   # 检查是否使用了变量引用
-                  if ! grep -q ".Values.persistence.path" "$workload_file"; then
-                    echo "错误: 工作负载文件中的mountPath应该使用.Values.persistence.path变量"
+                  if ! grep -q ".Values.persistence.path" "$workload_file" && ! grep -q ".Values.persistence.mounts" "$workload_file"; then
+                    echo "错误: 工作负载文件中的mountPath应该使用.Values.persistence.path变量或.Values.persistence.mounts数组"
                     exit 1
                   fi
                 fi
