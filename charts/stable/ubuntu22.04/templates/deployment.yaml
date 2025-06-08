@@ -55,6 +55,8 @@ spec:
                 echo "{{ $path }} 已初始化，跳过备份步骤"
               fi
               {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
             # 挂载临时数据卷
             - name: temp-data
