@@ -20,11 +20,11 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           resources:
             limits:
-              cpu: "500m"
-              memory: "512Mi"
+              cpu: "100m"
+              memory: "100Mi"
             requests:
-              cpu: "200m"
-              memory: "256Mi"
+              cpu: "50m"
+              memory: "64Mi"
           command:
             - /bin/bash
             - -c
