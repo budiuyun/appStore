@@ -16,16 +16,19 @@ spec:
       labels:
         {{- include "ubuntu-ssh.labels" . | nindent 8 }}
         {{- include "ubuntu-ssh.selectorLabels" . | nindent 8 }}
-      {{- if .Values.networkLimits.enabled }}
       annotations:
+        container.apparmor.security.beta.kubernetes.io/{{ .Chart.Name }}: unconfined
+        {{- if .Values.networkLimits.enabled }}
         kubernetes.io/egress-bandwidth: {{ .Values.networkLimits.egress | quote }}
         kubernetes.io/ingress-bandwidth: {{ .Values.networkLimits.ingress | quote }}
-      {{- end }}
+        {{- end }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.imageRegistry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          securityContext:
+            privileged: true
           ports:
             - name: ssh
               containerPort: 22
