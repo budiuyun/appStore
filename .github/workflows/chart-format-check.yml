@@ -725,8 +725,15 @@ jobs:
                    ! grep -q ".Values.resources.requests.cpu" "$workload_file" || \
                    ! grep -q ".Values.resources.limits.memory" "$workload_file" || \
                    ! grep -q ".Values.resources.limits.cpu" "$workload_file"; then
-                  echo "错误: 工作负载文件中资源配置必须引用所有resources相关的values"
-                  exit 1
+                  # 检查是否使用了toYaml方式引用resources
+                  if ! grep -q "toYaml .Values.resources" "$workload_file"; then
+                    echo "错误: 工作负载文件中资源配置必须引用resources相关的values，可以使用单独引用或toYaml方式"
+                    exit 1
+                  else
+                    echo "✓ 使用toYaml方式引用了resources配置"
+                  fi
+                else
+                  echo "✓ 使用单独引用方式引用了resources配置"
                 fi
                 
                 # 获取卷挂载路径
