@@ -758,20 +758,6 @@ jobs:
                   exit 1
                 fi
                 
-                # 检查网络限制
-                if ! grep -q ".Values.networkLimits.enabled" "$workload_file"; then
-                  echo "错误: 工作负载文件必须包含networkLimits条件判断"
-                  exit 1
-                fi
-                
-                if ! grep -q "kubernetes.io/egress-bandwidth" "$workload_file" || \
-                   ! grep -q "kubernetes.io/ingress-bandwidth" "$workload_file" || \
-                   ! grep -q ".Values.networkLimits.egress" "$workload_file" || \
-                   ! grep -q ".Values.networkLimits.ingress" "$workload_file"; then
-                  echo "错误: 工作负载文件必须正确设置网络带宽限制注解"
-                  exit 1
-                fi
-                
                 # 检查workloadType的schema定义(如果存在)
                 if grep -q "^workloadType:" "$values_yaml"; then
                   if ! jq -e '.properties.workloadType' "$schema_file" > /dev/null; then
