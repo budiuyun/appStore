@@ -19,7 +19,7 @@
 | image.pullPolicy | 镜像拉取策略 | `IfNotPresent` |
 | service.type | 服务类型 | `ClusterIP` |
 | persistence.enabled | 是否启用持久化存储 | `true` |
-| persistence.size | 存储大小 | `10Gi` |
+| persistence.size | 存储大小 | `1Gi` |
 | env | 环境变量配置 | 见下文 |
 
 
@@ -29,7 +29,7 @@
 
 | 环境变量 | 描述 | 默认值 |
 |---------|------|--------|
-| ROOT_PASSWORD | SSH登录的root用户密码 | `budiu` |
+| ROOT_PASSWORD | SSH登录的root用户密码 | `budiu123` |
 | TZ | 容器的时区设置 | `Asia/Shanghai` |
 
 

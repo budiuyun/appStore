@@ -295,7 +295,7 @@
               "type": "string",
               "title": "变量值",
               "description": "环境变量的值",
-              "default": "budiu"
+              "default": "budiu123"
             },
             "title": {
               "type": "string",
