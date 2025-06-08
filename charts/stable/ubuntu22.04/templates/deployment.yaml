@@ -30,10 +30,17 @@ spec:
           command: ["/bin/sh", "-c"]
           args:
             - |
+              # 如果强制初始化，先删除所有初始化标记
+              if [ "$FORCE_INIT" = "true" ]; then
+                echo "强制初始化模式 - 清除所有初始化标记..."
+                {{- range $index, $path := .Values.persistence.mounts }}
+                rm -f "/pv-data{{ $path }}/.data_initialized_init" 2>/dev/null || true
+                {{- end }}
+              fi
               # 遍历所有挂载点
               {{- range $index, $path := .Values.persistence.mounts }}
               # 检查是否需要初始化 - 如果强制初始化参数为true，或者没有初始化标志文件
-              if [ "$FORCE_INIT" = "true" ] || [ ! -f "/pv-data{{ $path }}/.data_initialized" ]; then
+              if [ "$FORCE_INIT" = "true" ] || [ ! -f "/pv-data{{ $path }}/.data_initialized_init" ]; then
                 echo "初始化挂载点 {{ $path }} 的数据..."
                 # 创建目标目录结构
                 mkdir -p /pv-data{{ $path }}
@@ -56,8 +63,10 @@ spec:
                   fi
                   echo "{{ $path }} 原始数据备份完成"
                 fi
+                # 创建初始化容器的标记文件
+                touch "/pv-data{{ $path }}/.data_initialized_init"
               else
-                echo "{{ $path }} 已初始化，跳过备份步骤"
+                echo "{{ $path }} 已初始化(初始容器)，跳过备份步骤"
               fi
               {{- end }}
           resources:
@@ -89,42 +98,71 @@ spec:
           command: ["/bin/sh", "-c"]
           args:
             - |
+              # 如果强制初始化，先删除所有初始化标记
+              if [ "$FORCE_INIT" = "true" ]; then
+                echo "强制初始化模式 - 清除所有主容器初始化标记..."
+                {{- range $index, $path := .Values.persistence.mounts }}
+                rm -f "{{ $path }}/.data_initialized" 2>/dev/null || true
+                {{- end }}
+              fi
               # 为每个挂载点迁移数据
               {{- range $index, $path := .Values.persistence.mounts }}
               # 检查是否需要初始化 - 如果强制初始化参数为true，或者没有初始化标志文件
               if [ "$FORCE_INIT" = "true" ] || [ ! -f "{{ $path }}/.data_initialized" ]; then
+                echo "正在迁移 {{ $path }} 的数据..."
                 if [ -d "/temp-data{{ $path }}" ]; then
-                  echo "将 {{ $path }} 的原始数据迁移到持久卷..."
                   # 确保目标目录存在
                   mkdir -p {{ $path }}
                   # 将临时存储中的数据递归复制到实际挂载点
                   if command -v rsync > /dev/null 2>&1; then
                     # 如果有rsync就用rsync，保留权限和属性
-                    rsync -a "/temp-data{{ $path }}/" "{{ $path }}/" 2>/dev/null || true
+                    echo "使用rsync复制 {{ $path }} 的数据..."
+                    rsync -av "/temp-data{{ $path }}/" "{{ $path }}/" 2>/dev/null || true
                   else
-                    # 创建所有子目录结构
+                    echo "使用find和cp复制 {{ $path }} 的数据..."
+                    # 显示临时目录内容
+                    ls -la "/temp-data{{ $path }}/" || true
+                    # 确保所有子目录都存在
+                    echo "创建子目录结构..."
                     find "/temp-data{{ $path }}" -type d | sed "s|^/temp-data||" | xargs -I{} mkdir -p "{}" 2>/dev/null || true
+                    
+                    # 显示创建的目录结构
+                    echo "创建的目录结构:"
+                    find "{{ $path }}" -type d -ls || true
+                    
                     # 复制所有文件，保留权限
+                    echo "复制文件..."
                     find "/temp-data{{ $path }}" -type f | while read SRC; do
                       DEST=$(echo $SRC | sed "s|^/temp-data||")
-                      cp -a "$SRC" "$DEST" 2>/dev/null || true
+                      cp -av "$SRC" "$DEST" 2>/dev/null || echo "无法复制: $SRC -> $DEST"
                     done
+                    
                     # 复制所有符号链接
+                    echo "复制符号链接..."
                     find "/temp-data{{ $path }}" -type l | while read SRC; do
                       DEST=$(echo $SRC | sed "s|^/temp-data||")
-                      cp -a "$SRC" "$DEST" 2>/dev/null || true
+                      cp -av "$SRC" "$DEST" 2>/dev/null || echo "无法复制链接: $SRC -> $DEST"
                     done
                   fi
-                  # 创建标记文件，表示该目录已完成初始化
-                  touch {{ $path }}/.data_initialized
                   echo "{{ $path }} 数据迁移完成"
                 else
-                  echo "{{ $path }} 没有原始数据需要迁移"
-                  # 即使没有数据也创建标记文件
-                  touch {{ $path }}/.data_initialized
+                  echo "{{ $path }} 没有临时数据需要迁移，可能是初始化容器未完成"
+                  # 如果是/etc目录，需要确保sshd_config文件存在
+                  if [ "{{ $path }}" = "/etc" ]; then
+                    echo "检查和恢复SSH配置文件..."
+                    mkdir -p /etc/ssh
+                    # 如果sshd_config不存在，创建基本的配置
+                    if [ ! -f "/etc/ssh/sshd_config" ]; then
+                      echo "创建默认的sshd_config文件..."
+                      echo "PermitRootLogin yes" > /etc/ssh/sshd_config
+                      echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
+                    fi
+                  fi
                 fi
+                # 创建标记文件，表示该目录已完成初始化
+                touch {{ $path }}/.data_initialized
               else
-                echo "{{ $path }} 已初始化，跳过迁移步骤"
+                echo "{{ $path }} 已初始化(主容器)，跳过迁移步骤"
               fi
               {{- end }}
               
@@ -137,6 +175,26 @@ spec:
                 exec /docker-entrypoint.sh "$@"
               # 对于Ubuntu SSH服务器
               elif command -v sshd > /dev/null 2>&1; then
+                # 确保SSH配置正确
+                if [ ! -f "/etc/ssh/sshd_config" ]; then
+                  echo "修复缺失的sshd_config文件..."
+                  mkdir -p /etc/ssh
+                  echo "PermitRootLogin yes" > /etc/ssh/sshd_config
+                  echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
+                  echo "Port 22" >> /etc/ssh/sshd_config
+                fi
+                
+                # 确保SSH密钥存在
+                if [ ! -f "/etc/ssh/ssh_host_rsa_key" ]; then
+                  echo "生成SSH主机密钥..."
+                  ssh-keygen -A
+                fi
+                
+                # 确保SSH目录权限正确
+                mkdir -p /var/run/sshd
+                chmod 755 /var/run/sshd
+                
+                # 启动SSH服务
                 exec /usr/sbin/sshd -D
               # 对于Web应用
               elif [ -f "/app/start.sh" ]; then
@@ -170,6 +228,26 @@ spec:
                 exec /docker-entrypoint.sh "$@"
               # 对于Ubuntu SSH服务器
               elif command -v sshd > /dev/null 2>&1; then
+                # 确保SSH配置正确
+                if [ ! -f "/etc/ssh/sshd_config" ]; then
+                  echo "修复缺失的sshd_config文件..."
+                  mkdir -p /etc/ssh
+                  echo "PermitRootLogin yes" > /etc/ssh/sshd_config
+                  echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
+                  echo "Port 22" >> /etc/ssh/sshd_config
+                fi
+                
+                # 确保SSH密钥存在
+                if [ ! -f "/etc/ssh/ssh_host_rsa_key" ]; then
+                  echo "生成SSH主机密钥..."
+                  ssh-keygen -A
+                fi
+                
+                # 确保SSH目录权限正确
+                mkdir -p /var/run/sshd
+                chmod 755 /var/run/sshd
+                
+                # 启动SSH服务
                 exec /usr/sbin/sshd -D
               # 根据应用类型自动选择合适的启动命令
               elif [ -f "/app/start.sh" ]; then
