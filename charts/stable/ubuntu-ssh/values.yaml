@@ -16,11 +16,11 @@ networkLimits:
 resources:
   limits:
     cpu: 200m
-    memory: 256Mi
+    memory: 250Mi
     ephemeral-storage: 10Gi
   requests:
     cpu: 100m
-    memory: 128Mi
+    memory: 100Mi
     ephemeral-storage: 0Gi
 persistence:
   enabled: true
