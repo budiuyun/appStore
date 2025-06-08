@@ -36,21 +36,45 @@ spec:
                 echo "Initializing data for {{ $path }}"
                 # 确保目标目录存在
                 mkdir -p /data{{ $path }}
-                # 使用rsync确保完整复制所有数据，包括权限和特殊文件
+                # 使用cp保留所有属性和权限
                 if [ -d "{{ $path }}" ]; then
-                  if command -v rsync &> /dev/null; then
-                    echo "Using rsync to copy data for {{ $path }}"
-                    rsync -avx --exclude='/proc' --exclude='/sys' --exclude='/dev' --exclude='/run' "{{ $path }}/" "/data{{ $path }}/"
-                  else
-                    echo "Rsync not found, using cp for {{ $path }}"
-                    cp -ax {{ $path }}/* /data{{ $path }}/ 2>/dev/null || true
-                    cp -ax {{ $path }}/.[^.]* /data{{ $path }}/ 2>/dev/null || true
+                  # 复制所有文件并保留权限、所有权和链接
+                  cp -rp {{ $path }}/* /data{{ $path }}/ 2>/dev/null || true
+                  cp -rp {{ $path }}/.[^.]* /data{{ $path }}/ 2>/dev/null || true
+                  
+                  # 特别处理SSH密钥文件权限
+                  if [[ "{{ $path }}" == "/etc" ]]; then
+                    echo "Setting correct permissions for SSH host keys"
+                    if [ -d "/data/etc/ssh" ]; then
+                      # 确保目录权限正确
+                      chmod 755 /data/etc/ssh
+                      # 设置私钥文件权限为600
+                      if [ -f "/data/etc/ssh/ssh_host_rsa_key" ]; then
+                        chmod 600 /data/etc/ssh/ssh_host_rsa_key
+                      fi
+                      if [ -f "/data/etc/ssh/ssh_host_ecdsa_key" ]; then
+                        chmod 600 /data/etc/ssh/ssh_host_ecdsa_key
+                      fi
+                      if [ -f "/data/etc/ssh/ssh_host_ed25519_key" ]; then
+                        chmod 600 /data/etc/ssh/ssh_host_ed25519_key
+                      fi
+                      # 设置公钥文件权限为644
+                      chmod 644 /data/etc/ssh/ssh_host_*.pub 2>/dev/null || true
+                    fi
                   fi
-                  # 设置正确的权限
-                  chmod -R --reference={{ $path }} /data{{ $path }} 2>/dev/null || true
                 fi
               else
                 echo "Directory /data{{ $path }} already initialized, skipping"
+                # 即使目录已初始化，也确保SSH密钥权限正确
+                if [[ "{{ $path }}" == "/etc" ]]; then
+                  echo "Checking SSH host keys permissions in existing volume"
+                  if [ -d "/data/etc/ssh" ]; then
+                    # 设置私钥文件权限为600
+                    chmod 600 /data/etc/ssh/ssh_host_*_key 2>/dev/null || true
+                    # 设置公钥文件权限为644
+                    chmod 644 /data/etc/ssh/ssh_host_*.pub 2>/dev/null || true
+                  fi
+                fi
               fi
               {{- end }}
           {{- if and .Values.persistence.enabled .Values.persistence.mounts }}
