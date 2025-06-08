@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "ubuntu22.04.fullname" . }}
+  name: {{ include "ubuntu-22-04.fullname" . }}
   labels:
-    {{- include "ubuntu22.04.labels" . | nindent 4 }}
+    {{- include "ubuntu-22-04.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "ubuntu22.04.selectorLabels" . | nindent 6 }}
+      {{- include "ubuntu-22-04.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "ubuntu22.04.selectorLabels" . | nindent 8 }}
+        {{- include "ubuntu-22-04.selectorLabels" . | nindent 8 }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
@@ -46,5 +46,5 @@ spec:
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: {{ include "ubuntu22.04.fullname" . }}
+            claimName: {{ include "ubuntu-22-04.fullname" . }}
       {{- end }}

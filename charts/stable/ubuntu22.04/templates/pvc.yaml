@@ -2,9 +2,9 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "ubuntu22.04.fullname" . }}
+  name: {{ include "ubuntu-22-04.fullname" . }}
   labels:
-    {{- include "ubuntu22.04.labels" . | nindent 4 }}
+    {{- include "ubuntu-22-04.labels" . | nindent 4 }}
 spec:
   accessModes:
     - {{ .Values.persistence.accessMode }}

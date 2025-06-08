@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "ubuntu22.04.fullname" . }}
-  labels: {{- include "ubuntu22.04.labels" . | nindent 4 }}
+  name: {{ include "ubuntu-22-04.fullname" . }}
+  labels: {{- include "ubuntu-22-04.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -12,4 +12,4 @@ spec:
       protocol: TCP
       name: {{ $name }}
     {{- end }}
-  selector: {{- include "ubuntu22.04.selectorLabels" . | nindent 4 }}
+  selector: {{- include "ubuntu-22-04.selectorLabels" . | nindent 4 }}

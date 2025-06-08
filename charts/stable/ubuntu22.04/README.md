@@ -1,4 +1,4 @@
-# ubuntu22.04
+# ubuntu-22-04
 
 带有SSH服务的Ubuntu镜像，支持远程管理
 
@@ -36,5 +36,5 @@
 ## 安装方法
 
 ```bash
-helm install my-release ./ubuntu22.04
+helm install my-release ./ubuntu-22-04
 ```
