@@ -288,8 +288,8 @@
       "properties": {
         "env1": {
           "type": "object",
-          "title": "运行模式",
-          "description": "Nginx运行模式",
+          "title": "Web端口",
+          "description": "容器内Apache监听的端口",
           "required": [
             "name",
             "value"
@@ -299,60 +299,25 @@
               "type": "string",
               "title": "变量名称",
               "description": "环境变量的名称",
-              "default": "NGINX_MODE"
+              "default": "WEB_PORT"
             },
             "value": {
               "type": "string",
               "title": "变量值",
               "description": "环境变量的值",
-              "default": "production"
+              "default": "8089"
             },
             "title": {
               "type": "string",
               "title": "中文名称",
               "description": "环境变量的中文名称",
-              "default": "运行模式"
+              "default": "Web端口"
             },
             "description": {
               "type": "string",
               "title": "描述",
               "description": "环境变量的详细描述",
-              "default": "Nginx运行模式"
-            }
-          }
-        },
-        "env2": {
-          "type": "object",
-          "title": "工作进程数",
-          "description": "Nginx工作进程数量",
-          "required": [
-            "name",
-            "value"
-          ],
-          "properties": {
-            "name": {
-              "type": "string",
-              "title": "变量名称",
-              "description": "环境变量的名称",
-              "default": "NGINX_WORKER_PROCESSES"
-            },
-            "value": {
-              "type": "string",
-              "title": "变量值",
-              "description": "环境变量的值",
-              "default": "auto"
-            },
-            "title": {
-              "type": "string",
-              "title": "中文名称",
-              "description": "环境变量的中文名称",
-              "default": "工作进程数"
-            },
-            "description": {
-              "type": "string",
-              "title": "描述",
-              "description": "环境变量的详细描述",
-              "default": "Nginx工作进程数量"
+              "default": "容器内Apache监听的端口"
             }
           }
         }
