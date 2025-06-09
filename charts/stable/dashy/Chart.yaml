@@ -1,0 +1,11 @@
+apiVersion: v2
+name: dashy
+version: v1.0.0
+appVersion: latest
+description: Dashy是一个可自托管的个人仪表盘，包含状态检查、小部件、主题和图标包等功能
+icon: https://images.budiuyun.net/i/2025/06/09/6846e3a714f05.png
+maintainers:
+  - name: niehaoran
+    email: 179866495@qq.com
+annotations:
+  budiu/app-category-zh: 仪表盘
