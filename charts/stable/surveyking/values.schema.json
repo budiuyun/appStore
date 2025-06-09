@@ -340,7 +340,7 @@
               "type": "string",
               "title": "变量值",
               "description": "环境变量的值",
-              "default": "jdbc:mysql://mysql:3306/surveyking?rewriteBatchedStatements=true&useUnicode=true&characterEncoding=UTF-8"
+              "default": "jdbc:mysql://127.0.0.1:3306/surveyking?rewriteBatchedStatements=true&useUnicode=true&characterEncoding=UTF-8"
             },
             "title": {
               "type": "string",
