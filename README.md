@@ -1,7 +1,7 @@
 # Helm Repository for ceshi
 Generated from branch: ceshi
 Owner: ceshi
-Last updated: Mon Jun  9 13:35:48 UTC 2025
+Last updated: Mon Jun  9 13:42:15 UTC 2025
 
 ## Usage
 ```bash
