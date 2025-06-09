@@ -2,7 +2,7 @@ workloadType: StatefulSet
 replicaCount: 1
 image:
   imageRegistry: docker.1ms.run
-  repository: mcr.microsoft.com/mssql/server
+  repository: mssql/server
   tag: 2025-latest
   pullPolicy: IfNotPresent
 service:
@@ -53,4 +53,4 @@ env:
     value: Asia/Shanghai
     description: 时区设置
     title: 时区
-icon: https://images.budiuyun.net/i/2025/06/09/6846ffffafe36.png
+icon: https://images.budiuyun.net/i/2025/06/09/6846fd5e91157.png

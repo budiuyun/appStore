@@ -19,7 +19,7 @@
         "Deployment",
         "StatefulSet"
       ],
-      "default": ""
+      "default": "StatefulSet"
     },
     "replicaCount": {
       "type": "integer",
