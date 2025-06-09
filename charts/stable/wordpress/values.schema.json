@@ -280,6 +280,188 @@
           }
         }
       }
+    },
+    "env": {
+      "type": "object",
+      "title": "环境变量",
+      "description": "应用程序环境变量配置",
+      "properties": {
+        "env1": {
+          "type": "object",
+          "title": "数据库主机",
+          "description": "MySQL数据库主机地址",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "WORDPRESS_DB_HOST"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "127.0.0.1"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "数据库主机"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "MySQL数据库主机地址"
+            }
+          }
+        },
+        "env2": {
+          "type": "object",
+          "title": "数据库用户",
+          "description": "MySQL数据库用户名",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "WORDPRESS_DB_USER"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "wordpress"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "数据库用户"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "MySQL数据库用户名"
+            }
+          }
+        },
+        "env3": {
+          "type": "object",
+          "title": "数据库密码",
+          "description": "MySQL数据库密码",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "WORDPRESS_DB_PASSWORD"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "wordpress"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "数据库密码"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "MySQL数据库密码"
+            }
+          }
+        },
+        "env4": {
+          "type": "object",
+          "title": "数据库名称",
+          "description": "MySQL数据库名称",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "WORDPRESS_DB_NAME"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "wordpress"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "数据库名称"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "MySQL数据库名称"
+            }
+          }
+        },
+        "env5": {
+          "type": "object",
+          "title": "调试模式",
+          "description": "是否启用WordPress调试模式",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "WORDPRESS_DEBUG"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": ""
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "调试模式"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "是否启用WordPress调试模式"
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -29,4 +29,30 @@ persistence:
   storageClass: local
   mounts:
     - /var/www/html
+env:
+  env1:
+    name: WORDPRESS_DB_HOST
+    value: 127.0.0.1
+    description: MySQL数据库主机地址
+    title: 数据库主机
+  env2:
+    name: WORDPRESS_DB_USER
+    value: wordpress
+    description: MySQL数据库用户名
+    title: 数据库用户
+  env3:
+    name: WORDPRESS_DB_PASSWORD
+    value: wordpress
+    description: MySQL数据库密码
+    title: 数据库密码
+  env4:
+    name: WORDPRESS_DB_NAME
+    value: wordpress
+    description: MySQL数据库名称
+    title: 数据库名称
+  env5:
+    name: WORDPRESS_DEBUG
+    value: ''
+    description: 是否启用WordPress调试模式
+    title: 调试模式
 icon: https://images.budiuyun.net/i/2025/06/09/6846911733f80.png
