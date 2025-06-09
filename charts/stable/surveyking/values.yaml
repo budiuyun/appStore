@@ -28,7 +28,9 @@ persistence:
   accessMode: ReadWriteOnce
   storageClass: local
   mounts:
-    - /app
+    - /app/db
+    - /app/files
+    - /app/logs
 env:
   env1:
     name: PROFILE
@@ -38,7 +40,7 @@ env:
   env2:
     name: DB_URL
     value: >-
-      jdbc:mysql://mysql:3306/surveyking?rewriteBatchedStatements=true&useUnicode=true&characterEncoding=UTF-8
+      jdbc:mysql://127.0.0.1:3306/surveyking?rewriteBatchedStatements=true&useUnicode=true&characterEncoding=UTF-8
     description: MySQL数据库连接URL
     title: 数据库URL
   env3:
