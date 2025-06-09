@@ -2,9 +2,9 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "qodana-js.fullname" . }}
+  name: {{ include "surveyking.fullname" . }}
   labels:
-    {{- include "qodana-js.labels" . | nindent 4 }}
+    {{- include "surveyking.labels" . | nindent 4 }}
 spec:
   accessModes:
     - {{ .Values.persistence.accessMode }}

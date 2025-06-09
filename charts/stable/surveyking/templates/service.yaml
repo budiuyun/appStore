@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "qodana-js.fullname" . }}
-  labels: {{- include "qodana-js.labels" . | nindent 4 }}
+  name: {{ include "surveyking.fullname" . }}
+  labels: {{- include "surveyking.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -12,4 +12,4 @@ spec:
       protocol: TCP
       name: {{ $name }}
     {{- end }}
-  selector: {{- include "qodana-js.selectorLabels" . | nindent 4 }}
+  selector: {{- include "surveyking.selectorLabels" . | nindent 4 }}

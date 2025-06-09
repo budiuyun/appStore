@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/schema#",
   "type": "object",
-  "title": "qodana-js Helm Chart 配置",
+  "title": "surveyking Helm Chart 配置",
   "required": [
     "workloadType",
     "replicaCount",
@@ -288,8 +288,8 @@
       "properties": {
         "env1": {
           "type": "object",
-          "title": "项目目录",
-          "description": "要分析的项目目录路径",
+          "title": "运行模式",
+          "description": "系统运行模式，默认使用内置H2数据库，可选mysql",
           "required": [
             "name",
             "value"
@@ -299,112 +299,7 @@
               "type": "string",
               "title": "变量名称",
               "description": "环境变量的名称",
-              "default": "QODANA_PROJECT_DIR"
-            },
-            "value": {
-              "type": "string",
-              "title": "变量值",
-              "description": "环境变量的值",
-              "default": "/data/project"
-            },
-            "title": {
-              "type": "string",
-              "title": "中文名称",
-              "description": "环境变量的中文名称",
-              "default": "项目目录"
-            },
-            "description": {
-              "type": "string",
-              "title": "描述",
-              "description": "环境变量的详细描述",
-              "default": "要分析的项目目录路径"
-            }
-          }
-        },
-        "env2": {
-          "type": "object",
-          "title": "报告目录",
-          "description": "分析报告输出目录",
-          "required": [
-            "name",
-            "value"
-          ],
-          "properties": {
-            "name": {
-              "type": "string",
-              "title": "变量名称",
-              "description": "环境变量的名称",
-              "default": "QODANA_REPORT_DIR"
-            },
-            "value": {
-              "type": "string",
-              "title": "变量值",
-              "description": "环境变量的值",
-              "default": "/data/results"
-            },
-            "title": {
-              "type": "string",
-              "title": "中文名称",
-              "description": "环境变量的中文名称",
-              "default": "报告目录"
-            },
-            "description": {
-              "type": "string",
-              "title": "描述",
-              "description": "环境变量的详细描述",
-              "default": "分析报告输出目录"
-            }
-          }
-        },
-        "env3": {
-          "type": "object",
-          "title": "显示报告",
-          "description": "是否在分析完成后显示报告",
-          "required": [
-            "name",
-            "value"
-          ],
-          "properties": {
-            "name": {
-              "type": "string",
-              "title": "变量名称",
-              "description": "环境变量的名称",
-              "default": "QODANA_SHOW_REPORT"
-            },
-            "value": {
-              "type": "string",
-              "title": "变量值",
-              "description": "环境变量的值",
-              "default": "true"
-            },
-            "title": {
-              "type": "string",
-              "title": "中文名称",
-              "description": "环境变量的中文名称",
-              "default": "显示报告"
-            },
-            "description": {
-              "type": "string",
-              "title": "描述",
-              "description": "环境变量的详细描述",
-              "default": "是否在分析完成后显示报告"
-            }
-          }
-        },
-        "env4": {
-          "type": "object",
-          "title": "令牌",
-          "description": "Qodana Cloud令牌",
-          "required": [
-            "name",
-            "value"
-          ],
-          "properties": {
-            "name": {
-              "type": "string",
-              "title": "变量名称",
-              "description": "环境变量的名称",
-              "default": "QODANA_TOKEN"
+              "default": "PROFILE"
             },
             "value": {
               "type": "string",
@@ -416,13 +311,118 @@
               "type": "string",
               "title": "中文名称",
               "description": "环境变量的中文名称",
-              "default": "令牌"
+              "default": "运行模式"
             },
             "description": {
               "type": "string",
               "title": "描述",
               "description": "环境变量的详细描述",
-              "default": "Qodana Cloud令牌"
+              "default": "系统运行模式，默认使用内置H2数据库，可选mysql"
+            }
+          }
+        },
+        "env2": {
+          "type": "object",
+          "title": "数据库URL",
+          "description": "MySQL数据库连接URL",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "DB_URL"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "jdbc:mysql://mysql:3306/surveyking?rewriteBatchedStatements=true&useUnicode=true&characterEncoding=UTF-8"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "数据库URL"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "MySQL数据库连接URL"
+            }
+          }
+        },
+        "env3": {
+          "type": "object",
+          "title": "数据库用户",
+          "description": "MySQL数据库用户名",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "MYSQL_USER"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "surveyking"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "数据库用户"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "MySQL数据库用户名"
+            }
+          }
+        },
+        "env4": {
+          "type": "object",
+          "title": "数据库密码",
+          "description": "MySQL数据库密码",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "MYSQL_PASS"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "surveyking"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "数据库密码"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "MySQL数据库密码"
             }
           }
         }

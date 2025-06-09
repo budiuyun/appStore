@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "qodana-js.fullname" . }}
+  name: {{ include "surveyking.fullname" . }}
   labels:
-    {{- include "qodana-js.labels" . | nindent 4 }}
+    {{- include "surveyking.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "qodana-js.selectorLabels" . | nindent 6 }}
+      {{- include "surveyking.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "qodana-js.selectorLabels" . | nindent 8 }}
+        {{- include "surveyking.selectorLabels" . | nindent 8 }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
@@ -46,5 +46,5 @@ spec:
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: {{ include "qodana-js.fullname" . }}
+            claimName: {{ include "surveyking.fullname" . }}
       {{- end }}

@@ -1,14 +1,14 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "qodana-js.name" -}}
+{{- define "surveyking.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Create a default fully qualified app name.
 */}}
-{{- define "qodana-js.fullname" -}}
+{{- define "surveyking.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -24,16 +24,16 @@ Create a default fully qualified app name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "qodana-js.chart" -}}
+{{- define "surveyking.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "qodana-js.labels" -}}
-helm.sh/chart: {{ include "qodana-js.chart" . }}
-{{ include "qodana-js.selectorLabels" . }}
+{{- define "surveyking.labels" -}}
+helm.sh/chart: {{ include "surveyking.chart" . }}
+{{ include "surveyking.selectorLabels" . }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
@@ -41,7 +41,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "qodana-js.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "qodana-js.name" . }}
+{{- define "surveyking.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "surveyking.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
