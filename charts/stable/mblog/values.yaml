@@ -1,0 +1,78 @@
+workloadType: Deployment
+replicaCount: 1
+image:
+  imageRegistry: docker.1ms.run
+  repository: kingwrcy/mblog
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  ports:
+    http: 38321
+networkLimits:
+  enabled: true
+  egress: 2M
+  ingress: 2M
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+    ephemeral-storage: 10Gi
+  requests:
+    cpu: 200m
+    memory: 256Mi
+    ephemeral-storage: 5Gi
+persistence:
+  enabled: true
+  size: 2Gi
+  accessMode: ReadWriteOnce
+  storageClass: local
+  mounts:
+    - /opt/mblog
+env:
+  env1:
+    name: DB_TYPE
+    value: '-sqlite'
+    description: 数据库类型，为空时默认mysql，-sqlite表示使用SQLite
+    title: 数据库类型
+  env2:
+    name: MYSQL_USER
+    value: ''
+    description: MySQL数据库用户名，使用SQLite时可忽略
+    title: 数据库用户名
+  env3:
+    name: MYSQL_PASS
+    value: ''
+    description: MySQL数据库密码，使用SQLite时可忽略
+    title: 数据库密码
+  env4:
+    name: MYSQL_URL
+    value: ''
+    description: MySQL数据库地址和端口，使用SQLite时可忽略
+    title: 数据库地址
+  env5:
+    name: MYSQL_DB
+    value: ''
+    description: MySQL数据库名称，使用SQLite时可忽略
+    title: 数据库名称
+  env6:
+    name: MBLOG_FRONT_DOMAIN
+    value: ''
+    description: mblog前端地址，前后不分离版本忽略此参数
+    title: 前端域名
+  env7:
+    name: JAVA_OPTS
+    value: '-Xms512m -Xmx512m'
+    description: Java内存设置，建议最低不要低于256m
+    title: Java选项
+  env8:
+    name: AUTO_EXECUTE_SQL
+    value: 'true'
+    description: 是否自动执行SQL脚本
+    title: 自动执行SQL
+  env9:
+    name: ENABLE_SWAGGER
+    value: 'false'
+    description: 是否开启Swagger API文档
+    title: 开启API文档
+icon: https://images.budiuyun.net/i/2025/06/09/6846eaea44af8.png
