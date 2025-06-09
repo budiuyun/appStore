@@ -1,0 +1,38 @@
+workloadType: Deployment
+replicaCount: 1
+image:
+  imageRegistry: docker.1ms.run
+  repository: halcyonazure/lsky-pro-docker
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  ports:
+    http: 8089
+networkLimits:
+  enabled: true
+  egress: 2M
+  ingress: 2M
+resources:
+  limits:
+    cpu: 300m
+    memory: 512Mi
+    ephemeral-storage: 10Gi
+  requests:
+    cpu: 100m
+    memory: 256Mi
+    ephemeral-storage: 5Gi
+persistence:
+  enabled: true
+  size: 5Gi
+  accessMode: ReadWriteOnce
+  storageClass: local
+  mounts:
+    - /var/www/html
+env:
+  env1:
+    name: WEB_PORT
+    value: '8089'
+    description: 容器内Apache监听的端口
+    title: Web端口
+icon: https://images.budiuyun.net/i/2025/06/09/684683bbc7a28.png

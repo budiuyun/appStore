@@ -1,0 +1,43 @@
+workloadType: Deployment
+replicaCount: 1
+image:
+  imageRegistry: docker.1ms.run
+  repository: elestio/dashy
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  ports:
+    http: 8080
+networkLimits:
+  enabled: true
+  egress: 1M
+  ingress: 1M
+resources:
+  limits:
+    cpu: 300m
+    memory: 256Mi
+    ephemeral-storage: 10Gi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+    ephemeral-storage: 5Gi
+persistence:
+  enabled: true
+  size: 1Gi
+  accessMode: ReadWriteOnce
+  storageClass: local
+  mounts:
+    - /app/user-data
+env:
+  env1:
+    name: NODE_ENV
+    value: production
+    description: 运行环境
+    title: 环境
+  env2:
+    name: ADMIN_PASSWORD
+    value: changeme
+    description: Dashy管理员密码
+    title: 管理员密码
+icon: https://images.budiuyun.net/i/2025/06/09/6846e3a714f05.png

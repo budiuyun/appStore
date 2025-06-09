@@ -1,0 +1,922 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "title": "typecho Helm Chart 配置",
+  "required": [
+    "workloadType",
+    "replicaCount",
+    "image",
+    "service",
+    "networkLimits",
+    "resources"
+  ],
+  "properties": {
+    "workloadType": {
+      "type": "string",
+      "title": "工作负载类型",
+      "description": "指定部署为有状态集(StatefulSet)或无状态部署(Deployment)",
+      "enum": [
+        "Deployment",
+        "StatefulSet"
+      ],
+      "default": "Deployment"
+    },
+    "replicaCount": {
+      "type": "integer",
+      "title": "副本数量",
+      "description": "Deployment的副本数量",
+      "default": 1,
+      "minimum": 1
+    },
+    "image": {
+      "type": "object",
+      "title": "容器镜像",
+      "required": [
+        "repository",
+        "tag",
+        "pullPolicy"
+      ],
+      "properties": {
+        "imageRegistry": {
+          "type": "string",
+          "title": "镜像仓库地址",
+          "description": "容器镜像的仓库地址",
+          "default": "docker.io"
+        },
+        "repository": {
+          "type": "string",
+          "title": "镜像名称",
+          "description": "容器镜像的名称"
+        },
+        "tag": {
+          "type": "string",
+          "title": "镜像标签",
+          "description": "容器镜像的标签",
+          "default": "latest"
+        },
+        "pullPolicy": {
+          "type": "string",
+          "title": "镜像拉取策略",
+          "description": "镜像拉取策略，只能是IfNotPresent",
+          "enum": [
+            "IfNotPresent"
+          ],
+          "default": "IfNotPresent"
+        }
+      }
+    },
+    "service": {
+      "type": "object",
+      "title": "服务配置",
+      "required": [
+        "type",
+        "ports"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "title": "服务类型",
+          "description": "Kubernetes服务类型",
+          "enum": [
+            "ClusterIP"
+          ],
+          "default": "ClusterIP"
+        },
+        "ports": {
+          "type": "object",
+          "title": "服务端口配置",
+          "description": "服务暴露的端口配置，键为端口名称，值为端口号",
+          "patternProperties": {
+            "^.*$": {
+              "type": "integer",
+              "title": "端口号",
+              "description": "服务端口号",
+              "minimum": 1,
+              "maximum": 65535
+            }
+          },
+          "additionalProperties": false,
+          "examples": [
+            {
+              "http": 80,
+              "https": 443,
+              "metrics": 8080
+            }
+          ]
+        }
+      }
+    },
+    "networkLimits": {
+      "type": "object",
+      "title": "网络带宽限制",
+      "required": [
+        "enabled",
+        "egress",
+        "ingress"
+      ],
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "title": "启用网络带宽限制",
+          "description": "是否启用网络带宽限制",
+          "default": true
+        },
+        "egress": {
+          "type": "string",
+          "title": "出站带宽限制",
+          "description": "容器出站带宽限制，格式为数字+K/M/G，例如1M",
+          "default": "1M",
+          "pattern": "^[0-9]+[KMG]$"
+        },
+        "ingress": {
+          "type": "string",
+          "title": "入站带宽限制",
+          "description": "容器入站带宽限制，格式为数字+K/M/G，例如1M",
+          "default": "1M",
+          "pattern": "^[0-9]+[KMG]$"
+        }
+      }
+    },
+    "resources": {
+      "type": "object",
+      "title": "资源配置",
+      "required": [
+        "limits",
+        "requests"
+      ],
+      "properties": {
+        "limits": {
+          "type": "object",
+          "title": "资源限制",
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "properties": {
+            "cpu": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "CPU限制",
+              "description": "CPU资源限制，可以是m或核心数，留空表示无限制",
+              "pattern": "^[0-9]+m?$|^$",
+              "default": "200m"
+            },
+            "memory": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "内存限制",
+              "description": "内存资源限制，可以是Mi或Gi，留空表示无限制",
+              "pattern": "^[0-9]+(Mi|Gi)$|^$",
+              "default": "256Mi"
+            },
+            "ephemeral-storage": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "临时存储限制",
+              "description": "临时存储资源限制，可以是Mi或Gi",
+              "pattern": "^[0-9]+(Mi|Gi)$|^$",
+              "default": "10Gi"
+            }
+          }
+        },
+        "requests": {
+          "type": "object",
+          "title": "资源请求",
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "properties": {
+            "cpu": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "CPU请求",
+              "description": "CPU资源请求，可以是m或核心数，留空表示无限制",
+              "pattern": "^[0-9]+m?$|^$",
+              "default": "100m"
+            },
+            "memory": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "内存请求",
+              "description": "内存资源请求，可以是Mi或Gi，留空表示无限制",
+              "pattern": "^[0-9]+(Mi|Gi)$|^$",
+              "default": "128Mi"
+            },
+            "ephemeral-storage": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "临时存储请求",
+              "description": "临时存储资源请求，可以是Mi或Gi",
+              "pattern": "^[0-9]+(Mi|Gi)$|^$",
+              "default": "5Gi"
+            }
+          }
+        }
+      }
+    },
+    "persistence": {
+      "type": "object",
+      "title": "持久化存储",
+      "required": [
+        "enabled",
+        "size",
+        "accessMode",
+        "storageClass",
+        "mounts"
+      ],
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "title": "启用持久化存储",
+          "description": "是否启用持久化存储",
+          "default": true
+        },
+        "size": {
+          "type": "string",
+          "title": "存储大小",
+          "description": "持久化存储的大小，例如1Gi",
+          "default": "1Gi",
+          "pattern": "^[0-9]+(Mi|Gi|Ti)$"
+        },
+        "accessMode": {
+          "type": "string",
+          "title": "访问模式",
+          "description": "持久化存储的访问模式",
+          "enum": [
+            "ReadWriteOnce",
+            "ReadOnlyMany",
+            "ReadWriteMany"
+          ],
+          "default": "ReadWriteOnce"
+        },
+        "storageClass": {
+          "type": "string",
+          "title": "存储类名称",
+          "description": "Kubernetes存储类的名称",
+          "default": "local"
+        },
+        "mounts": {
+          "type": "array",
+          "title": "挂载路径",
+          "description": "将持久卷挂载到容器的路径列表",
+          "items": {
+            "type": "string",
+            "title": "挂载路径",
+            "description": "容器内挂载持久化存储的路径",
+            "default": "/data"
+          }
+        }
+      }
+    },
+    "env": {
+      "type": "object",
+      "title": "环境变量",
+      "description": "应用程序环境变量配置",
+      "properties": {
+        "env1": {
+          "type": "object",
+          "title": "时区",
+          "description": "服务器时区",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "TIMEZONE"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "Asia/Shanghai"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "时区"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "服务器时区"
+            }
+          }
+        },
+        "env2": {
+          "type": "object",
+          "title": "内存限制",
+          "description": "PHP内存限制",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "MEMORY_LIMIT"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "128M"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "内存限制"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "PHP内存限制"
+            }
+          }
+        },
+        "env3": {
+          "type": "object",
+          "title": "最大POST大小",
+          "description": "允许的最大POST请求大小",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "MAX_POST_BODY"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "50M"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "最大POST大小"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "允许的最大POST请求大小"
+            }
+          }
+        },
+        "env4": {
+          "type": "object",
+          "title": "自动安装",
+          "description": "是否自动运行安装脚本",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "TYPECHO_INSTALL"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "1"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "自动安装"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "是否自动运行安装脚本"
+            }
+          }
+        },
+        "env5": {
+          "type": "object",
+          "title": "数据库适配器",
+          "description": "Typecho数据库驱动",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "TYPECHO_DB_ADAPTER"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "Pdo_Mysql"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "数据库适配器"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "Typecho数据库驱动"
+            }
+          }
+        },
+        "env6": {
+          "type": "object",
+          "title": "数据库主机",
+          "description": "数据库服务器地址",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "TYPECHO_DB_HOST"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "mysql"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "数据库主机"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "数据库服务器地址"
+            }
+          }
+        },
+        "env7": {
+          "type": "object",
+          "title": "数据库端口",
+          "description": "数据库服务器端口",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "TYPECHO_DB_PORT"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "3306"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "数据库端口"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "数据库服务器端口"
+            }
+          }
+        },
+        "env8": {
+          "type": "object",
+          "title": "数据库用户名",
+          "description": "数据库用户名",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "TYPECHO_DB_USER"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "typecho"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "数据库用户名"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "数据库用户名"
+            }
+          }
+        },
+        "env9": {
+          "type": "object",
+          "title": "数据库密码",
+          "description": "数据库密码",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "TYPECHO_DB_PASSWORD"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "typecho"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "数据库密码"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "数据库密码"
+            }
+          }
+        },
+        "env10": {
+          "type": "object",
+          "title": "数据库名称",
+          "description": "Typecho数据库名称",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "TYPECHO_DB_DATABASE"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "typecho"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "数据库名称"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "Typecho数据库名称"
+            }
+          }
+        },
+        "env11": {
+          "type": "object",
+          "title": "表前缀",
+          "description": "数据库表前缀",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "TYPECHO_DB_PREFIX"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "typecho_"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "表前缀"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "数据库表前缀"
+            }
+          }
+        },
+        "env12": {
+          "type": "object",
+          "title": "数据库引擎",
+          "description": "MySQL数据库引擎",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "TYPECHO_DB_ENGINE"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "InnoDB"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "数据库引擎"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "MySQL数据库引擎"
+            }
+          }
+        },
+        "env13": {
+          "type": "object",
+          "title": "数据库字符集",
+          "description": "数据库字符集",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "TYPECHO_DB_CHARSET"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "utf8mb4"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "数据库字符集"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "数据库字符集"
+            }
+          }
+        },
+        "env14": {
+          "type": "object",
+          "title": "数据库冲突处理",
+          "description": "当数据库中已有表时的处理方式",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "TYPECHO_DB_NEXT"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "none"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "数据库冲突处理"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "当数据库中已有表时的处理方式"
+            }
+          }
+        },
+        "env15": {
+          "type": "object",
+          "title": "站点URL",
+          "description": "您的网站URL",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "TYPECHO_SITE_URL"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "https://example.com"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "站点URL"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "您的网站URL"
+            }
+          }
+        },
+        "env16": {
+          "type": "object",
+          "title": "管理员用户名",
+          "description": "要创建的管理员用户名",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "TYPECHO_USER_NAME"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "admin"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "管理员用户名"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "要创建的管理员用户名"
+            }
+          }
+        },
+        "env17": {
+          "type": "object",
+          "title": "管理员密码",
+          "description": "要创建的管理员密码",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "TYPECHO_USER_PASSWORD"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "password"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "管理员密码"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "要创建的管理员密码"
+            }
+          }
+        },
+        "env18": {
+          "type": "object",
+          "title": "管理员邮箱",
+          "description": "要创建的管理员邮箱",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "TYPECHO_USER_MAIL"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "admin@example.com"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "管理员邮箱"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "要创建的管理员邮箱"
+            }
+          }
+        }
+      }
+    }
+  }
+}

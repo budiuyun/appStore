@@ -1,0 +1,63 @@
+workloadType: StatefulSet
+replicaCount: 1
+image:
+  imageRegistry: docker.1ms.run
+  repository: bitnami/postgresql
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  ports:
+    postgresql: 5432
+networkLimits:
+  enabled: true
+  egress: 1M
+  ingress: 1M
+resources:
+  limits:
+    cpu: 500m
+    memory: 1Gi
+    ephemeral-storage: 10Gi
+  requests:
+    cpu: 100m
+    memory: 256Mi
+    ephemeral-storage: 5Gi
+persistence:
+  enabled: true
+  size: 8Gi
+  accessMode: ReadWriteOnce
+  storageClass: local
+  mounts:
+    - /bitnami/postgresql
+env:
+  env1:
+    name: POSTGRESQL_DATABASE
+    value: postgres
+    description: 要创建的初始数据库名称
+    title: 数据库名称
+  env2:
+    name: POSTGRESQL_USERNAME
+    value: postgres
+    description: 要创建的数据库用户名
+    title: 用户名
+  env3:
+    name: POSTGRESQL_PASSWORD
+    value: password
+    description: 数据库用户的密码
+    title: 用户密码
+  env4:
+    name: POSTGRESQL_ALLOW_REMOTE_CONNECTIONS
+    value: 'yes'
+    description: 是否允许远程连接到数据库
+    title: 允许远程连接
+  env5:
+    name: POSTGRESQL_MAX_CONNECTIONS
+    value: '100'
+    description: 设置最大连接数
+    title: 最大连接数
+  env6:
+    name: POSTGRESQL_SHARED_PRELOAD_LIBRARIES
+    value: pgaudit
+    description: 预加载的PostgreSQL库列表
+    title: 共享预加载库
+icon: https://images.budiuyun.net/i/2025/06/09/6846fe3f36848.png

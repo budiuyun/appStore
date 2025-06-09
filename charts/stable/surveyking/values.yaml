@@ -1,0 +1,56 @@
+workloadType: Deployment
+replicaCount: 1
+image:
+  imageRegistry: docker.1ms.run
+  repository: surveyking/surveyking
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  ports:
+    http: 1991
+networkLimits:
+  enabled: true
+  egress: 2M
+  ingress: 2M
+resources:
+  limits:
+    cpu: 500m
+    memory: 1Gi
+    ephemeral-storage: 10Gi
+  requests:
+    cpu: 200m
+    memory: 512Mi
+    ephemeral-storage: 5Gi
+persistence:
+  enabled: true
+  size: 2Gi
+  accessMode: ReadWriteOnce
+  storageClass: local
+  mounts:
+    - /app/db
+    - /app/files
+    - /app/logs
+env:
+  env1:
+    name: PROFILE
+    value: ''
+    description: 系统运行模式，默认使用内置H2数据库，可选mysql
+    title: 运行模式
+  env2:
+    name: DB_URL
+    value: >-
+      jdbc:mysql://127.0.0.1:3306/surveyking?rewriteBatchedStatements=true&useUnicode=true&characterEncoding=UTF-8
+    description: MySQL数据库连接URL
+    title: 数据库URL
+  env3:
+    name: MYSQL_USER
+    value: surveyking
+    description: MySQL数据库用户名
+    title: 数据库用户
+  env4:
+    name: MYSQL_PASS
+    value: surveyking
+    description: MySQL数据库密码
+    title: 数据库密码
+icon: https://images.budiuyun.net/i/2025/06/09/6846ed896739c.png

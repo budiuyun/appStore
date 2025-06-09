@@ -1,0 +1,50 @@
+workloadType: Deployment
+replicaCount: 1
+image:
+  imageRegistry: docker.1ms.run
+  repository: shinsenter/hyperf
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  ports:
+    http: 80
+    https: 443
+networkLimits:
+  enabled: true
+  egress: 1M
+  ingress: 1M
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+    ephemeral-storage: 10Gi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+    ephemeral-storage: 5Gi
+persistence:
+  enabled: true
+  size: 1Gi
+  accessMode: ReadWriteOnce
+  storageClass: local
+  mounts:
+    - /var/www/html
+    - /etc/ssl/site
+env:
+  env1:
+    name: APP_USER
+    value: www-data
+    description: 应用运行的用户名
+    title: 应用用户
+  env2:
+    name: APP_GROUP
+    value: www-data
+    description: 应用运行的用户组
+    title: 应用用户组
+  env3:
+    name: PHP_VERSION
+    value: latest
+    description: PHP运行版本
+    title: PHP版本
+icon: https://images.budiuyun.net/i/2025/06/09/6846f62f3a3f6.png

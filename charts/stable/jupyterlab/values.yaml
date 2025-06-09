@@ -1,0 +1,48 @@
+workloadType: Deployment
+replicaCount: 1
+image:
+  imageRegistry: docker.1ms.run
+  repository: mikebirdgeneau/jupyterlab
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  ports:
+    http: 8888
+networkLimits:
+  enabled: true
+  egress: 5M
+  ingress: 5M
+resources:
+  limits:
+    cpu: 1000m
+    memory: 2Gi
+    ephemeral-storage: 10Gi
+  requests:
+    cpu: 500m
+    memory: 1Gi
+    ephemeral-storage: 5Gi
+persistence:
+  enabled: true
+  size: 10Gi
+  accessMode: ReadWriteOnce
+  storageClass: local
+  mounts:
+    - /home/jovyan/work
+env:
+  env1:
+    name: JUPYTER_TOKEN
+    value: changeme
+    description: 访问Jupyter的认证令牌，留空则自动生成
+    title: Jupyter令牌
+  env2:
+    name: JUPYTER_PASSWORD
+    value: ''
+    description: 访问Jupyter的密码，优先级高于令牌
+    title: Jupyter密码
+  env3:
+    name: JUPYTER_ENABLE_LAB
+    value: 'yes'
+    description: 设置为yes启用JupyterLab界面
+    title: 启用JupyterLab
+icon: https://images.budiuyun.net/i/2025/06/09/6846b63c66965.ico
