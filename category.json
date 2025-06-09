@@ -54,6 +54,28 @@
     ]
 ,
     "开发工具": [
+      {"hyperf": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "hyperf",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "🔋 (PHP / Hyperf) 生产就绪的Docker镜像，带有自动Hyperf安装程序",
+  "icon": "https://images.budiuyun.net/i/2025/06/09/6846f62f3a3f6.png",
+  "maintainers": [
+    {
+      "name": "niehaoran",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "开发工具"
+  }
+}
+
+      }}
+,
       {"jupyterlab": {
         "v1.0.0": 
 {
