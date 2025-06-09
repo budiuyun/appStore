@@ -32,7 +32,7 @@ persistence:
 env:
   env1:
     name: WORDPRESS_DB_HOST
-    value: 127.0.0.1
+    value: 127.0.0.1:3306
     description: MySQL数据库主机地址
     title: 数据库主机
   env2:
