@@ -7,7 +7,7 @@
   "apiVersion": "v2",
   "name": "lsky-pro",
   "version": "v1.0.0",
-  "appVersion": "2.1.0",
+  "appVersion": "2.0.0",
   "description": "兰空图床 - 简单优雅的图片托管程序",
   "icon": "https://images.budiuyun.net/i/2025/06/09/684683bbc7a28.png",
   "maintainers": [
