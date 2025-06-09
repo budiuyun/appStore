@@ -3,7 +3,7 @@ name: mssql
 version: v1.0.0
 appVersion: 2025-latest
 description: Microsoft SQL Server 2025是一个功能强大的关系型数据库管理系统，支持向量搜索和AI功能
-icon: https://images.budiuyun.net/i/2025/06/09/6846fd5e91157.png
+icon: https://images.budiuyun.net/i/2025/06/09/6846ffffafe36.png
 maintainers:
   - name: niehaoran
     email: 179866495@qq.com
