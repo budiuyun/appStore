@@ -1,0 +1,11 @@
+apiVersion: v2
+name: jupyterlab
+version: v1.0.0
+appVersion: latest
+description: 基于Alpine Linux的轻量级JupyterLab环境，支持Python开发和数据可视化
+icon: https://images.budiuyun.net/i/2025/06/09/6846b63c66965.ico
+maintainers:
+  - name: niehaoran
+    email: 179866495@qq.com
+annotations:
+  budiu/app-category-zh: 开发工具
