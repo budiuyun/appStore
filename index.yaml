@@ -5,9 +5,9 @@ entries:
       budiu/app-category-zh: 网站建设
     apiVersion: v2
     appVersion: latest
-    created: "2025-06-09T10:27:26.989216498Z"
+    created: "2025-06-09T13:11:20.738879067Z"
     description: emlog是一款基于PHP和MySQL的功能强大的博客及CMS建站系统
-    digest: ad865131b1786167c92ea55c464a68017d3c37fda52ca65db61ae15515689f1f
+    digest: bcbb9c8ec6e9025d52e5d21b0121a2293f8eebf740de7f18b1895297732cdafe
     icon: https://images.budiuyun.net/i/2025/06/09/6846aea30adbb.png
     maintainers:
     - email: 179866495@qq.com
@@ -21,9 +21,9 @@ entries:
       budiu/app-category-zh: 开发工具
     apiVersion: v2
     appVersion: latest
-    created: "2025-06-09T10:27:26.989643033Z"
+    created: "2025-06-09T13:11:20.739291805Z"
     description: 基于Alpine Linux的轻量级JupyterLab环境，支持Python开发和数据可视化
-    digest: a834d23fa6e176bda8700d0b7a8a5b52d859a4acb462c15a951d7fc9dad273df
+    digest: 83f5d51180eb9d0b7b29ae986d058f0dba39f92714ff48150ca48034780301ce
     icon: https://images.budiuyun.net/i/2025/06/09/6846b63c66965.ico
     maintainers:
     - email: 179866495@qq.com
@@ -37,9 +37,9 @@ entries:
       budiu/app-category-zh: 图床
     apiVersion: v2
     appVersion: 2.0.0
-    created: "2025-06-09T10:27:26.990015046Z"
+    created: "2025-06-09T13:11:20.739637158Z"
     description: 兰空图床 - 简单优雅的图片托管程序
-    digest: 8472b73d4f29eb2920a8f02b112a98532b2936bbd8bfd191131daa3067bd82fa
+    digest: e2c6f959bd625bcfdd7a437acdedfd428d8ed422117dadf332fc94b9ddb4a7ba
     icon: https://images.budiuyun.net/i/2025/06/09/684683bbc7a28.png
     maintainers:
     - email: 179866495@qq.com
@@ -48,15 +48,31 @@ entries:
     urls:
     - lsky-pro-v1.0.0.tgz
     version: v1.0.0
+  maxkey:
+  - annotations:
+      budiu/app-category-zh: 网站建设
+    apiVersion: v2
+    appVersion: latest
+    created: "2025-06-09T13:11:20.740009211Z"
+    description: MaxKey单点登录认证系统，业界领先的IAM-IDaas身份管理和认证产品
+    digest: 1866b2a64b37a8fa86465aed6be6f28eaa5b3bac7eab1fddc02e6bd4979259f0
+    icon: https://images.budiuyun.net/i/2025/06/09/6846dcfb7ddf8.png
+    maintainers:
+    - email: 179866495@qq.com
+      name: niehaoran
+    name: maxkey
+    urls:
+    - maxkey-v1.0.0.tgz
+    version: v1.0.0
   minecraft:
   - annotations:
       budiu/app-category-zh: 游戏服务器
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-06-09T10:27:26.990537159Z"
+    created: "2025-06-09T13:11:20.74048716Z"
     description: Minecraft 是一款广受欢迎的沙盒游戏，玩家可以在其中探索、建造、合作与战斗。本 Chart 部署 Minecraft 服务器，为玩家提供多人在线游戏世界，并支持自定义插件、模组和配置，满足社区服务器和私人服务器需求。该服务器支持官方版和
       Forge、Paper 等模组版，为玩家提供丰富的游戏体验。
-    digest: b0c4f5da9686601dbb2879c3e9791301e6ce5c8e7b1adb802ab3ed2613820279
+    digest: c1b2ee5d918cf169b22c949dd0cc1afd23bce6aef220ffc6385a4a99741a4bd1
     icon: https://images.budiuyun.net/i/2025/06/06/6842e0ec61115.png
     maintainers:
     - email: 179866495@qq.com
@@ -70,9 +86,9 @@ entries:
       budiu/app-category-zh: 数据库
     apiVersion: v2
     appVersion: "8.0"
-    created: "2025-06-09T10:27:26.990896939Z"
+    created: "2025-06-09T13:11:20.740828535Z"
     description: 官方MySQL数据库服务
-    digest: aa003e2616c2a41b67b841fae6376fb603037e6c80acb4284ab1849cb3dd07d0
+    digest: a367427be33c11e3f7681187d414f317d29f25551a4fe2ed11e399a94cfa102d
     icon: https://images.budiuyun.net/i/2025/05/13/6823652c31c05.png
     maintainers:
     - email: 179866495@qq.com
@@ -89,9 +105,9 @@ entries:
       budiu/app-category-zh: 操作系统
     apiVersion: v2
     appVersion: "22.04"
-    created: "2025-06-09T10:27:26.991262931Z"
+    created: "2025-06-09T13:11:20.741423533Z"
     description: 带有SSH服务的Ubuntu镜像，支持远程管理
-    digest: 96426db51e60d93f501fadbdaf94aebb81ae793cbfa78172a9eaf7c95e1d8b16
+    digest: 219d1a4244ea59da2e094a1028bf00694c492de61303aaa186701bbbd740e177
     icon: https://images.budiuyun.net/i/2025/06/08/68446389305d0.png
     maintainers:
     - email: 179866495@qq.com
@@ -105,10 +121,10 @@ entries:
       budiu/app-category-zh: 监控工具
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-06-09T10:27:26.991673226Z"
+    created: "2025-06-09T13:11:20.741786037Z"
     description: '''Uptime Kuma 是一个开源、轻量的自托管监控工具，支持对网站、服务器和 API 的正常运行时间进行实时监控，帮助用户快速了解服务的运行状况。它提供友好的用户界面、支持多种通知方式（如邮件、Telegram、Slack   等）以及历史记录追踪功能。
       '''
-    digest: 3db3858a5dcd5cdab58422a4820cc3f81f6673c2538901fccf37094e6a41f1c9
+    digest: 01576323307fe00f2f39cd34b430b44510cd2cdee3300ee374645e054e83e691
     icon: https://images.budiuyun.net/i/2025/05/13/6823632a4fc3c.png
     maintainers:
     - email: 179866495@qq.com
@@ -122,9 +138,9 @@ entries:
       budiu/app-category-zh: 网站建设
     apiVersion: v2
     appVersion: 6.8.1
-    created: "2025-06-09T10:27:26.992060097Z"
+    created: "2025-06-09T13:11:20.742188416Z"
     description: WordPress是一个功能强大的内容管理系统，可以使用插件、小部件和主题
-    digest: 1f67bd3f57cc611e48d9cad816d346e2a22a93823a559def4cb3e0661667393b
+    digest: 0856da53c8d84a1fa5530e79c2f11697cccc25774157f585e94ccf19831f53fa
     icon: https://images.budiuyun.net/i/2025/06/09/6846911733f80.png
     maintainers:
     - email: 179866495@qq.com
@@ -133,4 +149,4 @@ entries:
     urls:
     - wordpress-v1.0.0.tgz
     version: v1.0.0
-generated: "2025-06-09T10:27:26.988732476Z"
+generated: "2025-06-09T13:11:20.738389346Z"
