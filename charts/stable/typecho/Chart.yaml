@@ -7,5 +7,7 @@ icon: https://images.budiuyun.net/i/2025/06/09/6846e11076903.png
 maintainers:
   - name: niehaoran
     email: 179866495@qq.com
+sources:
+  - https://github.com/typecho/typecho
 annotations:
   budiu/app-category-zh: 网站建设

@@ -7,5 +7,7 @@ icon: https://images.budiuyun.net/i/2025/06/09/684683bbc7a28.png
 maintainers:
   - name: niehaoran
     email: 179866495@qq.com
+sources:
+  - https://github.com/lsky-org/lsky-pro
 annotations:
   budiu/app-category-zh: 图床
