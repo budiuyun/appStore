@@ -5,9 +5,9 @@ entries:
       budiu/app-category-zh: 网站建设
     apiVersion: v2
     appVersion: latest
-    created: "2025-06-09T09:56:10.450244596Z"
+    created: "2025-06-09T10:27:26.989216498Z"
     description: emlog是一款基于PHP和MySQL的功能强大的博客及CMS建站系统
-    digest: 4fd3e10043f607d8ef0e462dabe57f830d4d1fc8a283ac4a9535dec329e9dcdf
+    digest: ad865131b1786167c92ea55c464a68017d3c37fda52ca65db61ae15515689f1f
     icon: https://images.budiuyun.net/i/2025/06/09/6846aea30adbb.png
     maintainers:
     - email: 179866495@qq.com
@@ -16,14 +16,30 @@ entries:
     urls:
     - emlog-v1.0.0.tgz
     version: v1.0.0
+  jupyterlab:
+  - annotations:
+      budiu/app-category-zh: 开发工具
+    apiVersion: v2
+    appVersion: latest
+    created: "2025-06-09T10:27:26.989643033Z"
+    description: 基于Alpine Linux的轻量级JupyterLab环境，支持Python开发和数据可视化
+    digest: a834d23fa6e176bda8700d0b7a8a5b52d859a4acb462c15a951d7fc9dad273df
+    icon: https://images.budiuyun.net/i/2025/06/09/6846b63c66965.ico
+    maintainers:
+    - email: 179866495@qq.com
+      name: niehaoran
+    name: jupyterlab
+    urls:
+    - jupyterlab-v1.0.0.tgz
+    version: v1.0.0
   lsky-pro:
   - annotations:
       budiu/app-category-zh: 图床
     apiVersion: v2
     appVersion: 2.0.0
-    created: "2025-06-09T09:56:10.450632124Z"
+    created: "2025-06-09T10:27:26.990015046Z"
     description: 兰空图床 - 简单优雅的图片托管程序
-    digest: 1f230bdb13df23c019e2f93d53c9d02c44fae290a27783a873685d6fd58e3f57
+    digest: 8472b73d4f29eb2920a8f02b112a98532b2936bbd8bfd191131daa3067bd82fa
     icon: https://images.budiuyun.net/i/2025/06/09/684683bbc7a28.png
     maintainers:
     - email: 179866495@qq.com
@@ -37,10 +53,10 @@ entries:
       budiu/app-category-zh: 游戏服务器
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-06-09T09:56:10.451137464Z"
+    created: "2025-06-09T10:27:26.990537159Z"
     description: Minecraft 是一款广受欢迎的沙盒游戏，玩家可以在其中探索、建造、合作与战斗。本 Chart 部署 Minecraft 服务器，为玩家提供多人在线游戏世界，并支持自定义插件、模组和配置，满足社区服务器和私人服务器需求。该服务器支持官方版和
       Forge、Paper 等模组版，为玩家提供丰富的游戏体验。
-    digest: 7ed4f938d15936512f8520e65ce7ced38df7ce3f1599f8c022be09a12dbeb42b
+    digest: b0c4f5da9686601dbb2879c3e9791301e6ce5c8e7b1adb802ab3ed2613820279
     icon: https://images.budiuyun.net/i/2025/06/06/6842e0ec61115.png
     maintainers:
     - email: 179866495@qq.com
@@ -54,9 +70,9 @@ entries:
       budiu/app-category-zh: 数据库
     apiVersion: v2
     appVersion: "8.0"
-    created: "2025-06-09T09:56:10.451525724Z"
+    created: "2025-06-09T10:27:26.990896939Z"
     description: 官方MySQL数据库服务
-    digest: c935db3cf1c00b85ffba628d4fab1ccdc9f0d5c9d39f78d6b9481c1a7f2e360b
+    digest: aa003e2616c2a41b67b841fae6376fb603037e6c80acb4284ab1849cb3dd07d0
     icon: https://images.budiuyun.net/i/2025/05/13/6823652c31c05.png
     maintainers:
     - email: 179866495@qq.com
@@ -73,9 +89,9 @@ entries:
       budiu/app-category-zh: 操作系统
     apiVersion: v2
     appVersion: "22.04"
-    created: "2025-06-09T09:56:10.452027176Z"
+    created: "2025-06-09T10:27:26.991262931Z"
     description: 带有SSH服务的Ubuntu镜像，支持远程管理
-    digest: a9f4ff201eb615f623a5c31fb8c5ae0212b253cbbae62133db252d4f1de6e46d
+    digest: 96426db51e60d93f501fadbdaf94aebb81ae793cbfa78172a9eaf7c95e1d8b16
     icon: https://images.budiuyun.net/i/2025/06/08/68446389305d0.png
     maintainers:
     - email: 179866495@qq.com
@@ -89,10 +105,10 @@ entries:
       budiu/app-category-zh: 监控工具
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-06-09T09:56:10.452431276Z"
+    created: "2025-06-09T10:27:26.991673226Z"
     description: '''Uptime Kuma 是一个开源、轻量的自托管监控工具，支持对网站、服务器和 API 的正常运行时间进行实时监控，帮助用户快速了解服务的运行状况。它提供友好的用户界面、支持多种通知方式（如邮件、Telegram、Slack   等）以及历史记录追踪功能。
       '''
-    digest: 2f9da2134d4c28cd1b6dda1738485daf192c1364100ee76c772a5de29fa63edd
+    digest: 3db3858a5dcd5cdab58422a4820cc3f81f6673c2538901fccf37094e6a41f1c9
     icon: https://images.budiuyun.net/i/2025/05/13/6823632a4fc3c.png
     maintainers:
     - email: 179866495@qq.com
@@ -106,9 +122,9 @@ entries:
       budiu/app-category-zh: 网站建设
     apiVersion: v2
     appVersion: 6.8.1
-    created: "2025-06-09T09:56:10.45281642Z"
+    created: "2025-06-09T10:27:26.992060097Z"
     description: WordPress是一个功能强大的内容管理系统，可以使用插件、小部件和主题
-    digest: 32e62ae96c685a94056dc86f2601f92c8b3c316669ed0d75eb77a4a76e1e5127
+    digest: 1f67bd3f57cc611e48d9cad816d346e2a22a93823a559def4cb3e0661667393b
     icon: https://images.budiuyun.net/i/2025/06/09/6846911733f80.png
     maintainers:
     - email: 179866495@qq.com
@@ -117,4 +133,4 @@ entries:
     urls:
     - wordpress-v1.0.0.tgz
     version: v1.0.0
-generated: "2025-06-09T09:56:10.44942298Z"
+generated: "2025-06-09T10:27:26.988732476Z"
