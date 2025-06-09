@@ -2,7 +2,7 @@ apiVersion: v2
 name: surveyking
 version: v1.0.0
 appVersion: latest
-description: 卷王 SurveyKing - 人人都可快速搭建的专业问卷考试系统
+description: 卷王 SurveyKing - 人人都可快速搭建的专业问卷考试系统，安装后需等待几分钟才能访问
 icon: https://images.budiuyun.net/i/2025/06/09/6846ed896739c.png
 maintainers:
   - name: niehaoran
