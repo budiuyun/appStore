@@ -2,30 +2,60 @@
 
 MaxKey单点登录认证系统，业界领先的IAM-IDaas身份管理和认证产品
 
-## 工作负载类型
+## 应用介绍
 
-此Helm Chart使用 `Deployment` 工作负载类型。
+本应用提供以下功能：
+- 单点登录(SSO)：一次登录，全局通行
+- 身份认证(AM)：多种认证方式，保障安全
+- 用户身份管理(IDM)：集中管理用户身份信息
+- 权限管理(RBAC)：灵活的角色权限控制
+- 标准协议支持：OAuth 2.x/OpenID Connect、SAML 2.0、JWT、CAS等
 
-- Deployment适合无状态应用，方便快速扩展和更新
+## 配置说明
 
-## 参数
-
-| 参数 | 描述 | 默认值 |
+| 参数 | 说明 | 默认值 |
 |------|------|--------|
-| replicaCount | 副本数量 | `1` |
-| workloadType | 工作负载类型 | `Deployment` |
-| image.repository | 镜像名称 | `maxkeytop/maxkey` |
-| image.tag | 镜像标签 | `latest` |
-| image.pullPolicy | 镜像拉取策略 | `IfNotPresent` |
-| service.type | 服务类型 | `ClusterIP` |
-| persistence.enabled | 是否启用持久化存储 | `true` |
-| persistence.size | 存储大小 | `2Gi` |
-| env | 环境变量配置 | 见下文 |
+| 镜像标签 | MaxKey版本 | `latest` |
+| 服务端口 | Web服务端口 | `8080` |
+| 资源限制 | CPU和内存限制 | 见下文 |
+| 持久化存储 | 数据存储配置 | 见下文 |
 
+### 资源配置
+- CPU限制: 1000m（相当于1核心）
+- 内存限制: 1Gi（相当于1GB）
+- CPU请求: 500m（相当于0.5核心）
+- 内存请求: 512Mi（相当于512MB）
 
-## 环境变量
+### 持久化存储配置
+- 启用持久化: true（建议开启）
+- 挂载路径: /opt/maxkey/config, /opt/maxkey/logs
+- 存储大小: 2Gi（可根据需求调整）
+- 存储类: local（取决于集群环境）
 
-应用程序支持以下环境变量配置：
+## 数据存储
+
+MaxKey的配置数据存储在容器的 `/opt/maxkey/config` 目录中，日志存储在 `/opt/maxkey/logs` 目录。启用持久化存储后，这些数据将保存在持久卷中，即使容器重启也不会丢失。
+
+**提示**：请确保分配足够的存储空间，特别是对于日志目录，可能随着时间增长。
+
+## 使用说明
+
+1. 部署应用后，可通过以下方式访问服务：
+   - Web界面：访问服务的8080端口
+
+2. 首次访问时，使用默认凭据登录：
+   - 用户名：admin
+   - 密码：maxkey
+
+3. 系统管理：
+   - 配置身份提供者
+   - 管理用户和角色
+   - 设置应用和权限
+   - 配置认证协议
+
+## 数据库配置
+
+MaxKey需要MySQL数据库。您可以通过环境变量配置数据库连接信息：
 
 | 环境变量 | 描述 | 默认值 |
 |---------|------|--------|
@@ -35,9 +65,10 @@ MaxKey单点登录认证系统，业界领先的IAM-IDaas身份管理和认证�
 | MYSQL_USER | MaxKey数据库用户名 | `maxkey` |
 | MYSQL_PASSWORD | MaxKey数据库密码 | `maxkey` |
 
+## 安全注意事项
 
-## 安装方法
-
-```bash
-helm install my-release ./maxkey
-```
+- 生产环境中请修改默认管理员密码
+- 考虑使用HTTPS保护认证流程
+- 定期更新系统和安全补丁
+- 配置适当的访问控制策略
+- 定期备份配置和数据库

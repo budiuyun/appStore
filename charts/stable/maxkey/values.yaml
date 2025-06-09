@@ -32,7 +32,7 @@ persistence:
 env:
   env1:
     name: MYSQL_HOST
-    value: mysql
+    value: 127.0.0.1:3306
     description: MaxKey数据库服务器地址
     title: 数据库地址
   env2:

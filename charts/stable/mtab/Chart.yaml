@@ -1,0 +1,11 @@
+apiVersion: v2
+name: mtab
+version: v1.0.0
+appVersion: latest
+description: 多端同步、美观易用的在线导航和书签工具
+icon: https://images.budiuyun.net/i/2025/06/09/6846df60afbb3.png
+maintainers:
+  - name: niehaoran
+    email: 179866495@qq.com
+annotations:
+  budiu/app-category-zh: 网站建设

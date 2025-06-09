@@ -1,0 +1,123 @@
+workloadType: Deployment
+replicaCount: 1
+image:
+  imageRegistry: docker.1ms.run
+  repository: joyqi/typecho
+  tag: nightly-php8.0-apache
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  ports:
+    http: 80
+networkLimits:
+  enabled: true
+  egress: 2M
+  ingress: 2M
+resources:
+  limits:
+    cpu: 300m
+    memory: 256Mi
+    ephemeral-storage: 10Gi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+    ephemeral-storage: 5Gi
+persistence:
+  enabled: true
+  size: 1Gi
+  accessMode: ReadWriteOnce
+  storageClass: local
+  mounts:
+    - /app/usr
+env:
+  env1:
+    name: TIMEZONE
+    value: Asia/Shanghai
+    description: 服务器时区
+    title: 时区
+  env2:
+    name: MEMORY_LIMIT
+    value: 128M
+    description: PHP内存限制
+    title: 内存限制
+  env3:
+    name: MAX_POST_BODY
+    value: 50M
+    description: 允许的最大POST请求大小
+    title: 最大POST大小
+  env4:
+    name: TYPECHO_INSTALL
+    value: '1'
+    description: 是否自动运行安装脚本
+    title: 自动安装
+  env5:
+    name: TYPECHO_DB_ADAPTER
+    value: Pdo_Mysql
+    description: Typecho数据库驱动
+    title: 数据库适配器
+  env6:
+    name: TYPECHO_DB_HOST
+    value: mysql
+    description: 数据库服务器地址
+    title: 数据库主机
+  env7:
+    name: TYPECHO_DB_PORT
+    value: '3306'
+    description: 数据库服务器端口
+    title: 数据库端口
+  env8:
+    name: TYPECHO_DB_USER
+    value: typecho
+    description: 数据库用户名
+    title: 数据库用户名
+  env9:
+    name: TYPECHO_DB_PASSWORD
+    value: typecho
+    description: 数据库密码
+    title: 数据库密码
+  env10:
+    name: TYPECHO_DB_DATABASE
+    value: typecho
+    description: Typecho数据库名称
+    title: 数据库名称
+  env11:
+    name: TYPECHO_DB_PREFIX
+    value: typecho_
+    description: 数据库表前缀
+    title: 表前缀
+  env12:
+    name: TYPECHO_DB_ENGINE
+    value: InnoDB
+    description: MySQL数据库引擎
+    title: 数据库引擎
+  env13:
+    name: TYPECHO_DB_CHARSET
+    value: utf8mb4
+    description: 数据库字符集
+    title: 数据库字符集
+  env14:
+    name: TYPECHO_DB_NEXT
+    value: none
+    description: 当数据库中已有表时的处理方式
+    title: 数据库冲突处理
+  env15:
+    name: TYPECHO_SITE_URL
+    value: https://example.com
+    description: 您的网站URL
+    title: 站点URL
+  env16:
+    name: TYPECHO_USER_NAME
+    value: admin
+    description: 要创建的管理员用户名
+    title: 管理员用户名
+  env17:
+    name: TYPECHO_USER_PASSWORD
+    value: password
+    description: 要创建的管理员密码
+    title: 管理员密码
+  env18:
+    name: TYPECHO_USER_MAIL
+    value: admin@example.com
+    description: 要创建的管理员邮箱
+    title: 管理员邮箱
+icon: https://images.budiuyun.net/i/2025/06/09/6846e11076903.png
