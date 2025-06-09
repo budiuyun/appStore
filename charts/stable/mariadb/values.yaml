@@ -1,0 +1,63 @@
+workloadType: ''
+replicaCount: 1
+image:
+  imageRegistry: docker.1ms.run
+  repository: mariadb
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  ports:
+    mysql: 3306
+networkLimits:
+  enabled: true
+  egress: 1M
+  ingress: 1M
+resources:
+  limits:
+    cpu: 500m
+    memory: 1Gi
+    ephemeral-storage: 10Gi
+  requests:
+    cpu: 100m
+    memory: 256Mi
+    ephemeral-storage: 5Gi
+persistence:
+  enabled: true
+  size: 8Gi
+  accessMode: ReadWriteOnce
+  storageClass: local
+  mounts:
+    - /var/lib/mysql
+env:
+  env1:
+    name: MARIADB_ROOT_PASSWORD
+    value: password
+    description: MariaDB root用户的密码
+    title: Root密码
+  env2:
+    name: MARIADB_DATABASE
+    value: default
+    description: 要创建的初始数据库名称
+    title: 数据库名称
+  env3:
+    name: MARIADB_USER
+    value: user
+    description: 要创建的数据库用户名
+    title: 用户名
+  env4:
+    name: MARIADB_PASSWORD
+    value: password
+    description: 数据库用户的密码
+    title: 用户密码
+  env5:
+    name: MARIADB_CHARACTER_SET
+    value: utf8mb4
+    description: 数据库默认字符集
+    title: 字符集
+  env6:
+    name: MARIADB_COLLATE
+    value: utf8mb4_unicode_ci
+    description: 数据库默认排序规则
+    title: 排序规则
+icon: https://images.budiuyun.net/i/2025/06/09/6846fd5e91157.png

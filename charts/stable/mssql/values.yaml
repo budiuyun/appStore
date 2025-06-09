@@ -1,0 +1,56 @@
+workloadType: StatefulSet
+replicaCount: 1
+image:
+  imageRegistry: docker.1ms.run
+  repository: mcr.microsoft.com/mssql/server
+  tag: 2025-latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  ports:
+    mssql: 1433
+    udp: 1434
+networkLimits:
+  enabled: true
+  egress: 1M
+  ingress: 1M
+resources:
+  limits:
+    cpu: 500m
+    memory: 2Gi
+    ephemeral-storage: 10Gi
+  requests:
+    cpu: 200m
+    memory: 1Gi
+    ephemeral-storage: 5Gi
+persistence:
+  enabled: true
+  size: 8Gi
+  accessMode: ReadWriteOnce
+  storageClass: local
+  mounts:
+    - /var/opt/mssql/data
+    - /var/opt/mssql/log
+    - /var/opt/mssql/secrets
+env:
+  env1:
+    name: ACCEPT_EULA
+    value: 'Y'
+    description: 接受最终用户许可协议
+    title: 接受EULA
+  env2:
+    name: MSSQL_SA_PASSWORD
+    value: ''
+    description: SQL Server系统管理员(SA)密码
+    title: SA密码
+  env3:
+    name: MSSQL_PID
+    value: Developer
+    description: SQL Server版本(Developer, Express, Standard, Enterprise, Web)
+    title: SQL Server版本
+  env4:
+    name: TZ
+    value: Asia/Shanghai
+    description: 时区设置
+    title: 时区
+icon: https://images.budiuyun.net/i/2025/06/09/6846ffffafe36.png
