@@ -16,6 +16,9 @@
       "email": "179866495@qq.com"
     }
   ],
+  "sources": [
+    "https://github.com/lsky-org/lsky-pro"
+  ],
   "annotations": {
     "budiu/app-category-zh": "图床"
   }
@@ -40,6 +43,9 @@
       "name": "niehaoran",
       "email": "179866495@qq.com"
     }
+  ],
+  "sources": [
+    "https://github.com/jupyter/docker-stacks"
   ],
   "annotations": {
     "budiu/app-category-zh": "开发工具"
@@ -120,6 +126,9 @@
       "email": "179866495@qq.com"
     }
   ],
+  "sources": [
+    "https://github.com/itzg/docker-minecraft-server"
+  ],
   "annotations": {
     "budiu/app-category-zh": "游戏服务器"
   }
@@ -144,6 +153,9 @@
       "name": "niehaoran",
       "email": "179866495@qq.com"
     }
+  ],
+  "sources": [
+    "https://github.com/louislam/uptime-kuma"
   ],
   "annotations": {
     "budiu/app-category-zh": "监控工具"
@@ -170,6 +182,9 @@
       "email": "179866495@qq.com"
     }
   ],
+  "sources": [
+    "https://github.com/emlog/emlog"
+  ],
   "annotations": {
     "budiu/app-category-zh": "网站建设"
   }
@@ -191,6 +206,9 @@
       "name": "niehaoran",
       "email": "179866495@qq.com"
     }
+  ],
+  "sources": [
+    "https://github.com/flarum/flarum"
   ],
   "annotations": {
     "budiu/app-category-zh": "网站建设"
@@ -257,6 +275,9 @@
       "name": "niehaoran",
       "email": "179866495@qq.com"
     }
+  ],
+  "sources": [
+    "https://github.com/typecho/typecho"
   ],
   "annotations": {
     "budiu/app-category-zh": "网站建设"
