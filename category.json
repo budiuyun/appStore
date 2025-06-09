@@ -144,6 +144,9 @@
       "email": "179866495@qq.com"
     }
   ],
+  "sources": [
+    "https://mariadb.org/"
+  ],
   "annotations": {
     "budiu/app-category-zh": "数据库"
   }
@@ -213,6 +216,9 @@
       "name": "niehaoran",
       "email": "179866495@qq.com"
     }
+  ],
+  "sources": [
+    "https://www.postgresql.org/"
   ],
   "annotations": {
     "budiu/app-category-zh": "数据库"
