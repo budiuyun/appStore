@@ -5,9 +5,9 @@ entries:
       budiu/app-category-zh: 仪表盘
     apiVersion: v2
     appVersion: latest
-    created: "2025-06-09T13:58:21.087191334Z"
+    created: "2025-06-09T14:01:12.952323836Z"
     description: Dashy是一个可自托管的个人仪表盘，包含状态检查、小部件、主题和图标包等功能
-    digest: e2db506cb9ae7d3958a5e1a149cd9dd1b1face359a95057332fe6b8f8153d45d
+    digest: 473d9d241456e86c4d8a47ee91af305e856fd4e2923ae898c9c4cb718e2fd542
     icon: https://images.budiuyun.net/i/2025/06/09/6846e3a714f05.png
     maintainers:
     - email: 179866495@qq.com
@@ -21,9 +21,9 @@ entries:
       budiu/app-category-zh: 网站建设
     apiVersion: v2
     appVersion: latest
-    created: "2025-06-09T13:58:21.087614796Z"
+    created: "2025-06-09T14:01:12.952740655Z"
     description: emlog是一款基于PHP和MySQL的功能强大的博客及CMS建站系统
-    digest: f33490cd09c8e2bbdb28940050bd8b806c7c942d08e9a083149d480b0de59e8e
+    digest: 369c4325862755d278c19d3e544c64cf2c3c8251d20be6ba3084e7af67bb518c
     icon: https://images.budiuyun.net/i/2025/06/09/6846aea30adbb.png
     maintainers:
     - email: 179866495@qq.com
@@ -39,9 +39,9 @@ entries:
       budiu/app-category-zh: 开发工具
     apiVersion: v2
     appVersion: latest
-    created: "2025-06-09T13:58:21.087993545Z"
+    created: "2025-06-09T14:01:12.953155921Z"
     description: 基于Alpine Linux的轻量级JupyterLab环境，支持Python开发和数据可视化
-    digest: 10031cba46eeed571a8aae9e69335b2654e0780bf48e23052a2bf6cb48c52f18
+    digest: fead2f9379836967f6f8c3026af3e329943eab42c3597024854a6eeb728faf44
     icon: https://images.budiuyun.net/i/2025/06/09/6846b63c66965.ico
     maintainers:
     - email: 179866495@qq.com
@@ -57,9 +57,9 @@ entries:
       budiu/app-category-zh: 图床
     apiVersion: v2
     appVersion: 2.0.0
-    created: "2025-06-09T13:58:21.088368045Z"
+    created: "2025-06-09T14:01:12.95350838Z"
     description: 兰空图床 - 简单优雅的图片托管程序
-    digest: 65dc00e3c86e196165cfb86430c9f0d16cb37663a06d8e8e3b56dd985b11a09d
+    digest: d9ad10a93684c7d83f473902743a4a01597eea008db4daee06457aaa4c1d2168
     icon: https://images.budiuyun.net/i/2025/06/09/684683bbc7a28.png
     maintainers:
     - email: 179866495@qq.com
@@ -75,10 +75,10 @@ entries:
       budiu/app-category-zh: 游戏服务器
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-06-09T13:58:21.088837042Z"
+    created: "2025-06-09T14:01:12.954008364Z"
     description: Minecraft 是一款广受欢迎的沙盒游戏，玩家可以在其中探索、建造、合作与战斗。本 Chart 部署 Minecraft 服务器，为玩家提供多人在线游戏世界，并支持自定义插件、模组和配置，满足社区服务器和私人服务器需求。该服务器支持官方版和
       Forge、Paper 等模组版，为玩家提供丰富的游戏体验。
-    digest: e5eca95e563ab56d919832ae6c677d617ee12c55399014939b6cdf0282ba9d0f
+    digest: ab4722fbf27740ba9fb8c7e676161b95aaf3228bef16db2a15afc2d21a3f54ff
     icon: https://images.budiuyun.net/i/2025/06/06/6842e0ec61115.png
     maintainers:
     - email: 179866495@qq.com
@@ -94,9 +94,9 @@ entries:
       budiu/app-category-zh: 网站建设
     apiVersion: v2
     appVersion: latest
-    created: "2025-06-09T13:58:21.089151741Z"
+    created: "2025-06-09T14:01:12.954332249Z"
     description: 多端同步、美观易用的在线导航和书签工具
-    digest: 51de76952b4819eff58bc2d6894a51871dcf2d83cd2a2cdb28a9e360a6f5bdb5
+    digest: cb5b01436f6f5f0e9679ddf199724f741407278c7bfd0d7d745bd28b7e1ca5ef
     icon: https://images.budiuyun.net/i/2025/06/09/6846df60afbb3.png
     maintainers:
     - email: 179866495@qq.com
@@ -110,9 +110,9 @@ entries:
       budiu/app-category-zh: 数据库
     apiVersion: v2
     appVersion: "8.0"
-    created: "2025-06-09T13:58:21.089511604Z"
+    created: "2025-06-09T14:01:12.954697602Z"
     description: 官方MySQL数据库服务
-    digest: 8b29275e581e18cc92f26bf1ad1f4b2d756359541c458789f90cf751ff4c5efa
+    digest: f665c684d2819e4c6ae8ab695d77821fa36b5fca720e926e708124b54cee6803
     icon: https://images.budiuyun.net/i/2025/05/13/6823652c31c05.png
     maintainers:
     - email: 179866495@qq.com
@@ -129,9 +129,9 @@ entries:
       budiu/app-category-zh: 网站建设
     apiVersion: v2
     appVersion: nightly
-    created: "2025-06-09T13:58:21.090073445Z"
+    created: "2025-06-09T14:01:12.955293806Z"
     description: Typecho是一个轻量级的开源博客程序
-    digest: 8c40540b9b9a8e032751046750973c11888902f220c315672764127adcd74bec
+    digest: cf11e0ff4d05646fd7cf943a442ef0ab5af8cc94b15c5beb9e125a539fbbcf5e
     icon: https://images.budiuyun.net/i/2025/06/09/6846e11076903.png
     maintainers:
     - email: 179866495@qq.com
@@ -147,9 +147,9 @@ entries:
       budiu/app-category-zh: 操作系统
     apiVersion: v2
     appVersion: "22.04"
-    created: "2025-06-09T13:58:21.090494122Z"
+    created: "2025-06-09T14:01:12.955721776Z"
     description: 带有SSH服务的Ubuntu镜像，支持远程管理
-    digest: d0fc5d475626d128efea1358e9ba172a11fb89ce9980b89d4c6e53768627b157
+    digest: 79dfdd078f2e832fe3ac88a881d6b5f6e12ee283be37b3425158d91860581943
     icon: https://images.budiuyun.net/i/2025/06/08/68446389305d0.png
     maintainers:
     - email: 179866495@qq.com
@@ -163,10 +163,10 @@ entries:
       budiu/app-category-zh: 监控工具
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-06-09T13:58:21.090853795Z"
+    created: "2025-06-09T14:01:12.95609857Z"
     description: '''Uptime Kuma 是一个开源、轻量的自托管监控工具，支持对网站、服务器和 API 的正常运行时间进行实时监控，帮助用户快速了解服务的运行状况。它提供友好的用户界面、支持多种通知方式（如邮件、Telegram、Slack   等）以及历史记录追踪功能。
       '''
-    digest: 54faf3c0b4932b03ea9b66983046648f4d6ee034e28bef41be10b56306952a03
+    digest: 197abfe5131505abd48a2288ca6ac962a39c265cb115e17696ad4251c0932003
     icon: https://images.budiuyun.net/i/2025/05/13/6823632a4fc3c.png
     maintainers:
     - email: 179866495@qq.com
@@ -182,9 +182,9 @@ entries:
       budiu/app-category-zh: 网站建设
     apiVersion: v2
     appVersion: 6.8.1
-    created: "2025-06-09T13:58:21.091237853Z"
+    created: "2025-06-09T14:01:12.956479812Z"
     description: WordPress是一个功能强大的内容管理系统，可以使用插件、小部件和主题
-    digest: 9020be1db3d724de2c3bfcac41fb90956e532391743ba4e25c3568eea727587b
+    digest: d3c1c8a244635d9eb3fc458560045fb163602d2ef018fb816af04d1675bbddb0
     icon: https://images.budiuyun.net/i/2025/06/09/6846911733f80.png
     maintainers:
     - email: 179866495@qq.com
@@ -193,4 +193,4 @@ entries:
     urls:
     - wordpress-v1.0.0.tgz
     version: v1.0.0
-generated: "2025-06-09T13:58:21.086388392Z"
+generated: "2025-06-09T14:01:12.951727362Z"
