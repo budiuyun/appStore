@@ -1,5 +1,108 @@
 {
   "categories": {
+    "仪表盘": [
+      {"dashy": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "dashy",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "Dashy是一个可自托管的个人仪表盘，包含状态检查、小部件、主题和图标包等功能",
+  "icon": "https://images.budiuyun.net/i/2025/06/09/6846e3a714f05.png",
+  "maintainers": [
+    {
+      "name": "niehaoran",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "仪表盘"
+  }
+}
+
+      }}
+
+    ]
+,
+    "图床": [
+      {"lsky-pro": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "lsky-pro",
+  "version": "v1.0.0",
+  "appVersion": "2.0.0",
+  "description": "兰空图床 - 简单优雅的图片托管程序",
+  "icon": "https://images.budiuyun.net/i/2025/06/09/684683bbc7a28.png",
+  "maintainers": [
+    {
+      "name": "niehaoran",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "sources": [
+    "https://github.com/lsky-org/lsky-pro"
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "图床"
+  }
+}
+
+      }}
+
+    ]
+,
+    "开发工具": [
+      {"hyperf": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "hyperf",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "🔋 (PHP / Hyperf) 生产就绪的Docker镜像，带有自动Hyperf安装程序，需要下载，开始请等待几分钟",
+  "icon": "https://images.budiuyun.net/i/2025/06/09/6846f62f3a3f6.png",
+  "maintainers": [
+    {
+      "name": "niehaoran",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "开发工具"
+  }
+}
+
+      }}
+,
+      {"jupyterlab": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "jupyterlab",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "基于Alpine Linux的轻量级JupyterLab环境，支持Python开发和数据可视化",
+  "icon": "https://images.budiuyun.net/i/2025/06/09/6846b63c66965.ico",
+  "maintainers": [
+    {
+      "name": "niehaoran",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "sources": [
+    "https://github.com/jupyter/docker-stacks"
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "开发工具"
+  }
+}
+
+      }}
+
+    ]
+,
     "操作系统": [
       {"ubuntu22.04": {
         "v1.0.0": 
@@ -26,6 +129,28 @@
     ]
 ,
     "数据库": [
+      {"mariadb": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "mariadb",
+  "version": "v1.0.0",
+  "appVersion": "11.7.2",
+  "description": "MariaDB Server是一个高性能开源关系型数据库，从MySQL分支而来",
+  "icon": "https://images.budiuyun.net/i/2025/06/09/6846fd5e91157.png",
+  "maintainers": [
+    {
+      "name": "niehaoran",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "数据库"
+  }
+}
+
+      }}
+,
       {"mysql": {
         "v1.0.0": 
 {
@@ -39,6 +164,28 @@
     "https://github.com/mysql/mysql-server",
     "https://hub.docker.com/_/mysql"
   ],
+  "maintainers": [
+    {
+      "name": "niehaoran",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "数据库"
+  }
+}
+
+      }}
+,
+      {"postgresql": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "postgresql",
+  "version": "v1.0.0",
+  "appVersion": "16.2.0",
+  "description": "PostgreSQL是一个开源的对象关系型数据库，以可靠性和数据完整性著称",
+  "icon": "https://images.budiuyun.net/i/2025/06/09/6846fe3f36848.png",
   "maintainers": [
     {
       "name": "niehaoran",
@@ -70,6 +217,9 @@
       "email": "179866495@qq.com"
     }
   ],
+  "sources": [
+    "https://github.com/itzg/docker-minecraft-server"
+  ],
   "annotations": {
     "budiu/app-category-zh": "游戏服务器"
   }
@@ -95,6 +245,9 @@
       "email": "179866495@qq.com"
     }
   ],
+  "sources": [
+    "https://github.com/louislam/uptime-kuma"
+  ],
   "annotations": {
     "budiu/app-category-zh": "监控工具"
   }
@@ -103,6 +256,150 @@
       }}
 
     ]
+,
+    "网站建设": [
+      {"emlog": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "emlog",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "emlog是一款基于PHP和MySQL的功能强大的博客及CMS建站系统",
+  "icon": "https://images.budiuyun.net/i/2025/06/09/6846aea30adbb.png",
+  "maintainers": [
+    {
+      "name": "niehaoran",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "sources": [
+    "https://github.com/emlog/emlog"
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "网站建设"
+  }
+}
+
+      }}
+,
+      {"mblog": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "mblog",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "一个支持自部署的前后端分离的微博系统，可单用户或多用户使用",
+  "icon": "https://images.budiuyun.net/i/2025/06/09/6846eaea44af8.png",
+  "maintainers": [
+    {
+      "name": "niehaoran",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "网站建设"
+  }
+}
+
+      }}
+,
+      {"mtab": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "mtab",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "多端同步、美观易用的在线导航和书签工具",
+  "icon": "https://images.budiuyun.net/i/2025/06/09/6846df60afbb3.png",
+  "maintainers": [
+    {
+      "name": "niehaoran",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "网站建设"
+  }
+}
+
+      }}
+,
+      {"typecho": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "typecho",
+  "version": "v1.0.0",
+  "appVersion": "nightly",
+  "description": "Typecho是一个轻量级的开源博客程序",
+  "icon": "https://images.budiuyun.net/i/2025/06/09/6846e11076903.png",
+  "maintainers": [
+    {
+      "name": "niehaoran",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "sources": [
+    "https://github.com/typecho/typecho"
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "网站建设"
+  }
+}
+
+      }}
+,
+      {"wordpress": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "wordpress",
+  "version": "v1.0.0",
+  "appVersion": "6.8.1",
+  "description": "WordPress是一个功能强大的内容管理系统，可以使用插件、小部件和主题",
+  "icon": "https://images.budiuyun.net/i/2025/06/09/6846911733f80.png",
+  "maintainers": [
+    {
+      "name": "niehaoran",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "网站建设"
+  }
+}
+
+      }}
+
+    ]
+,
+    "问卷系统": [
+      {"surveyking": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "surveyking",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "卷王 SurveyKing - 人人都可快速搭建的专业问卷考试系统，安装后需等待几分钟才能访问",
+  "icon": "https://images.budiuyun.net/i/2025/06/09/6846ed896739c.png",
+  "maintainers": [
+    {
+      "name": "niehaoran",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "问卷系统"
+  }
+}
+
+      }}
+
+    ]
   },
-  "count": 4
+  "count": 9
 }

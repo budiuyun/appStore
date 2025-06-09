@@ -1,30 +1,166 @@
 apiVersion: v1
 entries:
+  dashy:
+  - annotations:
+      budiu/app-category-zh: 仪表盘
+    apiVersion: v2
+    appVersion: latest
+    created: "2025-06-09T16:35:57.598951677Z"
+    description: Dashy是一个可自托管的个人仪表盘，包含状态检查、小部件、主题和图标包等功能
+    digest: 4a3bfab79ab3971083eae7ed05e85f06b49e3b102e59043ebd779a858b7a9359
+    icon: https://images.budiuyun.net/i/2025/06/09/6846e3a714f05.png
+    maintainers:
+    - email: 179866495@qq.com
+      name: niehaoran
+    name: dashy
+    urls:
+    - dashy-v1.0.0.tgz
+    version: v1.0.0
+  emlog:
+  - annotations:
+      budiu/app-category-zh: 网站建设
+    apiVersion: v2
+    appVersion: latest
+    created: "2025-06-09T16:35:57.599355956Z"
+    description: emlog是一款基于PHP和MySQL的功能强大的博客及CMS建站系统
+    digest: 61cd6796bb83c973e4e79848351227d0e63519e93844532e2a322498e5e8a0ae
+    icon: https://images.budiuyun.net/i/2025/06/09/6846aea30adbb.png
+    maintainers:
+    - email: 179866495@qq.com
+      name: niehaoran
+    name: emlog
+    sources:
+    - https://github.com/emlog/emlog
+    urls:
+    - emlog-v1.0.0.tgz
+    version: v1.0.0
+  hyperf:
+  - annotations:
+      budiu/app-category-zh: 开发工具
+    apiVersion: v2
+    appVersion: latest
+    created: "2025-06-09T16:35:57.599736009Z"
+    description: "\U0001F50B (PHP / Hyperf) 生产就绪的Docker镜像，带有自动Hyperf安装程序，需要下载，开始请等待几分钟"
+    digest: 85e0afa08658e71cde0f86d93c70c1251263a2f3eb2abf87b2f185c503a26386
+    icon: https://images.budiuyun.net/i/2025/06/09/6846f62f3a3f6.png
+    maintainers:
+    - email: 179866495@qq.com
+      name: niehaoran
+    name: hyperf
+    urls:
+    - hyperf-v1.0.0.tgz
+    version: v1.0.0
+  jupyterlab:
+  - annotations:
+      budiu/app-category-zh: 开发工具
+    apiVersion: v2
+    appVersion: latest
+    created: "2025-06-09T16:35:57.60016743Z"
+    description: 基于Alpine Linux的轻量级JupyterLab环境，支持Python开发和数据可视化
+    digest: cf65f25f936d9b4af3493d99d8b907ffb5fe6ae296d6a1aa35307dc1a19cecca
+    icon: https://images.budiuyun.net/i/2025/06/09/6846b63c66965.ico
+    maintainers:
+    - email: 179866495@qq.com
+      name: niehaoran
+    name: jupyterlab
+    sources:
+    - https://github.com/jupyter/docker-stacks
+    urls:
+    - jupyterlab-v1.0.0.tgz
+    version: v1.0.0
+  lsky-pro:
+  - annotations:
+      budiu/app-category-zh: 图床
+    apiVersion: v2
+    appVersion: 2.0.0
+    created: "2025-06-09T16:35:57.600513888Z"
+    description: 兰空图床 - 简单优雅的图片托管程序
+    digest: bb465682b7e8e1dff270bcba17d089c3a545a04f4a84e1ccd60ed7d915bd1171
+    icon: https://images.budiuyun.net/i/2025/06/09/684683bbc7a28.png
+    maintainers:
+    - email: 179866495@qq.com
+      name: niehaoran
+    name: lsky-pro
+    sources:
+    - https://github.com/lsky-org/lsky-pro
+    urls:
+    - lsky-pro-v1.0.0.tgz
+    version: v1.0.0
+  mariadb:
+  - annotations:
+      budiu/app-category-zh: 数据库
+    apiVersion: v2
+    appVersion: 11.7.2
+    created: "2025-06-09T16:35:57.600894151Z"
+    description: MariaDB Server是一个高性能开源关系型数据库，从MySQL分支而来
+    digest: 756868b2e453b5c5253cb3694a4db176c3e9f9aa136a5a39fecc5f42e28963be
+    icon: https://images.budiuyun.net/i/2025/06/09/6846fd5e91157.png
+    maintainers:
+    - email: 179866495@qq.com
+      name: niehaoran
+    name: mariadb
+    urls:
+    - mariadb-v1.0.0.tgz
+    version: v1.0.0
+  mblog:
+  - annotations:
+      budiu/app-category-zh: 网站建设
+    apiVersion: v2
+    appVersion: latest
+    created: "2025-06-09T16:35:57.601399314Z"
+    description: 一个支持自部署的前后端分离的微博系统，可单用户或多用户使用
+    digest: d80cb5a88d7dfb0334fcfd7f07a8c0020106d73ca3c3cffbdfa464db5a6acac2
+    icon: https://images.budiuyun.net/i/2025/06/09/6846eaea44af8.png
+    maintainers:
+    - email: 179866495@qq.com
+      name: niehaoran
+    name: mblog
+    urls:
+    - mblog-v1.0.0.tgz
+    version: v1.0.0
   minecraft:
   - annotations:
       budiu/app-category-zh: 游戏服务器
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-06-08T17:20:54.715519868Z"
+    created: "2025-06-09T16:35:57.601847859Z"
     description: Minecraft 是一款广受欢迎的沙盒游戏，玩家可以在其中探索、建造、合作与战斗。本 Chart 部署 Minecraft 服务器，为玩家提供多人在线游戏世界，并支持自定义插件、模组和配置，满足社区服务器和私人服务器需求。该服务器支持官方版和
       Forge、Paper 等模组版，为玩家提供丰富的游戏体验。
-    digest: add9792e57caf93f960cf1cf7d162a4d723c100bcada41a5092764c4e3906182
+    digest: 0950da64af70e7b076628364c83a2d438fdeb292f1f861237679a1916667951b
     icon: https://images.budiuyun.net/i/2025/06/06/6842e0ec61115.png
     maintainers:
     - email: 179866495@qq.com
       name: niehaoran
     name: minecraft
+    sources:
+    - https://github.com/itzg/docker-minecraft-server
     urls:
     - minecraft-v1.0.0.tgz
+    version: v1.0.0
+  mtab:
+  - annotations:
+      budiu/app-category-zh: 网站建设
+    apiVersion: v2
+    appVersion: latest
+    created: "2025-06-09T16:35:57.602182003Z"
+    description: 多端同步、美观易用的在线导航和书签工具
+    digest: 4229d9de367832b0b7b0a5e126dbf95bac521f3acd4a22626cecde5879fe9ff6
+    icon: https://images.budiuyun.net/i/2025/06/09/6846df60afbb3.png
+    maintainers:
+    - email: 179866495@qq.com
+      name: niehaoran
+    name: mtab
+    urls:
+    - mtab-v1.0.0.tgz
     version: v1.0.0
   mysql:
   - annotations:
       budiu/app-category-zh: 数据库
     apiVersion: v2
     appVersion: "8.0"
-    created: "2025-06-08T17:20:54.715917106Z"
+    created: "2025-06-09T16:35:57.602542217Z"
     description: 官方MySQL数据库服务
-    digest: d9b57f775d649f8b591dd5e73c4dc3545a4f40766cd524a82a26b25a99989ce5
+    digest: e34ae90a01f4243648c26d848da09b0b4a699e757bc3496139acad61d9f88a16
     icon: https://images.budiuyun.net/i/2025/05/13/6823652c31c05.png
     maintainers:
     - email: 179866495@qq.com
@@ -36,14 +172,64 @@ entries:
     urls:
     - mysql-v1.0.0.tgz
     version: v1.0.0
+  postgresql:
+  - annotations:
+      budiu/app-category-zh: 数据库
+    apiVersion: v2
+    appVersion: 16.2.0
+    created: "2025-06-09T16:35:57.602931918Z"
+    description: PostgreSQL是一个开源的对象关系型数据库，以可靠性和数据完整性著称
+    digest: 9d09c371d7f67ec0e60cedbcba88edd90ffe7c945b936ae3a71b99c4bc42747e
+    icon: https://images.budiuyun.net/i/2025/06/09/6846fe3f36848.png
+    maintainers:
+    - email: 179866495@qq.com
+      name: niehaoran
+    name: postgresql
+    urls:
+    - postgresql-v1.0.0.tgz
+    version: v1.0.0
+  surveyking:
+  - annotations:
+      budiu/app-category-zh: 问卷系统
+    apiVersion: v2
+    appVersion: latest
+    created: "2025-06-09T16:35:57.603334074Z"
+    description: 卷王 SurveyKing - 人人都可快速搭建的专业问卷考试系统，安装后需等待几分钟才能访问
+    digest: cd2131257db3f91f57aa548fc384f006d3b4811abe42d7e6d4533d25983c0662
+    icon: https://images.budiuyun.net/i/2025/06/09/6846ed896739c.png
+    maintainers:
+    - email: 179866495@qq.com
+      name: niehaoran
+    name: surveyking
+    urls:
+    - surveyking-v1.0.0.tgz
+    version: v1.0.0
+  typecho:
+  - annotations:
+      budiu/app-category-zh: 网站建设
+    apiVersion: v2
+    appVersion: nightly
+    created: "2025-06-09T16:35:57.603895185Z"
+    description: Typecho是一个轻量级的开源博客程序
+    digest: 4c6e8fbf098e7c7bb8c4f9421d6dfb162ac463aac3affb09694191f7b0a19918
+    icon: https://images.budiuyun.net/i/2025/06/09/6846e11076903.png
+    maintainers:
+    - email: 179866495@qq.com
+      name: niehaoran
+    name: typecho
+    sources:
+    - https://github.com/typecho/typecho
+    urls:
+    - typecho-v1.0.0.tgz
+    version: v1.0.0
   ubuntu-22-04:
   - annotations:
       budiu/app-category-zh: 操作系统
     apiVersion: v2
     appVersion: "22.04"
-    created: "2025-06-08T17:20:54.716388754Z"
+    created: "2025-06-09T16:35:57.604294284Z"
     description: 带有SSH服务的Ubuntu镜像，支持远程管理
-    digest: 060e50b497715719a1f2bba8b55fb89cea09346a23b943a1590ced156105439b
+    digest: 6ebadf4250a996c532dc604811f0ec9f6284c059d773c5bc81a0f45de684b7c8
     icon: https://images.budiuyun.net/i/2025/06/08/68446389305d0.png
     maintainers:
     - email: 179866495@qq.com
@@ -57,16 +243,34 @@ entries:
       budiu/app-category-zh: 监控工具
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-06-08T17:20:54.716754783Z"
+    created: "2025-06-09T16:35:57.604816881Z"
     description: '''Uptime Kuma 是一个开源、轻量的自托管监控工具，支持对网站、服务器和 API 的正常运行时间进行实时监控，帮助用户快速了解服务的运行状况。它提供友好的用户界面、支持多种通知方式（如邮件、Telegram、Slack   等）以及历史记录追踪功能。
       '''
-    digest: ed704fe72bed589b1d11f2ea05d4503cad0f661bc72184ee91e299649a77b633
+    digest: d491175d3d112c67ab3f371a954c3919eac832a7721be1c526113c1a34e430ea
     icon: https://images.budiuyun.net/i/2025/05/13/6823632a4fc3c.png
     maintainers:
     - email: 179866495@qq.com
       name: niehaoran
     name: uptime-kuma
+    sources:
+    - https://github.com/louislam/uptime-kuma
     urls:
     - uptime-kuma-v1.0.0.tgz
     version: v1.0.0
-generated: "2025-06-08T17:20:54.714780446Z"
+  wordpress:
+  - annotations:
+      budiu/app-category-zh: 网站建设
+    apiVersion: v2
+    appVersion: 6.8.1
+    created: "2025-06-09T16:35:57.605876999Z"
+    description: WordPress是一个功能强大的内容管理系统，可以使用插件、小部件和主题
+    digest: db737c6c01aae401ce33ca207ba229513d617622ba4a93249dfcf8673f12589e
+    icon: https://images.budiuyun.net/i/2025/06/09/6846911733f80.png
+    maintainers:
+    - email: 179866495@qq.com
+      name: niehaoran
+    name: wordpress
+    urls:
+    - wordpress-v1.0.0.tgz
+    version: v1.0.0
+generated: "2025-06-09T16:35:57.598474497Z"
