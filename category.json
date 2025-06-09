@@ -217,53 +217,6 @@
 
       }}
 ,
-      {"flarum": {
-        "v1.0.0": 
-{
-  "apiVersion": "v2",
-  "name": "flarum",
-  "version": "v1.0.0",
-  "appVersion": "latest",
-  "description": "Flarum是一个简约优雅的开源论坛软件",
-  "icon": "https://images.budiuyun.net/i/2025/06/09/6846dedc7b5ec.png",
-  "maintainers": [
-    {
-      "name": "niehaoran",
-      "email": "179866495@qq.com"
-    }
-  ],
-  "sources": [
-    "https://github.com/flarum/flarum"
-  ],
-  "annotations": {
-    "budiu/app-category-zh": "网站建设"
-  }
-}
-
-      }}
-,
-      {"maxkey": {
-        "v1.0.0": 
-{
-  "apiVersion": "v2",
-  "name": "maxkey",
-  "version": "v1.0.0",
-  "appVersion": "latest",
-  "description": "MaxKey单点登录认证系统，业界领先的IAM-IDaas身份管理和认证产品",
-  "icon": "https://images.budiuyun.net/i/2025/06/09/6846dcfb7ddf8.png",
-  "maintainers": [
-    {
-      "name": "niehaoran",
-      "email": "179866495@qq.com"
-    }
-  ],
-  "annotations": {
-    "budiu/app-category-zh": "网站建设"
-  }
-}
-
-      }}
-,
       {"mtab": {
         "v1.0.0": 
 {
