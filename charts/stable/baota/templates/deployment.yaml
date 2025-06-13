@@ -14,17 +14,8 @@ spec:
       labels:
         {{- include "baota.selectorLabels" . | nindent 8 }}
     spec:
-      securityContext:
-        runAsNonRoot: false
-        fsGroup: 1000
       containers:
         - name: {{ .Chart.Name }}
-          securityContext:
-            privileged: false
-            allowPrivilegeEscalation: false
-            capabilities:
-              drop:
-              - ALL
           image: "{{ .Values.image.imageRegistry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- if .Values.service.ports }}
