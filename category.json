@@ -1,5 +1,30 @@
 {
   "categories": {
+    "云存储": [
+      {"nextcloud": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "nextcloud",
+  "version": "v1.0.0",
+  "appVersion": "31.0.5",
+  "description": "Nextcloud 是一个安全的私有云存储和协作平台。",
+  "icon": "https://images.budiuyun.net/i/2025/06/13/684bb7a424156.png",
+  "maintainers": [
+    {
+      "name": "niehaoran",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "云存储"
+  }
+}
+
+      }}
+
+    ]
+,
     "仪表盘": [
       {"dashy": {
         "v1.0.0": 
@@ -138,28 +163,6 @@
   "appVersion": "11.7.2",
   "description": "MariaDB Server是一个高性能开源关系型数据库，从MySQL分支而来",
   "icon": "https://images.budiuyun.net/i/2025/06/09/6846fd5e91157.png",
-  "maintainers": [
-    {
-      "name": "niehaoran",
-      "email": "179866495@qq.com"
-    }
-  ],
-  "annotations": {
-    "budiu/app-category-zh": "数据库"
-  }
-}
-
-      }}
-,
-      {"mssql": {
-        "v1.0.0": 
-{
-  "apiVersion": "v2",
-  "name": "mssql",
-  "version": "v1.0.0",
-  "appVersion": "2025-latest",
-  "description": "Microsoft SQL Server 2025是一个功能强大的关系型数据库管理系统，支持向量搜索和AI功能",
-  "icon": "https://images.budiuyun.net/i/2025/06/09/6846ffffafe36.png",
   "maintainers": [
     {
       "name": "niehaoran",
@@ -423,5 +426,5 @@
 
     ]
   },
-  "count": 9
+  "count": 10
 }
