@@ -58,6 +58,10 @@
 - 安全管理：防火墙、SSH安全设置
 - 系统监控：CPU、内存、磁盘等资源监控
 
-通过面板（8888端口）可以轻松管理服务器，无需命令行操作，适合各类用户使用。
+现在，您可以在浏览器访问默认地址http://您的ip地址:8888/btpanel 上的宝塔面板。
+默认用户：btpanel
+默认密码：btpaneldocker
+容器默认SSH密码：btpaneldocker
 
 项目主页：[https://www.bt.cn/](https://www.bt.cn/)
+
