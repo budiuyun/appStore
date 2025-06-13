@@ -9,4 +9,4 @@ maintainers:
     email: 179866495@qq.com
 source: https://hub.docker.com/r/johngong/baidunetdisk
 annotations:
-  budiu/app-category-zh: 网盘工具
+  budiu/app-category-zh: 存储
