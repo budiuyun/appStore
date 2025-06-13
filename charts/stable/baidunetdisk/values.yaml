@@ -30,7 +30,6 @@ persistence:
   storageClass: local
   mounts:
     - /config
-    - /config/baidunetdiskdownload
 env:
   env1:
     name: VNC_PASSWORD
