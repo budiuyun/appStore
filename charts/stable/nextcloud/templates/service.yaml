@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "mssql.fullname" . }}
-  labels: {{- include "mssql.labels" . | nindent 4 }}
+  name: {{ include "nextcloud.fullname" . }}
+  labels: {{- include "nextcloud.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -12,4 +12,4 @@ spec:
       protocol: TCP
       name: {{ $name }}
     {{- end }}
-  selector: {{- include "mssql.selectorLabels" . | nindent 4 }}
+  selector: {{- include "nextcloud.selectorLabels" . | nindent 4 }}

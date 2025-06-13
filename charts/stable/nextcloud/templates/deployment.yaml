@@ -1,19 +1,18 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
-  name: {{ include "mssql.fullname" . }}
+  name: {{ include "nextcloud.fullname" . }}
   labels:
-    {{- include "mssql.labels" . | nindent 4 }}
+    {{- include "nextcloud.labels" . | nindent 4 }}
 spec:
-  serviceName: {{ include "mssql.fullname" . }}
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "mssql.selectorLabels" . | nindent 6 }}
+      {{- include "nextcloud.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "mssql.selectorLabels" . | nindent 8 }}
+        {{- include "nextcloud.selectorLabels" . | nindent 8 }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
@@ -47,5 +46,5 @@ spec:
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: {{ include "mssql.fullname" . }}
+            claimName: {{ include "nextcloud.fullname" . }}
       {{- end }}

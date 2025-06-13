@@ -1,0 +1,11 @@
+apiVersion: v2
+name: nextcloud
+version: v1.0.0
+appVersion: 31.0.5
+description: Nextcloud 是一个安全的私有云存储和协作平台。
+icon: https://images.budiuyun.net/i/2025/06/13/684bb7a424156.png
+maintainers:
+  - name: niehaoran
+    email: 179866495@qq.com
+annotations:
+  budiu/app-category-zh: 云存储

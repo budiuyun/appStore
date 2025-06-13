@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/schema#",
   "type": "object",
-  "title": "mssql Helm Chart 配置",
+  "title": "nextcloud Helm Chart 配置",
   "required": [
     "workloadType",
     "replicaCount",
@@ -19,7 +19,7 @@
         "Deployment",
         "StatefulSet"
       ],
-      "default": "StatefulSet"
+      "default": "Deployment"
     },
     "replicaCount": {
       "type": "integer",
@@ -288,8 +288,8 @@
       "properties": {
         "env1": {
           "type": "object",
-          "title": "接受EULA",
-          "description": "接受最终用户许可协议",
+          "title": "数据库名",
+          "description": "MySQL/MariaDB数据库名",
           "required": [
             "name",
             "value"
@@ -299,32 +299,32 @@
               "type": "string",
               "title": "变量名称",
               "description": "环境变量的名称",
-              "default": "ACCEPT_EULA"
+              "default": "MYSQL_DATABASE"
             },
             "value": {
               "type": "string",
               "title": "变量值",
               "description": "环境变量的值",
-              "default": "Y"
+              "default": "nextcloud"
             },
             "title": {
               "type": "string",
               "title": "中文名称",
               "description": "环境变量的中文名称",
-              "default": "接受EULA"
+              "default": "数据库名"
             },
             "description": {
               "type": "string",
               "title": "描述",
               "description": "环境变量的详细描述",
-              "default": "接受最终用户许可协议"
+              "default": "MySQL/MariaDB数据库名"
             }
           }
         },
         "env2": {
           "type": "object",
-          "title": "SA密码",
-          "description": "SQL Server系统管理员(SA)密码",
+          "title": "数据库用户名",
+          "description": "MySQL/MariaDB用户名",
           "required": [
             "name",
             "value"
@@ -334,7 +334,42 @@
               "type": "string",
               "title": "变量名称",
               "description": "环境变量的名称",
-              "default": "MSSQL_SA_PASSWORD"
+              "default": "MYSQL_USER"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "nextcloud"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "数据库用户名"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "MySQL/MariaDB用户名"
+            }
+          }
+        },
+        "env3": {
+          "type": "object",
+          "title": "数据库密码",
+          "description": "MySQL/MariaDB用户密码",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "MYSQL_PASSWORD"
             },
             "value": {
               "type": "string",
@@ -346,55 +381,20 @@
               "type": "string",
               "title": "中文名称",
               "description": "环境变量的中文名称",
-              "default": "SA密码"
+              "default": "数据库密码"
             },
             "description": {
               "type": "string",
               "title": "描述",
               "description": "环境变量的详细描述",
-              "default": "SQL Server系统管理员(SA)密码"
-            }
-          }
-        },
-        "env3": {
-          "type": "object",
-          "title": "SQL Server版本",
-          "description": "SQL Server版本(Developer, Express, Standard, Enterprise, Web)",
-          "required": [
-            "name",
-            "value"
-          ],
-          "properties": {
-            "name": {
-              "type": "string",
-              "title": "变量名称",
-              "description": "环境变量的名称",
-              "default": "MSSQL_PID"
-            },
-            "value": {
-              "type": "string",
-              "title": "变量值",
-              "description": "环境变量的值",
-              "default": "Developer"
-            },
-            "title": {
-              "type": "string",
-              "title": "中文名称",
-              "description": "环境变量的中文名称",
-              "default": "SQL Server版本"
-            },
-            "description": {
-              "type": "string",
-              "title": "描述",
-              "description": "环境变量的详细描述",
-              "default": "SQL Server版本(Developer, Express, Standard, Enterprise, Web)"
+              "default": "MySQL/MariaDB用户密码"
             }
           }
         },
         "env4": {
           "type": "object",
-          "title": "时区",
-          "description": "时区设置",
+          "title": "数据库主机",
+          "description": "MySQL/MariaDB主机地址",
           "required": [
             "name",
             "value"
@@ -404,25 +404,25 @@
               "type": "string",
               "title": "变量名称",
               "description": "环境变量的名称",
-              "default": "TZ"
+              "default": "MYSQL_HOST"
             },
             "value": {
               "type": "string",
               "title": "变量值",
               "description": "环境变量的值",
-              "default": "Asia/Shanghai"
+              "default": ""
             },
             "title": {
               "type": "string",
               "title": "中文名称",
               "description": "环境变量的中文名称",
-              "default": "时区"
+              "default": "数据库主机"
             },
             "description": {
               "type": "string",
               "title": "描述",
               "description": "环境变量的详细描述",
-              "default": "时区设置"
+              "default": "MySQL/MariaDB主机地址"
             }
           }
         }

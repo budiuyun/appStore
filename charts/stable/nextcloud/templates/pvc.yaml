@@ -2,9 +2,9 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "mssql.fullname" . }}
+  name: {{ include "nextcloud.fullname" . }}
   labels:
-    {{- include "mssql.labels" . | nindent 4 }}
+    {{- include "nextcloud.labels" . | nindent 4 }}
 spec:
   accessModes:
     - {{ .Values.persistence.accessMode }}
