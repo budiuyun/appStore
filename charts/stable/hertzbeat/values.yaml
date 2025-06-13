@@ -1,0 +1,45 @@
+workloadType: Deployment
+replicaCount: 1
+image:
+  imageRegistry: docker.1ms.run
+  repository: apache/hertzbeat
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  ports:
+    web-ui: 1157
+    cluster: 1158
+networkLimits:
+  enabled: true
+  egress: 1M
+  ingress: 1M
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1024Mi
+    ephemeral-storage: 10Gi
+  requests:
+    cpu: 200m
+    memory: 256Mi
+    ephemeral-storage: 5Gi
+persistence:
+  enabled: true
+  size: 2Gi
+  accessMode: ReadWriteOnce
+  storageClass: local
+  mounts:
+    - /opt/hertzbeat/data
+    - /opt/hertzbeat/logs
+env:
+  env1:
+    name: LANG
+    value: en_US.UTF-8
+    description: 设置系统语言，默认 en_US.UTF-8
+    title: 系统语言
+  env2:
+    name: TZ
+    value: Asia/Shanghai
+    description: 设置系统时区，默认 Asia/Shanghai
+    title: 时区
+icon: https://images.budiuyun.net/i/2025/06/13/684c48ba34797.png

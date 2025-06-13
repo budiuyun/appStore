@@ -1,0 +1,43 @@
+workloadType: Deployment
+replicaCount: 1
+image:
+  imageRegistry: docker.1ms.run
+  repository: whyour/qinglong
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  ports:
+    web: 5700
+networkLimits:
+  enabled: true
+  egress: 1M
+  ingress: 1M
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+    ephemeral-storage: 10Gi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+    ephemeral-storage: 5Gi
+persistence:
+  enabled: true
+  size: 1Gi
+  accessMode: ReadWriteOnce
+  storageClass: local
+  mounts:
+    - /ql/data
+env:
+  env1:
+    name: QlBaseUrl
+    value: /
+    description: 自定义WEB访问路径，默认 /
+    title: WEB访问路径
+  env2:
+    name: QlPort
+    value: '5700'
+    description: 自定义WEB服务端口，默认 5700
+    title: WEB端口
+icon: https://images.budiuyun.net/i/2025/06/13/684c4710118d2.png

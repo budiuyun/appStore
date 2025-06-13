@@ -1,0 +1,14 @@
+apiVersion: v2
+name: npmplus
+version: v1.0.0
+appVersion: latest
+description: >-
+  NPMplus 是 nginx-proxy-manager 的改进分支，提供更易用的反向代理和 TLS 证书管理，支持
+  HTTP/3、CrowdSec、ModSecurity、GoAccess、负载均衡等高级功能，适合家庭和企业用户轻松实现网站转发与安全防护。
+icon: https://images.budiuyun.net/i/2025/06/13/684c49cfd97f4.png
+maintainers:
+  - name: niehaoran
+    email: 179866495@qq.com
+source: https://hub.docker.com/r/zoeyvid/npmplus
+annotations:
+  budiu/app-category-zh: 网络工具

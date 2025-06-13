@@ -1,0 +1,14 @@
+apiVersion: v2
+name: phpmyadmin
+version: v5.2.2
+appVersion: 5.2.2
+description: >-
+  phpMyAdmin 是一款流行的基于 Web 的 MySQL 和 MariaDB
+  数据库管理工具，支持数据库、表、用户、权限等多种操作，界面友好，易于使用。
+icon: https://images.budiuyun.net/i/2025/06/14/684c4bd043f5e.png
+source: https://hub.docker.com/r/phpmyadmin/phpmyadmin
+maintainers:
+  - name: phpMyAdmin
+    email: support@phpmyadmin.net
+annotations:
+  budiu/app-category-zh: 数据库管理

@@ -1,0 +1,14 @@
+apiVersion: v2
+name: hertzbeat
+version: v1.0.0
+appVersion: latest
+description: >-
+  Apache HertzBeat（incubating）是一款开源、易用、无代理的实时监控系统，支持高性能集群、Prometheus
+  兼容、自定义监控和状态页搭建，适用于网站、数据库、云原生、网络等多场景。
+icon: https://images.budiuyun.net/i/2025/06/13/684c48ba34797.png
+maintainers:
+  - name: The Apache Software Foundation
+    email: dev@hertzbeat.apache.org
+source: https://hub.docker.com/r/apache/hertzbeat
+annotations:
+  budiu/app-category-zh: 监控运维

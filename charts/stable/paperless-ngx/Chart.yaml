@@ -1,0 +1,12 @@
+apiVersion: v2
+name: paperless-ngx
+version: v1.0.0
+appVersion: latest
+description: Paperless-ngx 是一款开源文档管理系统，支持扫描件归档、全文检索、标签分类、元数据管理等功能，适合个人和企业实现无纸化办公。
+icon: https://images.budiuyun.net/i/2025/06/14/684c4de430dd5.png
+maintainers:
+  - name: niehaoran
+    email: 179866495@qq.com
+source: https://hub.docker.com/r/linuxserver/paperless-ngx
+annotations:
+  budiu/app-category-zh: 文档管理

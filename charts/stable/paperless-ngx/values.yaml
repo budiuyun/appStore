@@ -1,0 +1,54 @@
+workloadType: Deployment
+replicaCount: 1
+image:
+  imageRegistry: docker.1ms.run
+  repository: linuxserver/paperless-ngx
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  ports:
+    web: 8000
+networkLimits:
+  enabled: true
+  egress: 1M
+  ingress: 1M
+resources:
+  limits:
+    cpu: 500m
+    memory: 1024Mi
+    ephemeral-storage: 10Gi
+  requests:
+    cpu: 100m
+    memory: 256Mi
+    ephemeral-storage: 5Gi
+persistence:
+  enabled: true
+  size: 5Gi
+  accessMode: ReadWriteOnce
+  storageClass: local
+  mounts:
+    - /config
+    - /data
+env:
+  env1:
+    name: PUID
+    value: '1000'
+    description: 容器内运行用户的UID
+    title: 用户UID
+  env2:
+    name: PGID
+    value: '1000'
+    description: 容器内运行用户的GID
+    title: 用户GID
+  env3:
+    name: TZ
+    value: Asia/Shanghai
+    description: 设置容器时区
+    title: 时区
+  env4:
+    name: REDIS_URL
+    value: ''
+    description: 指定外部Redis实例地址，留空则使用内置Redis
+    title: 外部Redis地址
+icon: https://images.budiuyun.net/i/2025/06/14/684c4de430dd5.png

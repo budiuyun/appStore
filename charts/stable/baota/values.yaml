@@ -1,0 +1,46 @@
+workloadType: Deployment
+replicaCount: 1
+image:
+  imageRegistry: docker.1ms.run
+  repository: btpanel/baota
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  ports:
+    panel: 8888
+    ssh: 22
+    http: 80
+    https: 443
+    phpmyadmin: 888
+    ftp: 21
+    mysql: 3306
+networkLimits:
+  enabled: true
+  egress: 1M
+  ingress: 1M
+resources:
+  limits:
+    cpu: 500m
+    memory: 1024Mi
+    ephemeral-storage: 10Gi
+  requests:
+    cpu: 100m
+    memory: 256Mi
+    ephemeral-storage: 5Gi
+persistence:
+  enabled: true
+  size: 10Gi
+  accessMode: ReadWriteOnce
+  storageClass: local
+  mounts:
+    - /www/wwwroot
+    - /www/server/data
+    - /www/server/panel/vhost
+env:
+  env1:
+    name: TZ
+    value: Asia/Shanghai
+    description: 设置容器时区
+    title: 时区
+icon: https://images.budiuyun.net/i/2025/06/14/684c510c2ba85.png

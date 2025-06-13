@@ -1,0 +1,14 @@
+apiVersion: v2
+name: qinglong
+version: v1.0.0
+appVersion: latest
+description: >-
+  Qinglong（青龙面板）是一款支持 Python3、JavaScript、Shell、Typescript
+  等多种脚本语言的定时任务管理平台，支持在线管理脚本、环境变量、配置文件，支持日志查看、系统通知、暗黑模式及移动端操作。
+icon: https://images.budiuyun.net/i/2025/06/13/684c4710118d2.png
+source: https://hub.docker.com/r/whyour/qinglong
+maintainers:
+  - name: niehaoran
+    email: 179866495@qq.com
+annotations:
+  budiu/app-category-zh: 运维工具

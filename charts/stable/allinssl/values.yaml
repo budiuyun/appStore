@@ -1,0 +1,48 @@
+workloadType: Deployment
+replicaCount: 1
+image:
+  imageRegistry: docker.1ms.run
+  repository: allinssl/allinssl
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  ports:
+    web: 8888
+networkLimits:
+  enabled: true
+  egress: 1M
+  ingress: 1M
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+    ephemeral-storage: 10Gi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+    ephemeral-storage: 5Gi
+persistence:
+  enabled: true
+  size: 1Gi
+  accessMode: ReadWriteOnce
+  storageClass: local
+  mounts:
+    - /www/allinssl/data
+env:
+  env1:
+    name: ALLINSSL_USER
+    value: allinssl
+    description: WEB登录用户名，默认 allinssl
+    title: 管理后台用户名
+  env2:
+    name: ALLINSSL_PWD
+    value: allinssldocker
+    description: WEB登录密码，默认 allinssldocker
+    title: 管理后台密码
+  env3:
+    name: ALLINSSL_URL
+    value: allinssl
+    description: 自定义WEB访问路径，默认 allinssl
+    title: WEB访问路径
+icon: https://images.budiuyun.net/i/2025/06/13/684c450bba5e9.png
