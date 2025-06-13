@@ -14,6 +14,31 @@ spec:
       labels:
         {{- include "kodbox.selectorLabels" . | nindent 8 }}
     spec:
+      {{- if and .Values.persistence.enabled .Values.persistence.mounts }}
+      initContainers:
+        - name: init-volume
+          image: "{{ .Values.image.imageRegistry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - /bin/sh
+            - -c
+            - |
+              for path in {{- range $index, $path := .Values.persistence.mounts }} {{ $path }}{{- end }}; do
+                if [ ! -d "/data${path}" ] || [ -z "$(ls -A /data${path} 2>/dev/null)" ]; then
+                  echo "Initializing data for ${path}"
+                  mkdir -p /data${path}
+                  if [ -d "${path}" ]; then
+                    cp -rp ${path}/* /data${path}/ 2>/dev/null || true
+                    cp -rp ${path}/.[^.]* /data${path}/ 2>/dev/null || true
+                  fi
+                else
+                  echo "Directory /data${path} already initialized, skipping"
+                fi
+              done
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.imageRegistry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"

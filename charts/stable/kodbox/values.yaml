@@ -29,7 +29,6 @@ persistence:
   storageClass: local
   mounts:
     - /var/www/html
-    - /etc/nginx/ssl
 env:
   env1:
     name: MYSQL_DATABASE
