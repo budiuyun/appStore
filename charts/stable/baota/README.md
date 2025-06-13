@@ -63,5 +63,7 @@
 默认密码：btpaneldocker
 容器默认SSH密码：btpaneldocker
 
+注意：宝塔docker监控到的数据有误，请以设置配额实际为准
+
 项目主页：[https://www.bt.cn/](https://www.bt.cn/)
 
