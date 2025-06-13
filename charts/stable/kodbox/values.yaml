@@ -1,0 +1,59 @@
+workloadType: Deployment
+replicaCount: 1
+image:
+  imageRegistry: docker.1ms.run
+  repository: kodcloud/kodbox
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  ports:
+    http: 80
+networkLimits:
+  enabled: true
+  egress: 2M
+  ingress: 2M
+resources:
+  limits:
+    cpu: 500m
+    memory: 1Gi
+    ephemeral-storage: 10Gi
+  requests:
+    cpu: 200m
+    memory: 512Mi
+    ephemeral-storage: 5Gi
+persistence:
+  enabled: true
+  size: 10Gi
+  accessMode: ReadWriteOnce
+  storageClass: local
+  mounts:
+    - /var/www/html
+    - /etc/nginx/ssl
+env:
+  env1:
+    name: MYSQL_DATABASE
+    value: kodbox
+    description: MySQL/MariaDB数据库名
+    title: 数据库名
+  env2:
+    name: MYSQL_USER
+    value: kodbox
+    description: MySQL/MariaDB用户名
+    title: 数据库用户
+  env3:
+    name: MYSQL_PASSWORD
+    value: ''
+    description: MySQL/MariaDB用户密码
+    title: 数据库密码
+  env4:
+    name: MYSQL_HOST
+    value: ''
+    description: MySQL/MariaDB主机地址
+    title: 数据库主机
+  env5:
+    name: MYSQL_PORT
+    value: '3306'
+    description: MySQL/MariaDB端口，默认3306
+    title: 数据库端口
+icon: https://images.budiuyun.net/i/2025/06/13/684bbdde1557d.png

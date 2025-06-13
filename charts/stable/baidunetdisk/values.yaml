@@ -1,0 +1,55 @@
+workloadType: Deployment
+replicaCount: 1
+image:
+  imageRegistry: docker.1ms.run
+  repository: johngong/baidunetdisk
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  ports:
+    web: 5800
+    vnc: 5900
+networkLimits:
+  enabled: true
+  egress: 2M
+  ingress: 2M
+resources:
+  limits:
+    cpu: 500m
+    memory: 1Gi
+    ephemeral-storage: 10Gi
+  requests:
+    cpu: 200m
+    memory: 512Mi
+    ephemeral-storage: 5Gi
+persistence:
+  enabled: true
+  size: 10Gi
+  accessMode: ReadWriteOnce
+  storageClass: local
+  mounts:
+    - /config
+    - /config/baidunetdiskdownload
+env:
+  env1:
+    name: VNC_PASSWORD
+    value: ''
+    description: VNC远程访问密码
+    title: VNC密码
+  env2:
+    name: USER_ID
+    value: '1000'
+    description: 容器内运行进程的用户UID
+    title: 用户UID
+  env3:
+    name: GROUP_ID
+    value: '1000'
+    description: 容器内运行进程的用户GID
+    title: 用户GID
+  env4:
+    name: NOVNC_LANGUAGE
+    value: zh_Hans
+    description: noVNC界面语言（zh_Hans|en）
+    title: noVNC语言
+icon: https://images.budiuyun.net/i/2025/06/13/684bbf3800a30.png

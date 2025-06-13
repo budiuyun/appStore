@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "cloudreve.fullname" . }}
+  labels: {{- include "cloudreve.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    {{- range $name, $port := .Values.service.ports }}
+    - port: {{ $port }}
+      targetPort: {{ $port }}
+      protocol: TCP
+      name: {{ $name }}
+    {{- end }}
+  selector: {{- include "cloudreve.selectorLabels" . | nindent 4 }}

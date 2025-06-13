@@ -1,0 +1,48 @@
+workloadType: Deployment
+replicaCount: 1
+image:
+  imageRegistry: docker.1ms.run
+  repository: xhofe/alist
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  ports:
+    http: 5244
+networkLimits:
+  enabled: true
+  egress: 2M
+  ingress: 2M
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+    ephemeral-storage: 10Gi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+    ephemeral-storage: 5Gi
+persistence:
+  enabled: true
+  size: 1Gi
+  accessMode: ReadWriteOnce
+  storageClass: local
+  mounts:
+    - /opt/alist/data
+env:
+  env1:
+    name: PUID
+    value: '0'
+    description: 容器内运行进程的用户UID
+    title: 运行用户UID
+  env2:
+    name: PGID
+    value: '0'
+    description: 容器内运行进程的用户GID
+    title: 运行用户GID
+  env3:
+    name: UMASK
+    value: '022'
+    description: 新建文件的权限掩码
+    title: 文件权限掩码
+icon: https://images.budiuyun.net/i/2025/06/13/684bbcccab631.png

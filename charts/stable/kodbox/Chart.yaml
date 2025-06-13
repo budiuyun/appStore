@@ -1,0 +1,12 @@
+apiVersion: v2
+name: kodbox
+version: v1.0.0
+appVersion: latest
+description: kodbox（可道云）是一款支持多种云存储和本地存储的企业级私有云盘系统，支持多用户、文件管理、在线预览等丰富功能。
+icon: https://images.budiuyun.net/i/2025/06/13/684bbdde1557d.png
+maintainers:
+  - name: niehaoran
+    email: 179866495@qq.com
+source: https://github.com/kalcaddle/kodbox
+annotations:
+  budiu/app-category-zh: 文件管理
