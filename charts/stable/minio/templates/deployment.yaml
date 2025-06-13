@@ -18,6 +18,11 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.imageRegistry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - server
+            - /data
+            - --console-address
+            - ":9001"
           {{- if .Values.service.ports }}
           ports:
             {{- range $name, $port := .Values.service.ports }}
