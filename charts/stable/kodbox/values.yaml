@@ -27,8 +27,6 @@ persistence:
   size: 10Gi
   accessMode: ReadWriteOnce
   storageClass: local
-  mounts:
-    - /var/www/html
 env:
   env1:
     name: MYSQL_DATABASE
