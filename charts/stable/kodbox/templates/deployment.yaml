@@ -35,6 +35,13 @@ spec:
                   echo "Directory /data${path} already initialized, skipping"
                 fi
               done
+          resources:
+            limits:
+              cpu: "100m"
+              memory: "100Mi"
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
           volumeMounts:
             - name: data
               mountPath: /data
