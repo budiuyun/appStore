@@ -170,6 +170,31 @@
 
     ]
 ,
+    "安全工具": [
+      {"allinssl": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "allinssl",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "开源免费的 SSL 证书自动化管理平台，集证书申请、管理、部署和监控于一体，支持多平台自动化部署和站点证书监控。请通过 ip地址＋端口/allinssl 访问。",
+  "icon": "https://images.budiuyun.net/i/2025/06/13/684c450bba5e9.png",
+  "maintainers": [
+    {
+      "name": "niehaoran",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "安全工具"
+  }
+}
+
+      }}
+
+    ]
+,
     "开发工具": [
       {"hyperf": {
         "v1.0.0": 
@@ -315,6 +340,133 @@
 }
 
       }}
+,
+      {"redis": {
+        "v8.0.2": 
+{
+  "apiVersion": "v2",
+  "name": "redis",
+  "version": "v8.0.2",
+  "appVersion": "8.0.2",
+  "description": "Redis 是全球最快的数据平台，广泛用于缓存、向量搜索和 NoSQL 数据库，支持多种持久化和高可用部署方案，适合各种高性能应用场景。",
+  "icon": "https://images.budiuyun.net/i/2025/06/14/684c4f47776d5.png",
+  "source": "https://hub.docker.com/r/redis/redis",
+  "maintainers": [
+    {
+      "name": "niehaoran",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "数据库"
+  }
+}
+
+      }}
+
+    ]
+,
+    "数据库管理": [
+      {"phpmyadmin": {
+        "v5.2.2": 
+{
+  "apiVersion": "v2",
+  "name": "phpmyadmin",
+  "version": "v5.2.2",
+  "appVersion": "5.2.2",
+  "description": "phpMyAdmin 是一款流行的基于 Web 的 MySQL 和 MariaDB 数据库管理工具，支持数据库、表、用户、权限等多种操作，界面友好，易于使用。",
+  "icon": "https://images.budiuyun.net/i/2025/06/14/684c4bd043f5e.png",
+  "source": "https://hub.docker.com/r/phpmyadmin/phpmyadmin",
+  "maintainers": [
+    {
+      "name": "phpMyAdmin",
+      "email": "support@phpmyadmin.net"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "数据库管理"
+  }
+}
+
+      }}
+
+    ]
+,
+    "文档管理": [
+      {"paperless-ngx": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "paperless-ngx",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "Paperless-ngx 是一款开源文档管理系统，支持扫描件归档、全文检索、标签分类、元数据管理等功能，适合个人和企业实现无纸化办公。",
+  "icon": "https://images.budiuyun.net/i/2025/06/14/684c4de430dd5.png",
+  "maintainers": [
+    {
+      "name": "niehaoran",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "source": "https://hub.docker.com/r/linuxserver/paperless-ngx",
+  "annotations": {
+    "budiu/app-category-zh": "文档管理"
+  }
+}
+
+      }}
+
+    ]
+,
+    "智能家居": [
+      {"home-assistant": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "home-assistant",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "Home Assistant 是一款开源的本地化智能家居自动化平台，注重隐私和本地控制，拥有丰富的集成和强大的自动化能力，适合树莓派或本地服务器部署。",
+  "icon": "https://images.budiuyun.net/i/2025/06/14/684c4d6af303c.png",
+  "maintainers": [
+    {
+      "name": "homeassistant",
+      "email": "support@home-assistant.io"
+    }
+  ],
+  "source": "https://hub.docker.com/r/homeassistant/home-assistant",
+  "annotations": {
+    "budiu/app-category-zh": "智能家居"
+  }
+}
+
+      }}
+
+    ]
+,
+    "消息队列": [
+      {"rabbitmq": {
+        "v4.1.1": 
+{
+  "apiVersion": "v2",
+  "name": "rabbitmq",
+  "version": "v4.1.1",
+  "appVersion": "4.1.1",
+  "description": "RabbitMQ 是一款开源的多协议消息中间件，支持 AMQP、MQTT、STOMP 等协议，广泛应用于消息队列、异步通信和微服务架构中，支持高可用和集群部署。",
+  "icon": "https://images.budiuyun.net/i/2025/06/14/684c505914e99.png",
+  "source": "https://hub.docker.com/r/rabbitmq/rabbitmq",
+  "maintainers": [
+    {
+      "name": "niehaoran",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "消息队列"
+  }
+}
+
+      }}
 
     ]
 ,
@@ -367,6 +519,32 @@
   ],
   "annotations": {
     "budiu/app-category-zh": "监控工具"
+  }
+}
+
+      }}
+
+    ]
+,
+    "监控运维": [
+      {"hertzbeat": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "hertzbeat",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "Apache HertzBeat（incubating）是一款开源、易用、无代理的实时监控系统，支持高性能集群、Prometheus 兼容、自定义监控和状态页搭建，适用于网站、数据库、云原生、网络等多场景。开始需等待几分钟",
+  "icon": "https://images.budiuyun.net/i/2025/06/13/684c48ba34797.png",
+  "maintainers": [
+    {
+      "name": "The Apache Software Foundation",
+      "email": "dev@hertzbeat.apache.org"
+    }
+  ],
+  "source": "https://hub.docker.com/r/apache/hertzbeat",
+  "annotations": {
+    "budiu/app-category-zh": "监控运维"
   }
 }
 
@@ -493,6 +671,136 @@
 
     ]
 ,
+    "网络工具": [
+      {"npmplus": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "npmplus",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "NPMplus 是 nginx-proxy-manager 的改进分支，提供更易用的反向代理和 TLS 证书管理，支持 HTTP/3、CrowdSec、ModSecurity、GoAccess、负载均衡等高级功能，适合家庭和企业用户轻松实现网站转发与安全防护。",
+  "icon": "https://images.budiuyun.net/i/2025/06/13/684c49cfd97f4.png",
+  "maintainers": [
+    {
+      "name": "niehaoran",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "source": "https://hub.docker.com/r/zoeyvid/npmplus",
+  "annotations": {
+    "budiu/app-category-zh": "网络工具"
+  }
+}
+
+      }}
+
+    ]
+,
+    "运维工具": [
+      {"qinglong": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "qinglong",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "Qinglong（青龙面板）是一款支持 Python3、JavaScript、Shell、Typescript 等多种脚本语言的定时任务管理平台，支持在线管理脚本、环境变量、配置文件，支持日志查看、系统通知、暗黑模式及移动端操作。",
+  "icon": "https://images.budiuyun.net/i/2025/06/13/684c4710118d2.png",
+  "source": "https://hub.docker.com/r/whyour/qinglong",
+  "maintainers": [
+    {
+      "name": "niehaoran",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "运维工具"
+  }
+}
+
+      }}
+
+    ]
+,
+    "运维管理": [
+      {"baota": {
+        "v9.3.0": 
+{
+  "apiVersion": "v2",
+  "name": "baota",
+  "version": "v9.3.0",
+  "appVersion": "9.3.0",
+  "description": "宝塔Linux面板是一款提升运维效率的服务器管理软件，支持一键LAMP/LNMP/集群/监控/网站/FTP/数据库/JAVA等100多项服务器管理功能，界面友好，安全可靠，适合个人和企业服务器运维。",
+  "icon": "https://images.budiuyun.net/i/2025/06/14/684c510c2ba85.png",
+  "maintainers": [
+    {
+      "name": "niehaoran",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "source": "https://hub.docker.com/r/btpanel/baota",
+  "annotations": {
+    "budiu/app-category-zh": "运维管理"
+  }
+}
+
+      }}
+
+    ]
+,
+    "远程运维": [
+      {"rustdesk": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "rustdesk",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "RustDesk 是一款全功能开源远程桌面控制软件，支持自托管和安全访问，配置简单，适合个人和企业远程运维、桌面协作等场景。",
+  "icon": "https://images.budiuyun.net/i/2025/06/14/684c4b2193d4c.png",
+  "source": "https://hub.docker.com/r/rustdesk/rustdesk-server",
+  "maintainers": [
+    {
+      "name": "niehaoran",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "远程运维"
+  }
+}
+
+      }}
+
+    ]
+,
+    "镜像仓库": [
+      {"registry": {
+        "v3.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "registry",
+  "version": "v3.0.0",
+  "appVersion": "3.0.0",
+  "description": "Docker Registry 是 OCI 分发规范的实现，用于本地或私有云环境下存储和分发容器镜像和制品，支持多架构和高可用部署。",
+  "icon": "https://images.budiuyun.net/i/2025/06/14/684c5176a97a4.png",
+  "source": "https://hub.docker.com/r/registry/registry",
+  "maintainers": [
+    {
+      "name": "niehaoran",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "镜像仓库"
+  }
+}
+
+      }}
+
+    ]
+,
     "问卷系统": [
       {"surveyking": {
         "v1.0.0": 
@@ -518,5 +826,5 @@
 
     ]
   },
-  "count": 10
+  "count": 21
 }
