@@ -200,7 +200,7 @@
         "v1.0.0": 
 {
   "apiVersion": "v2",
-  "name": "github-mcp-server",
+  "name": "codeserver",
   "version": "v1.0.0",
   "appVersion": "latest",
   "description": "GitHub MCP Server 官方镜像，提供与 GitHub API 的无缝集成，支持高级自动化和开发者工具交互，适用于自动化开发、CI/CD、代码管理等场景。",
