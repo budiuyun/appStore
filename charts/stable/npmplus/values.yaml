@@ -10,7 +10,6 @@ service:
   ports:
     admin: 81
     http: 80
-    https: 443
     goaccess: 91
 networkLimits:
   enabled: true
