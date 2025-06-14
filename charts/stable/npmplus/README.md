@@ -59,9 +59,3 @@ NPMplus 是 nginx-proxy-manager 的增强版本，提供了更加易用和功能
 通过管理界面（81端口）可以轻松配置和管理所有功能，适合个人和企业用户在内网或公网环境中使用，大幅简化网站和应用的反向代理配置工作。
 
 项目主页：[https://hub.docker.com/r/zoeyvid/npmplus](https://hub.docker.com/r/zoeyvid/npmplus)
-
-## 安装方法
-
-```bash
-helm install my-release ./npmplus
-```
