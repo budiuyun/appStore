@@ -87,9 +87,3 @@
    - 确认PVC已正确创建并绑定
    - 检查存储类是否可用
    - 验证存储容量是否足够
-
-## 安装方法
-
-```bash
-helm install my-ubuntu ./ubuntu22.04
-```

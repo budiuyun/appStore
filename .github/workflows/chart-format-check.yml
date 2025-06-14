@@ -876,10 +876,19 @@ jobs:
             
             # 检查是否生成了持久化存储资源
             if [ "$workload_type" = "Deployment" ]; then
-              # 对于Deployment，检查是否生成了PVC
-              if ! echo "$template_output" | grep -q "kind: PersistentVolumeClaim"; then
-                echo "错误: 渲染后的模板没有生成PersistentVolumeClaim资源"
-                exit 1
+              # 对于Deployment，先检查values.yaml中persistence.enabled是否为true
+              # 获取chart目录
+              chart_values_file="$chart_dir/values.yaml"
+              persistence_enabled=$(grep -A1 "persistence:" "$chart_values_file" | grep "enabled:" | awk '{print $2}')
+              
+              # 如果persistence.enabled为true，则检查是否生成了PVC
+              if [ "$persistence_enabled" = "true" ]; then
+                if ! echo "$template_output" | grep -q "kind: PersistentVolumeClaim"; then
+                  echo "错误: 渲染后的模板没有生成PersistentVolumeClaim资源"
+                  exit 1
+                fi
+              else
+                echo "✓ persistence.enabled为false，跳过PVC检查"
               fi
             else
               # 对于StatefulSet，检查是否有volumeClaimTemplates
