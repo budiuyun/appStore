@@ -27,7 +27,8 @@ persistence:
   size: 1Gi
   accessMode: ReadWriteOnce
   storageClass: local
-  mountPath: /data
+  mounts:
+    - /data
 env:
   env1:
     name: TZ
