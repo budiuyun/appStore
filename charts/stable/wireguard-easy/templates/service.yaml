@@ -6,10 +6,10 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-    {{- range $name, $port := .Values.service.ports }}
-    - port: {{ $port }}
-      targetPort: {{ $port }}
-      protocol: TCP
-      name: {{ $name }}
+    {{- range .Values.service.ports }}
+    - port: {{ .port }}
+      targetPort: {{ .port }}
+      protocol: {{ .protocol }}
+      name: {{ .name }}
     {{- end }}
   selector: {{- include "wireguard-easy.selectorLabels" . | nindent 4 }}

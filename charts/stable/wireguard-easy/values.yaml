@@ -1,15 +1,19 @@
 workloadType: Deployment
 replicaCount: 1
 image:
-  imageRegistry: docker.1ms.run
-  repository: weejewel/wg-easy
+  imageRegistry: ghcr.io
+  repository: wg-easy/wg-easy
   tag: latest
   pullPolicy: IfNotPresent
 service:
   type: ClusterIP
   ports:
-    http: 51821
-    wireguard: 51820
+    - name: http
+      port: 51821
+      protocol: TCP
+    - name: wireguard
+      port: 51820
+      protocol: UDP
 networkLimits:
   enabled: true
   egress: 10M
@@ -43,7 +47,7 @@ env:
     title: 密码
   env3:
     name: INSECURE
-    value: 'true'
+    value: 'false'
     description: 是否允许HTTP访问Web界面(不推荐)
     title: 不安全模式
-icon: https://images.budiuyun.net/i/2025/06/15/684e6a8adcb5b.png
+icon: https://images.budiuyun.net/i/2025/06/15/684e67fa75841.png

@@ -83,25 +83,55 @@
           "default": "ClusterIP"
         },
         "ports": {
-          "type": "object",
+          "type": "array",
           "title": "服务端口配置",
-          "description": "服务暴露的端口配置，键为端口名称，值为端口号",
-          "patternProperties": {
-            "^.*$": {
-              "type": "integer",
-              "title": "端口号",
-              "description": "服务端口号",
-              "minimum": 1,
-              "maximum": 65535
+          "description": "服务暴露的端口配置",
+          "items": {
+            "type": "object",
+            "title": "端口配置",
+            "required": [
+              "name",
+              "port",
+              "protocol"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "title": "端口名称",
+                "description": "服务端口名称"
+              },
+              "port": {
+                "type": "integer",
+                "title": "端口号",
+                "description": "服务端口号",
+                "minimum": 1,
+                "maximum": 65535
+              },
+              "protocol": {
+                "type": "string",
+                "title": "协议",
+                "description": "端口协议",
+                "enum": [
+                  "TCP",
+                  "UDP"
+                ],
+                "default": "TCP"
+              }
             }
           },
-          "additionalProperties": false,
           "examples": [
-            {
-              "http": 80,
-              "https": 443,
-              "metrics": 8080
-            }
+            [
+              {
+                "name": "http",
+                "port": 80,
+                "protocol": "TCP"
+              },
+              {
+                "name": "https",
+                "port": 443,
+                "protocol": "TCP"
+              }
+            ]
           ]
         }
       }
@@ -375,7 +405,7 @@
               "type": "string",
               "title": "变量值",
               "description": "环境变量的值",
-              "default": "true"
+              "default": "false"
             },
             "title": {
               "type": "string",

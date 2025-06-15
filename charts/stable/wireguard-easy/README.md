@@ -47,10 +47,9 @@
 WireGuard Easy的配置数据存储在容器的 `/etc/wireguard` 目录中。启用持久化存储后，数据将保存在持久卷中，即使容器重启也不会丢失。
 
 **提示**：请确保分配足够的存储空间，特别是如果您计划管理大量客户端。
+## 安装WireGuard
 
-## 连接WireGuard
-
-您需要手动安装WireGuard来连接，可以按照以下步骤操作：
+需要安装WireGuard，可以按照以下步骤操作：
 
 ```bash
 # 安装 WireGuard

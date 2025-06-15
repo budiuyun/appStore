@@ -20,10 +20,10 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- if .Values.service.ports }}
           ports:
-            {{- range $name, $port := .Values.service.ports }}
-            - name: {{ $name }}
-              containerPort: {{ $port }}
-              protocol: TCP
+            {{- range .Values.service.ports }}
+            - name: {{ .name }}
+              containerPort: {{ .port }}
+              protocol: {{ .protocol }}
             {{- end }}
           {{- end }}
           {{- if .Values.env }}
