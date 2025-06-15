@@ -761,20 +761,28 @@ jobs:
                   echo "✓ 使用单独引用方式引用了resources配置"
                 fi
                 
-                # 获取卷挂载路径
-                mount_path=$(grep -oP 'mountPath: \K[^ ]+' "$workload_file" | head -1)
+                # 检查是否启用了持久化存储
+                persistence_enabled=$(grep -A2 "persistence:" "$values_yaml" | grep "enabled:" | awk '{print $2}')
                 
-                if [ -z "$mount_path" ]; then
-                  echo "错误: 工作负载文件必须包含卷挂载路径(mountPath)"
-                  exit 1
-                else
-                  echo "✓ 挂载路径: $mount_path"
+                # 只有在启用持久化存储时才检查卷挂载
+                if [ "$persistence_enabled" = "true" ]; then
+                  # 获取卷挂载路径
+                  mount_path=$(grep -oP 'mountPath: \K[^ ]+' "$workload_file" | head -1)
                   
-                  # 检查是否使用了变量引用
-                  if ! grep -q ".Values.persistence.path" "$workload_file" && ! grep -q ".Values.persistence.mounts" "$workload_file"; then
-                    echo "错误: 工作负载文件中的mountPath应该使用.Values.persistence.path变量或.Values.persistence.mounts数组"
+                  if [ -z "$mount_path" ]; then
+                    echo "错误: 启用了持久化存储，但工作负载文件中没有包含卷挂载路径(mountPath)"
                     exit 1
+                  else
+                    echo "✓ 挂载路径: $mount_path"
+                    
+                    # 检查是否使用了变量引用
+                    if ! grep -q ".Values.persistence.path" "$workload_file" && ! grep -q ".Values.persistence.mounts" "$workload_file"; then
+                      echo "错误: 工作负载文件中的mountPath应该使用.Values.persistence.path变量或.Values.persistence.mounts数组"
+                      exit 1
+                    fi
                   fi
+                else
+                  echo "✓ 未启用持久化存储，跳过卷挂载路径检查"
                 fi
                 
                 # 如果values.yaml中有env设置，检查工作负载文件是否使用了它
