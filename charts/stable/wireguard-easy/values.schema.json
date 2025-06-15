@@ -353,8 +353,8 @@
         },
         "env2": {
           "type": "object",
-          "title": "密码",
-          "description": "Web界面访问密码",
+          "title": "密码哈希",
+          "description": "Web界面访问密码的bcrypt哈希值",
           "required": [
             "name",
             "value"
@@ -364,25 +364,25 @@
               "type": "string",
               "title": "变量名称",
               "description": "环境变量的名称",
-              "default": "PASSWORD"
+              "default": "PASSWORD_HASH"
             },
             "value": {
               "type": "string",
               "title": "变量值",
               "description": "环境变量的值",
-              "default": "123456"
+              "default": ""
             },
             "title": {
               "type": "string",
               "title": "中文名称",
               "description": "环境变量的中文名称",
-              "default": "密码"
+              "default": "密码哈希"
             },
             "description": {
               "type": "string",
               "title": "描述",
               "description": "环境变量的详细描述",
-              "default": "Web界面访问密码"
+              "default": "Web界面访问密码的bcrypt哈希值(请参考https://github.com/wg-easy/wg-easy/blob/v14/How_to_generate_an_bcrypt_hash.md)"
             }
           }
         },
