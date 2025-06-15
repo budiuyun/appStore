@@ -41,7 +41,7 @@
       "email": "179866495@qq.com"
     }
   ],
-  "source": [
+  "sources": [
     "https://github.com/wg-easy/wg-easy"
   ],
   "annotations": {
@@ -91,7 +91,7 @@
   "appVersion": "latest",
   "description": "AList 是一个支持多种存储的文件列表程序，基于 Gin 和 React（Solidjs）开发。",
   "icon": "https://images.budiuyun.net/i/2025/06/13/684bbcccab631.png",
-  "source": [
+  "sources": [
     "https://github.com/alist-org/alist",
     "https://hub.docker.com/r/xhofe/alist"
   ],
@@ -123,7 +123,7 @@
       "email": "179866495@qq.com"
     }
   ],
-  "source": [
+  "sources": [
     "https://hub.docker.com/r/johngong/baidunetdisk"
   ],
   "annotations": {
@@ -164,7 +164,7 @@
   "appVersion": "latest",
   "description": "MinIO 是一个高性能的多云对象存储服务，兼容 Amazon S3 API，适用于机器学习、分析和应用数据等多种场景。",
   "icon": "https://images.budiuyun.net/i/2025/06/13/684bbd25dd314.png",
-  "source": [
+  "sources": [
     "https://github.com/minio/minio",
     "https://hub.docker.com/r/minio/minio"
   ],
@@ -196,7 +196,7 @@
       "email": "179866495@qq.com"
     }
   ],
-  "source": [
+  "sources": [
     "https://github.com/nextcloud/docker"
   ],
   "annotations": {
@@ -388,7 +388,7 @@
   "appVersion": "8.0.2",
   "description": "Redis 是全球最快的数据平台，广泛用于缓存、向量搜索和 NoSQL 数据库，支持多种持久化和高可用部署方案，适合各种高性能应用场景。",
   "icon": "https://images.budiuyun.net/i/2025/06/14/684c4f47776d5.png",
-  "source": [
+  "sources": [
     "https://github.com/redis/redis"
   ],
   "maintainers": [
@@ -416,7 +416,7 @@
   "appVersion": "5.2.2",
   "description": "phpMyAdmin 是一款流行的基于 Web 的 MySQL 和 MariaDB 数据库管理工具，支持数据库、表、用户、权限等多种操作，界面友好，易于使用。",
   "icon": "https://images.budiuyun.net/i/2025/06/14/684c4bd043f5e.png",
-  "source": [
+  "sources": [
     "https://hub.docker.com/r/phpmyadmin/phpmyadmin",
     "https://github.com/phpmyadmin/phpmyadmin"
   ],
@@ -451,7 +451,7 @@
       "email": "179866495@qq.com"
     }
   ],
-  "source": [
+  "sources": [
     "https://hub.docker.com/r/linuxserver/paperless-ngx",
     "https://github.com/linuxserver/docker-paperless-ngx"
   ],
@@ -480,7 +480,7 @@
       "email": "179866495@qq.com"
     }
   ],
-  "source": [
+  "sources": [
     "https://hub.docker.com/r/homeassistant/home-assistant",
     "https://github.com/home-assistant/home-assistant"
   ],
@@ -503,7 +503,7 @@
   "appVersion": "4.1.1",
   "description": "RabbitMQ 是一款开源的多协议消息中间件，支持 AMQP、MQTT、STOMP 等协议，广泛应用于消息队列、异步通信和微服务架构中，支持高可用和集群部署。",
   "icon": "https://images.budiuyun.net/i/2025/06/14/684c505914e99.png",
-  "source": [
+  "sources": [
     "https://hub.docker.com/r/rabbitmq/rabbitmq"
   ],
   "maintainers": [
@@ -593,7 +593,7 @@
       "email": "179866495@qq.com"
     }
   ],
-  "source": [
+  "sources": [
     "https://hub.docker.com/r/apache/hertzbeat",
     "https://github.com/apache/hertzbeat"
   ],
@@ -741,7 +741,7 @@
       "email": "179866495@qq.com"
     }
   ],
-  "source": [
+  "sources": [
     "https://hub.docker.com/r/zoeyvid/npmplus",
     "https://github.com/zoeyvid/npmplus"
   ],
@@ -764,7 +764,7 @@
   "appVersion": "latest",
   "description": "Qinglong（青龙面板）是一款支持 Python3、JavaScript、Shell、Typescript 等多种脚本语言的定时任务管理平台，支持在线管理脚本、环境变量、配置文件，支持日志查看、系统通知、暗黑模式及移动端操作。",
   "icon": "https://images.budiuyun.net/i/2025/06/13/684c4710118d2.png",
-  "source": [
+  "sources": [
     "https://hub.docker.com/r/whyour/qinglong",
     "https://github.com/whyour/qinglong"
   ],
@@ -799,7 +799,7 @@
       "email": "179866495@qq.com"
     }
   ],
-  "source": [
+  "sources": [
     "https://hub.docker.com/r/btpanel/baota"
   ],
   "annotations": {
@@ -821,7 +821,7 @@
   "appVersion": "latest",
   "description": "RustDesk 是一款全功能开源远程桌面控制软件，支持自托管和安全访问，配置简单，适合个人和企业远程运维、桌面协作等场景。",
   "icon": "https://images.budiuyun.net/i/2025/06/14/684c4b2193d4c.png",
-  "source": [
+  "sources": [
     "https://hub.docker.com/r/rustdesk/rustdesk-server",
     "https://github.com/rustdesk/rustdesk-server"
   ],
@@ -850,7 +850,7 @@
   "appVersion": "3.0.0",
   "description": "Docker Registry 是 OCI 分发规范的实现，用于本地或私有云环境下存储和分发容器镜像和制品，支持多架构和高可用部署。",
   "icon": "https://images.budiuyun.net/i/2025/06/14/684c5176a97a4.png",
-  "source": [
+  "sources": [
     "https://github.com/docker/distribution"
   ],
   "maintainers": [
