@@ -4,7 +4,7 @@ version: v3.0.0
 appVersion: 3.0.0
 description: Docker Registry 是 OCI 分发规范的实现，用于本地或私有云环境下存储和分发容器镜像和制品，支持多架构和高可用部署。
 icon: https://images.budiuyun.net/i/2025/06/14/684c5176a97a4.png
-source:
+sources:
   - https://github.com/docker/distribution
 maintainers:
   - name: niehaoran

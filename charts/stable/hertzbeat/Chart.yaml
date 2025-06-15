@@ -9,7 +9,7 @@ icon: https://images.budiuyun.net/i/2025/06/13/684c48ba34797.png
 maintainers:
   - name: niehaoran
     email: 179866495@qq.com
-source:
+sources:
   - https://hub.docker.com/r/apache/hertzbeat
   - https://github.com/apache/hertzbeat
 annotations:

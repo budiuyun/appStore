@@ -7,7 +7,7 @@ icon: https://images.budiuyun.net/i/2025/06/14/684c4d6af303c.png
 maintainers:
   - name: niehaoran
     email: 179866495@qq.com
-source:
+sources:
   - https://hub.docker.com/r/homeassistant/home-assistant
   - https://github.com/home-assistant/home-assistant
 annotations:

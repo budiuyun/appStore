@@ -4,7 +4,7 @@ version: v1.0.0
 appVersion: latest
 description: MinIO 是一个高性能的多云对象存储服务，兼容 Amazon S3 API，适用于机器学习、分析和应用数据等多种场景。
 icon: https://images.budiuyun.net/i/2025/06/13/684bbd25dd314.png
-source:
+sources:
   - https://github.com/minio/minio
   - https://hub.docker.com/r/minio/minio
 maintainers:
