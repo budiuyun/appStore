@@ -14,10 +14,22 @@ spec:
       labels:
         {{- include "wireguard-easy.selectorLabels" . | nindent 8 }}
     spec:
+      hostNetwork: false
+      securityContext:
+        sysctls:
+        - name: net.ipv4.conf.all.src_valid_mark
+          value: "1"
+        - name: net.ipv4.ip_forward
+          value: "1"
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.imageRegistry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+                - SYS_MODULE
           {{- if .Values.service.ports }}
           ports:
             {{- range .Values.service.ports }}
