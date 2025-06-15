@@ -7,6 +7,6 @@ icon: https://images.budiuyun.net/i/2025/06/15/684e6a8adcb5b.png
 maintainers:
   - name: niehaoran
     email: 179866495@qq.com
-source: https://github.com/niehaoran/wireguard-easy
+source: https://github.com/wg-easy/wg-easy
 annotations:
   budiu/app-category-zh: 内网穿透
