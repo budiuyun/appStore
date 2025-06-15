@@ -1,8 +1,8 @@
 workloadType: Deployment
 replicaCount: 1
 image:
-  imageRegistry: docker.1ms.run
-  repository: ghcr.io/wg-easy/wg-easy
+  imageRegistry: ghcr.nju.edu.cn
+  repository: wg-easy/wg-easy
   tag: latest
   pullPolicy: IfNotPresent
 service:
