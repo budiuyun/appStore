@@ -76,59 +76,10 @@ python -c "import bcrypt; print(bcrypt.hashpw('your_password'.encode(), bcrypt.g
 WireGuard Easy的配置数据存储在容器的 `/etc/wireguard` 目录中。启用持久化存储后，数据将保存在持久卷中，即使容器重启也不会丢失。
 
 **提示**：请确保分配足够的存储空间，特别是如果您计划管理大量客户端。
-## 安装WireGuard
 
-需要安装WireGuard，可以按照以下步骤操作：
+## 安装后配置与使用指南
 
-```bash
-# 安装 WireGuard
-sudo apt update
-sudo apt install -y wireguard
+安装完成后，您可以参考以下资源了解如何配置和使用WireGuard进行组网：
+[异地组网实践教程](https://juejin.cn/post/7515712152649973769)
 
-# 安装 resolvconf
-sudo apt install -y resolvconf
-
-# 启动 resolvconf 服务
-sudo systemctl enable --now resolvconf.service
-
-# 启动 WireGuard
-sudo wg-quick up /root/wg0.conf
-
-# 关闭 WireGuard
-sudo wg-quick down /root/wg0.conf
-
-# 重启 WireGuard
-sudo wg-quick down /root/wg0.conf && sudo wg-quick up /root/wg0.conf
-```
-
-### 设置开机自启
-
-```bash
-# 创建 systemd 服务文件 - 如果配置文件是 /root/wg0.conf
-cat > /etc/systemd/system/wg-quick@wg0.service << EOF
-[Unit]
-Description=WireGuard via wg-quick(8) for %I
-After=network-online.target nss-lookup.target
-Wants=network-online.target nss-lookup.target
-
-[Service]
-Type=oneshot
-RemainAfterExit=yes
-ExecStart=/usr/bin/wg-quick up /root/wg0.conf
-ExecStop=/usr/bin/wg-quick down /root/wg0.conf
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-# 启用服务使其开机自启
-systemctl enable wg-quick@wg0.service
-```
-
-## 安全注意事项
-
-- 生产环境中请设置强密码
-- 使用HTTPS保护Web UI访问
-- 定期更新WireGuard和WireGuard Easy
-- 考虑启用2FA增强安全性
-- 使用客户端过期功能管理临时访问权限
+这些资源将帮助您了解如何配置客户端、管理连接以及解决常见问题。
