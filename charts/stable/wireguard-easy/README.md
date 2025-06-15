@@ -39,8 +39,34 @@
 | 环境变量 | 描述 | 默认值 |
 |---------|------|--------|
 | WG_HOST | WireGuard服务器域名 | `` |
-| PASSWORD | Web界面访问密码 | `` |
-| INSECURE | 是否允许HTTP访问Web界面(不推荐) | `true` |
+| PASSWORD_HASH | Web界面访问密码的bcrypt哈希值 | `` |
+| INSECURE | 是否允许HTTP访问Web界面(不推荐) | `false` |
+
+### 生成密码哈希
+
+最新版本的WireGuard Easy要求使用PASSWORD_HASH而不是明文PASSWORD。您可以使用以下方法生成bcrypt哈希：
+
+1. 使用在线工具：访问 https://bcrypt-generator.com/ 生成密码哈希
+
+2. 使用Node.js生成：
+```bash
+# 安装bcrypt
+npm install -g bcrypt-cli
+
+# 生成哈希（替换'your_password'为您的密码）
+bcrypt 'your_password'
+```
+
+3. 使用Python生成：
+```bash
+# 安装bcrypt
+pip install bcrypt
+
+# 运行Python生成哈希
+python -c "import bcrypt; print(bcrypt.hashpw('your_password'.encode(), bcrypt.gensalt()).decode())"
+```
+
+生成的哈希应该类似于：`$2a$10$TGdkj8VaQT4TUU0uUdW2OeAjPPF3Ulllzof9Ec1BpJPKZgMYdYhvK`
 
 ## 数据存储
 
