@@ -25,34 +25,6 @@
 
     ]
 ,
-    "内网穿透": [
-      {"wireguard-easy": {
-        "v1.0.0": 
-{
-  "apiVersion": "v2",
-  "name": "wireguard-easy",
-  "version": "v1.0.0",
-  "appVersion": "latest",
-  "description": "最简单的方式在任何Linux主机上安装和管理WireGuard",
-  "icon": "https://images.budiuyun.net/i/2025/06/15/684e6a8adcb5b.png",
-  "maintainers": [
-    {
-      "name": "niehaoran",
-      "email": "179866495@qq.com"
-    }
-  ],
-  "sources": [
-    "https://github.com/wg-easy/wg-easy"
-  ],
-  "annotations": {
-    "budiu/app-category-zh": "内网穿透"
-  }
-}
-
-      }}
-
-    ]
-,
     "图床": [
       {"lsky-pro": {
         "v1.0.0": 
@@ -751,6 +723,28 @@
 }
 
       }}
+,
+      {"wireguard-easy": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "wireguard-easy",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "最简单的方式在任何Linux主机上安装和管理WireGuard",
+  "icon": "https://images.budiuyun.net/i/2025/06/15/684e67fa75841.png",
+  "maintainers": [
+    {
+      "name": "niehaoran",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "网络工具"
+  }
+}
+
+      }}
 
     ]
 ,
@@ -893,5 +887,5 @@
 
     ]
   },
-  "count": 22
+  "count": 21
 }
