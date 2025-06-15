@@ -6,7 +6,8 @@ description: >-
   RabbitMQ 是一款开源的多协议消息中间件，支持 AMQP、MQTT、STOMP
   等协议，广泛应用于消息队列、异步通信和微服务架构中，支持高可用和集群部署。
 icon: https://images.budiuyun.net/i/2025/06/14/684c505914e99.png
-source: https://hub.docker.com/r/rabbitmq/rabbitmq
+source:
+  - https://hub.docker.com/r/rabbitmq/rabbitmq
 maintainers:
   - name: niehaoran
     email: 179866495@qq.com

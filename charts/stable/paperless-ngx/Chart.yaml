@@ -7,6 +7,8 @@ icon: https://images.budiuyun.net/i/2025/06/14/684c4de430dd5.png
 maintainers:
   - name: niehaoran
     email: 179866495@qq.com
-source: https://hub.docker.com/r/linuxserver/paperless-ngx
+source:
+  - https://hub.docker.com/r/linuxserver/paperless-ngx
+  - https://github.com/linuxserver/docker-paperless-ngx
 annotations:
   budiu/app-category-zh: 文档管理

@@ -9,6 +9,8 @@ icon: https://images.budiuyun.net/i/2025/06/13/684c49cfd97f4.png
 maintainers:
   - name: niehaoran
     email: 179866495@qq.com
-source: https://hub.docker.com/r/zoeyvid/npmplus
+source:
+  - https://hub.docker.com/r/zoeyvid/npmplus
+  - https://github.com/zoeyvid/npmplus
 annotations:
   budiu/app-category-zh: 网络工具
