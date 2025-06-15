@@ -40,6 +40,9 @@
 |---------|------|--------|
 | WG_HOST | WireGuard服务器域名 | `` |
 | PASSWORD_HASH | Web界面访问密码的bcrypt哈希值 | `` |
+| WG_PERSISTENT_KEEPALIVE | WireGuard持久保活间隔(秒) | `25` |
+| WG_DEFAULT_ADDRESS | 客户端默认IP地址范围 | `192.168.10.x` |
+| WG_ALLOWED_IPS | 允许访问的IP范围 | `192.168.10.0/24` |
 | INSECURE | 是否允许HTTP访问Web界面(不推荐) | `false` |
 
 ### 生成密码哈希

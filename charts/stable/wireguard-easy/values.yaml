@@ -46,6 +46,21 @@ env:
     description: Web界面访问密码的bcrypt哈希值(请参考https://github.com/wg-easy/wg-easy/blob/v14/How_to_generate_an_bcrypt_hash.md)
     title: 密码哈希
   env3:
+    name: WG_PERSISTENT_KEEPALIVE
+    value: '25'
+    description: WireGuard持久保活间隔(秒)
+    title: 保活间隔
+  env4:
+    name: WG_DEFAULT_ADDRESS
+    value: '192.168.10.x'
+    description: 客户端默认IP地址范围
+    title: 默认地址
+  env5:
+    name: WG_ALLOWED_IPS
+    value: '192.168.10.0/24'
+    description: 允许访问的IP范围
+    title: 允许的IP
+  env6:
     name: INSECURE
     value: 'false'
     description: 是否允许HTTP访问Web界面(不推荐)

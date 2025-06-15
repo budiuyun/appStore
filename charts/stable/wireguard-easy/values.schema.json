@@ -388,6 +388,111 @@
         },
         "env3": {
           "type": "object",
+          "title": "保活间隔",
+          "description": "WireGuard持久保活间隔(秒)",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "WG_PERSISTENT_KEEPALIVE"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "25"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "保活间隔"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "WireGuard持久保活间隔(秒)"
+            }
+          }
+        },
+        "env4": {
+          "type": "object",
+          "title": "默认地址",
+          "description": "客户端默认IP地址范围",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "WG_DEFAULT_ADDRESS"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "192.168.10.x"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "默认地址"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "客户端默认IP地址范围"
+            }
+          }
+        },
+        "env5": {
+          "type": "object",
+          "title": "允许的IP",
+          "description": "允许访问的IP范围",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "WG_ALLOWED_IPS"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "192.168.10.0/24"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "允许的IP"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "允许访问的IP范围"
+            }
+          }
+        },
+        "env6": {
+          "type": "object",
           "title": "不安全模式",
           "description": "是否允许HTTP访问Web界面(不推荐)",
           "required": [
