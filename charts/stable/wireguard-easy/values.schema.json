@@ -335,7 +335,7 @@
               "type": "string",
               "title": "变量值",
               "description": "环境变量的值",
-              "default": ""
+              "default": "192.168.10.x"
             },
             "title": {
               "type": "string",
@@ -370,7 +370,7 @@
               "type": "string",
               "title": "变量值",
               "description": "环境变量的值",
-              "default": ""
+              "default": "123456"
             },
             "title": {
               "type": "string",

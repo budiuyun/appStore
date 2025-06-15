@@ -14,20 +14,10 @@ spec:
       labels:
         {{- include "wireguard-easy.selectorLabels" . | nindent 8 }}
     spec:
-      {{- if .Values.securityContext.sysctls }}
-      securityContext:
-        sysctls:
-          {{- toYaml .Values.securityContext.sysctls | nindent 10 }}
-      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.imageRegistry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          {{- if .Values.securityContext.capabilities }}
-          securityContext:
-            capabilities:
-              {{- toYaml .Values.securityContext.capabilities | nindent 14 }}
-          {{- end }}
           {{- if .Values.service.ports }}
           ports:
             {{- range .Values.service.ports }}
