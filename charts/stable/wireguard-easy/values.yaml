@@ -34,16 +34,26 @@ persistence:
   storageClass: local
   mounts:
     - /etc/wireguard
+securityContext:
+  capabilities:
+    add:
+      - NET_ADMIN
+      - SYS_MODULE
+  sysctls:
+    - name: net.ipv4.conf.all.src_valid_mark
+      value: "1"
+    - name: net.ipv4.ip_forward
+      value: "1"
 env:
   env1:
     name: WG_HOST
-    value: ''
-    description: WireGuard服务器域名
+    value: 'your-server-ip-or-domain'
+    description: WireGuard服务器域名或IP地址(必填)
     title: WG_HOST
   env2:
     name: PASSWORD
-    value: ''
-    description: Web界面访问密码
+    value: 'change-this-password'
+    description: Web界面访问密码(必填)
     title: 密码
   env3:
     name: INSECURE
