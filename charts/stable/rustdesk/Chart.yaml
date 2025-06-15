@@ -4,7 +4,9 @@ version: v1.0.0
 appVersion: latest
 description: RustDesk 是一款全功能开源远程桌面控制软件，支持自托管和安全访问，配置简单，适合个人和企业远程运维、桌面协作等场景。
 icon: https://images.budiuyun.net/i/2025/06/14/684c4b2193d4c.png
-source: https://hub.docker.com/r/rustdesk/rustdesk-server
+sources:
+  - https://hub.docker.com/r/rustdesk/rustdesk-server
+  - https://github.com/rustdesk/rustdesk-server
 maintainers:
   - name: niehaoran
     email: 179866495@qq.com

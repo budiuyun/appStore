@@ -219,7 +219,7 @@ jobs:
                   
                   # 检查必需的template文件，允许deployment.yaml或statefulset.yaml
                   # 首先检查基本必需文件
-                  basic_templates=("service.yaml" "pvc.yaml" "_helpers.tpl")
+                  basic_templates=("service.yaml" "_helpers.tpl")
                   for template in "${basic_templates[@]}"; do
                     if [ ! -f "$templates_dir/$template" ]; then
                       echo "错误: 缺少必需的template文件 $template"
@@ -228,6 +228,19 @@ jobs:
                       echo "✓ 存在 templates/$template"
                     fi
                   done
+                  
+                  # 检查values.yaml中persistence.enabled的值
+                  if grep -q "persistence:" "$values_yaml" && grep -A2 "persistence:" "$values_yaml" | grep -q "enabled: true"; then
+                    # 如果启用了持久化存储，检查pvc.yaml是否存在
+                    if [ ! -f "$templates_dir/pvc.yaml" ]; then
+                      echo "错误: 启用了持久化存储，但缺少必需的template文件 pvc.yaml"
+                      exit 1
+                    else
+                      echo "✓ 存在 templates/pvc.yaml"
+                    fi
+                  else
+                    echo "✓ 未启用持久化存储，跳过pvc.yaml检查"
+                  fi
                   
                   # 然后检查工作负载文件（支持deployment.yaml或statefulset.yaml）
                   if [ -f "$templates_dir/deployment.yaml" ]; then
@@ -748,20 +761,28 @@ jobs:
                   echo "✓ 使用单独引用方式引用了resources配置"
                 fi
                 
-                # 获取卷挂载路径
-                mount_path=$(grep -oP 'mountPath: \K[^ ]+' "$workload_file" | head -1)
+                # 检查是否启用了持久化存储
+                persistence_enabled=$(grep -A2 "persistence:" "$values_yaml" | grep "enabled:" | awk '{print $2}')
                 
-                if [ -z "$mount_path" ]; then
-                  echo "错误: 工作负载文件必须包含卷挂载路径(mountPath)"
-                  exit 1
-                else
-                  echo "✓ 挂载路径: $mount_path"
+                # 只有在启用持久化存储时才检查卷挂载
+                if [ "$persistence_enabled" = "true" ]; then
+                  # 获取卷挂载路径
+                  mount_path=$(grep -oP 'mountPath: \K[^ ]+' "$workload_file" | head -1)
                   
-                  # 检查是否使用了变量引用
-                  if ! grep -q ".Values.persistence.path" "$workload_file" && ! grep -q ".Values.persistence.mounts" "$workload_file"; then
-                    echo "错误: 工作负载文件中的mountPath应该使用.Values.persistence.path变量或.Values.persistence.mounts数组"
+                  if [ -z "$mount_path" ]; then
+                    echo "错误: 启用了持久化存储，但工作负载文件中没有包含卷挂载路径(mountPath)"
                     exit 1
+                  else
+                    echo "✓ 挂载路径: $mount_path"
+                    
+                    # 检查是否使用了变量引用
+                    if ! grep -q ".Values.persistence.path" "$workload_file" && ! grep -q ".Values.persistence.mounts" "$workload_file"; then
+                      echo "错误: 工作负载文件中的mountPath应该使用.Values.persistence.path变量或.Values.persistence.mounts数组"
+                      exit 1
+                    fi
                   fi
+                else
+                  echo "✓ 未启用持久化存储，跳过卷挂载路径检查"
                 fi
                 
                 # 如果values.yaml中有env设置，检查工作负载文件是否使用了它
@@ -879,12 +900,12 @@ jobs:
               # 对于Deployment，先检查values.yaml中persistence.enabled是否为true
               # 获取chart目录
               chart_values_file="$chart_dir/values.yaml"
-              persistence_enabled=$(grep -A1 "persistence:" "$chart_values_file" | grep "enabled:" | awk '{print $2}')
+              persistence_enabled=$(grep -A2 "persistence:" "$chart_values_file" | grep "enabled:" | awk '{print $2}')
               
               # 如果persistence.enabled为true，则检查是否生成了PVC
               if [ "$persistence_enabled" = "true" ]; then
                 if ! echo "$template_output" | grep -q "kind: PersistentVolumeClaim"; then
-                  echo "错误: 渲染后的模板没有生成PersistentVolumeClaim资源"
+                  echo "错误: persistence.enabled为true，但渲染后的模板没有生成PersistentVolumeClaim资源"
                   exit 1
                 fi
               else

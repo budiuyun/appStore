@@ -7,6 +7,7 @@ icon: https://images.budiuyun.net/i/2025/06/13/684bb7a424156.png
 maintainers:
   - name: niehaoran
     email: 179866495@qq.com
-source: https://github.com/nextcloud/docker
+sources:
+  - https://github.com/nextcloud/docker
 annotations:
   budiu/app-category-zh: 存储

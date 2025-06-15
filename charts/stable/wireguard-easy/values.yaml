@@ -1,0 +1,68 @@
+workloadType: Deployment
+replicaCount: 1
+image:
+  imageRegistry: ghcr.nju.edu.cn
+  repository: wg-easy/wg-easy
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 51821
+      protocol: TCP
+    - name: wireguard
+      port: 51820
+      protocol: UDP
+networkLimits:
+  enabled: true
+  egress: 10M
+  ingress: 10M
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+    ephemeral-storage: 10Gi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+    ephemeral-storage: 5Gi
+persistence:
+  enabled: true
+  size: 1Gi
+  accessMode: ReadWriteOnce
+  storageClass: local
+  mounts:
+    - /etc/wireguard
+env:
+  env1:
+    name: WG_HOST
+    value: ''
+    description: WireGuard服务器域名
+    title: WG_HOST
+  env2:
+    name: PASSWORD_HASH
+    value: ''
+    description: Web界面访问密码的bcrypt哈希值(请参考https://github.com/wg-easy/wg-easy/blob/v14/How_to_generate_an_bcrypt_hash.md)
+    title: 密码哈希
+  env3:
+    name: WG_PERSISTENT_KEEPALIVE
+    value: '25'
+    description: WireGuard持久保活间隔(秒)
+    title: 保活间隔
+  env4:
+    name: WG_DEFAULT_ADDRESS
+    value: '192.168.10.x'
+    description: 客户端默认IP地址范围
+    title: 默认地址
+  env5:
+    name: WG_ALLOWED_IPS
+    value: '192.168.10.0/24'
+    description: 允许访问的IP范围
+    title: 允许的IP
+  env6:
+    name: INSECURE
+    value: 'false'
+    description: 是否允许HTTP访问Web界面(不推荐)
+    title: 不安全模式
+icon: https://images.budiuyun.net/i/2025/06/15/684e6a8adcb5b.png

@@ -12,7 +12,7 @@ service:
 
 networkLimits:
   enabled: true
-  egress: "2M"
+  egress: "1M"
   ingress: "1M"
 
 resources:

@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "wireguard-easy.fullname" . }}
+  labels:
+    {{- include "wireguard-easy.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "wireguard-easy.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "wireguard-easy.selectorLabels" . | nindent 8 }}
+    spec:
+      hostNetwork: false
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.imageRegistry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          securityContext:
+            privileged: true
+            capabilities:
+              add:
+                - NET_ADMIN
+                - SYS_MODULE
+          {{- if .Values.service.ports }}
+          ports:
+            {{- range .Values.service.ports }}
+            - name: {{ .name }}
+              containerPort: {{ .port }}
+              protocol: {{ .protocol }}
+            {{- end }}
+          {{- end }}
+          {{- if .Values.env }}
+          env:
+            {{- range $key, $value := .Values.env }}
+            - name: {{ $value.name }}
+              value: {{ $value.value | quote }}
+            {{- end }}
+          {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          {{- if and .Values.persistence.enabled .Values.persistence.mounts }}
+          volumeMounts:
+            {{- range $index, $path := .Values.persistence.mounts }}
+            - name: data
+              mountPath: {{ $path }}
+            {{- end }}
+          {{- end }}
+      {{- if and .Values.persistence.enabled .Values.persistence.mounts }}
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ include "wireguard-easy.fullname" . }}
+      {{- end }}
