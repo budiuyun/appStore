@@ -1,0 +1,49 @@
+workloadType: Deployment
+replicaCount: 1
+image:
+  imageRegistry: docker.1ms.run
+  repository: weejewel/wg-easy
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  ports:
+    http: 51821
+    wireguard: 51820
+networkLimits:
+  enabled: true
+  egress: 10M
+  ingress: 10M
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+    ephemeral-storage: 10Gi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+    ephemeral-storage: 5Gi
+persistence:
+  enabled: true
+  size: 1Gi
+  accessMode: ReadWriteOnce
+  storageClass: local
+  mounts:
+    - /etc/wireguard
+env:
+  env1:
+    name: WG_HOST
+    value: ''
+    description: WireGuard服务器域名
+    title: WG_HOST
+  env2:
+    name: PASSWORD
+    value: ''
+    description: Web界面访问密码
+    title: 密码
+  env3:
+    name: INSECURE
+    value: 'true'
+    description: 是否允许HTTP访问Web界面(不推荐)
+    title: 不安全模式
+icon: https://images.budiuyun.net/i/2025/06/15/684e67fa75841.png
