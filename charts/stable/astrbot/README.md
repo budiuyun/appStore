@@ -18,7 +18,7 @@
 | image.tag | 镜像标签 | `latest` |
 | image.pullPolicy | 镜像拉取策略 | `IfNotPresent` |
 | service.type | 服务类型 | `ClusterIP` |
-| service.ports.http | Web服务端口 | `8080` |
+| service.ports.http | Web服务端口 | `6185` |
 | persistence.enabled | 是否启用持久化存储 | `true` |
 | persistence.size | 存储大小 | `5Gi` |
 
