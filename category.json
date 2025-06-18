@@ -1,5 +1,106 @@
 {
   "categories": {
+    "AI大模型": [
+      {"aingdesk": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "aingdesk",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "AingDesk 服务端，远程桌面管理解决方案",
+  "icon": "https://images.budiuyun.net/i/2025/06/18/6852af37c15dc.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "AI大模型"
+  }
+}
+
+      }}
+,
+      {"astrbot": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "astrbot",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "松耦合、异步、支持多消息平台部署、具有易用的插件系统和完善的大语言模型（LLM）接入功能的聊天机器人及开发框架",
+  "icon": "https://images.budiuyun.net/i/2025/06/18/6852baac702fd.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "sources": [
+    "https://github.com/AstrBotDevs/AstrBot"
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "AI大模型"
+  }
+}
+
+      }}
+,
+      {"chatgptnextweb": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "chatgpt-next-web",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "一键免费部署你的私人ChatGPT网页应用",
+  "icon": "https://images.budiuyun.net/i/2025/06/18/6852b18b1800f.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "sources": [
+    "https://github.com/Yidadaa/chatgpt-next-web",
+    "https://github.com/Yidadaa/chatgpt-next-web/blob/main/README.zh-CN.md"
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "AI大模型"
+  }
+}
+
+      }}
+,
+      {"one-api": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "one-api",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "一站式大语言模型API管理平台，支持OpenAI、Azure、Claude、Gemini等多种模型",
+  "icon": "https://images.budiuyun.net/i/2025/06/18/6852b8da7398e.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "sources": [
+    "https://github.com/songquanpeng/one-api"
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "AI大模型"
+  }
+}
+
+      }}
+
+    ]
+,
     "仪表盘": [
       {"dashy": {
         "v1.0.0": 
@@ -12,7 +113,7 @@
   "icon": "https://images.budiuyun.net/i/2025/06/09/6846e3a714f05.png",
   "maintainers": [
     {
-      "name": "niehaoran",
+      "name": "陈不丢",
       "email": "179866495@qq.com"
     }
   ],
@@ -37,7 +138,7 @@
   "icon": "https://images.budiuyun.net/i/2025/06/15/684e6a8adcb5b.png",
   "maintainers": [
     {
-      "name": "niehaoran",
+      "name": "陈不丢",
       "email": "179866495@qq.com"
     }
   ],
@@ -65,7 +166,7 @@
   "icon": "https://images.budiuyun.net/i/2025/06/09/684683bbc7a28.png",
   "maintainers": [
     {
-      "name": "niehaoran",
+      "name": "陈不丢",
       "email": "179866495@qq.com"
     }
   ],
@@ -97,7 +198,7 @@
   ],
   "maintainers": [
     {
-      "name": "niehaoran",
+      "name": "陈不丢",
       "email": "179866495@qq.com"
     }
   ],
@@ -119,7 +220,7 @@
   "icon": "https://images.budiuyun.net/i/2025/06/13/684bbf3800a30.png",
   "maintainers": [
     {
-      "name": "niehaoran",
+      "name": "陈不丢",
       "email": "179866495@qq.com"
     }
   ],
@@ -144,7 +245,7 @@
   "icon": "https://images.budiuyun.net/i/2025/06/13/684bbd7ad76b8.png",
   "maintainers": [
     {
-      "name": "niehaoran",
+      "name": "陈不丢",
       "email": "179866495@qq.com"
     }
   ],
@@ -170,7 +271,7 @@
   ],
   "maintainers": [
     {
-      "name": "niehaoran",
+      "name": "陈不丢",
       "email": "179866495@qq.com"
     }
   ],
@@ -192,7 +293,7 @@
   "icon": "https://images.budiuyun.net/i/2025/06/13/684bb7a424156.png",
   "maintainers": [
     {
-      "name": "niehaoran",
+      "name": "陈不丢",
       "email": "179866495@qq.com"
     }
   ],
@@ -220,7 +321,7 @@
   "icon": "https://images.budiuyun.net/i/2025/06/13/684c450bba5e9.png",
   "maintainers": [
     {
-      "name": "niehaoran",
+      "name": "陈不丢",
       "email": "179866495@qq.com"
     }
   ],
@@ -234,6 +335,28 @@
     ]
 ,
     "开发工具": [
+      {"code-server": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "code-server",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "浏览器中运行的VS Code，随时随地编写代码",
+  "icon": "https://images.budiuyun.net/i/2025/06/18/6852d6dd2bc9c.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "开发工具"
+  }
+}
+
+      }}
+,
       {"hyperf": {
         "v1.0.0": 
 {
@@ -245,7 +368,7 @@
   "icon": "https://images.budiuyun.net/i/2025/06/09/6846f62f3a3f6.png",
   "maintainers": [
     {
-      "name": "niehaoran",
+      "name": "陈不丢",
       "email": "179866495@qq.com"
     }
   ],
@@ -267,7 +390,7 @@
   "icon": "https://images.budiuyun.net/i/2025/06/09/6846b63c66965.ico",
   "maintainers": [
     {
-      "name": "niehaoran",
+      "name": "陈不丢",
       "email": "179866495@qq.com"
     }
   ],
@@ -295,7 +418,7 @@
   "icon": "https://images.budiuyun.net/i/2025/06/08/68446389305d0.png",
   "maintainers": [
     {
-      "name": "niehaoran",
+      "name": "陈不丢",
       "email": "179866495@qq.com"
     }
   ],
@@ -320,7 +443,7 @@
   "icon": "https://images.budiuyun.net/i/2025/06/09/6846fd5e91157.png",
   "maintainers": [
     {
-      "name": "niehaoran",
+      "name": "陈不丢",
       "email": "179866495@qq.com"
     }
   ],
@@ -346,7 +469,7 @@
   ],
   "maintainers": [
     {
-      "name": "niehaoran",
+      "name": "陈不丢",
       "email": "179866495@qq.com"
     }
   ],
@@ -368,7 +491,7 @@
   "icon": "https://images.budiuyun.net/i/2025/06/09/6846fe3f36848.png",
   "maintainers": [
     {
-      "name": "niehaoran",
+      "name": "陈不丢",
       "email": "179866495@qq.com"
     }
   ],
@@ -393,9 +516,35 @@
   ],
   "maintainers": [
     {
-      "name": "niehaoran",
+      "name": "陈不丢",
       "email": "179866495@qq.com"
     }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "数据库"
+  }
+}
+
+      }}
+,
+      {"vitess-lite": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "vitess-lite",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "MySQL数据库水平扩展集群系统的轻量级版本",
+  "icon": "https://images.budiuyun.net/i/2025/06/18/6852d449655ba.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "sources": [
+    "https://hub.docker.com/r/vitess/lite",
+    "https://github.com/vitessio/vitess"
   ],
   "annotations": {
     "budiu/app-category-zh": "数据库"
@@ -422,7 +571,7 @@
   ],
   "maintainers": [
     {
-      "name": "niehaoran",
+      "name": "陈不丢",
       "email": "179866495@qq.com"
     }
   ],
@@ -447,7 +596,7 @@
   "icon": "https://images.budiuyun.net/i/2025/06/14/684c4de430dd5.png",
   "maintainers": [
     {
-      "name": "niehaoran",
+      "name": "陈不丢",
       "email": "179866495@qq.com"
     }
   ],
@@ -476,7 +625,7 @@
   "icon": "https://images.budiuyun.net/i/2025/06/14/684c4d6af303c.png",
   "maintainers": [
     {
-      "name": "niehaoran",
+      "name": "陈不丢",
       "email": "179866495@qq.com"
     }
   ],
@@ -508,7 +657,7 @@
   ],
   "maintainers": [
     {
-      "name": "niehaoran",
+      "name": "陈不丢",
       "email": "179866495@qq.com"
     }
   ],
@@ -533,7 +682,7 @@
   "icon": "https://images.budiuyun.net/i/2025/06/06/6842e0ec61115.png",
   "maintainers": [
     {
-      "name": "niehaoran",
+      "name": "陈不丢",
       "email": "179866495@qq.com"
     }
   ],
@@ -550,34 +699,6 @@
     ]
 ,
     "监控工具": [
-      {"uptime-kuma": {
-        "v1.0.0": 
-{
-  "apiVersion": "v2",
-  "name": "uptime-kuma",
-  "version": "v1.0.0",
-  "appVersion": "1.0.0",
-  "description": "'Uptime Kuma 是一个开源、轻量的自托管监控工具，支持对网站、服务器和 API 的正常运行时间进行实时监控，帮助用户快速了解服务的运行状况。它提供友好的用户界面、支持多种通知方式（如邮件、Telegram、Slack\n  等）以及历史记录追踪功能。 '",
-  "icon": "https://images.budiuyun.net/i/2025/05/13/6823632a4fc3c.png",
-  "maintainers": [
-    {
-      "name": "niehaoran",
-      "email": "179866495@qq.com"
-    }
-  ],
-  "sources": [
-    "https://github.com/louislam/uptime-kuma"
-  ],
-  "annotations": {
-    "budiu/app-category-zh": "监控工具"
-  }
-}
-
-      }}
-
-    ]
-,
-    "监控运维": [
       {"hertzbeat": {
         "v1.0.0": 
 {
@@ -589,7 +710,7 @@
   "icon": "https://images.budiuyun.net/i/2025/06/13/684c48ba34797.png",
   "maintainers": [
     {
-      "name": "niehaoran",
+      "name": "陈不丢",
       "email": "179866495@qq.com"
     }
   ],
@@ -598,7 +719,32 @@
     "https://github.com/apache/hertzbeat"
   ],
   "annotations": {
-    "budiu/app-category-zh": "监控运维"
+    "budiu/app-category-zh": "监控工具"
+  }
+}
+
+      }}
+,
+      {"uptime-kuma": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "uptime-kuma",
+  "version": "v1.0.0",
+  "appVersion": "1.0.0",
+  "description": "'Uptime Kuma 是一个开源、轻量的自托管监控工具，支持对网站、服务器和 API 的正常运行时间进行实时监控，帮助用户快速了解服务的运行状况。它提供友好的用户界面、支持多种通知方式（如邮件、Telegram、Slack\n  等）以及历史记录追踪功能。 '",
+  "icon": "https://images.budiuyun.net/i/2025/05/13/6823632a4fc3c.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "sources": [
+    "https://github.com/louislam/uptime-kuma"
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "监控工具"
   }
 }
 
@@ -618,12 +764,39 @@
   "icon": "https://images.budiuyun.net/i/2025/06/09/6846aea30adbb.png",
   "maintainers": [
     {
-      "name": "niehaoran",
+      "name": "陈不丢",
       "email": "179866495@qq.com"
     }
   ],
   "sources": [
     "https://github.com/emlog/emlog"
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "网站建设"
+  }
+}
+
+      }}
+,
+      {"halo": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "halo",
+  "version": "v1.0.0",
+  "appVersion": "2.21",
+  "description": "强大易用的开源建站工具。",
+  "icon": "https://images.budiuyun.net/i/2025/06/18/6852aabcdad48.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "sources": [
+    "https://www.halo.run",
+    "https://bbs.halo.run",
+    "https://github.com/halo-dev"
   ],
   "annotations": {
     "budiu/app-category-zh": "网站建设"
@@ -643,7 +816,7 @@
   "icon": "https://images.budiuyun.net/i/2025/06/09/6846eaea44af8.png",
   "maintainers": [
     {
-      "name": "niehaoran",
+      "name": "陈不丢",
       "email": "179866495@qq.com"
     }
   ],
@@ -665,7 +838,7 @@
   "icon": "https://images.budiuyun.net/i/2025/06/09/6846df60afbb3.png",
   "maintainers": [
     {
-      "name": "niehaoran",
+      "name": "陈不丢",
       "email": "179866495@qq.com"
     }
   ],
@@ -687,7 +860,7 @@
   "icon": "https://images.budiuyun.net/i/2025/06/09/6846e11076903.png",
   "maintainers": [
     {
-      "name": "niehaoran",
+      "name": "陈不丢",
       "email": "179866495@qq.com"
     }
   ],
@@ -712,7 +885,7 @@
   "icon": "https://images.budiuyun.net/i/2025/06/09/6846911733f80.png",
   "maintainers": [
     {
-      "name": "niehaoran",
+      "name": "陈不丢",
       "email": "179866495@qq.com"
     }
   ],
@@ -726,6 +899,32 @@
     ]
 ,
     "网络工具": [
+      {"nginx": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "nginx",
+  "version": "v1.0.0",
+  "appVersion": "1.27.5",
+  "description": "高性能Web服务器和反向代理",
+  "icon": "https://images.budiuyun.net/i/2025/06/18/6852d5758ebb0.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "sources": [
+    "https://hub.docker.com/_/nginx",
+    "https://github.com/nginx/nginx"
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "网络工具"
+  }
+}
+
+      }}
+,
       {"npmplus": {
         "v1.0.0": 
 {
@@ -737,7 +936,7 @@
   "icon": "https://images.budiuyun.net/i/2025/06/13/684c49cfd97f4.png",
   "maintainers": [
     {
-      "name": "niehaoran",
+      "name": "陈不丢",
       "email": "179866495@qq.com"
     }
   ],
@@ -755,6 +954,31 @@
     ]
 ,
     "运维工具": [
+      {"baota": {
+        "v9.3.0": 
+{
+  "apiVersion": "v2",
+  "name": "baota",
+  "version": "v9.3.0",
+  "appVersion": "9.3.0",
+  "description": "宝塔Linux面板是一款提升运维效率的服务器管理软件，支持一键LAMP/LNMP/集群/监控/网站/FTP/数据库/JAVA等100多项服务器管理功能，界面友好，安全可靠，适合个人和企业服务器运维。",
+  "icon": "https://images.budiuyun.net/i/2025/06/14/684c510c2ba85.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "sources": [
+    "https://hub.docker.com/r/btpanel/baota"
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "运维工具"
+  }
+}
+
+      }}
+,
       {"qinglong": {
         "v1.0.0": 
 {
@@ -770,7 +994,7 @@
   ],
   "maintainers": [
     {
-      "name": "niehaoran",
+      "name": "陈不丢",
       "email": "179866495@qq.com"
     }
   ],
@@ -783,35 +1007,7 @@
 
     ]
 ,
-    "运维管理": [
-      {"baota": {
-        "v9.3.0": 
-{
-  "apiVersion": "v2",
-  "name": "baota",
-  "version": "v9.3.0",
-  "appVersion": "9.3.0",
-  "description": "宝塔Linux面板是一款提升运维效率的服务器管理软件，支持一键LAMP/LNMP/集群/监控/网站/FTP/数据库/JAVA等100多项服务器管理功能，界面友好，安全可靠，适合个人和企业服务器运维。",
-  "icon": "https://images.budiuyun.net/i/2025/06/14/684c510c2ba85.png",
-  "maintainers": [
-    {
-      "name": "niehaoran",
-      "email": "179866495@qq.com"
-    }
-  ],
-  "sources": [
-    "https://hub.docker.com/r/btpanel/baota"
-  ],
-  "annotations": {
-    "budiu/app-category-zh": "运维管理"
-  }
-}
-
-      }}
-
-    ]
-,
-    "远程运维": [
+    "远程工具": [
       {"rustdesk": {
         "v1.0.0": 
 {
@@ -827,12 +1023,12 @@
   ],
   "maintainers": [
     {
-      "name": "niehaoran",
+      "name": "陈不丢",
       "email": "179866495@qq.com"
     }
   ],
   "annotations": {
-    "budiu/app-category-zh": "远程运维"
+    "budiu/app-category-zh": "远程工具"
   }
 }
 
@@ -855,7 +1051,7 @@
   ],
   "maintainers": [
     {
-      "name": "niehaoran",
+      "name": "陈不丢",
       "email": "179866495@qq.com"
     }
   ],
@@ -880,7 +1076,7 @@
   "icon": "https://images.budiuyun.net/i/2025/06/09/6846ed896739c.png",
   "maintainers": [
     {
-      "name": "niehaoran",
+      "name": "陈不丢",
       "email": "179866495@qq.com"
     }
   ],
@@ -893,5 +1089,5 @@
 
     ]
   },
-  "count": 22
+  "count": 21
 }
