@@ -307,6 +307,28 @@
     ]
 ,
     "开发工具": [
+      {"code-server": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "code-server",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "浏览器中运行的VS Code，随时随地编写代码",
+  "icon": "https://images.budiuyun.net/i/2025/06/18/6852d6dd2bc9c.png",
+  "maintainers": [
+    {
+      "name": "niehaoran",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "开发工具"
+  }
+}
+
+      }}
+,
       {"hyperf": {
         "v1.0.0": 
 {
