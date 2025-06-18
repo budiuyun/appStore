@@ -1,0 +1,56 @@
+workloadType: Deployment
+replicaCount: 1
+image:
+  imageRegistry: docker.1ms.run
+  repository: nginx
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+    - name: https
+      port: 443
+      protocol: TCP
+networkLimits:
+  enabled: true
+  egress: 5M
+  ingress: 5M
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+    ephemeral-storage: 10Gi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+    ephemeral-storage: 5Gi
+persistence:
+  enabled: true
+  size: 1Gi
+  accessMode: ReadWriteOnce
+  storageClass: local
+  mounts:
+    - /usr/share/nginx/html
+    - /var/cache/nginx
+    - /var/log/nginx
+    - /etc/nginx/conf.d
+env:
+  env1:
+    name: NGINX_ENVSUBST_TEMPLATE_DIR
+    value: /etc/nginx/templates
+    description: 包含模板文件的目录
+    title: 环境变量替换目录
+  env2:
+    name: NGINX_ENVSUBST_TEMPLATE_SUFFIX
+    value: .template
+    description: 模板文件的后缀
+    title: 模板文件后缀
+  env3:
+    name: NGINX_ENTRYPOINT_QUIET_LOGS
+    value: '0'
+    description: 设置为1可以静默入口点日志输出
+    title: 静默日志
+icon: https://images.budiuyun.net/i/2025/06/18/6852d5758ebb0.png

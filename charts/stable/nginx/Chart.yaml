@@ -1,0 +1,14 @@
+apiVersion: v2
+name: nginx
+version: v1.0.0
+appVersion: 1.27.5
+description: 高性能Web服务器和反向代理
+icon: https://images.budiuyun.net/i/2025/06/18/6852d5758ebb0.png
+maintainers:
+  - name: niehaoran
+    email: 179866495@qq.com
+sources:
+  - https://hub.docker.com/_/nginx
+  - https://github.com/nginx/nginx
+annotations:
+  budiu/app-category-zh: 网络工具

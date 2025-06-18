@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/schema#",
   "type": "object",
-  "title": "cosyvoice Helm Chart 配置",
+  "title": "nginx Helm Chart 配置",
   "required": [
     "workloadType",
     "replicaCount",
@@ -318,8 +318,8 @@
       "properties": {
         "env1": {
           "type": "object",
-          "title": "应用模式",
-          "description": "应用运行的模式",
+          "title": "环境变量替换目录",
+          "description": "包含模板文件的目录",
           "required": [
             "name",
             "value"
@@ -329,25 +329,95 @@
               "type": "string",
               "title": "变量名称",
               "description": "环境变量的名称",
-              "default": "APP_MODE"
+              "default": "NGINX_ENVSUBST_TEMPLATE_DIR"
             },
             "value": {
               "type": "string",
               "title": "变量值",
               "description": "环境变量的值",
-              "default": "production"
+              "default": "/etc/nginx/templates"
             },
             "title": {
               "type": "string",
               "title": "中文名称",
               "description": "环境变量的中文名称",
-              "default": "应用模式"
+              "default": "环境变量替换目录"
             },
             "description": {
               "type": "string",
               "title": "描述",
               "description": "环境变量的详细描述",
-              "default": "应用运行的模式"
+              "default": "包含模板文件的目录"
+            }
+          }
+        },
+        "env2": {
+          "type": "object",
+          "title": "模板文件后缀",
+          "description": "模板文件的后缀",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "NGINX_ENVSUBST_TEMPLATE_SUFFIX"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": ".template"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "模板文件后缀"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "模板文件的后缀"
+            }
+          }
+        },
+        "env3": {
+          "type": "object",
+          "title": "静默日志",
+          "description": "设置为1可以静默入口点日志输出",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "NGINX_ENTRYPOINT_QUIET_LOGS"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "0"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "静默日志"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "设置为1可以静默入口点日志输出"
             }
           }
         }
