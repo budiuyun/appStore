@@ -7,5 +7,7 @@ icon: https://images.budiuyun.net/i/2025/06/18/6852baac702fd.png
 maintainers:
   - name: niehaoran
     email: 179866495@qq.com
+sources:
+  - https://github.com/AstrBotDevs/AstrBot
 annotations:
   budiu/app-category-zh: AI大模型
