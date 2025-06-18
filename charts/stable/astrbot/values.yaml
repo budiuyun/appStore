@@ -1,0 +1,40 @@
+workloadType: Deployment
+replicaCount: 1
+image:
+  imageRegistry: docker.1ms.run
+  repository: soulter/astrbot
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 6185
+      protocol: TCP
+networkLimits:
+  enabled: true
+  egress: 10M
+  ingress: 10M
+resources:
+  limits:
+    cpu: 1000m
+    memory: 2Gi
+    ephemeral-storage: 10Gi
+  requests:
+    cpu: 500m
+    memory: 512Mi
+    ephemeral-storage: 5Gi
+persistence:
+  enabled: true
+  size: 5Gi
+  accessMode: ReadWriteOnce
+  storageClass: local
+  mounts:
+    - /app/data
+env:
+  env1:
+    name: ADMIN_PASSWORD
+    value: astrbot
+    description: 管理员密码，请务必修改
+    title: 管理员密码
+icon: https://images.budiuyun.net/i/2025/06/18/6852baac702fd.png

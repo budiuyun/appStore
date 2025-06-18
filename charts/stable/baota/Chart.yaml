@@ -6,9 +6,9 @@ description: >-
   宝塔Linux面板是一款提升运维效率的服务器管理软件，支持一键LAMP/LNMP/集群/监控/网站/FTP/数据库/JAVA等100多项服务器管理功能，界面友好，安全可靠，适合个人和企业服务器运维。
 icon: https://images.budiuyun.net/i/2025/06/14/684c510c2ba85.png
 maintainers:
-  - name: niehaoran
+  - name: 陈不丢
     email: 179866495@qq.com
 sources:
   - https://hub.docker.com/r/btpanel/baota
 annotations:
-  budiu/app-category-zh: 运维管理
+  budiu/app-category-zh: 运维工具

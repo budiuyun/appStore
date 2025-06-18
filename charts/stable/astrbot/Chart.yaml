@@ -1,0 +1,13 @@
+apiVersion: v2
+name: astrbot
+version: v1.0.0
+appVersion: latest
+description: 松耦合、异步、支持多消息平台部署、具有易用的插件系统和完善的大语言模型（LLM）接入功能的聊天机器人及开发框架
+icon: https://images.budiuyun.net/i/2025/06/18/6852baac702fd.png
+maintainers:
+  - name: 陈不丢
+    email: 179866495@qq.com
+sources:
+  - https://github.com/AstrBotDevs/AstrBot
+annotations:
+  budiu/app-category-zh: AI大模型

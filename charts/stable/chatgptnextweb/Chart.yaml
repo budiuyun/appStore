@@ -1,0 +1,14 @@
+apiVersion: v2
+name: chatgpt-next-web
+version: v1.0.0
+appVersion: latest
+description: 一键免费部署你的私人ChatGPT网页应用
+icon: https://images.budiuyun.net/i/2025/06/18/6852b18b1800f.png
+maintainers:
+  - name: 陈不丢
+    email: 179866495@qq.com
+sources:
+  - https://github.com/Yidadaa/chatgpt-next-web
+  - https://github.com/Yidadaa/chatgpt-next-web/blob/main/README.zh-CN.md
+annotations:
+  budiu/app-category-zh: AI大模型

@@ -1,0 +1,13 @@
+apiVersion: v2
+name: one-api
+version: v1.0.0
+appVersion: latest
+description: 一站式大语言模型API管理平台，支持OpenAI、Azure、Claude、Gemini等多种模型
+icon: https://images.budiuyun.net/i/2025/06/18/6852b8da7398e.png
+maintainers:
+  - name: 陈不丢
+    email: 179866495@qq.com
+sources:
+  - https://github.com/songquanpeng/one-api
+annotations:
+  budiu/app-category-zh: AI大模型

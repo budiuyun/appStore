@@ -5,7 +5,7 @@ appVersion: latest
 description: Home Assistant 是一款开源的本地化智能家居自动化平台，注重隐私和本地控制，拥有丰富的集成和强大的自动化能力，适合树莓派或本地服务器部署。
 icon: https://images.budiuyun.net/i/2025/06/14/684c4d6af303c.png
 maintainers:
-  - name: niehaoran
+  - name: 陈不丢
     email: 179866495@qq.com
 sources:
   - https://hub.docker.com/r/homeassistant/home-assistant

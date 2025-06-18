@@ -10,7 +10,7 @@ sources:
   - https://hub.docker.com/r/phpmyadmin/phpmyadmin
   - https://github.com/phpmyadmin/phpmyadmin
 maintainers:
-  - name: niehaoran
+  - name: 陈不丢
     email: 179866495@qq.com
 annotations:
   budiu/app-category-zh: 数据库管理

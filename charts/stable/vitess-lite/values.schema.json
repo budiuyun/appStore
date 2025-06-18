@@ -1,0 +1,392 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "title": "vitess-lite Helm Chart 配置",
+  "required": [
+    "workloadType",
+    "replicaCount",
+    "image",
+    "service",
+    "networkLimits",
+    "resources"
+  ],
+  "properties": {
+    "workloadType": {
+      "type": "string",
+      "title": "工作负载类型",
+      "description": "指定部署为有状态集(StatefulSet)或无状态部署(Deployment)",
+      "enum": [
+        "Deployment",
+        "StatefulSet"
+      ],
+      "default": "Deployment"
+    },
+    "replicaCount": {
+      "type": "integer",
+      "title": "副本数量",
+      "description": "Deployment的副本数量",
+      "default": 1,
+      "minimum": 1
+    },
+    "image": {
+      "type": "object",
+      "title": "容器镜像",
+      "required": [
+        "repository",
+        "tag",
+        "pullPolicy"
+      ],
+      "properties": {
+        "imageRegistry": {
+          "type": "string",
+          "title": "镜像仓库地址",
+          "description": "容器镜像的仓库地址",
+          "default": "docker.io"
+        },
+        "repository": {
+          "type": "string",
+          "title": "镜像名称",
+          "description": "容器镜像的名称"
+        },
+        "tag": {
+          "type": "string",
+          "title": "镜像标签",
+          "description": "容器镜像的标签",
+          "default": "latest"
+        },
+        "pullPolicy": {
+          "type": "string",
+          "title": "镜像拉取策略",
+          "description": "镜像拉取策略，只能是IfNotPresent",
+          "enum": [
+            "IfNotPresent"
+          ],
+          "default": "IfNotPresent"
+        }
+      }
+    },
+    "service": {
+      "type": "object",
+      "title": "服务配置",
+      "required": [
+        "type",
+        "ports"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "title": "服务类型",
+          "description": "Kubernetes服务类型",
+          "enum": [
+            "ClusterIP"
+          ],
+          "default": "ClusterIP"
+        },
+        "ports": {
+          "type": "array",
+          "title": "服务端口配置",
+          "description": "服务暴露的端口配置",
+          "items": {
+            "type": "object",
+            "title": "端口配置",
+            "required": [
+              "name",
+              "port",
+              "protocol"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "title": "端口名称",
+                "description": "服务端口名称"
+              },
+              "port": {
+                "type": "integer",
+                "title": "端口号",
+                "description": "服务端口号",
+                "minimum": 1,
+                "maximum": 65535
+              },
+              "protocol": {
+                "type": "string",
+                "title": "协议",
+                "description": "端口协议",
+                "enum": [
+                  "TCP",
+                  "UDP"
+                ],
+                "default": "TCP"
+              }
+            }
+          },
+          "examples": [
+            [
+              {
+                "name": "http",
+                "port": 80,
+                "protocol": "TCP"
+              },
+              {
+                "name": "https",
+                "port": 443,
+                "protocol": "TCP"
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "networkLimits": {
+      "type": "object",
+      "title": "网络带宽限制",
+      "required": [
+        "enabled",
+        "egress",
+        "ingress"
+      ],
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "title": "启用网络带宽限制",
+          "description": "是否启用网络带宽限制",
+          "default": true
+        },
+        "egress": {
+          "type": "string",
+          "title": "出站带宽限制",
+          "description": "容器出站带宽限制，格式为数字+K/M/G，例如1M",
+          "default": "1M",
+          "pattern": "^[0-9]+[KMG]$"
+        },
+        "ingress": {
+          "type": "string",
+          "title": "入站带宽限制",
+          "description": "容器入站带宽限制，格式为数字+K/M/G，例如1M",
+          "default": "1M",
+          "pattern": "^[0-9]+[KMG]$"
+        }
+      }
+    },
+    "resources": {
+      "type": "object",
+      "title": "资源配置",
+      "required": [
+        "limits",
+        "requests"
+      ],
+      "properties": {
+        "limits": {
+          "type": "object",
+          "title": "资源限制",
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "properties": {
+            "cpu": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "CPU限制",
+              "description": "CPU资源限制，可以是m或核心数，留空表示无限制",
+              "pattern": "^[0-9]+m?$|^$",
+              "default": "200m"
+            },
+            "memory": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "内存限制",
+              "description": "内存资源限制，可以是Mi或Gi，留空表示无限制",
+              "pattern": "^[0-9]+(Mi|Gi)$|^$",
+              "default": "256Mi"
+            },
+            "ephemeral-storage": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "临时存储限制",
+              "description": "临时存储资源限制，可以是Mi或Gi",
+              "pattern": "^[0-9]+(Mi|Gi)$|^$",
+              "default": "10Gi"
+            }
+          }
+        },
+        "requests": {
+          "type": "object",
+          "title": "资源请求",
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "properties": {
+            "cpu": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "CPU请求",
+              "description": "CPU资源请求，可以是m或核心数，留空表示无限制",
+              "pattern": "^[0-9]+m?$|^$",
+              "default": "100m"
+            },
+            "memory": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "内存请求",
+              "description": "内存资源请求，可以是Mi或Gi，留空表示无限制",
+              "pattern": "^[0-9]+(Mi|Gi)$|^$",
+              "default": "128Mi"
+            },
+            "ephemeral-storage": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "临时存储请求",
+              "description": "临时存储资源请求，可以是Mi或Gi",
+              "pattern": "^[0-9]+(Mi|Gi)$|^$",
+              "default": "5Gi"
+            }
+          }
+        }
+      }
+    },
+    "persistence": {
+      "type": "object",
+      "title": "持久化存储",
+      "required": [
+        "enabled",
+        "size",
+        "accessMode",
+        "storageClass",
+        "mounts"
+      ],
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "title": "启用持久化存储",
+          "description": "是否启用持久化存储",
+          "default": true
+        },
+        "size": {
+          "type": "string",
+          "title": "存储大小",
+          "description": "持久化存储的大小，例如1Gi",
+          "default": "1Gi",
+          "pattern": "^[0-9]+(Mi|Gi|Ti)$"
+        },
+        "accessMode": {
+          "type": "string",
+          "title": "访问模式",
+          "description": "持久化存储的访问模式",
+          "enum": [
+            "ReadWriteOnce",
+            "ReadOnlyMany",
+            "ReadWriteMany"
+          ],
+          "default": "ReadWriteOnce"
+        },
+        "storageClass": {
+          "type": "string",
+          "title": "存储类名称",
+          "description": "Kubernetes存储类的名称",
+          "default": "local"
+        },
+        "mounts": {
+          "type": "array",
+          "title": "挂载路径",
+          "description": "将持久卷挂载到容器的路径列表",
+          "items": {
+            "type": "string",
+            "title": "挂载路径",
+            "description": "容器内挂载持久化存储的路径",
+            "default": "/data"
+          }
+        }
+      }
+    },
+    "env": {
+      "type": "object",
+      "title": "环境变量",
+      "description": "应用程序环境变量配置",
+      "properties": {
+        "env1": {
+          "type": "object",
+          "title": "拓扑服务器",
+          "description": "Vitess拓扑服务器地址",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "TOPOLOGY_FLAGS"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "-topo_implementation etcd2 -topo_global_server_address localhost:2379"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "拓扑服务器"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "Vitess拓扑服务器地址"
+            }
+          }
+        },
+        "env2": {
+          "type": "object",
+          "title": "单元名称",
+          "description": "Vitess单元名称",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "CELL"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": "zone1"
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "单元名称"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "Vitess单元名称"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -9,7 +9,7 @@ icon: https://images.budiuyun.net/i/2025/06/14/684c505914e99.png
 sources:
   - https://hub.docker.com/r/rabbitmq/rabbitmq
 maintainers:
-  - name: niehaoran
+  - name: 陈不丢
     email: 179866495@qq.com
 annotations:
   budiu/app-category-zh: 消息队列

@@ -1,0 +1,14 @@
+apiVersion: v2
+name: vitess-lite
+version: v1.0.0
+appVersion: latest
+description: MySQL数据库水平扩展集群系统的轻量级版本
+icon: https://images.budiuyun.net/i/2025/06/18/6852d449655ba.png
+maintainers:
+  - name: 陈不丢
+    email: 179866495@qq.com
+sources:
+  - https://hub.docker.com/r/vitess/lite
+  - https://github.com/vitessio/vitess
+annotations:
+  budiu/app-category-zh: 数据库

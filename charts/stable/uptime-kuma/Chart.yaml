@@ -8,7 +8,7 @@ description: >-
     等）以及历史记录追踪功能。 '
 icon: https://images.budiuyun.net/i/2025/05/13/6823632a4fc3c.png
 maintainers:
-  - name: niehaoran
+  - name: 陈不丢
     email: 179866495@qq.com
 sources:
   - https://github.com/louislam/uptime-kuma

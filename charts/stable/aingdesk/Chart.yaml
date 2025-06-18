@@ -1,0 +1,11 @@
+apiVersion: v2
+name: aingdesk
+version: v1.0.0
+appVersion: latest
+description: AingDesk 服务端，远程桌面管理解决方案
+icon: https://images.budiuyun.net/i/2025/06/18/6852af37c15dc.png
+maintainers:
+  - name: 陈不丢
+    email: 179866495@qq.com
+annotations:
+  budiu/app-category-zh: AI大模型
