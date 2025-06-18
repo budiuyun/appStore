@@ -31,23 +31,4 @@ persistence:
   storageClass: local
   mounts:
     - /root/.halo2
-env:
-  env1:
-    name: SPRING_PROFILES_ACTIVE
-    value: "prod"
-  env2:
-    name: SERVER_PORT
-    value: "8090"
-  env3:
-    name: HALO_WORK_DIR
-    value: "/root/.halo2"
-  env4:
-    name: HALO_SECURITY_INITIALIZER_SUPERADMINUSERNAME
-    value: "admin"
-  env5:
-    name: HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD
-    value: "budiu@121"
-  env7:
-    name: TZ
-    value: "Asia/Shanghai"
 icon: https://images.budiuyun.net/i/2025/06/18/6852aabcdad48.png
