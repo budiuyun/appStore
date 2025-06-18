@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "chatgpt-next-web.fullname" . }}
-  labels: {{- include "chatgpt-next-web.labels" . | nindent 4 }}
+  name: {{ include "chatgptnextweb.fullname" . }}
+  labels: {{- include "chatgptnextweb.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -12,4 +12,4 @@ spec:
       protocol: {{ .protocol }}
       name: {{ .name }}
     {{- end }}
-  selector: {{- include "chatgpt-next-web.selectorLabels" . | nindent 4 }}
+  selector: {{- include "chatgptnextweb.selectorLabels" . | nindent 4 }}

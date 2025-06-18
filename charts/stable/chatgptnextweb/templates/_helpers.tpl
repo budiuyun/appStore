@@ -1,14 +1,14 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "chatgpt-next-web.name" -}}
+{{- define "chatgptnextweb.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Create a default fully qualified app name.
 */}}
-{{- define "chatgpt-next-web.fullname" -}}
+{{- define "chatgptnextweb.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -24,16 +24,16 @@ Create a default fully qualified app name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "chatgpt-next-web.chart" -}}
+{{- define "chatgptnextweb.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "chatgpt-next-web.labels" -}}
-helm.sh/chart: {{ include "chatgpt-next-web.chart" . }}
-{{ include "chatgpt-next-web.selectorLabels" . }}
+{{- define "chatgptnextweb.labels" -}}
+helm.sh/chart: {{ include "chatgptnextweb.chart" . }}
+{{ include "chatgptnextweb.selectorLabels" . }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
@@ -41,7 +41,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "chatgpt-next-web.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "chatgpt-next-web.name" . }}
+{{- define "chatgptnextweb.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "chatgptnextweb.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}

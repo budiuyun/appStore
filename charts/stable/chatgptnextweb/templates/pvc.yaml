@@ -2,9 +2,9 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "chatgpt-next-web.fullname" . }}
+  name: {{ include "chatgptnextweb.fullname" . }}
   labels:
-    {{- include "chatgpt-next-web.labels" . | nindent 4 }}
+    {{- include "chatgptnextweb.labels" . | nindent 4 }}
 spec:
   accessModes:
     - {{ .Values.persistence.accessMode }}

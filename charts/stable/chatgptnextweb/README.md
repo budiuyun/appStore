@@ -1,4 +1,4 @@
-# chatgpt-next-web
+# chatgptnextweb
 
 一键免费部署你的私人ChatGPT网页应用
 
@@ -14,7 +14,7 @@
 |------|------|--------|
 | replicaCount | 副本数量 | `1` |
 | workloadType | 工作负载类型 | `Deployment` |
-| image.repository | 镜像名称 | `yidadaa/chatgpt-next-web` |
+| image.repository | 镜像名称 | `yidadaa/chatgptnextweb` |
 | image.tag | 镜像标签 | `latest` |
 | image.pullPolicy | 镜像拉取策略 | `IfNotPresent` |
 | service.type | 服务类型 | `ClusterIP` |
@@ -63,7 +63,7 @@ ChatGPT-Next-Web是一个开源项目，允许用户一键部署私人的ChatGPT
 docker run -d -p 3000:3000 \
    -e OPENAI_API_KEY="sk-xxxxx" \
    -e CODE="访问密码" \
-   yidadaa/chatgpt-next-web
+   yidadaa/chatgptnextweb
 ```
 
 ### 高级配置
@@ -73,5 +73,5 @@ docker run -d -p 3000:3000 \
 
 ## 相关链接
 
-- 官方仓库：https://github.com/Yidadaa/ChatGPT-Next-Web
-- Docker镜像：https://hub.docker.com/r/yidadaa/chatgpt-next-web
+- 官方仓库：https://github.com/Yidadaa/chatgptnextweb
+- Docker镜像：https://hub.docker.com/r/yidadaa/chatgptnextweb

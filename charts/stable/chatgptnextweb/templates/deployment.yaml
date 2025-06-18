@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "chatgpt-next-web.fullname" . }}
+  name: {{ include "chatgptnextweb.fullname" . }}
   labels:
-    {{- include "chatgpt-next-web.labels" . | nindent 4 }}
+    {{- include "chatgptnextweb.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "chatgpt-next-web.selectorLabels" . | nindent 6 }}
+      {{- include "chatgptnextweb.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "chatgpt-next-web.selectorLabels" . | nindent 8 }}
+        {{- include "chatgptnextweb.selectorLabels" . | nindent 8 }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
@@ -46,5 +46,5 @@ spec:
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: {{ include "chatgpt-next-web.fullname" . }}
+            claimName: {{ include "chatgptnextweb.fullname" . }}
       {{- end }}
