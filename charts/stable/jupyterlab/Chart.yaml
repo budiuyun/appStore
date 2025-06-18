@@ -5,7 +5,7 @@ appVersion: latest
 description: 基于Alpine Linux的轻量级JupyterLab环境，支持Python开发和数据可视化
 icon: https://images.budiuyun.net/i/2025/06/09/6846b63c66965.ico
 maintainers:
-  - name: niehaoran
+  - name: 陈不丢
     email: 179866495@qq.com
 sources:
   - https://github.com/jupyter/docker-stacks

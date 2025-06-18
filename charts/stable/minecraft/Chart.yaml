@@ -8,7 +8,7 @@ description: >-
   等模组版，为玩家提供丰富的游戏体验。
 icon: https://images.budiuyun.net/i/2025/06/06/6842e0ec61115.png
 maintainers:
-  - name: niehaoran
+  - name: 陈不丢
     email: 179866495@qq.com
 sources:
   - https://github.com/itzg/docker-minecraft-server

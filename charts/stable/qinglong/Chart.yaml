@@ -10,7 +10,7 @@ sources:
   - https://hub.docker.com/r/whyour/qinglong
   - https://github.com/whyour/qinglong
 maintainers:
-  - name: niehaoran
+  - name: 陈不丢
     email: 179866495@qq.com
 annotations:
   budiu/app-category-zh: 运维工具

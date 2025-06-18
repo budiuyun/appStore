@@ -5,7 +5,7 @@ appVersion: latest
 description: 浏览器中运行的VS Code，随时随地编写代码
 icon: https://images.budiuyun.net/i/2025/06/18/6852d6dd2bc9c.png
 maintainers:
-  - name: niehaoran
+  - name: 陈不丢
     email: 179866495@qq.com
 annotations:
   budiu/app-category-zh: 开发工具

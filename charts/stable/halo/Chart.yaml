@@ -5,7 +5,7 @@ appVersion: '2.21'
 description: 强大易用的开源建站工具。
 icon: https://images.budiuyun.net/i/2025/06/18/6852aabcdad48.png
 maintainers:
-  - name: niehaoran
+  - name: 陈不丢
     email: 179866495@qq.com
 sources:
   - https://www.halo.run

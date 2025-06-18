@@ -8,7 +8,7 @@ sources:
   - https://github.com/minio/minio
   - https://hub.docker.com/r/minio/minio
 maintainers:
-  - name: niehaoran
+  - name: 陈不丢
     email: 179866495@qq.com
 annotations:
   budiu/app-category-zh: 存储

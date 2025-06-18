@@ -7,7 +7,7 @@ description: >-
   兼容、自定义监控和状态页搭建，适用于网站、数据库、云原生、网络等多场景。开始需等待几分钟
 icon: https://images.budiuyun.net/i/2025/06/13/684c48ba34797.png
 maintainers:
-  - name: niehaoran
+  - name: 陈不丢
     email: 179866495@qq.com
 sources:
   - https://hub.docker.com/r/apache/hertzbeat

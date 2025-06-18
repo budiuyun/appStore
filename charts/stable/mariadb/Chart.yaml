@@ -5,7 +5,7 @@ appVersion: 11.7.2
 description: MariaDB Server是一个高性能开源关系型数据库，从MySQL分支而来
 icon: https://images.budiuyun.net/i/2025/06/09/6846fd5e91157.png
 maintainers:
-  - name: niehaoran
+  - name: 陈不丢
     email: 179866495@qq.com
 annotations:
   budiu/app-category-zh: 数据库

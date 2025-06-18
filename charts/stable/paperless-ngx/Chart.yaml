@@ -5,7 +5,7 @@ appVersion: latest
 description: Paperless-ngx 是一款开源文档管理系统，支持扫描件归档、全文检索、标签分类、元数据管理等功能，适合个人和企业实现无纸化办公。
 icon: https://images.budiuyun.net/i/2025/06/14/684c4de430dd5.png
 maintainers:
-  - name: niehaoran
+  - name: 陈不丢
     email: 179866495@qq.com
 sources:
   - https://hub.docker.com/r/linuxserver/paperless-ngx
