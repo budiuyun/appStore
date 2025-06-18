@@ -13,4 +13,4 @@ sources:
   - https://hub.docker.com/r/apache/hertzbeat
   - https://github.com/apache/hertzbeat
 annotations:
-  budiu/app-category-zh: 监控运维
+  budiu/app-category-zh: 监控工具

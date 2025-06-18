@@ -11,4 +11,4 @@ maintainers:
 sources:
   - https://hub.docker.com/r/btpanel/baota
 annotations:
-  budiu/app-category-zh: 运维管理
+  budiu/app-category-zh: 运维工具
