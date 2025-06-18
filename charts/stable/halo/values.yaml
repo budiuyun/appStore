@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   imageRegistry: docker.1ms.run
   repository: halohub/halo
-  tag: '2.21'
+  tag: '2.20'
   pullPolicy: IfNotPresent
 service:
   type: ClusterIP
@@ -31,15 +31,4 @@ persistence:
   storageClass: local
   mounts:
     - /root/.halo2
-env:
-  env1:
-    name: NGINX_MODE
-    value: production
-    description: Nginx运行模式
-    title: 运行模式
-  env2:
-    name: NGINX_WORKER_PROCESSES
-    value: auto
-    description: Nginx工作进程数量
-    title: 工作进程数
 icon: https://images.budiuyun.net/i/2025/06/18/6852aabcdad48.png
