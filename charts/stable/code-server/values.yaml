@@ -1,0 +1,51 @@
+workloadType: Deployment
+replicaCount: 1
+image:
+  imageRegistry: docker.1ms.run
+  repository: codercom/code-server
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 8080
+      protocol: TCP
+networkLimits:
+  enabled: true
+  egress: 5M
+  ingress: 5M
+resources:
+  limits:
+    cpu: 1000m
+    memory: 2Gi
+    ephemeral-storage: 10Gi
+  requests:
+    cpu: 500m
+    memory: 1Gi
+    ephemeral-storage: 5Gi
+persistence:
+  enabled: true
+  size: 10Gi
+  accessMode: ReadWriteOnce
+  storageClass: local
+  mounts:
+    - /home/coder/project
+    - /home/coder/.config
+env:
+  env1:
+    name: PASSWORD
+    value: ''
+    description: code-server访问密码
+    title: 密码
+  env2:
+    name: DOCKER_USER
+    value: coder
+    description: 容器内用户名映射
+    title: Docker用户
+  env3:
+    name: SUDO_ACCESS
+    value: 'false'
+    description: 是否允许用户使用sudo，true或false
+    title: Sudo权限
+icon: https://images.budiuyun.net/i/2025/06/18/6852d6dd2bc9c.png
