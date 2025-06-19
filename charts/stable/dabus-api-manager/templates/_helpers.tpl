@@ -1,14 +1,14 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "dabus-api-manager.name" -}}
+{{- define "api-management.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Create a default fully qualified app name.
 */}}
-{{- define "dabus-api-manager.fullname" -}}
+{{- define "api-management.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -24,16 +24,16 @@ Create a default fully qualified app name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "dabus-api-manager.chart" -}}
+{{- define "api-management.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "dabus-api-manager.labels" -}}
-helm.sh/chart: {{ include "dabus-api-manager.chart" . }}
-{{ include "dabus-api-manager.selectorLabels" . }}
+{{- define "api-management.labels" -}}
+helm.sh/chart: {{ include "api-management.chart" . }}
+{{ include "api-management.selectorLabels" . }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
@@ -41,7 +41,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "dabus-api-manager.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "dabus-api-manager.name" . }}
+{{- define "api-management.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "api-management.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
