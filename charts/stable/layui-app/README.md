@@ -41,4 +41,4 @@ layui-app是一款基于Layui框架开发的广告在线制作工具，具有以
 应用采用默认配置即可正常运行，无需额外配置环境变量
 
 ### 图片介绍
-[截图](https://images.budiuyun.net/i/2025/06/19/6853ed30480c0.png)
+![截图](https://images.budiuyun.net/i/2025/06/19/6853ed30480c0.png)
