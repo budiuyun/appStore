@@ -30,6 +30,5 @@ persistence:
   accessMode: ReadWriteOnce
   storageClass: local
   mounts:
-    - /var/www/html/uploads
-    - /var/www/html/config.php
+    - /var/www/html
 icon: https://images.budiuyun.net/i/2025/06/19/6854064e8b43a.png

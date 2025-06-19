@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/schema#",
   "type": "object",
-  "title": "dabus-apimanager Helm Chart 配置",
+  "title": "dabus-api Helm Chart 配置",
   "required": [
     "workloadType",
     "replicaCount",
