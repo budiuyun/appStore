@@ -41,10 +41,20 @@ spec:
             - name: data
               mountPath: {{ $path }}
             {{- end }}
+            {{- if .Values.persistence.configFile.enabled }}
+            - name: config-data
+              mountPath: {{ .Values.persistence.configFile.mountPath }}
+              subPath: {{ .Values.persistence.configFile.subPath }}
+            {{- end }}
           {{- end }}
       {{- if and .Values.persistence.enabled .Values.persistence.mounts }}
       volumes:
         - name: data
           persistentVolumeClaim:
             claimName: {{ include "kami-verify.fullname" . }}
+        {{- if .Values.persistence.configFile.enabled }}
+        - name: config-data
+          persistentVolumeClaim:
+            claimName: {{ include "kami-verify.fullname" . }}-config
+        {{- end }}
       {{- end }}

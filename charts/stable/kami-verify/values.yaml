@@ -31,5 +31,8 @@ persistence:
   storageClass: local
   mounts:
     - /var/www/html/uploads
-    - /var/www/html/config.php
+  configFile:
+    enabled: true
+    mountPath: /var/www/html/config.php
+    subPath: config.php
 icon: https://images.budiuyun.net/i/2025/06/19/6854064e8b43a.png
