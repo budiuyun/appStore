@@ -30,16 +30,5 @@ persistence:
   accessMode: ReadWriteOnce
   storageClass: local
   mounts:
-    - /var/www/html/file
-env:
-  env1:
-    name: ADMIN_USERNAME
-    value: admin
-    description: 系统管理员账号
-    title: 管理员用户名
-  env2:
-    name: ADMIN_PASSWORD
-    value: admin
-    description: 系统管理员密码
-    title: 管理员密码
+    - /var/www/html/uploads
 icon: https://images.budiuyun.net/i/2025/06/19/6853e2a613712.png
