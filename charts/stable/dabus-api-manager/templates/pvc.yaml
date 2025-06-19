@@ -2,9 +2,9 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "dabus-api-manager.fullname" . }}
+  name: {{ include "dabus-apimanager.fullname" . }}
   labels:
-    {{- include "dabus-api-manager.labels" . | nindent 4 }}
+    {{- include "dabus-apimanager.labels" . | nindent 4 }}
 spec:
   accessModes:
     - {{ .Values.persistence.accessMode }}
