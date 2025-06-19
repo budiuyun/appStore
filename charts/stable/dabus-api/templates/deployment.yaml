@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "dabus-apimanager.fullname" . }}
+  name: {{ include "dabus-api.fullname" . }}
   labels:
-    {{- include "dabus-apimanager.labels" . | nindent 4 }}
+    {{- include "dabus-api.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "dabus-apimanager.selectorLabels" . | nindent 6 }}
+      {{- include "dabus-api.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "dabus-apimanager.selectorLabels" . | nindent 8 }}
+        {{- include "dabus-api.selectorLabels" . | nindent 8 }}
     spec:
       initContainers:
         - name: init-volume
@@ -84,5 +84,5 @@ spec:
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: {{ include "dabus-apimanager.fullname" . }}
+            claimName: {{ include "dabus-api.fullname" . }}
       {{- end }}
