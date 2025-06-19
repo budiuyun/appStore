@@ -5,9 +5,9 @@ entries:
       budiu/app-category-zh: AI大模型
     apiVersion: v2
     appVersion: latest
-    created: "2025-06-19T11:31:56.097346564Z"
+    created: "2025-06-19T11:34:09.448222658Z"
     description: AingDesk 服务端，远程桌面管理解决方案
-    digest: 260a3e659a5f1bd2fced324262ce65f33fb7b9ea698d7eb82b68f40456328ebf
+    digest: 44fc66705f24ed5e58e7d52814c156f471d2eff7cd24250c9580d67a32a19036
     icon: https://images.budiuyun.net/i/2025/06/18/6852af37c15dc.png
     maintainers:
     - email: 179866495@qq.com
@@ -21,9 +21,9 @@ entries:
       budiu/app-category-zh: 存储
     apiVersion: v2
     appVersion: latest
-    created: "2025-06-19T11:31:56.097744103Z"
+    created: "2025-06-19T11:34:09.448645505Z"
     description: AList 是一个支持多种存储的文件列表程序，基于 Gin 和 React（Solidjs）开发。
-    digest: 1f49e5209662deec52014e713e1d5755aa240be1d8e1b2d020f8ee994cb1de16
+    digest: 2c2d4f4b8b1014ed21796e36e6e97ca75b8b3cca0a047eea4007aa097e3ecc8a
     icon: https://images.budiuyun.net/i/2025/06/13/684bbcccab631.png
     maintainers:
     - email: 179866495@qq.com
@@ -40,10 +40,10 @@ entries:
       budiu/app-category-zh: 安全工具
     apiVersion: v2
     appVersion: latest
-    created: "2025-06-19T11:31:56.098132005Z"
+    created: "2025-06-19T11:34:09.449022196Z"
     description: 开源免费的 SSL 证书自动化管理平台，集证书申请、管理、部署和监控于一体，支持多平台自动化部署和站点证书监控。请通过 ip地址＋端口/allinssl
       访问。
-    digest: 2d869ba173b6f896bb124b57ca46185fc3cd9a5d5b85ff56940e367cff18987f
+    digest: 49ec72fc2bae21cf1a4d02e56dee79dfb6d1081ad2802a316c03a0d8a34773a9
     icon: https://images.budiuyun.net/i/2025/06/13/684c450bba5e9.png
     maintainers:
     - email: 179866495@qq.com
@@ -57,9 +57,9 @@ entries:
       budiu/app-category-zh: AI大模型
     apiVersion: v2
     appVersion: latest
-    created: "2025-06-19T11:31:56.098504887Z"
+    created: "2025-06-19T11:34:09.449430165Z"
     description: 松耦合、异步、支持多消息平台部署、具有易用的插件系统和完善的大语言模型（LLM）接入功能的聊天机器人及开发框架
-    digest: 3b0d555200d5a164473a9f9aaafe69a113e16d9eff054aaa795e51bf40904027
+    digest: d9f6ecaccf02dec5bc9f7ce36ca32723804efda0cb74dbd69a813b25070c76ba
     icon: https://images.budiuyun.net/i/2025/06/18/6852baac702fd.png
     maintainers:
     - email: 179866495@qq.com
@@ -75,9 +75,9 @@ entries:
       budiu/app-category-zh: 存储
     apiVersion: v2
     appVersion: 4.17.7
-    created: "2025-06-19T11:31:56.098908087Z"
+    created: "2025-06-19T11:34:09.449823567Z"
     description: BaiduNetDisk（百度网盘）Docker版，适用于群晖NAS等环境，支持Web和VNC访问，便于文件下载与管理。
-    digest: ff8c7a91a8b57c97a2f4758f41f764e2fb8a9d3a42dd17c4fda1c5ee067ebc47
+    digest: ad7e3a049a2801332eb22efc4596d5b8f21a2f2636c3e58e12b7654fa23c402c
     icon: https://images.budiuyun.net/i/2025/06/13/684bbf3800a30.png
     maintainers:
     - email: 179866495@qq.com
@@ -93,9 +93,9 @@ entries:
       budiu/app-category-zh: 运维工具
     apiVersion: v2
     appVersion: 9.3.0
-    created: "2025-06-19T11:31:56.099259199Z"
+    created: "2025-06-19T11:34:09.450205998Z"
     description: 宝塔Linux面板是一款提升运维效率的服务器管理软件，支持一键LAMP/LNMP/集群/监控/网站/FTP/数据库/JAVA等100多项服务器管理功能，界面友好，安全可靠，适合个人和企业服务器运维。
-    digest: 913b7671068b1bedac525cd0935c5c758ae740c9339ee6823f1e8e00c4250ded
+    digest: 699cd1c602c626e4c6368c0944132933025b87ab0e27addeccc8dd73efd5bcb9
     icon: https://images.budiuyun.net/i/2025/06/14/684c510c2ba85.png
     maintainers:
     - email: 179866495@qq.com
@@ -111,9 +111,9 @@ entries:
       budiu/app-category-zh: AI大模型
     apiVersion: v2
     appVersion: latest
-    created: "2025-06-19T11:31:56.099642541Z"
+    created: "2025-06-19T11:34:09.450614909Z"
     description: 一键免费部署你的私人ChatGPT网页应用
-    digest: c2ce8b7ce4a9ab8bb66f8429d0389d2ff0f456d7e34717c010d0de8035330b45
+    digest: 0f802c0dffe43d32c14beebaf3ab0483a178946a9d91696787f83b833787d0ed
     icon: https://images.budiuyun.net/i/2025/06/18/6852b18b1800f.png
     maintainers:
     - email: 179866495@qq.com
@@ -130,9 +130,9 @@ entries:
       budiu/app-category-zh: 存储
     apiVersion: v2
     appVersion: latest
-    created: "2025-06-19T11:31:56.100004644Z"
+    created: "2025-06-19T11:34:09.450983004Z"
     description: Cloudreve 是一款支持多家云存储的自托管云盘系统，支持本地和多种主流云存储，具备丰富的文件管理与分享功能。
-    digest: 8dc6ba53ce3ff929369c101b7bc20c6028904bbbfcde33a303649e0e5c9077a3
+    digest: 5d0c0345d9ae47a20e1c22b179f6b98addbd379126f331c4a605218871de9dfd
     icon: https://images.budiuyun.net/i/2025/06/13/684bbd7ad76b8.png
     maintainers:
     - email: 179866495@qq.com
@@ -146,9 +146,9 @@ entries:
       budiu/app-category-zh: 开发工具
     apiVersion: v2
     appVersion: latest
-    created: "2025-06-19T11:31:56.100378589Z"
+    created: "2025-06-19T11:34:09.451379111Z"
     description: 浏览器中运行的VS Code，随时随地编写代码
-    digest: b6158936ab93bfb537f9712abbae4ea0ade0c00673ff8529bd09594288a678fb
+    digest: f2709207da37a331a13da63f69e58255c4b51804ce66177d842e1e7d0ac5476f
     icon: https://images.budiuyun.net/i/2025/06/18/6852d6dd2bc9c.png
     maintainers:
     - email: 179866495@qq.com
@@ -162,9 +162,9 @@ entries:
       budiu/app-category-zh: 仪表盘
     apiVersion: v2
     appVersion: latest
-    created: "2025-06-19T11:31:56.100716486Z"
+    created: "2025-06-19T11:34:09.451719573Z"
     description: Dashy是一个可自托管的个人仪表盘，包含状态检查、小部件、主题和图标包等功能
-    digest: 016e72a65f32aab792c483ce9aac9360f7393dac992eb315b10bd06768677a03
+    digest: dd1a53d7367c6ae4473ad3d06880d7ff3987bee5a3c0e65768613e543f2f4091
     icon: https://images.budiuyun.net/i/2025/06/09/6846e3a714f05.png
     maintainers:
     - email: 179866495@qq.com
@@ -178,9 +178,9 @@ entries:
       budiu/app-category-zh: 网站建设
     apiVersion: v2
     appVersion: latest
-    created: "2025-06-19T11:31:56.101082205Z"
+    created: "2025-06-19T11:34:09.452064784Z"
     description: emlog是一款基于PHP和MySQL的功能强大的博客及CMS建站系统
-    digest: 93f016b5c12703aff9dec9ffc0bdb5f4ed18823cc595c28f61f8d653a95835ed
+    digest: 219509584353ce9a8d452c6cafbdaf7ea671b2a65e18eefe8cfb2ed7f1bb68b1
     icon: https://images.budiuyun.net/i/2025/06/09/6846aea30adbb.png
     maintainers:
     - email: 179866495@qq.com
@@ -196,9 +196,9 @@ entries:
       budiu/app-category-zh: 网站建设
     apiVersion: v2
     appVersion: "2.21"
-    created: "2025-06-19T11:31:56.101394624Z"
+    created: "2025-06-19T11:34:09.452417539Z"
     description: 强大易用的开源建站工具。
-    digest: ed907bdfdb13eb34308308b24379faefcc8f0a5b4e2e6edd17e8f6e66f8a0872
+    digest: 9be5edf6a456bdf864c504b533d5fd613fe48ef4efaa9d1d6a0fe488a88b838d
     icon: https://images.budiuyun.net/i/2025/06/18/6852aabcdad48.png
     maintainers:
     - email: 179866495@qq.com
@@ -216,10 +216,10 @@ entries:
       budiu/app-category-zh: 监控工具
     apiVersion: v2
     appVersion: latest
-    created: "2025-06-19T11:31:56.101751627Z"
+    created: "2025-06-19T11:34:09.452789871Z"
     description: Apache HertzBeat（incubating）是一款开源、易用、无代理的实时监控系统，支持高性能集群、Prometheus
       兼容、自定义监控和状态页搭建，适用于网站、数据库、云原生、网络等多场景。开始需等待几分钟
-    digest: c50de3e9b54b127805239e6f1be3b9eafcafb5013e1ef451684182027d8b4e40
+    digest: 7e96807e41b05c331aacbb2213700ff29a2fb4207c0dd29a0d2fd8fdcc8fac16
     icon: https://images.budiuyun.net/i/2025/06/13/684c48ba34797.png
     maintainers:
     - email: 179866495@qq.com
@@ -236,9 +236,9 @@ entries:
       budiu/app-category-zh: 智能家居
     apiVersion: v2
     appVersion: latest
-    created: "2025-06-19T11:31:56.102677572Z"
+    created: "2025-06-19T11:34:09.453124923Z"
     description: Home Assistant 是一款开源的本地化智能家居自动化平台，注重隐私和本地控制，拥有丰富的集成和强大的自动化能力，适合树莓派或本地服务器部署。
-    digest: c3af34abc00d61fc7e03e56e12a3d75c56e1659fc42cc1ec9436afc601c0781a
+    digest: 608367c2ee139dbe5f66d0138445fc253076df265e0c17a8dbaa1de24d1ce9ac
     icon: https://images.budiuyun.net/i/2025/06/14/684c4d6af303c.png
     maintainers:
     - email: 179866495@qq.com
@@ -255,9 +255,9 @@ entries:
       budiu/app-category-zh: 开发工具
     apiVersion: v2
     appVersion: latest
-    created: "2025-06-19T11:31:56.103272991Z"
+    created: "2025-06-19T11:34:09.453523295Z"
     description: "\U0001F50B (PHP / Hyperf) 生产就绪的Docker镜像，带有自动Hyperf安装程序，需要下载，开始请等待几分钟"
-    digest: 289e1b881d91111e34253568d85abc1935ed2731dcb6c79e62f50e09fee3c493
+    digest: afff5ece3b71fffb4ff8ea1b553f54fd7867c22b2ab6f098820ed2ebb0fe3e3e
     icon: https://images.budiuyun.net/i/2025/06/09/6846f62f3a3f6.png
     maintainers:
     - email: 179866495@qq.com
@@ -271,9 +271,9 @@ entries:
       budiu/app-category-zh: 开发工具
     apiVersion: v2
     appVersion: latest
-    created: "2025-06-19T11:31:56.103650042Z"
+    created: "2025-06-19T11:34:09.454313635Z"
     description: 基于Alpine Linux的轻量级JupyterLab环境，支持Python开发和数据可视化
-    digest: b8973f1d93f5f56939f7671ae2172179d72a691040701fb290582160dc38e4f9
+    digest: aa621e51672222f7445275ea2d773463862291c829e7addd8423c9a3d6e88de9
     icon: https://images.budiuyun.net/i/2025/06/09/6846b63c66965.ico
     maintainers:
     - email: 179866495@qq.com
@@ -289,9 +289,9 @@ entries:
       budiu/app-category-zh: 制作工具
     apiVersion: v2
     appVersion: latest
-    created: "2025-06-19T11:31:56.103971508Z"
+    created: "2025-06-19T11:34:09.455063289Z"
     description: 广告在线制作
-    digest: 301d63dac1e887660ec2dde5110af44e224f6b0f82e78f35da293f529115e0f0
+    digest: d49c9a49f8e909ad1b46fe1758cc12a3583b2139f046df1bae78c7b4afaec6cf
     icon: https://images.budiuyun.net/i/2025/06/19/6853ef9a60a74.png
     maintainers:
     - email: 179866495@qq.com
@@ -305,9 +305,9 @@ entries:
       budiu/app-category-zh: 图床
     apiVersion: v2
     appVersion: 2.0.0
-    created: "2025-06-19T11:31:56.104306138Z"
+    created: "2025-06-19T11:34:09.455433327Z"
     description: 兰空图床 - 简单优雅的图片托管程序
-    digest: bbf2541a592a746d47a1be6ffbc073a1a162b97f89a61b76594e501dd2b7b61b
+    digest: adc8f08bcd76aa3a8b3b042098d1ded2c07e631762c74982db7af62adf19d44b
     icon: https://images.budiuyun.net/i/2025/06/09/684683bbc7a28.png
     maintainers:
     - email: 179866495@qq.com
@@ -323,9 +323,9 @@ entries:
       budiu/app-category-zh: 数据库
     apiVersion: v2
     appVersion: 11.7.2
-    created: "2025-06-19T11:31:56.10471523Z"
+    created: "2025-06-19T11:34:09.455833241Z"
     description: MariaDB Server是一个高性能开源关系型数据库，从MySQL分支而来
-    digest: 7691a053df4f3be6ae1532709037ad44b1ba29720cc905e18af61c831500e5eb
+    digest: 171bd57ec37f9c0562eeddbcc3d70ecd7e10111ee31e2318a1f1778b6c5aa27c
     icon: https://images.budiuyun.net/i/2025/06/09/6846fd5e91157.png
     maintainers:
     - email: 179866495@qq.com
@@ -339,9 +339,9 @@ entries:
       budiu/app-category-zh: 网站建设
     apiVersion: v2
     appVersion: latest
-    created: "2025-06-19T11:31:56.105202267Z"
+    created: "2025-06-19T11:34:09.45631492Z"
     description: 一个支持自部署的前后端分离的微博系统，可单用户或多用户使用
-    digest: 70b1fd7283e31efc462a84ebbcef3559ad6c5d7d9f42340bdd928a85a2b479ca
+    digest: 08344f9ca9d513b7184f81e605cbcddfee1b4188b45a0b1b66428c9cb207ab4e
     icon: https://images.budiuyun.net/i/2025/06/09/6846eaea44af8.png
     maintainers:
     - email: 179866495@qq.com
@@ -355,10 +355,10 @@ entries:
       budiu/app-category-zh: 游戏服务器
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-06-19T11:31:56.105642738Z"
+    created: "2025-06-19T11:34:09.456794284Z"
     description: Minecraft 是一款广受欢迎的沙盒游戏，玩家可以在其中探索、建造、合作与战斗。本 Chart 部署 Minecraft 服务器，为玩家提供多人在线游戏世界，并支持自定义插件、模组和配置，满足社区服务器和私人服务器需求。该服务器支持官方版和
       Forge、Paper 等模组版，为玩家提供丰富的游戏体验。
-    digest: eb5ddb1a78f80abc22809e5111e7ed3c6fc8476607aae6691579bfe4f8094135
+    digest: 98b7ee361037a134e521daf7dcf8c0118f2c23d43dcf49b9d9f39c1c1d41865d
     icon: https://images.budiuyun.net/i/2025/06/06/6842e0ec61115.png
     maintainers:
     - email: 179866495@qq.com
@@ -374,9 +374,9 @@ entries:
       budiu/app-category-zh: 存储
     apiVersion: v2
     appVersion: latest
-    created: "2025-06-19T11:31:56.106025519Z"
+    created: "2025-06-19T11:34:09.457151127Z"
     description: MinIO 是一个高性能的多云对象存储服务，兼容 Amazon S3 API，适用于机器学习、分析和应用数据等多种场景。
-    digest: 64423c81eb1c43569f337b186c565da58a52076828bdde4aa1befb318a9481f8
+    digest: 833c44072c2cc188b07b5bfad036c2bd29a39cdaba67f46ab04ee2e5f4e5fb2d
     icon: https://images.budiuyun.net/i/2025/06/13/684bbd25dd314.png
     maintainers:
     - email: 179866495@qq.com
@@ -393,9 +393,9 @@ entries:
       budiu/app-category-zh: 网站建设
     apiVersion: v2
     appVersion: latest
-    created: "2025-06-19T11:31:56.10633912Z"
+    created: "2025-06-19T11:34:09.457464548Z"
     description: 多端同步、美观易用的在线导航和书签工具
-    digest: 70d2f760304148289ad6f471ea50b0a44d84cbde1c0ac8e3d25716ff6669d165
+    digest: f2a3af3248757095a6f8e2258f81e6effa9957ebca0fab9c6defb69c8805c7d7
     icon: https://images.budiuyun.net/i/2025/06/09/6846df60afbb3.png
     maintainers:
     - email: 179866495@qq.com
@@ -409,9 +409,9 @@ entries:
       budiu/app-category-zh: 数据库
     apiVersion: v2
     appVersion: "8.0"
-    created: "2025-06-19T11:31:56.106665886Z"
+    created: "2025-06-19T11:34:09.457822433Z"
     description: 官方MySQL数据库服务
-    digest: 19def1108be3597352e70328c2a55f70b1bebfd9cc5ad5e1c20d1c418e2a7b1a
+    digest: 74eaf12234ba9a439de7d2f1085bc7aea38d28a015ae908fd96289abb4a88e4f
     icon: https://images.budiuyun.net/i/2025/05/13/6823652c31c05.png
     maintainers:
     - email: 179866495@qq.com
@@ -428,9 +428,9 @@ entries:
       budiu/app-category-zh: 存储
     apiVersion: v2
     appVersion: 31.0.5
-    created: "2025-06-19T11:31:56.107047906Z"
+    created: "2025-06-19T11:34:09.458227627Z"
     description: Nextcloud 是一个安全的私有云存储和协作平台。
-    digest: 83d63bc0364e284d81bb58b1ccb5f188066b51a8d6a0666bfbc05ba85f034248
+    digest: b1ff3db7c2a889f747994170e2caa8a9d1d01905734c4e0b9e2f44299a904d96
     icon: https://images.budiuyun.net/i/2025/06/13/684bb7a424156.png
     maintainers:
     - email: 179866495@qq.com
@@ -446,9 +446,9 @@ entries:
       budiu/app-category-zh: 网络工具
     apiVersion: v2
     appVersion: 1.27.5
-    created: "2025-06-19T11:31:56.10743177Z"
+    created: "2025-06-19T11:34:09.458620057Z"
     description: 高性能Web服务器和反向代理
-    digest: cda0970478ae6069b5b4bef58d93e8d3870eb7b5daaac799b33e476afef4206a
+    digest: 6eb0f0cec4ee1a05bbe3c27f9f92d0cabcdd59c1f2bfb2b8141dd05ad2cce0a4
     icon: https://images.budiuyun.net/i/2025/06/18/6852d5758ebb0.png
     maintainers:
     - email: 179866495@qq.com
@@ -465,9 +465,9 @@ entries:
       budiu/app-category-zh: 网络工具
     apiVersion: v2
     appVersion: latest
-    created: "2025-06-19T11:31:56.107790216Z"
+    created: "2025-06-19T11:34:09.458990005Z"
     description: NPMplus 是 nginx-proxy-manager 的改进分支，提供更易用的反向代理和 TLS 证书管理，支持 HTTP/3、CrowdSec、ModSecurity、GoAccess、负载均衡等高级功能，适合家庭和企业用户轻松实现网站转发与安全防护。
-    digest: 9761937d70c1e4b97bbe2da85f96249012c84ba8e02bc9437fa427a1a8641b0a
+    digest: 63325e8ee1ed92662ab8570f0c6664436bd2a9fa7af8569c95825a0b4795262f
     icon: https://images.budiuyun.net/i/2025/06/13/684c49cfd97f4.png
     maintainers:
     - email: 179866495@qq.com
@@ -484,9 +484,9 @@ entries:
       budiu/app-category-zh: AI大模型
     apiVersion: v2
     appVersion: latest
-    created: "2025-06-19T11:31:56.108138402Z"
+    created: "2025-06-19T11:34:09.459333242Z"
     description: 一站式大语言模型API管理平台，支持OpenAI、Azure、Claude、Gemini等多种模型
-    digest: a8ab8dbd5e7616fd6b24df51ff59539c347dab6257ecd65afcf67ce57c0578ad
+    digest: 6a35ab6a48ef407fd0d122815caa6b1a332b2f455ee2d75432c33623ba7b62b4
     icon: https://images.budiuyun.net/i/2025/06/18/6852b8da7398e.png
     maintainers:
     - email: 179866495@qq.com
@@ -502,9 +502,9 @@ entries:
       budiu/app-category-zh: 文档管理
     apiVersion: v2
     appVersion: latest
-    created: "2025-06-19T11:31:56.108522776Z"
+    created: "2025-06-19T11:34:09.45971933Z"
     description: Paperless-ngx 是一款开源文档管理系统，支持扫描件归档、全文检索、标签分类、元数据管理等功能，适合个人和企业实现无纸化办公。
-    digest: fefb8b03ef5f4f5eedd0f83ebec46b123d5b8720a790e31142785171df8e7da6
+    digest: c8451acecf5f3a6e411e2245723abe45b8b77fb4aed19bb5fc73aa66c3b98d94
     icon: https://images.budiuyun.net/i/2025/06/14/684c4de430dd5.png
     maintainers:
     - email: 179866495@qq.com
@@ -521,9 +521,9 @@ entries:
       budiu/app-category-zh: 存储
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-06-19T11:31:56.108835836Z"
+    created: "2025-06-19T11:34:09.460052278Z"
     description: 强大的PHP个人云盘系统，支持图床功能、文件外链、文件夹操作、文件上传与管理等全方位功能
-    digest: 053697ace2658c1fbb6c8318934334c21c552040c54adea75b65a5183e46641e
+    digest: 033dea87fb27d5954a7cb59c19c4264be7f807545da6d9069b0f2eb86ca92571
     icon: https://images.budiuyun.net/i/2025/06/19/6853e2a613712.png
     maintainers:
     - email: 179866495@qq.com
@@ -537,9 +537,9 @@ entries:
       budiu/app-category-zh: 数据库管理
     apiVersion: v2
     appVersion: 5.2.2
-    created: "2025-06-19T11:31:56.109226082Z"
+    created: "2025-06-19T11:34:09.460421845Z"
     description: phpMyAdmin 是一款流行的基于 Web 的 MySQL 和 MariaDB 数据库管理工具，支持数据库、表、用户、权限等多种操作，界面友好，易于使用。
-    digest: 2ff9e8392a27fe975cdb80051afb608c0285d0331eb4de58126715a7214b9cf3
+    digest: e7f6981cff0a8deace990a42ef87754000451806014f773ca8ece3b434cf55b8
     icon: https://images.budiuyun.net/i/2025/06/14/684c4bd043f5e.png
     maintainers:
     - email: 179866495@qq.com
@@ -556,9 +556,9 @@ entries:
       budiu/app-category-zh: 数据库
     apiVersion: v2
     appVersion: 16.2.0
-    created: "2025-06-19T11:31:56.109794002Z"
+    created: "2025-06-19T11:34:09.460820236Z"
     description: PostgreSQL是一个开源的对象关系型数据库，以可靠性和数据完整性著称
-    digest: 14071020245c099fda66e92eeb280f16ebd39c6d4dfb914a922e2012654136ff
+    digest: 330dc8c469563bda814afbc302744a068fedb725fd39668dfa6ac68da5efcc93
     icon: https://images.budiuyun.net/i/2025/06/09/6846fe3f36848.png
     maintainers:
     - email: 179866495@qq.com
@@ -572,9 +572,9 @@ entries:
       budiu/app-category-zh: 运维工具
     apiVersion: v2
     appVersion: latest
-    created: "2025-06-19T11:31:56.110333038Z"
+    created: "2025-06-19T11:34:09.461780458Z"
     description: Qinglong（青龙面板）是一款支持 Python3、JavaScript、Shell、Typescript 等多种脚本语言的定时任务管理平台，支持在线管理脚本、环境变量、配置文件，支持日志查看、系统通知、暗黑模式及移动端操作。
-    digest: d69ee1819da9affa12a8e108cbdfecf1784681124e2903a9d738343e4cf0019f
+    digest: 276d6fc1520838a861120d533f756785e2d4270c2c49fc493de13efe6f79b69c
     icon: https://images.budiuyun.net/i/2025/06/13/684c4710118d2.png
     maintainers:
     - email: 179866495@qq.com
@@ -591,9 +591,9 @@ entries:
       budiu/app-category-zh: 消息队列
     apiVersion: v2
     appVersion: 4.1.1
-    created: "2025-06-19T11:31:56.111295981Z"
+    created: "2025-06-19T11:34:09.462478823Z"
     description: RabbitMQ 是一款开源的多协议消息中间件，支持 AMQP、MQTT、STOMP 等协议，广泛应用于消息队列、异步通信和微服务架构中，支持高可用和集群部署。
-    digest: 2085f5af6fc0cda49b32689436d283398bddc12cef66eec26a32543260214c93
+    digest: 8d93a80a3d25f2f24bc8db3db8791644fcf4067a2cb780c4f3865ec1461aa1f4
     icon: https://images.budiuyun.net/i/2025/06/14/684c505914e99.png
     maintainers:
     - email: 179866495@qq.com
@@ -609,9 +609,9 @@ entries:
       budiu/app-category-zh: 数据库
     apiVersion: v2
     appVersion: 8.0.2
-    created: "2025-06-19T11:31:56.1118937Z"
+    created: "2025-06-19T11:34:09.462842789Z"
     description: Redis 是全球最快的数据平台，广泛用于缓存、向量搜索和 NoSQL 数据库，支持多种持久化和高可用部署方案，适合各种高性能应用场景。
-    digest: e9cdcd632f84e5e4e372db762a09283fc9610ef41f51978f9e5deb797f629e1a
+    digest: 91b0cb34c6762da44da7f152dd1442dfe1246dc98814ab6323cc26ceb5341477
     icon: https://images.budiuyun.net/i/2025/06/14/684c4f47776d5.png
     maintainers:
     - email: 179866495@qq.com
@@ -627,9 +627,9 @@ entries:
       budiu/app-category-zh: 镜像仓库
     apiVersion: v2
     appVersion: 3.0.0
-    created: "2025-06-19T11:31:56.112240403Z"
+    created: "2025-06-19T11:34:09.463197659Z"
     description: Docker Registry 是 OCI 分发规范的实现，用于本地或私有云环境下存储和分发容器镜像和制品，支持多架构和高可用部署。
-    digest: 627ef31a6730769f145eaaa0ec3edec018eaf1e10717852ccd60d2734d584729
+    digest: ff90d24b5bb9685a61d989475110e32aa2648e74b814910738fda72645c4a1f3
     icon: https://images.budiuyun.net/i/2025/06/14/684c5176a97a4.png
     maintainers:
     - email: 179866495@qq.com
@@ -645,9 +645,9 @@ entries:
       budiu/app-category-zh: 远程工具
     apiVersion: v2
     appVersion: latest
-    created: "2025-06-19T11:31:56.112628946Z"
+    created: "2025-06-19T11:34:09.463598414Z"
     description: RustDesk 是一款全功能开源远程桌面控制软件，支持自托管和安全访问，配置简单，适合个人和企业远程运维、桌面协作等场景。
-    digest: e5f8e034b68f4da496c6daa05fd919e069969a5ead48b8269cd20c8b9cbbdaf4
+    digest: f67f558b5ea4c9af5eb3a83bb8899c48ab854352961d0f99cda50b8d01316261
     icon: https://images.budiuyun.net/i/2025/06/14/684c4b2193d4c.png
     maintainers:
     - email: 179866495@qq.com
@@ -664,9 +664,9 @@ entries:
       budiu/app-category-zh: 问卷系统
     apiVersion: v2
     appVersion: latest
-    created: "2025-06-19T11:31:56.113044359Z"
+    created: "2025-06-19T11:34:09.463972199Z"
     description: 卷王 SurveyKing - 人人都可快速搭建的专业问卷考试系统，安装后需等待几分钟才能访问
-    digest: df9ad750e72d607fab2a7a41c6c4e471b7172e728e9770ee010a79dafd3fea46
+    digest: d2f3a7c8cdcab1b4564e1e684714e46500d0c4f7ad3f963c74449807a64a163f
     icon: https://images.budiuyun.net/i/2025/06/09/6846ed896739c.png
     maintainers:
     - email: 179866495@qq.com
@@ -680,9 +680,9 @@ entries:
       budiu/app-category-zh: 网站建设
     apiVersion: v2
     appVersion: nightly
-    created: "2025-06-19T11:31:56.113594375Z"
+    created: "2025-06-19T11:34:09.464545711Z"
     description: Typecho是一个轻量级的开源博客程序
-    digest: d3b1b19a4f36e89b516c4a799d7256bccd90493a9c5c1b9f854b89bf8d9531b0
+    digest: c4ad6e4fce9f77c195fb3c80016b38e33b28f1d27e97b8fd3533e458c5402999
     icon: https://images.budiuyun.net/i/2025/06/09/6846e11076903.png
     maintainers:
     - email: 179866495@qq.com
@@ -698,9 +698,9 @@ entries:
       budiu/app-category-zh: 操作系统
     apiVersion: v2
     appVersion: "22.04"
-    created: "2025-06-19T11:31:56.11397354Z"
+    created: "2025-06-19T11:34:09.464924545Z"
     description: 带有SSH服务的Ubuntu镜像，支持远程管理
-    digest: 1569bd52e21053d479c5fc52e3c092bdadad73745cf1d1ec19db02a72652ff0b
+    digest: 401cae240283a33b7c7c631d6508f76b2f35e126537673f539e1501900f09d1d
     icon: https://images.budiuyun.net/i/2025/06/08/68446389305d0.png
     maintainers:
     - email: 179866495@qq.com
@@ -714,10 +714,10 @@ entries:
       budiu/app-category-zh: 监控工具
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-06-19T11:31:56.114322668Z"
+    created: "2025-06-19T11:34:09.465296487Z"
     description: '''Uptime Kuma 是一个开源、轻量的自托管监控工具，支持对网站、服务器和 API 的正常运行时间进行实时监控，帮助用户快速了解服务的运行状况。它提供友好的用户界面、支持多种通知方式（如邮件、Telegram、Slack   等）以及历史记录追踪功能。
       '''
-    digest: 55949f7f62ef359ef6f8834f70ac378d736e39a3b1fd194f83c01702f3d64940
+    digest: 78c11bcfbd48c6def8798ede9f43d325bba53fc9cad81d2af14a5b562c8553ac
     icon: https://images.budiuyun.net/i/2025/05/13/6823632a4fc3c.png
     maintainers:
     - email: 179866495@qq.com
@@ -733,9 +733,9 @@ entries:
       budiu/app-category-zh: 数据库
     apiVersion: v2
     appVersion: latest
-    created: "2025-06-19T11:31:56.114686774Z"
+    created: "2025-06-19T11:34:09.465686092Z"
     description: MySQL数据库水平扩展集群系统的轻量级版本
-    digest: 55dec2d05621dfee46635e055cc7d54af8d1a8fe7dcc51d6bd761232611e01bf
+    digest: d0175111d4cbac248177765d660514a04088762e44856f3cfde01e5c928d8d7e
     icon: https://images.budiuyun.net/i/2025/06/18/6852d449655ba.png
     maintainers:
     - email: 179866495@qq.com
@@ -752,9 +752,9 @@ entries:
       budiu/app-category-zh: 网络工具
     apiVersion: v2
     appVersion: latest
-    created: "2025-06-19T11:31:56.115116394Z"
+    created: "2025-06-19T11:34:09.466110953Z"
     description: 最简单的方式在任何Linux主机上安装和管理WireGuard
-    digest: 67af726904ce7330839f82f708382b7f071e5b6be8da101ead4d6ea2a077c3f4
+    digest: 511215048b28232931641871e97d54d2c38b73d087ae11b7bec7f3b3023a09e3
     icon: https://images.budiuyun.net/i/2025/06/15/684e6a8adcb5b.png
     maintainers:
     - email: 179866495@qq.com
@@ -770,9 +770,9 @@ entries:
       budiu/app-category-zh: 网站建设
     apiVersion: v2
     appVersion: 6.8.1
-    created: "2025-06-19T11:31:56.1154802Z"
+    created: "2025-06-19T11:34:09.466500307Z"
     description: WordPress是一个功能强大的内容管理系统，可以使用插件、小部件和主题
-    digest: b3a2fbbfeecbb01ac76e8c6ef9def43c1fd0617aec6496954c0c2b929bd56fd7
+    digest: 453fdc7a82b0dcbe31496df3e28dda2a84be0f11d53fb1b6ae48a7e873f01072
     icon: https://images.budiuyun.net/i/2025/06/09/6846911733f80.png
     maintainers:
     - email: 179866495@qq.com
@@ -786,10 +786,10 @@ entries:
       budiu/app-category-zh: 开发工具
     apiVersion: v2
     appVersion: v2.1
-    created: "2025-06-19T11:31:56.115809831Z"
+    created: "2025-06-19T11:34:09.466838054Z"
     description: 达不四API管理系统
-    digest: ffadd306f301fe55e43619e0926a6e523b860ba8220ba1bbdd8650f8b1260409
-    icon: https://images.budiuyun.net/i/2025/06/19/6853dfa07232d.png
+    digest: 73155afe85bf4dbe930577a24ddcc0806255c1dd121fcf2573f7dec5a0fa2528
+    icon: https://images.budiuyun.net/i/2025/06/19/6853f55179b0e.png
     maintainers:
     - email: 179866495@qq.com
       name: 陈不丢
@@ -797,4 +797,4 @@ entries:
     urls:
     - 达不四API管理系统-v1.0.0.tgz
     version: v1.0.0
-generated: "2025-06-19T11:31:56.09682424Z"
+generated: "2025-06-19T11:34:09.447696706Z"
