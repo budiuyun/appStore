@@ -166,4 +166,4 @@ alwaysApply: false
 ```
 
 
-请确保每个应用的配置文件和README都符合以上规范，每次需要给用户分别提供json和readme（readme里面不雅提docker和k8s）。
+请确保每个应用的配置文件和README都符合以上规范，每次需要给用户分别提供json和readme（readme里面不要提docker和k8s）。
