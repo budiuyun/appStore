@@ -376,6 +376,28 @@
 
       }}
 ,
+      {"dabus-api-manager": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "达不四API管理系统",
+  "version": "v1.0.0",
+  "appVersion": "v2.1",
+  "description": "达不四API管理系统",
+  "icon": "https://images.budiuyun.net/i/2025/06/19/6853dfa07232d.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "开发工具"
+  }
+}
+
+      }}
+,
       {"hyperf": {
         "v1.0.0": 
 {
