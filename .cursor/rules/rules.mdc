@@ -1,0 +1,169 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Cursor Rules for App Configuration
+
+## JSON配置模板
+
+以下是应用程序配置的标准JSON模板：
+
+```json
+{
+  "name": "应用名称",
+  "version": "v1.0.0",
+  "appVersion": "应用版本",
+  "description": "应用描述",
+  "icon": "https://images.budiuyun.net/i/2025/06/19/6853dfa07232d.png",
+  "category": "应用类别",
+  "maintainer": {
+    "name": "陈不丢",
+    "email": "179866495@qq.com"
+  },
+  "workloadType": "Deployment",
+  "image": {
+    "imageRegistry": "docker.1ms.run",
+    "repository": "应用仓库名",
+    "tag": "latest",
+    "pullPolicy": "IfNotPresent"
+  },
+  "service": {
+    "type": "ClusterIP",
+    "ports": {
+      "http": {
+        "port": 80,
+        "protocol": "TCP"
+      },
+      "https": {
+        "port": 443,
+        "protocol": "TCP"
+      }
+    }
+  },
+  "networkLimits": {
+    "enabled": true,
+    "egress": "1M",
+    "ingress": "1M"
+  },
+  "resources": {
+    "limits": {
+      "cpu": "200m",
+      "memory": "256Mi"
+    },
+    "requests": {
+      "cpu": "100m",
+      "memory": "128Mi"
+    }
+  },
+  "persistence": {
+    "enabled": true,
+    "size": "1Gi",
+    "accessMode": "ReadWriteOnce",
+    "storageClass": "local",
+    "mounts": [
+      "挂载路径1",
+      "挂载路径2"
+    ]
+  },
+  "envVars": [
+    {
+      "title": "环境变量标题1",
+      "description": "环境变量描述1",
+      "name": "ENV_VAR_NAME_1",
+      "value": "默认值1"
+    },
+    {
+      "title": "环境变量标题2",
+      "description": "环境变量描述2",
+      "name": "ENV_VAR_NAME_2",
+      "value": "默认值2"
+    }
+  ]
+}
+```
+
+## 配置规则说明
+
+1. **基本信息**
+   - `name`: 应用名称，必填
+   - `version`: Helm Chart版本，格式为v1.x.x
+   - `appVersion`: 应用实际版本
+   - `description`: 应用简短描述
+   - `icon`: 应用图标URL，默认使用https://images.budiuyun.net/i/2025/06/19/6853dfa07232d.png
+   - `category`: 应用类别
+
+2. **维护者信息**
+   - 维护者姓名固定为"陈不丢"
+   - 维护者邮箱固定为"179866495@qq.com"
+
+3. **镜像配置**
+   - 镜像地址必须固定为"docker.1ms.run"
+   - `repository`: 应用在镜像仓库中的名称
+   - `tag`: 镜像标签，通常为latest或特定版本号
+
+4. **存储配置**
+   - `persistence.enabled`: 是否启用持久化存储
+   - `persistence.mounts`: 需要挂载的路径列表
+
+5. **环境变量**
+   - 为每个环境变量提供标题、描述、名称和默认值
+
+## README格式规范
+
+每个应用必须包含README.md文件，格式如下：
+
+```markdown
+# 应用名称
+
+应用简短描述。
+
+## 工作负载类型
+
+此Helm Chart使用 `工作负载类型` 工作负载类型。
+
+- 说明为什么使用此工作负载类型
+
+## 参数
+
+| 参数                | 描述               | 默认值         |
+|---------------------|--------------------|---------------|
+| replicaCount        | 副本数量           | `1`           |
+| workloadType        | 工作负载类型       | `Deployment`  |
+| image.repository    | 镜像名称           | `镜像仓库名`   |
+| image.tag           | 镜像标签           | `latest`      |
+| image.pullPolicy    | 镜像拉取策略       | `IfNotPresent`|
+| service.type        | 服务类型           | `ClusterIP`   |
+| persistence.enabled | 是否启用持久化存储 | `true/false`  |
+| persistence.size    | 存储大小           | `1Gi`         |
+| env                 | 环境变量配置       | 见下文        |
+
+## 环境变量
+
+应用程序支持以下环境变量配置：
+
+| 环境变量      | 描述                 | 默认值      |
+|---------------|----------------------|------------|
+| ENV_VAR_NAME_1| 环境变量描述1         | `默认值1`   |
+| ENV_VAR_NAME_2| 环境变量描述2         | `默认值2`   |
+
+## 介绍
+详细介绍应用程序，包括：
+- 核心功能
+- 使用场景
+- 优势特点
+- 配置说明
+
+## 使用说明
+提供应用的基本使用方法，包括：
+- 初始设置
+- 访问方式
+- 常见配置
+- 注意事项
+
+## 出处
+提供应用的官方网站、文档链接或GitHub仓库地址。
+```
+
+
+请确保每个应用的配置文件和README都符合以上规范，每次需要给用户分别提供json和readme。

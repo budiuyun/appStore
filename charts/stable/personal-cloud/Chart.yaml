@@ -1,0 +1,11 @@
+apiVersion: v2
+name: personal-cloud
+version: v1.0.0
+appVersion: 1.0.0
+description: 强大的PHP个人云盘系统，支持图床功能、文件外链、文件夹操作、文件上传与管理等全方位功能
+icon: https://images.budiuyun.net/i/2025/06/19/6853e2a613712.png
+maintainers:
+  - name: 陈不丢
+    email: 179866495@qq.com
+annotations:
+  budiu/app-category-zh: 存储
