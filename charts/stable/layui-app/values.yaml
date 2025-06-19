@@ -1,0 +1,33 @@
+workloadType: Deployment
+replicaCount: 1
+image:
+  imageRegistry: docker.1ms.run
+  repository: niehaoran/layui-app
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+networkLimits:
+  enabled: true
+  egress: 1M
+  ingress: 1M
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+    ephemeral-storage: 10Gi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+    ephemeral-storage: 5Gi
+persistence:
+  enabled: false
+  size: 1Gi
+  accessMode: ReadWriteOnce
+  storageClass: local
+  mounts: []
+icon: https://images.budiuyun.net/i/2025/06/19/6853eb1a0d835.png

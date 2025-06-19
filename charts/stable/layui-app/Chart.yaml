@@ -1,0 +1,11 @@
+apiVersion: v2
+name: layui-app
+version: v1.0.0
+appVersion: latest
+description: 广告在线制作
+icon: https://images.budiuyun.net/i/2025/06/19/6853eb1a0d835.png
+maintainers:
+  - name: 陈不丢
+    email: 179866495@qq.com
+annotations:
+  budiu/app-category-zh: 工具
