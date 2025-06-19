@@ -154,6 +154,31 @@
 
     ]
 ,
+    "制作工具": [
+      {"layui-app": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "layui-app",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "广告在线制作",
+  "icon": "https://images.budiuyun.net/i/2025/06/19/6853ef9a60a74.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "制作工具"
+  }
+}
+
+      }}
+
+    ]
+,
     "图床": [
       {"lsky-pro": {
         "v1.0.0": 
@@ -306,6 +331,28 @@
 }
 
       }}
+,
+      {"personal-cloud": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "personal-cloud",
+  "version": "v1.0.0",
+  "appVersion": "1.0.0",
+  "description": "强大的PHP个人云盘系统，支持图床功能、文件外链、文件夹操作、文件上传与管理等全方位功能",
+  "icon": "https://images.budiuyun.net/i/2025/06/19/6853e2a613712.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "存储"
+  }
+}
+
+      }}
 
     ]
 ,
@@ -334,6 +381,31 @@
 
     ]
 ,
+    "工具": [
+      {"kami-verify": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "kami-verify",
+  "version": "v1.0.0",
+  "appVersion": "0.2",
+  "description": "卡密验证系统 - 初始化成功了之后自己删除index.php",
+  "icon": "https://images.budiuyun.net/i/2025/06/19/6854064e8b43a.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "工具"
+  }
+}
+
+      }}
+
+    ]
+,
     "开发工具": [
       {"code-server": {
         "v1.0.0": 
@@ -344,6 +416,28 @@
   "appVersion": "latest",
   "description": "浏览器中运行的VS Code，随时随地编写代码",
   "icon": "https://images.budiuyun.net/i/2025/06/18/6852d6dd2bc9c.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "开发工具"
+  }
+}
+
+      }}
+,
+      {"dabus-api-manager": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "dabus-apimanager",
+  "version": "v1.0.0",
+  "appVersion": "v2.1",
+  "description": "达不四API管理系统",
+  "icon": "https://images.budiuyun.net/i/2025/06/19/6853f55179b0e.png",
   "maintainers": [
     {
       "name": "陈不丢",
@@ -1089,5 +1183,5 @@
 
     ]
   },
-  "count": 21
+  "count": 23
 }
