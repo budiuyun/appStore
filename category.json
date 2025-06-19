@@ -401,7 +401,7 @@
 
       }}
 ,
-      {"dabus-api-manager": {
+      {"dabus-apimanager": {
         "v1.0.0": 
 {
   "apiVersion": "v2",
