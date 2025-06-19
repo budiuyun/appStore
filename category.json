@@ -328,6 +328,31 @@
 
     ]
 ,
+    "工具": [
+      {"layui-app": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "layui-app",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "广告在线制作",
+  "icon": "https://images.budiuyun.net/i/2025/06/19/6853eb1a0d835.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "工具"
+  }
+}
+
+      }}
+
+    ]
+,
     "开发工具": [
       {"code-server": {
         "v1.0.0": 
@@ -1108,5 +1133,5 @@
 
     ]
   },
-  "count": 20
+  "count": 21
 }
