@@ -353,6 +353,31 @@
 
     ]
 ,
+    "工具": [
+      {"kami-verify": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "kami-verify",
+  "version": "v1.0.0",
+  "appVersion": "0.2",
+  "description": "卡密验证系统 - 初始化成功了之后自己删除index.php",
+  "icon": "https://images.budiuyun.net/i/2025/06/19/6854064e8b43a.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "工具"
+  }
+}
+
+      }}
+
+    ]
+,
     "开发工具": [
       {"code-server": {
         "v1.0.0": 
@@ -380,7 +405,7 @@
         "v1.0.0": 
 {
   "apiVersion": "v2",
-  "name": "达不四API管理系统",
+  "name": "dabus-apimanager",
   "version": "v1.0.0",
   "appVersion": "v2.1",
   "description": "达不四API管理系统",
@@ -1155,5 +1180,5 @@
 
     ]
   },
-  "count": 21
+  "count": 22
 }
