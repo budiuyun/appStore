@@ -1,5 +1,5 @@
 apiVersion: v2
-name: 达不四API管理系统
+name: dabus-api-manager
 version: v1.0.0
 appVersion: v2.1
 description: 达不四API管理系统

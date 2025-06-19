@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "api-management.fullname" . }}
-  labels: {{- include "api-management.labels" . | nindent 4 }}
+  name: {{ include "dabus-api-manager.fullname" . }}
+  labels: {{- include "dabus-api-manager.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -12,4 +12,4 @@ spec:
       protocol: {{ .protocol }}
       name: {{ .name }}
     {{- end }}
-  selector: {{- include "api-management.selectorLabels" . | nindent 4 }}
+  selector: {{- include "dabus-api-manager.selectorLabels" . | nindent 4 }}

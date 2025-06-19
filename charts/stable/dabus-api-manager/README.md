@@ -14,7 +14,7 @@
 |---|-----|---|
 | replicaCount        | 副本数量           | `1`           |
 | workloadType        | 工作负载类型       | `Deployment`  |
-| image.repository    | 镜像名称           | `api-management`   |
+| image.repository    | 镜像名称           | `dabus-api-manager`   |
 | image.tag           | 镜像标签           | `latest`      |
 | image.pullPolicy    | 镜像拉取策略       | `IfNotPresent`|
 | service.type        | 服务类型           | `ClusterIP`   |
