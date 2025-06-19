@@ -380,7 +380,7 @@
         "v1.0.0": 
 {
   "apiVersion": "v2",
-  "name": "dabus-api-manager",
+  "name": "达不四API管理系统",
   "version": "v1.0.0",
   "appVersion": "v2.1",
   "description": "达不四API管理系统",
