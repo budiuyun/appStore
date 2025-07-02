@@ -108,11 +108,13 @@ data:
     tls_enable=true
     tls_bridge_port=8025
   clients.json: |-
-    [{"Cnf":{"U":"","P":"","Compress":false,"Crypt":false},"Id":1,"VerifyKey":"abc123","Addr":"","Remark":"","Status":false,"IsConnect":false,"RateLimit":0,"Flow":{"ExportFlow":0,"InletFlow":0,"FlowLimit":0},"Rate":{"NowRate":0},"NoStore":false,"NoDisplay":false,"MaxConn":0,"NowConn":0,"WebUserName":"","WebPassword":"","ConfigConnAllow":true,"MaxTunnelNum":0,"Version":"","BlackIpList":[],"CreateTime":"","LastOnlineTime":""}]
+    {"Cnf":{"U":"","P":"","Compress":false,"Crypt":false},"Id":1,"VerifyKey":"abc123","Addr":"","Remark":"","Status":false,"IsConnect":false,"RateLimit":0,"Flow":{"ExportFlow":0,"InletFlow":0,"FlowLimit":0},"Rate":{"NowRate":0},"NoStore":false,"NoDisplay":false,"MaxConn":0,"NowConn":0,"WebUserName":"","WebPassword":"","ConfigConnAllow":true,"MaxTunnelNum":0,"Version":"","BlackIpList":[],"CreateTime":"","LastOnlineTime":""}
+    *#*
   hosts.json: |-
-    [{"Id":1,"Host":"example.com","HeaderChange":"","HostChange":"","Location":"/","Remark":"","Scheme":"all","CertFilePath":"","KeyFilePath":"","NoStore":false,"IsClose":false,"AutoHttps":false,"Flow":{"ExportFlow":0,"InletFlow":0,"FlowLimit":0},"Client":null,"Target":{"TargetStr":"127.0.0.1:80","TargetArr":["127.0.0.1:80"],"LocalProxy":false}}]
+    {"Id":1,"Host":"example.com","HeaderChange":"","HostChange":"","Location":"/","Remark":"","Scheme":"all","CertFilePath":"","KeyFilePath":"","NoStore":false,"IsClose":false,"AutoHttps":false,"Flow":{"ExportFlow":0,"InletFlow":0,"FlowLimit":0},"Client":null,"Target":{"TargetStr":"127.0.0.1:80","TargetArr":["127.0.0.1:80"],"LocalProxy":false}}
+    *#*
   global.json: |-
     {}
   tasks.json: |-
-    [{"Id":1,"Port":0,"ServerIp":"","Mode":"","Status":false,"RunStatus":false,"Client":null,"Ports":"","Flow":{"ExportFlow":0,"InletFlow":0,"FlowLimit":0},"Password":"","Remark":"","TargetAddr":"","NoStore":false,"IsHttp":false,"LocalPath":"","StripPre":"","ProtoVersion":"","Target":{"TargetStr":"","TargetArr":null,"LocalProxy":false},"MultiAccount":null,"HealthCheckTimeout":0,"HealthMaxFail":0,"HealthCheckInterval":0,"HealthNextTime":"0001-01-01T00:00:00Z","HealthMap":null,"HttpHealthUrl":"","HealthRemoveArr":null,"HealthCheckType":"","HealthCheckTarget":""}]
+    {"Id":1,"Port":0,"ServerIp":"","Mode":"","Status":false,"RunStatus":false,"Client":null,"Ports":"","Flow":{"ExportFlow":0,"InletFlow":0,"FlowLimit":0},"Password":"","Remark":"","TargetAddr":"","NoStore":false,"IsHttp":false,"LocalPath":"","StripPre":"","ProtoVersion":"","Target":{"TargetStr":"","TargetArr":null,"LocalProxy":false},"MultiAccount":null,"HealthCheckTimeout":0,"HealthMaxFail":0,"HealthCheckInterval":0,"HealthNextTime":"0001-01-01T00:00:00Z","HealthMap":null,"HttpHealthUrl":"","HealthRemoveArr":null,"HealthCheckType":"","HealthCheckTarget":""}
     *#* 
