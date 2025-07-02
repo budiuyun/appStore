@@ -46,20 +46,7 @@ spec:
             - name: data
               mountPath: {{ .Values.persistence.path }}
             - name: config
-              mountPath: /conf/nps.conf
-              subPath: nps.conf
-            - name: config
-              mountPath: /conf/clients.json
-              subPath: clients.json
-            - name: config
-              mountPath: /conf/hosts.json
-              subPath: hosts.json
-            - name: config
-              mountPath: /conf/global.json
-              subPath: global.json
-            - name: config
-              mountPath: /conf/tasks.json
-              subPath: tasks.json
+              mountPath: /conf
       volumes:
         - name: data
           persistentVolumeClaim:
