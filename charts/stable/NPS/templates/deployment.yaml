@@ -26,13 +26,15 @@ spec:
               protocol: {{ .protocol }}
             {{- end }}
           {{- end }}
-          {{- if .Values.env }}
           env:
+            - name: CONF_PATH
+              value: "/conf"
+            {{- if .Values.env }}
             {{- range $key, $value := .Values.env }}
             - name: {{ $value.name }}
               value: {{ $value.value | quote }}
             {{- end }}
-          {{- end }}
+            {{- end }}
           resources:
             limits:
               cpu: {{ .Values.resources.limits.cpu | default "200m" }}
