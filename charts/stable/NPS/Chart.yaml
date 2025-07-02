@@ -1,0 +1,11 @@
+apiVersion: v2
+name: NPS
+version: v1.0.0
+appVersion: latest
+description: NPS是一款轻量级、高性能、功能强大的内网穿透代理服务器
+icon: https://images.budiuyun.net/i/2025/07/02/6864e19441383.jpg
+maintainers:
+  - name: 陈不丢
+    email: 179866495@qq.com
+annotations:
+  budiu/app-category-zh: 网络工具
