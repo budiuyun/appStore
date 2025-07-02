@@ -1,14 +1,14 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "NPS.name" -}}
+{{- define "nps.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Create a default fully qualified app name.
 */}}
-{{- define "NPS.fullname" -}}
+{{- define "nps.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -24,16 +24,16 @@ Create a default fully qualified app name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "NPS.chart" -}}
+{{- define "nps.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "NPS.labels" -}}
-helm.sh/chart: {{ include "NPS.chart" . }}
-{{ include "NPS.selectorLabels" . }}
+{{- define "nps.labels" -}}
+helm.sh/chart: {{ include "nps.chart" . }}
+{{ include "nps.selectorLabels" . }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
@@ -41,7 +41,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "NPS.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "NPS.name" . }}
+{{- define "nps.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "nps.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}

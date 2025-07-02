@@ -1,5 +1,5 @@
 apiVersion: v2
-name: NPS
+name: nps
 version: v1.0.0
 appVersion: latest
 description: NPS是一款轻量级、高性能、功能强大的内网穿透代理服务器

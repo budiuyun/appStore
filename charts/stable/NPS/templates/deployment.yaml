@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "NPS.fullname" . }}
+  name: {{ include "nps.fullname" . }}
   labels:
-    {{- include "NPS.labels" . | nindent 4 }}
+    {{- include "nps.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "NPS.selectorLabels" . | nindent 6 }}
+      {{- include "nps.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "NPS.selectorLabels" . | nindent 8 }}
+        {{- include "nps.selectorLabels" . | nindent 8 }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
@@ -46,5 +46,5 @@ spec:
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: {{ include "NPS.fullname" . }}
+            claimName: {{ include "nps.fullname" . }}
       {{- end }}

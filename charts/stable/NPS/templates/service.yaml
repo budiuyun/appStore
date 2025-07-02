@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "NPS.fullname" . }}
-  labels: {{- include "NPS.labels" . | nindent 4 }}
+  name: {{ include "nps.fullname" . }}
+  labels: {{- include "nps.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -12,4 +12,4 @@ spec:
       protocol: {{ .protocol }}
       name: {{ .name }}
     {{- end }}
-  selector: {{- include "NPS.selectorLabels" . | nindent 4 }}
+  selector: {{- include "nps.selectorLabels" . | nindent 4 }}

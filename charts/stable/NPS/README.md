@@ -1,4 +1,4 @@
-# NPS
+# nps
 
 NPS是一款轻量级、高性能、功能强大的内网穿透代理服务器
 
@@ -27,5 +27,5 @@ NPS是一款轻量级、高性能、功能强大的内网穿透代理服务器
 ## 安装方法
 
 ```bash
-helm install my-release ./NPS
+helm install my-release ./nps
 ```

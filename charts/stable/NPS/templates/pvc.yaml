@@ -2,9 +2,9 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "NPS.fullname" . }}
+  name: {{ include "nps.fullname" . }}
   labels:
-    {{- include "NPS.labels" . | nindent 4 }}
+    {{- include "nps.labels" . | nindent 4 }}
 spec:
   accessModes:
     - {{ .Values.persistence.accessMode }}
