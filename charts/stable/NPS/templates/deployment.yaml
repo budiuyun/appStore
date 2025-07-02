@@ -14,6 +14,43 @@ spec:
       labels:
         {{- include "nps.selectorLabels" . | nindent 8 }}
     spec:
+      initContainers:
+        - name: init-volume
+          image: "{{ .Values.image.imageRegistry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          resources:
+            limits:
+              cpu: "100m"
+              memory: "100Mi"
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
+          command:
+            - /bin/sh
+            - -c
+            - |
+              # 确保持久卷数据完整性
+              {{- range $index, $path := .Values.persistence.mounts }}
+              # 检查目录是否为空或不存在
+              if [ ! -d "/data{{ $path }}" ] || [ -z "$(ls -A /data{{ $path }} 2>/dev/null)" ]; then
+                echo "Initializing data for {{ $path }}"
+                # 确保目标目录存在
+                mkdir -p /data{{ $path }}
+                # 使用cp保留所有属性和权限
+                if [ -d "{{ $path }}" ]; then
+                  # 复制所有文件并保留权限、所有权和链接
+                  cp -rp {{ $path }}/* /data{{ $path }}/ 2>/dev/null || true
+                  cp -rp {{ $path }}/.[^.]* /data{{ $path }}/ 2>/dev/null || true
+                fi
+              else
+                echo "Directory /data{{ $path }} already initialized, skipping"
+              fi
+              {{- end }}
+          {{- if and .Values.persistence.enabled .Values.persistence.mounts }}
+          volumeMounts:
+            - name: data
+              mountPath: /data
+          {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.imageRegistry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -40,6 +77,7 @@ spec:
             {{- range $index, $path := .Values.persistence.mounts }}
             - name: data
               mountPath: {{ $path }}
+              subPath: {{ $path | trimPrefix "/" }}
             {{- end }}
           {{- end }}
       {{- if and .Values.persistence.enabled .Values.persistence.mounts }}
