@@ -42,7 +42,7 @@ spec:
               memory: {{ .Values.resources.requests.memory | default "128Mi" }}
           volumeMounts:
             - name: data
-              mountPath: /conf/data
+              mountPath: {{ .Values.persistence.path }}
             - name: config
               mountPath: /conf/nps.conf
               subPath: nps.conf

@@ -44,6 +44,7 @@ persistence:
   size: 1Gi
   accessMode: ReadWriteOnce
   storageClass: local
+  path: /conf/data
   mounts:
     - /conf
 icon: https://images.budiuyun.net/i/2025/07/02/6864e19441383.jpg
