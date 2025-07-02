@@ -5,10 +5,6 @@ image:
   repository: yisier1/nps
   tag: latest
   pullPolicy: IfNotPresent
-initContainer:
-  imageRegistry: docker.1ms.run
-  repository: busybox
-  tag: latest
 service:
   type: ClusterIP
   ports:
