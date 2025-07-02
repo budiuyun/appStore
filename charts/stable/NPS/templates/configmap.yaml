@@ -34,7 +34,7 @@ data:
 
     # log level LevelEmergency->0  LevelAlert->1 LevelCritical->2 LevelError->3 LevelWarning->4 LevelNotice->5 LevelInformational->6 LevelDebug->7
     log_level=6
-    log_path=/npsconf/nps.log
+    log_path=/conf/nps.log
 
     #Whether to restrict IP access, true or false or ignore
     #ip_limit=true
@@ -108,13 +108,15 @@ data:
     tls_enable=true
     tls_bridge_port=8025
   clients.json: |-
-    {"Cnf":{"U":"","P":"","Compress":false,"Crypt":false},"Id":1,"VerifyKey":"abc123","Addr":"","Remark":"","Status":false,"IsConnect":false,"RateLimit":0,"Flow":{"ExportFlow":0,"InletFlow":0,"FlowLimit":0},"Rate":{"NowRate":0},"NoStore":false,"NoDisplay":false,"MaxConn":0,"NowConn":0,"WebUserName":"","WebPassword":"","ConfigConnAllow":true,"MaxTunnelNum":0,"Version":"","BlackIpList":[],"CreateTime":"","LastOnlineTime":""}
+    {"Cnf":{"U":"","P":"","Compress":false,"Crypt":false},"Id":36,"VerifyKey":"fc8d16dd20","Addr":"117.147.93.82","Remark":"","Status":true,"IsConnect":true,"RateLimit":0,"Flow":{"ExportFlow":157990001,"InletFlow":157990001,"FlowLimit":0},"Rate":{"NowRate":0},"NoStore":false,"NoDisplay":false,"MaxConn":0,"NowConn":0,"WebUserName":"","WebPassword":"","ConfigConnAllow":true,"MaxTunnelNum":0,"Version":"0.26.24","BlackIpList":[""],"CreateTime":"2025-07-01 05:15:12","LastOnlineTime":"2025-07-02 08:42:16"}
     *#*
   hosts.json: |-
-    {"Id":1,"Host":"example.com","HeaderChange":"","HostChange":"","Location":"/","Remark":"","Scheme":"all","CertFilePath":"","KeyFilePath":"","NoStore":false,"IsClose":false,"AutoHttps":false,"Flow":{"ExportFlow":0,"InletFlow":0,"FlowLimit":0},"Client":null,"Target":{"TargetStr":"127.0.0.1:80","TargetArr":["127.0.0.1:80"],"LocalProxy":false}}
+    {"Id":1,"Host":"nas.rensumo.top","HeaderChange":"","HostChange":"","Location":"/","Remark":"","Scheme":"all","CertFilePath":"","KeyFilePath":"","NoStore":false,"IsClose":false,"AutoHttps":false,"Flow":{"ExportFlow":0,"InletFlow":0,"FlowLimit":0},"Client":{"Cnf":{"U":"","P":"","Compress":false,"Crypt":false},"Id":36,"VerifyKey":"fc8d16dd20","Addr":"117.147.93.82","Remark":"","Status":true,"IsConnect":true,"RateLimit":0,"Flow":{"ExportFlow":157990001,"InletFlow":157990001,"FlowLimit":0},"Rate":{"NowRate":0},"NoStore":false,"NoDisplay":false,"MaxConn":0,"NowConn":0,"WebUserName":"","WebPassword":"","ConfigConnAllow":true,"MaxTunnelNum":0,"Version":"0.26.24","BlackIpList":[""],"CreateTime":"2025-07-01 05:15:12","LastOnlineTime":"2025-07-02 08:42:16"},"Target":{"TargetStr":"192.168.3.58:5666","TargetArr":["192.168.3.58:5666"],"LocalProxy":false}}
+    *#*{"Id":2,"Host":"mcsm.rensumo.top","HeaderChange":"","HostChange":"","Location":"/","Remark":"","Scheme":"all","CertFilePath":"","KeyFilePath":"","NoStore":false,"IsClose":false,"AutoHttps":false,"Flow":{"ExportFlow":0,"InletFlow":0,"FlowLimit":0},"Client":{"Cnf":{"U":"","P":"","Compress":false,"Crypt":false},"Id":36,"VerifyKey":"fc8d16dd20","Addr":"117.147.93.82","Remark":"","Status":true,"IsConnect":true,"RateLimit":0,"Flow":{"ExportFlow":157990001,"InletFlow":157990001,"FlowLimit":0},"Rate":{"NowRate":0},"NoStore":false,"NoDisplay":false,"MaxConn":0,"NowConn":0,"WebUserName":"","WebPassword":"","ConfigConnAllow":true,"MaxTunnelNum":0,"Version":"0.26.24","BlackIpList":[""],"CreateTime":"2025-07-01 05:15:12","LastOnlineTime":"2025-07-02 08:42:16"},"Target":{"TargetStr":"192.168.3.58:23333","TargetArr":["192.168.3.58:23333"],"LocalProxy":false}}
+    *#*{"Id":3,"Host":"api.rensumo.top","HeaderChange":"","HostChange":"","Location":"/","Remark":"","Scheme":"all","CertFilePath":"","KeyFilePath":"","NoStore":false,"IsClose":false,"AutoHttps":true,"Flow":{"ExportFlow":0,"InletFlow":0,"FlowLimit":0},"Client":{"Cnf":{"U":"","P":"","Compress":false,"Crypt":false},"Id":36,"VerifyKey":"fc8d16dd20","Addr":"117.147.93.82","Remark":"","Status":true,"IsConnect":true,"RateLimit":0,"Flow":{"ExportFlow":157990001,"InletFlow":157990001,"FlowLimit":0},"Rate":{"NowRate":0},"NoStore":false,"NoDisplay":false,"MaxConn":0,"NowConn":0,"WebUserName":"","WebPassword":"","ConfigConnAllow":true,"MaxTunnelNum":0,"Version":"0.26.24","BlackIpList":[""],"CreateTime":"2025-07-01 05:15:12","LastOnlineTime":"2025-07-02 08:42:16"},"Target":{"TargetStr":"192.168.3.58:3000","TargetArr":["192.168.3.58:3000"],"LocalProxy":false}}
     *#*
   global.json: |-
     {}
   tasks.json: |-
-    {}
+    {"Id":3,"Port":4677,"ServerIp":"0.0.0.0","Mode":"tcp","Status":true,"RunStatus":true,"Client":{"Cnf":{"U":"","P":"","Compress":false,"Crypt":false},"Id":36,"VerifyKey":"fc8d16dd20","Addr":"117.147.93.82","Remark":"","Status":true,"IsConnect":true,"RateLimit":0,"Flow":{"ExportFlow":157990001,"InletFlow":157990001,"FlowLimit":0},"Rate":{"NowRate":0},"NoStore":false,"NoDisplay":false,"MaxConn":0,"NowConn":0,"WebUserName":"","WebPassword":"","ConfigConnAllow":true,"MaxTunnelNum":0,"Version":"0.26.24","BlackIpList":[""],"CreateTime":"2025-07-01 05:15:12","LastOnlineTime":"2025-07-02 08:42:16"},"Ports":"","Flow":{"ExportFlow":0,"InletFlow":0,"FlowLimit":0},"Password":"","Remark":"","TargetAddr":"","NoStore":false,"IsHttp":false,"LocalPath":"","StripPre":"","ProtoVersion":"","Target":{"TargetStr":"127.0.0.1:3389","TargetArr":null,"LocalProxy":false},"MultiAccount":null,"HealthCheckTimeout":0,"HealthMaxFail":0,"HealthCheckInterval":0,"HealthNextTime":"0001-01-01T00:00:00Z","HealthMap":null,"HttpHealthUrl":"","HealthRemoveArr":null,"HealthCheckType":"","HealthCheckTarget":""}
     *#* 
