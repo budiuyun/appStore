@@ -14,10 +14,40 @@ spec:
       labels:
         {{- include "nps.selectorLabels" . | nindent 8 }}
     spec:
+      initContainers:
+        - name: init-config
+          image: busybox
+          command:
+            - sh
+            - -c
+            - |
+              echo "正在准备配置文件..."
+              mkdir -p /config
+              cp /configmap/* /config/
+              echo "配置文件准备完成"
+              ls -la /config
+          resources:
+            limits:
+              cpu: 50m
+              memory: 64Mi
+            requests:
+              cpu: 10m
+              memory: 32Mi
+          volumeMounts:
+            - name: config
+              mountPath: /configmap
+            - name: nps-config
+              mountPath: /config
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.imageRegistry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - /bin/sh
+            - -c
+            - |
+              echo "Starting NPS with config path: /npsconf"
+              /nps -conf=/npsconf
           {{- if .Values.service.ports }}
           ports:
             {{- range .Values.service.ports }}
@@ -28,7 +58,7 @@ spec:
           {{- end }}
           env:
             - name: CONF_PATH
-              value: "/conf"
+              value: "/npsconf"
             {{- if .Values.env }}
             {{- range $key, $value := .Values.env }}
             - name: {{ $value.name }}
@@ -45,8 +75,8 @@ spec:
           volumeMounts:
             - name: data
               mountPath: {{ .Values.persistence.path }}
-            - name: config
-              mountPath: /conf
+            - name: nps-config
+              mountPath: /npsconf
       volumes:
         - name: data
           persistentVolumeClaim:
@@ -54,3 +84,5 @@ spec:
         - name: config
           configMap:
             name: {{ include "nps.fullname" . }}-config
+        - name: nps-config
+          emptyDir: {}

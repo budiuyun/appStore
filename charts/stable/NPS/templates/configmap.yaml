@@ -34,7 +34,7 @@ data:
 
     # log level LevelEmergency->0  LevelAlert->1 LevelCritical->2 LevelError->3 LevelWarning->4 LevelNotice->5 LevelInformational->6 LevelDebug->7
     log_level=6
-    log_path=/conf/nps.log
+    log_path=/npsconf/nps.log
 
     #Whether to restrict IP access, true or false or ignore
     #ip_limit=true
@@ -116,5 +116,5 @@ data:
   global.json: |-
     {}
   tasks.json: |-
-    {"Id":1,"Port":0,"ServerIp":"","Mode":"","Status":false,"RunStatus":false,"Client":null,"Ports":"","Flow":{"ExportFlow":0,"InletFlow":0,"FlowLimit":0},"Password":"","Remark":"","TargetAddr":"","NoStore":false,"IsHttp":false,"LocalPath":"","StripPre":"","ProtoVersion":"","Target":{"TargetStr":"","TargetArr":null,"LocalProxy":false},"MultiAccount":null,"HealthCheckTimeout":0,"HealthMaxFail":0,"HealthCheckInterval":0,"HealthNextTime":"0001-01-01T00:00:00Z","HealthMap":null,"HttpHealthUrl":"","HealthRemoveArr":null,"HealthCheckType":"","HealthCheckTarget":""}
+    {}
     *#* 
