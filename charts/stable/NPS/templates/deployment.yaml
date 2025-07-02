@@ -59,16 +59,20 @@ spec:
               cpu: {{ .Values.resources.requests.cpu | default "100m" }}
               memory: {{ .Values.resources.requests.memory | default "128Mi" }}
           volumeMounts:
-          {{- range .Values.persistence.mounts }}
             - name: config-writable
-              mountPath: {{ . }}
-          {{- end }}
-          stdin: true
-          tty: true
+              mountPath: /conf
+            {{- if .Values.persistence.enabled }}
+            - name: data
+              mountPath: {{ .Values.persistence.path }}
+            {{- end }}
       volumes:
         - name: config-readonly
           configMap:
             name: {{ include "nps.fullname" . }}-config
         - name: config-writable
           emptyDir: {}
-      terminationGracePeriodSeconds: 30
+        {{- if .Values.persistence.enabled }}
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ include "nps.fullname" . }}
+        {{- end }}
