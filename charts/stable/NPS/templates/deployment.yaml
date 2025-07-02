@@ -37,11 +37,9 @@ spec:
             limits:
               cpu: {{ .Values.resources.limits.cpu | default "200m" }}
               memory: {{ .Values.resources.limits.memory | default "256Mi" }}
-              ephemeral-storage: {{ .Values.resources.limits.ephemeral-storage | default "10Gi" }}
             requests:
               cpu: {{ .Values.resources.requests.cpu | default "100m" }}
               memory: {{ .Values.resources.requests.memory | default "128Mi" }}
-              ephemeral-storage: {{ .Values.resources.requests.ephemeral-storage | default "5Gi" }}
           volumeMounts:
             - name: data
               mountPath: /conf/data
