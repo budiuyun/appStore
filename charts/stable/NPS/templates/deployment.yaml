@@ -16,7 +16,7 @@ spec:
     spec:
       initContainers:
         - name: init-volume
-          image: "{{ .Values.image.imageRegistry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: "{{ .Values.initContainer.imageRegistry | default .Values.image.imageRegistry }}/{{ .Values.initContainer.repository | default "busybox" }}:{{ .Values.initContainer.tag | default "latest" }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           resources:
             limits:
