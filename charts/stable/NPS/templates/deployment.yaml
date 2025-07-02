@@ -34,17 +34,36 @@ spec:
             {{- end }}
           {{- end }}
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-          {{- if and .Values.persistence.enabled .Values.persistence.mounts }}
+            limits:
+              cpu: {{ .Values.resources.limits.cpu | default "200m" }}
+              memory: {{ .Values.resources.limits.memory | default "256Mi" }}
+              ephemeral-storage: {{ .Values.resources.limits.ephemeral-storage | default "10Gi" }}
+            requests:
+              cpu: {{ .Values.resources.requests.cpu | default "100m" }}
+              memory: {{ .Values.resources.requests.memory | default "128Mi" }}
+              ephemeral-storage: {{ .Values.resources.requests.ephemeral-storage | default "5Gi" }}
           volumeMounts:
-            {{- range $index, $path := .Values.persistence.mounts }}
             - name: data
-              mountPath: {{ $path }}
-            {{- end }}
-          {{- end }}
-      {{- if and .Values.persistence.enabled .Values.persistence.mounts }}
+              mountPath: /conf/data
+            - name: config
+              mountPath: /conf/nps.conf
+              subPath: nps.conf
+            - name: config
+              mountPath: /conf/clients.json
+              subPath: clients.json
+            - name: config
+              mountPath: /conf/hosts.json
+              subPath: hosts.json
+            - name: config
+              mountPath: /conf/global.json
+              subPath: global.json
+            - name: config
+              mountPath: /conf/tasks.json
+              subPath: tasks.json
       volumes:
         - name: data
           persistentVolumeClaim:
             claimName: {{ include "nps.fullname" . }}
-      {{- end }}
+        - name: config
+          configMap:
+            name: {{ include "nps.fullname" . }}-config
