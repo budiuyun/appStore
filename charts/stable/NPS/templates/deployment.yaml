@@ -61,18 +61,12 @@ spec:
           volumeMounts:
             - name: config-writable
               mountPath: /conf
-            {{- if .Values.persistence.enabled }}
-            - name: data
-              mountPath: {{ .Values.persistence.path }}
-            {{- end }}
+          stdin: true
+          tty: true
       volumes:
         - name: config-readonly
           configMap:
             name: {{ include "nps.fullname" . }}-config
         - name: config-writable
           emptyDir: {}
-        {{- if .Values.persistence.enabled }}
-        - name: data
-          persistentVolumeClaim:
-            claimName: {{ include "nps.fullname" . }}
-        {{- end }}
+      terminationGracePeriodSeconds: 30
