@@ -43,18 +43,11 @@ spec:
               cpu: {{ .Values.resources.requests.cpu | default "100m" }}
               memory: {{ .Values.resources.requests.memory | default "128Mi" }}
           volumeMounts:
-            {{- if .Values.persistence.enabled }}
-            - name: data
-              mountPath: {{ .Values.persistence.path }}
-            {{- end }}
+            {{- range .Values.persistence.mounts }}
             - name: config
-              mountPath: /conf
+              mountPath: {{ . }}
+            {{- end }}
       volumes:
-        {{- if .Values.persistence.enabled }}
-        - name: data
-          persistentVolumeClaim:
-            claimName: {{ include "nps.fullname" . }}
-        {{- end }}
         - name: config
           configMap:
             name: {{ include "nps.fullname" . }}-config
