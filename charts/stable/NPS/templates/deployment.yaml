@@ -14,6 +14,22 @@ spec:
       labels:
         {{- include "nps.selectorLabels" . | nindent 8 }}
     spec:
+      initContainers:
+        - name: config-init
+          image: busybox
+          command: ['sh', '-c', 'cp /config-readonly/* /config/ && chmod -R 755 /config/']
+          resources:
+            limits:
+              cpu: 50m
+              memory: 64Mi
+            requests:
+              cpu: 10m
+              memory: 32Mi
+          volumeMounts:
+            - name: config-readonly
+              mountPath: /config-readonly
+            - name: config-writable
+              mountPath: /config
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.imageRegistry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -43,11 +59,20 @@ spec:
               cpu: {{ .Values.resources.requests.cpu | default "100m" }}
               memory: {{ .Values.resources.requests.memory | default "128Mi" }}
           volumeMounts:
-            {{- range .Values.persistence.mounts }}
-            - name: config
-              mountPath: {{ . }}
+            - name: config-writable
+              mountPath: /conf
+            {{- if .Values.persistence.enabled }}
+            - name: data
+              mountPath: {{ .Values.persistence.path }}
             {{- end }}
       volumes:
-        - name: config
+        - name: config-readonly
           configMap:
             name: {{ include "nps.fullname" . }}-config
+        - name: config-writable
+          emptyDir: {}
+        {{- if .Values.persistence.enabled }}
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ include "nps.fullname" . }}
+        {{- end }}
