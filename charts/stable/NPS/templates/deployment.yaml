@@ -59,8 +59,10 @@ spec:
               cpu: {{ .Values.resources.requests.cpu | default "100m" }}
               memory: {{ .Values.resources.requests.memory | default "128Mi" }}
           volumeMounts:
+          {{- range .Values.persistence.mounts }}
             - name: config-writable
-              mountPath: /conf
+              mountPath: {{ . }}
+          {{- end }}
           stdin: true
           tty: true
       volumes:
