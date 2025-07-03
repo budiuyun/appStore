@@ -63,7 +63,7 @@ spec:
               mountPath: /conf
             {{- if .Values.persistence.enabled }}
             - name: data
-              mountPath: {{ .Values.persistence.path }}
+              mountPath: {{ .Values.persistence.path | default "/conf/data" }}
             {{- end }}
       volumes:
         - name: config-readonly
