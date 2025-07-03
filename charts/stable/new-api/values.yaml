@@ -32,11 +32,6 @@ persistence:
   mounts:
     - /data
 env:
-  env1:
-    name: SQL_DSN
-    value: 用户名:密码@tcp(数据库地址:3306)/数据库名
-    description: MySQL数据库连接字符串
-    title: 数据库连接
   env2:
     name: TZ
     value: Asia/Shanghai

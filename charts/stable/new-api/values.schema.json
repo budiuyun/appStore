@@ -316,41 +316,6 @@
       "title": "环境变量",
       "description": "应用程序环境变量配置",
       "properties": {
-        "env1": {
-          "type": "object",
-          "title": "数据库连接",
-          "description": "MySQL数据库连接字符串",
-          "required": [
-            "name",
-            "value"
-          ],
-          "properties": {
-            "name": {
-              "type": "string",
-              "title": "变量名称",
-              "description": "环境变量的名称",
-              "default": "SQL_DSN"
-            },
-            "value": {
-              "type": "string",
-              "title": "变量值",
-              "description": "环境变量的值",
-              "default": "用户名:密码@tcp(数据库地址:3306)/数据库名"
-            },
-            "title": {
-              "type": "string",
-              "title": "中文名称",
-              "description": "环境变量的中文名称",
-              "default": "数据库连接"
-            },
-            "description": {
-              "type": "string",
-              "title": "描述",
-              "description": "环境变量的详细描述",
-              "default": "MySQL数据库连接字符串"
-            }
-          }
-        },
         "env2": {
           "type": "object",
           "title": "时区设置",
