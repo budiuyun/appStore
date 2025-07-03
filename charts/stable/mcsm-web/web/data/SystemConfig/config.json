@@ -1,0 +1,23 @@
+{
+    "httpPort": 23333,
+    "httpIp": "",
+    "prefix": "",
+    "reverseProxyMode": false,
+    "dataPort": 23334,
+    "forwardType": 1,
+    "crossDomain": false,
+    "gzip": false,
+    "maxCompress": 1,
+    "maxDownload": 10,
+    "zipType": 1,
+    "loginCheckIp": true,
+    "loginInfo": "",
+    "canFileManager": true,
+    "allowUsePreset": false,
+    "language": "zh_cn",
+    "presetPackAddr": "https://script.mcsmanager.com/templates.json",
+    "redisUrl": "",
+    "businessMode": false,
+    "businessId": "",
+    "allowChangeCmd": false
+}

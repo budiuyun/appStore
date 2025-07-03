@@ -1,0 +1,55 @@
+workloadType: Deployment
+replicaCount: 1
+image:
+  imageRegistry: docker.1ms.run
+  repository: githubyumao/mcsmanager-daemon
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  ports:
+    - name: daemon
+      port: 24444
+      protocol: TCP
+networkLimits:
+  enabled: true
+  egress: 1M
+  ingress: 1M
+resources:
+  limits:
+    cpu: 2000m
+    memory: 4000Mi
+    ephemeral-storage: 10Gi
+  requests:
+    cpu: 1000m
+    memory: 1000Mi
+    ephemeral-storage: 5Gi
+persistence:
+  enabled: true
+  size: 10Gi
+  accessMode: ReadWriteOnce
+  storageClass: local
+  mounts:
+    - /opt/mcsmanager/daemon/data
+    - /opt/mcsmanager/daemon/logs
+env:
+  env1:
+    name: MCSM_DOCKER_WORKSPACE_PATH
+    value: /opt/mcsmanager/daemon/data/InstanceData
+    description: Docker工作目录路径
+    title: Docker工作目录
+extraVolumeMounts:
+  - name: docker-sock
+    mountPath: /var/run/docker.sock
+    readOnly: true
+  - name: localtime
+    mountPath: /etc/localtime
+    readOnly: true
+extraVolumes:
+  - name: docker-sock
+    hostPath:
+      path: /var/run/docker.sock
+  - name: localtime
+    hostPath:
+      path: /etc/localtime
+icon: https://images.budiuyun.net/i/2025/07/03/6866263917409.png 
