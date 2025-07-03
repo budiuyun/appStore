@@ -9,10 +9,10 @@ service:
   type: ClusterIP
   ports:
     - name: web
-      port: 8080
+      port: 8081
       protocol: TCP
     - name: web-udp
-      port: 8080
+      port: 8081
       protocol: UDP
     - name: bridge
       port: 8024
