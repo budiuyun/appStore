@@ -1,0 +1,41 @@
+workloadType: Deployment
+replicaCount: 1
+image:
+  imageRegistry: docker.1ms.run
+  repository: githubyumao/mcsmanager-web
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 23333
+      protocol: TCP
+networkLimits:
+  enabled: true
+  egress: 1M
+  ingress: 1M
+resources:
+  limits:
+    cpu: 2000m
+    memory: 4000Mi
+    ephemeral-storage: 10Gi
+  requests:
+    cpu: 1000m
+    memory: 1000Mi
+    ephemeral-storage: 5Gi
+persistence:
+  enabled: true
+  size: 1Gi
+  accessMode: ReadWriteOnce
+  storageClass: local
+  mounts:
+    - /opt/mcsmanager/web/data
+    - /opt/mcsmanager/web/logs
+env:
+  env1:
+    name: APP_MODE
+    value: production
+    description: 应用运行的模式
+    title: 应用模式
+icon: https://images.budiuyun.net/i/2025/07/03/6866263917409.png
