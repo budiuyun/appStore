@@ -759,6 +759,28 @@
     ]
 ,
     "游戏服务": [
+      {"mcsm-daemon": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "mcsm-daemon",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "MCSManager Daemon守护进程 - 专业的我的世界服务器管理面板守护进程",
+  "icon": "https://images.budiuyun.net/i/2025/07/03/6866263917409.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "游戏服务"
+  }
+}
+
+      }}
+,
       {"mcsm-web": {
         "v1.0.0": 
 {
