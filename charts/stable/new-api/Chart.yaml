@@ -1,0 +1,11 @@
+apiVersion: v2
+name: new-api
+version: v1.0.0
+appVersion: latest
+description: AI模型接口管理与分发系统
+icon: https://images.budiuyun.net/i/2025/07/03/6866219f5723d.png
+maintainers:
+  - name: 陈不丢
+    email: 179866495@qq.com
+annotations:
+  budiu/app-category-zh: 开发工具
