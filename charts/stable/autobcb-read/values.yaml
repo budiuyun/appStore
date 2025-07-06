@@ -1,36 +1,10 @@
 workloadType: Deployment
 replicaCount: 1
 image:
-  imageRegistry: docker.1ms.run
-  repository: eclipse-temurin
-  tag: "22-jre"
+  imageRegistry: docker-0.unsee.tech
+  repository: bitnami/java
+  tag: latest
   pullPolicy: IfNotPresent
-command: ["java"]
-# 可以通过覆盖javaOpts来自定义Java参数
-javaOpts: "-Xms1g -Xmx4g"
-args: ["-jar", "/app/read.jar"]
-initContainer:
-  enabled: true
-  jarUrl: "https://github.com/autobcb/read/releases/download/v2.16.1/read.jar"
-  resources:
-    limits:
-      cpu: 200m
-      memory: 256Mi
-    requests:
-      cpu: 100m
-      memory: 128Mi
-livenessProbe:
-  enabled: true
-  initialDelaySeconds: 60
-  periodSeconds: 10
-  timeoutSeconds: 5
-  failureThreshold: 6
-readinessProbe:
-  enabled: true
-  initialDelaySeconds: 30
-  periodSeconds: 10
-  timeoutSeconds: 5
-  failureThreshold: 3
 service:
   type: ClusterIP
   ports:
@@ -44,15 +18,15 @@ networkLimits:
 resources:
   limits:
     cpu: 1000m
-    memory: 4Gi
-    ephemeral-storage: 10Gi
+    memory: 2000Mi
+    ephemeral-storage: 5Gi
   requests:
     cpu: 500m
-    memory: 1Gi
-    ephemeral-storage: 5Gi
+    memory: 500Mi
+    ephemeral-storage: 1Gi
 persistence:
   enabled: true
-  size: 2Gi
+  size: 5Gi
   accessMode: ReadWriteOnce
   storageClass: local
   mounts:
@@ -61,31 +35,27 @@ env:
   env1:
     name: TZ
     value: Asia/Shanghai
-    description: 设置容器的时区
-    title: 时区设置
+    description: 时区设置
+    title: 时区
   env2:
-    name: JAVA_OPTS
-    value: ''
-    description: Java虚拟机参数（可选）
-    title: Java参数
-  env3:
-    name: http_proxyHost
-    value: ''
-    description: HTTP代理服务器地址（可选）
+    name: HTTP_PROXY
+    value: ""
+    description: HTTP代理设置(可选)
     title: HTTP代理
-  env4:
-    name: http_proxyPort
-    value: ''
-    description: HTTP代理服务器端口（可选）
-    title: HTTP代理端口
-  env5:
-    name: https_proxyHost
-    value: ''
-    description: HTTPS代理服务器地址（可选）
+  env3:
+    name: HTTPS_PROXY
+    value: ""
+    description: HTTPS代理设置(可选)
     title: HTTPS代理
-  env6:
-    name: https_proxyPort
-    value: ''
-    description: HTTPS代理服务器端口（可选）
-    title: HTTPS代理端口
-icon: https://images.budiuyun.net/i/2025/06/19/6854064e8b43a.png
+command:
+  enabled: true
+  value: "java -jar /app/read.jar"
+extraVolumeMounts:
+  - name: localtime
+    mountPath: /etc/localtime
+    readOnly: true
+extraVolumes:
+  - name: localtime
+    hostPath:
+      path: /etc/localtime
+icon: https://images.budiuyun.net/i/2025/07/03/6866263917409.png 

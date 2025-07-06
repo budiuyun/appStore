@@ -44,4 +44,4 @@ Selector labels
 {{- define "autobcb-read.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "autobcb-read.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
-{{- end }}
+{{- end }} 

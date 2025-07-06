@@ -41,190 +41,28 @@
           "type": "string",
           "title": "镜像仓库地址",
           "description": "容器镜像的仓库地址",
-          "default": "docker.1ms.run"
+          "default": "docker-0.unsee.tech"
         },
         "repository": {
           "type": "string",
           "title": "镜像名称",
           "description": "容器镜像的名称",
-          "default": "eclipse-temurin"
+          "default": "bitnami/java"
         },
         "tag": {
           "type": "string",
           "title": "镜像标签",
           "description": "容器镜像的标签",
-          "default": "22-jre"
+          "default": "latest"
         },
         "pullPolicy": {
           "type": "string",
           "title": "镜像拉取策略",
           "description": "镜像拉取策略，只能是IfNotPresent",
           "enum": [
-            "IfNotPresent",
-            "Always"
+            "IfNotPresent"
           ],
           "default": "IfNotPresent"
-        }
-      }
-    },
-    "command": {
-      "type": "array",
-      "title": "容器启动命令",
-      "description": "容器启动时执行的命令",
-      "items": {
-        "type": "string"
-      },
-      "default": [
-        "java"
-      ]
-    },
-    "javaOpts": {
-      "type": "string",
-      "title": "Java虚拟机参数",
-      "description": "Java虚拟机的内存和其他参数设置",
-      "default": "-Xms1g -Xmx4g"
-    },
-    "args": {
-      "type": "array",
-      "title": "命令参数",
-      "description": "容器启动命令的参数",
-      "items": {
-        "type": "string"
-      },
-      "default": [
-        "-jar",
-        "/app/read.jar"
-      ]
-    },
-    "initContainer": {
-      "type": "object",
-      "title": "初始化容器配置",
-      "description": "用于下载read.jar文件的初始化容器配置",
-      "properties": {
-        "enabled": {
-          "type": "boolean",
-          "title": "启用初始化容器",
-          "description": "是否启用初始化容器下载read.jar文件",
-          "default": true
-        },
-        "jarUrl": {
-          "type": "string",
-          "title": "JAR文件URL",
-          "description": "read.jar文件的下载URL",
-          "default": "https://github.com/autobcb/read/releases/download/v2.16.1/read.jar"
-        },
-        "resources": {
-          "type": "object",
-          "title": "初始化容器资源配置",
-          "description": "初始化容器的资源限制和请求",
-          "properties": {
-            "limits": {
-              "type": "object",
-              "title": "资源限制",
-              "properties": {
-                "cpu": {
-                  "type": "string",
-                  "title": "CPU限制",
-                  "default": "200m"
-                },
-                "memory": {
-                  "type": "string",
-                  "title": "内存限制",
-                  "default": "256Mi"
-                }
-              }
-            },
-            "requests": {
-              "type": "object",
-              "title": "资源请求",
-              "properties": {
-                "cpu": {
-                  "type": "string",
-                  "title": "CPU请求",
-                  "default": "100m"
-                },
-                "memory": {
-                  "type": "string",
-                  "title": "内存请求",
-                  "default": "128Mi"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "livenessProbe": {
-      "type": "object",
-      "title": "存活探针配置",
-      "description": "容器存活探针配置",
-      "properties": {
-        "enabled": {
-          "type": "boolean",
-          "title": "启用存活探针",
-          "description": "是否启用存活探针",
-          "default": true
-        },
-        "initialDelaySeconds": {
-          "type": "integer",
-          "title": "初始延迟秒数",
-          "description": "容器启动后多少秒开始探测",
-          "default": 60
-        },
-        "periodSeconds": {
-          "type": "integer",
-          "title": "探测周期秒数",
-          "description": "探测的频率（秒）",
-          "default": 10
-        },
-        "timeoutSeconds": {
-          "type": "integer",
-          "title": "探测超时秒数",
-          "description": "探测超时时间（秒）",
-          "default": 5
-        },
-        "failureThreshold": {
-          "type": "integer",
-          "title": "失败阈值",
-          "description": "探测失败多少次后认为容器不健康",
-          "default": 6
-        }
-      }
-    },
-    "readinessProbe": {
-      "type": "object",
-      "title": "就绪探针配置",
-      "description": "容器就绪探针配置",
-      "properties": {
-        "enabled": {
-          "type": "boolean",
-          "title": "启用就绪探针",
-          "description": "是否启用就绪探针",
-          "default": true
-        },
-        "initialDelaySeconds": {
-          "type": "integer",
-          "title": "初始延迟秒数",
-          "description": "容器启动后多少秒开始探测",
-          "default": 30
-        },
-        "periodSeconds": {
-          "type": "integer",
-          "title": "探测周期秒数",
-          "description": "探测的频率（秒）",
-          "default": 10
-        },
-        "timeoutSeconds": {
-          "type": "integer",
-          "title": "探测超时秒数",
-          "description": "探测超时时间（秒）",
-          "default": 5
-        },
-        "failureThreshold": {
-          "type": "integer",
-          "title": "失败阈值",
-          "description": "探测失败多少次后认为容器不就绪",
-          "default": 3
         }
       }
     },
@@ -286,12 +124,7 @@
             [
               {
                 "name": "http",
-                "port": 80,
-                "protocol": "TCP"
-              },
-              {
-                "name": "https",
-                "port": 443,
+                "port": 8080,
                 "protocol": "TCP"
               }
             ]
@@ -364,7 +197,7 @@
               "title": "内存限制",
               "description": "内存资源限制，可以是Mi或Gi，留空表示无限制",
               "pattern": "^[0-9]+(Mi|Gi)$|^$",
-              "default": "4Gi"
+              "default": "2000Mi"
             },
             "ephemeral-storage": {
               "type": [
@@ -374,7 +207,7 @@
               "title": "临时存储限制",
               "description": "临时存储资源限制，可以是Mi或Gi",
               "pattern": "^[0-9]+(Mi|Gi)$|^$",
-              "default": "10Gi"
+              "default": "5Gi"
             }
           }
         },
@@ -404,7 +237,7 @@
               "title": "内存请求",
               "description": "内存资源请求，可以是Mi或Gi，留空表示无限制",
               "pattern": "^[0-9]+(Mi|Gi)$|^$",
-              "default": "1Gi"
+              "default": "500Mi"
             },
             "ephemeral-storage": {
               "type": [
@@ -414,7 +247,7 @@
               "title": "临时存储请求",
               "description": "临时存储资源请求，可以是Mi或Gi",
               "pattern": "^[0-9]+(Mi|Gi)$|^$",
-              "default": "5Gi"
+              "default": "1Gi"
             }
           }
         }
@@ -422,13 +255,11 @@
     },
     "persistence": {
       "type": "object",
-      "title": "持久化存储",
+      "title": "持久化存储配置",
       "required": [
         "enabled",
         "size",
-        "accessMode",
-        "storageClass",
-        "mounts"
+        "accessMode"
       ],
       "properties": {
         "enabled": {
@@ -440,14 +271,14 @@
         "size": {
           "type": "string",
           "title": "存储大小",
-          "description": "持久化存储的大小，例如1Gi",
-          "default": "1Gi",
-          "pattern": "^[0-9]+(Mi|Gi|Ti)$"
+          "description": "持久化存储大小，可以是Mi或Gi",
+          "default": "5Gi",
+          "pattern": "^[0-9]+(Mi|Gi)$"
         },
         "accessMode": {
           "type": "string",
           "title": "访问模式",
-          "description": "持久化存储的访问模式",
+          "description": "持久化存储访问模式",
           "enum": [
             "ReadWriteOnce",
             "ReadOnlyMany",
@@ -457,235 +288,142 @@
         },
         "storageClass": {
           "type": "string",
-          "title": "存储类名称",
-          "description": "Kubernetes存储类的名称",
+          "title": "存储类",
+          "description": "持久化存储类",
           "default": "local"
         },
         "mounts": {
           "type": "array",
           "title": "挂载路径",
-          "description": "将持久卷挂载到容器的路径列表",
+          "description": "持久化存储挂载路径",
           "items": {
             "type": "string",
             "title": "挂载路径",
-            "description": "容器内挂载持久化存储的路径",
-            "default": "/data"
-          }
+            "description": "持久化存储挂载路径"
+          },
+          "default": [
+            "/app"
+          ]
         }
       }
     },
     "env": {
       "type": "object",
-      "title": "环境变量",
-      "description": "应用程序环境变量配置",
+      "title": "环境变量配置",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "name",
+          "value"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "环境变量名称",
+            "description": "环境变量名称"
+          },
+          "value": {
+            "type": "string",
+            "title": "环境变量值",
+            "description": "环境变量值"
+          },
+          "description": {
+            "type": "string",
+            "title": "环境变量描述",
+            "description": "环境变量描述"
+          },
+          "title": {
+            "type": "string",
+            "title": "环境变量标题",
+            "description": "环境变量标题"
+          }
+        }
+      }
+    },
+    "command": {
+      "type": "object",
+      "title": "启动命令配置",
+      "required": [
+        "enabled",
+        "value"
+      ],
       "properties": {
-        "env1": {
-          "type": "object",
-          "title": "时区设置",
-          "description": "设置容器的时区",
-          "required": [
-            "name",
-            "value"
-          ],
-          "properties": {
-            "name": {
-              "type": "string",
-              "title": "变量名称",
-              "description": "环境变量的名称",
-              "default": "TZ"
-            },
-            "value": {
-              "type": "string",
-              "title": "变量值",
-              "description": "环境变量的值",
-              "default": "Asia/Shanghai"
-            },
-            "title": {
-              "type": "string",
-              "title": "中文名称",
-              "description": "环境变量的中文名称",
-              "default": "时区设置"
-            },
-            "description": {
-              "type": "string",
-              "title": "描述",
-              "description": "环境变量的详细描述",
-              "default": "设置容器的时区"
-            }
-          }
+        "enabled": {
+          "type": "boolean",
+          "title": "启用自定义命令",
+          "description": "是否启用自定义命令",
+          "default": true
         },
-        "env2": {
-          "type": "object",
-          "title": "Java参数",
-          "description": "Java虚拟机参数（可选）",
-          "required": [
-            "name",
-            "value"
-          ],
-          "properties": {
-            "name": {
-              "type": "string",
-              "title": "变量名称",
-              "description": "环境变量的名称",
-              "default": "JAVA_OPTS"
-            },
-            "value": {
-              "type": "string",
-              "title": "变量值",
-              "description": "环境变量的值",
-              "default": ""
-            },
-            "title": {
-              "type": "string",
-              "title": "中文名称",
-              "description": "环境变量的中文名称",
-              "default": "Java参数"
-            },
-            "description": {
-              "type": "string",
-              "title": "描述",
-              "description": "环境变量的详细描述",
-              "default": "Java虚拟机参数（可选）"
-            }
+        "value": {
+          "type": "string",
+          "title": "自定义命令",
+          "description": "自定义命令",
+          "default": "java -jar /app/read.jar"
+        }
+      }
+    },
+    "extraVolumeMounts": {
+      "type": "array",
+      "title": "额外挂载配置",
+      "description": "额外挂载配置",
+      "items": {
+        "type": "object",
+        "title": "额外挂载",
+        "description": "额外挂载",
+        "required": [
+          "name",
+          "mountPath"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "挂载名称",
+            "description": "挂载名称"
+          },
+          "mountPath": {
+            "type": "string",
+            "title": "挂载路径",
+            "description": "挂载路径"
+          },
+          "readOnly": {
+            "type": "boolean",
+            "title": "只读",
+            "description": "是否只读",
+            "default": false
           }
-        },
-        "env3": {
-          "type": "object",
-          "title": "HTTP代理",
-          "description": "HTTP代理服务器地址（可选）",
-          "required": [
-            "name",
-            "value"
-          ],
-          "properties": {
-            "name": {
-              "type": "string",
-              "title": "变量名称",
-              "description": "环境变量的名称",
-              "default": "http_proxyHost"
-            },
-            "value": {
-              "type": "string",
-              "title": "变量值",
-              "description": "环境变量的值",
-              "default": ""
-            },
-            "title": {
-              "type": "string",
-              "title": "中文名称",
-              "description": "环境变量的中文名称",
-              "default": "HTTP代理"
-            },
-            "description": {
-              "type": "string",
-              "title": "描述",
-              "description": "环境变量的详细描述",
-              "default": "HTTP代理服务器地址（可选）"
-            }
-          }
-        },
-        "env4": {
-          "type": "object",
-          "title": "HTTP代理端口",
-          "description": "HTTP代理服务器端口（可选）",
-          "required": [
-            "name",
-            "value"
-          ],
-          "properties": {
-            "name": {
-              "type": "string",
-              "title": "变量名称",
-              "description": "环境变量的名称",
-              "default": "http_proxyPort"
-            },
-            "value": {
-              "type": "string",
-              "title": "变量值",
-              "description": "环境变量的值",
-              "default": ""
-            },
-            "title": {
-              "type": "string",
-              "title": "中文名称",
-              "description": "环境变量的中文名称",
-              "default": "HTTP代理端口"
-            },
-            "description": {
-              "type": "string",
-              "title": "描述",
-              "description": "环境变量的详细描述",
-              "default": "HTTP代理服务器端口（可选）"
-            }
-          }
-        },
-        "env5": {
-          "type": "object",
-          "title": "HTTPS代理",
-          "description": "HTTPS代理服务器地址（可选）",
-          "required": [
-            "name",
-            "value"
-          ],
-          "properties": {
-            "name": {
-              "type": "string",
-              "title": "变量名称",
-              "description": "环境变量的名称",
-              "default": "https_proxyHost"
-            },
-            "value": {
-              "type": "string",
-              "title": "变量值",
-              "description": "环境变量的值",
-              "default": ""
-            },
-            "title": {
-              "type": "string",
-              "title": "中文名称",
-              "description": "环境变量的中文名称",
-              "default": "HTTPS代理"
-            },
-            "description": {
-              "type": "string",
-              "title": "描述",
-              "description": "环境变量的详细描述",
-              "default": "HTTPS代理服务器地址（可选）"
-            }
-          }
-        },
-        "env6": {
-          "type": "object",
-          "title": "HTTPS代理端口",
-          "description": "HTTPS代理服务器端口（可选）",
-          "required": [
-            "name",
-            "value"
-          ],
-          "properties": {
-            "name": {
-              "type": "string",
-              "title": "变量名称",
-              "description": "环境变量的名称",
-              "default": "https_proxyPort"
-            },
-            "value": {
-              "type": "string",
-              "title": "变量值",
-              "description": "环境变量的值",
-              "default": ""
-            },
-            "title": {
-              "type": "string",
-              "title": "中文名称",
-              "description": "环境变量的中文名称",
-              "default": "HTTPS代理端口"
-            },
-            "description": {
-              "type": "string",
-              "title": "描述",
-              "description": "环境变量的详细描述",
-              "default": "HTTPS代理服务器端口（可选）"
+        }
+      }
+    },
+    "extraVolumes": {
+      "type": "array",
+      "title": "额外卷配置",
+      "description": "额外卷配置",
+      "items": {
+        "type": "object",
+        "title": "额外卷",
+        "description": "额外卷",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "卷名称",
+            "description": "卷名称"
+          },
+          "hostPath": {
+            "type": "object",
+            "title": "主机路径",
+            "description": "主机路径",
+            "required": [
+              "path"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "title": "路径",
+                "description": "路径"
+              }
             }
           }
         }

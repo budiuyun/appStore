@@ -1,73 +1,75 @@
-# 轻阅读
+# 轻阅读服务
 
-轻阅读是一款开源的多平台阅读应用，支持多种书源、在线朗读和听书功能。
+轻阅读是一个Java开发的阅读应用，本Chart提供了在Kubernetes上部署轻阅读服务的配置。
 
-## 工作负载类型
+## Docker 一键部署
 
-此Helm Chart使用 `Deployment` 工作负载类型。
+使用 Docker 可以快速部署轻阅读服务，无需手动安装 Java 环境。
 
-- 使用Deployment确保应用程序可以平稳更新和扩展，适合无状态应用程序部署
+### 1. 安装 Docker
+1. Windows/macOS：下载并安装 Docker Desktop
+2. Linux：使用包管理器安装 Docker
+   - Ubuntu/Debian：`sudo apt-get install docker.io`
+   - CentOS：`sudo yum install docker`
 
-## 参数
+### 2. 拉取镜像并运行
+拉取最新镜像：
+```bash
+docker pull docker-0.unsee.tech/bitnami/java
+```
 
-| 参数                | 描述               | 默认值                  |
-|---------------------|--------------------|------------------------|
-| replicaCount        | 副本数量           | `1`                    |
-| workloadType        | 工作负载类型       | `Deployment`           |
-| image.imageRegistry | 镜像仓库           | `docker.1ms.run`      |
-| image.repository    | 镜像名称           | `eclipse-temurin`      |
-| image.tag           | 镜像标签           | `22-jre`               |
-| image.pullPolicy    | 镜像拉取策略       | `IfNotPresent`         |
-| command             | 容器启动命令       | `["java"]`             |
-| javaOpts           | Java虚拟机参数     | `"-Xms1g -Xmx4g"`     |
-| args                | 命令参数           | `["-jar", "/app/read.jar"]` |
-| initContainer.enabled | 启用初始化容器    | `true`                 |
-| initContainer.jarUrl | JAR文件下载地址   | `https://github.com/autobcb/read/releases/download/v2.16.1/read.jar` |
-| livenessProbe.enabled | 启用存活探针      | `true`                 |
-| readinessProbe.enabled | 启用就绪探针     | `true`                 |
-| service.type        | 服务类型           | `ClusterIP`            |
-| persistence.enabled | 是否启用持久化存储 | `true`                 |
-| persistence.size    | 存储大小           | `2Gi`                  |
-| env                 | 环境变量配置       | 见下文                 |
+运行容器：
+```bash
+docker run -tid -e TZ=Asia/Shanghai --name read -v /root/read:/app -p 8080:8080 --restart=always docker-0.unsee.tech/bitnami/java java -jar /app/read.jar
+```
 
-## 环境变量
+### 3. 参数说明
+- `-tid`：后台运行并分配伪终端
+- `-e TZ=Asia/Shanghai`：设置时区为上海
+- `--name read`：容器名称
+- `-v /root/read:/app`：数据持久化（主机目录:容器目录）
+- `-p 8080:8080`：端口映射（主机端口:容器端口）
+- `--restart=always`：容器退出时自动重启
 
-应用程序支持以下环境变量配置：
+### 4. 代理设置（可选）
+如果需要使用代理，可以将启动命令修改为：
+```bash
+docker run -tid -e TZ=Asia/Shanghai --name read -v /root/read:/app -p 8080:8080 --restart=always docker-0.unsee.tech/bitnami/java java -Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=1080 -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=1080 -jar /app/read.jar
+```
 
-| 环境变量        | 描述                 | 默认值          |
-|-----------------|----------------------|----------------|
-| TZ              | 时区设置             | `Asia/Shanghai`|
-| JAVA_OPTS       | Java虚拟机参数       | ``             |
-| http_proxyHost  | HTTP代理服务器地址   | ``             |
-| http_proxyPort  | HTTP代理服务器端口   | ``             |
-| https_proxyHost | HTTPS代理服务器地址  | ``             |
-| https_proxyPort | HTTPS代理服务器端口  | ``             |
+### 5. 常用命令
+- 查看日志：`docker logs read`
+- 停止服务：`docker stop read`
+- 启动服务：`docker start read`
+- 重启服务：`docker restart read`
+- 删除容器：`docker rm read`
 
-## 介绍
-轻阅读是一款功能强大的开源阅读应用，提供以下核心功能：
-- 多书源支持：可添加和管理多种网络书源
-- 在线朗读：支持多种TTS引擎，可在线朗读小说内容
-- 听书功能：支持音频播放和控制
-- 多平台支持：可在移动设备和Web端使用
-- 书籍缓存：支持离线阅读
-- 自定义主题：提供多种阅读界面和主题
-- 图片解密：支持图片解密功能
+## Helm Chart 配置
 
-## 使用说明
-1. 部署应用后，通过浏览器访问服务的8080端口
-2. 首次使用时，需要添加书源或导入书源
-3. 添加书籍到书架后，可以开始阅读
-4. 应用支持以下功能：
-   - 搜索书籍：支持单源和多源搜索
-   - 阅读设置：字体大小、背景颜色、翻页效果等
-   - 书籍缓存：可缓存书籍内容以便离线阅读
-   - TTS朗读：支持在线和本地TTS引擎
-   - 听书功能：支持音频播放控制
+### 默认配置
 
-## 系统要求
-- Java 22或更高版本
-- 推荐内存：4GB或更高
-- 存储空间：至少2GB可用空间
-
-## 出处
-轻阅读项目官方仓库：https://github.com/autobcb/read
+```yaml
+workloadType: Deployment
+replicaCount: 1
+image:
+  imageRegistry: docker-0.unsee.tech
+  repository: bitnami/java
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 8080
+      protocol: TCP
+persistence:
+  enabled: true
+  size: 5Gi
+  accessMode: ReadWriteOnce
+  storageClass: local
+  mounts:
+    - /app
+command:
+  enabled: true
+  value: "java -jar /app/read.jar"
+``` 

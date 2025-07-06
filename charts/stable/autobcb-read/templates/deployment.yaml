@@ -14,42 +14,15 @@ spec:
       labels:
         {{- include "autobcb-read.selectorLabels" . | nindent 8 }}
     spec:
-      {{- if .Values.initContainer.enabled }}
-      initContainers:
-        - name: download-jar
-          image: curlimages/curl:latest
-          command: ['sh', '-c']
-          args:
-            - |
-              if [ ! -f /app/read.jar ]; then
-                echo "Downloading read.jar file..."
-                curl -L {{ .Values.initContainer.jarUrl }} -o /app/read.jar
-                echo "Download completed."
-              else
-                echo "read.jar already exists, skipping download."
-              fi
-          resources:
-            {{- toYaml .Values.initContainer.resources | nindent 12 }}
-          volumeMounts:
-            - name: data
-              mountPath: /app
-      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.imageRegistry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          {{- if .Values.command }}
-          command: {{ .Values.command }}
-          {{- end }}
-          {{- if .Values.args }}
-          args:
-            - "-Dfile.encoding=UTF-8"
-            {{- if .Values.javaOpts }}
-            - {{ .Values.javaOpts }}
-            {{- end }}
-            {{- range .Values.args }}
-            - {{ . }}
-            {{- end }}
+          {{- if .Values.command.enabled }}
+          command:
+            - /bin/sh
+            - -c
+            - {{ .Values.command.value | quote }}
           {{- end }}
           {{- if .Values.service.ports }}
           ports:
@@ -66,26 +39,6 @@ spec:
               value: {{ $value.value | quote }}
             {{- end }}
           {{- end }}
-          {{- if .Values.livenessProbe.enabled }}
-          livenessProbe:
-            httpGet:
-              path: /
-              port: {{ (index .Values.service.ports 0).port | default 8080 }}
-            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
-            periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
-            timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
-            failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
-          {{- end }}
-          {{- if .Values.readinessProbe.enabled }}
-          readinessProbe:
-            httpGet:
-              path: /
-              port: {{ (index .Values.service.ports 0).port | default 8080 }}
-            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
-            periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
-            timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
-            failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
-          {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- if and .Values.persistence.enabled .Values.persistence.mounts }}
@@ -94,10 +47,18 @@ spec:
             - name: data
               mountPath: {{ $path }}
             {{- end }}
+            {{- if .Values.extraVolumeMounts }}
+            {{- toYaml .Values.extraVolumeMounts | nindent 12 }}
+            {{- end }}
           {{- end }}
-      {{- if and .Values.persistence.enabled .Values.persistence.mounts }}
+      {{- if or (and .Values.persistence.enabled .Values.persistence.mounts) .Values.extraVolumes }}
       volumes:
+        {{- if and .Values.persistence.enabled .Values.persistence.mounts }}
         - name: data
           persistentVolumeClaim:
             claimName: {{ include "autobcb-read.fullname" . }}
-      {{- end }}
+        {{- end }}
+        {{- if .Values.extraVolumes }}
+        {{- toYaml .Values.extraVolumes | nindent 8 }}
+        {{- end }}
+      {{- end }} 
