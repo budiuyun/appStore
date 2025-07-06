@@ -60,7 +60,8 @@
           "title": "镜像拉取策略",
           "description": "镜像拉取策略，只能是IfNotPresent",
           "enum": [
-            "IfNotPresent"
+            "IfNotPresent",
+            "Always"
           ],
           "default": "IfNotPresent"
         }
