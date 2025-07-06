@@ -46,15 +46,13 @@ spec:
                 # 如果是/app目录，创建README文件而不是空的jar
                 if [[ "{{ $path }}" == "/app" ]]; then
                   echo "Creating README file in /app directory"
-                  cat > /data/app/README.txt << EOF
-请上传read.jar文件到此目录。
-
-您可以使用以下命令上传:
-kubectl cp /path/to/your/read.jar POD_NAME:/app/read.jar -n NAMESPACE
-
-上传完成后，重启Pod:
-kubectl rollout restart deployment DEPLOYMENT_NAME -n NAMESPACE
-EOF
+                  echo "请上传read.jar文件到此目录。" > /data/app/README.txt
+                  echo "" >> /data/app/README.txt
+                  echo "您可以使用以下命令上传:" >> /data/app/README.txt
+                  echo "kubectl cp /path/to/your/read.jar POD_NAME:/app/read.jar -n NAMESPACE" >> /data/app/README.txt
+                  echo "" >> /data/app/README.txt
+                  echo "上传完成后，重启Pod:" >> /data/app/README.txt
+                  echo "kubectl rollout restart deployment DEPLOYMENT_NAME -n NAMESPACE" >> /data/app/README.txt
                 fi
               else
                 echo "Directory /data{{ $path }} already initialized, skipping"
