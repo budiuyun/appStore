@@ -59,9 +59,7 @@ image:
 service:
   type: ClusterIP
   ports:
-    - name: http
-      port: 8080
-      protocol: TCP
+    http: 8080
 persistence:
   enabled: true
   size: 5Gi
@@ -72,4 +70,35 @@ persistence:
 command:
   enabled: true
   value: "java -jar /app/read.jar"
+```
+
+## 持久卷和JAR文件说明
+
+本Chart使用持久卷来存储应用数据。首次部署时，会自动创建一个初始化容器来处理持久卷的初始化：
+
+1. 如果持久卷是空的，初始化容器会创建必要的目录结构
+2. 初始化容器会在持久卷中创建一个空的`read.jar`占位文件
+3. **重要：** 您需要手动上传实际的`read.jar`文件到持久卷中
+
+### 上传JAR文件
+
+部署后，您需要将实际的`read.jar`文件上传到持久卷中。有几种方法可以实现：
+
+1. 使用kubectl cp命令：
+```bash
+kubectl cp /path/to/your/read.jar <pod-name>:/app/read.jar -n <namespace>
+```
+
+2. 使用Pod中的shell：
+```bash
+kubectl exec -it <pod-name> -n <namespace> -- bash
+# 然后使用wget或curl下载jar文件
+wget -O /app/read.jar http://your-server/path/to/read.jar
+```
+
+3. 直接挂载持久卷到主机，然后复制文件
+
+上传完成后，重启Pod以应用更改：
+```bash
+kubectl rollout restart deployment <deployment-name> -n <namespace>
 ``` 

@@ -8,9 +8,7 @@ image:
 service:
   type: ClusterIP
   ports:
-    - name: http
-      port: 8080
-      protocol: TCP
+    http: 8080
 networkLimits:
   enabled: true
   egress: 1M
@@ -37,16 +35,6 @@ env:
     value: Asia/Shanghai
     description: 时区设置
     title: 时区
-  env2:
-    name: HTTP_PROXY
-    value: ""
-    description: HTTP代理设置(可选)
-    title: HTTP代理
-  env3:
-    name: HTTPS_PROXY
-    value: ""
-    description: HTTPS代理设置(可选)
-    title: HTTPS代理
 command:
   enabled: true
   value: "java -jar /app/read.jar"

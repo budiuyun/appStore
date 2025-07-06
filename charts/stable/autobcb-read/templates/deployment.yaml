@@ -14,6 +14,54 @@ spec:
       labels:
         {{- include "autobcb-read.selectorLabels" . | nindent 8 }}
     spec:
+      initContainers:
+        - name: init-volume
+          image: "{{ .Values.image.imageRegistry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          resources:
+            limits:
+              cpu: "100m"
+              memory: "100Mi"
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
+          command:
+            - /bin/bash
+            - -c
+            - |
+              # 确保持久卷数据完整性
+              {{- range $index, $path := .Values.persistence.mounts }}
+              # 检查目录是否为空或不存在
+              if [ ! -d "/data{{ $path }}" ] || [ -z "$(ls -A /data{{ $path }} 2>/dev/null)" ]; then
+                echo "Initializing data for {{ $path }}"
+                # 确保目标目录存在
+                mkdir -p /data{{ $path }}
+                # 使用cp保留所有属性和权限
+                if [ -d "{{ $path }}" ]; then
+                  # 复制所有文件并保留权限、所有权和链接
+                  cp -rp {{ $path }}/* /data{{ $path }}/ 2>/dev/null || true
+                  cp -rp {{ $path }}/.[^.]* /data{{ $path }}/ 2>/dev/null || true
+                fi
+                
+                # 如果是/app目录，确保read.jar存在
+                if [[ "{{ $path }}" == "/app" ]]; then
+                  echo "Checking for read.jar in /app directory"
+                  if [ ! -f "/data/app/read.jar" ]; then
+                    echo "read.jar not found in persistent volume, creating empty file"
+                    # 创建一个空的read.jar文件作为占位符，后续需要用户上传实际文件
+                    touch /data/app/read.jar
+                    echo "Please upload the actual read.jar file to the persistent volume"
+                  fi
+                fi
+              else
+                echo "Directory /data{{ $path }} already initialized, skipping"
+              fi
+              {{- end }}
+          {{- if and .Values.persistence.enabled .Values.persistence.mounts }}
+          volumeMounts:
+            - name: data
+              mountPath: /data
+          {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.imageRegistry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -26,10 +74,10 @@ spec:
           {{- end }}
           {{- if .Values.service.ports }}
           ports:
-            {{- range .Values.service.ports }}
-            - name: {{ .name }}
-              containerPort: {{ .port }}
-              protocol: {{ .protocol }}
+            {{- range $name, $port := .Values.service.ports }}
+            - name: {{ $name }}
+              containerPort: {{ $port }}
+              protocol: TCP
             {{- end }}
           {{- end }}
           {{- if .Values.env }}
@@ -46,6 +94,7 @@ spec:
             {{- range $index, $path := .Values.persistence.mounts }}
             - name: data
               mountPath: {{ $path }}
+              subPath: {{ $path | trimPrefix "/" }}
             {{- end }}
             {{- if .Values.extraVolumeMounts }}
             {{- toYaml .Values.extraVolumeMounts | nindent 12 }}
