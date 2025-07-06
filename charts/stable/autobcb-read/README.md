@@ -14,12 +14,17 @@
 |---------------------|--------------------|------------------------|
 | replicaCount        | 副本数量           | `1`                    |
 | workloadType        | 工作负载类型       | `Deployment`           |
-| image.imageRegistry | 镜像仓库           | `docker-0.unsee.tech`  |
-| image.repository    | 镜像名称           | `bitnami/java`         |
-| image.tag           | 镜像标签           | `latest`               |
+| image.imageRegistry | 镜像仓库           | `docker.1ms.run`      |
+| image.repository    | 镜像名称           | `eclipse-temurin`      |
+| image.tag           | 镜像标签           | `22-jre`               |
 | image.pullPolicy    | 镜像拉取策略       | `IfNotPresent`         |
-| command             | 容器启动命令       | `["sh", "-c"]`         |
-| args                | 命令参数           | `["java -jar /app/read.jar"]` |
+| command             | 容器启动命令       | `["java"]`             |
+| javaOpts           | Java虚拟机参数     | `"-Xms1g -Xmx4g"`     |
+| args                | 命令参数           | `["-jar", "/app/read.jar"]` |
+| initContainer.enabled | 启用初始化容器    | `true`                 |
+| initContainer.jarUrl | JAR文件下载地址   | `https://github.com/autobcb/read/releases/download/v2.16.1/read.jar` |
+| livenessProbe.enabled | 启用存活探针      | `true`                 |
+| readinessProbe.enabled | 启用就绪探针     | `true`                 |
 | service.type        | 服务类型           | `ClusterIP`            |
 | persistence.enabled | 是否启用持久化存储 | `true`                 |
 | persistence.size    | 存储大小           | `2Gi`                  |
@@ -58,6 +63,11 @@
    - 书籍缓存：可缓存书籍内容以便离线阅读
    - TTS朗读：支持在线和本地TTS引擎
    - 听书功能：支持音频播放控制
+
+## 系统要求
+- Java 22或更高版本
+- 推荐内存：4GB或更高
+- 存储空间：至少2GB可用空间
 
 ## 出处
 轻阅读项目官方仓库：https://github.com/autobcb/read

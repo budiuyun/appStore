@@ -41,19 +41,19 @@
           "type": "string",
           "title": "镜像仓库地址",
           "description": "容器镜像的仓库地址",
-          "default": "docker-0.unsee.tech"
+          "default": "docker.1ms.run"
         },
         "repository": {
           "type": "string",
           "title": "镜像名称",
           "description": "容器镜像的名称",
-          "default": "bitnami/java"
+          "default": "eclipse-temurin"
         },
         "tag": {
           "type": "string",
           "title": "镜像标签",
           "description": "容器镜像的标签",
-          "default": "latest"
+          "default": "22-jre"
         },
         "pullPolicy": {
           "type": "string",
@@ -75,9 +75,14 @@
         "type": "string"
       },
       "default": [
-        "sh",
-        "-c"
+        "java"
       ]
+    },
+    "javaOpts": {
+      "type": "string",
+      "title": "Java虚拟机参数",
+      "description": "Java虚拟机的内存和其他参数设置",
+      "default": "-Xms1g -Xmx4g"
     },
     "args": {
       "type": "array",
@@ -87,8 +92,141 @@
         "type": "string"
       },
       "default": [
-        "java -jar /app/read.jar"
+        "-jar",
+        "/app/read.jar"
       ]
+    },
+    "initContainer": {
+      "type": "object",
+      "title": "初始化容器配置",
+      "description": "用于下载read.jar文件的初始化容器配置",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "title": "启用初始化容器",
+          "description": "是否启用初始化容器下载read.jar文件",
+          "default": true
+        },
+        "jarUrl": {
+          "type": "string",
+          "title": "JAR文件URL",
+          "description": "read.jar文件的下载URL",
+          "default": "https://github.com/autobcb/read/releases/download/v2.16.1/read.jar"
+        },
+        "resources": {
+          "type": "object",
+          "title": "初始化容器资源配置",
+          "description": "初始化容器的资源限制和请求",
+          "properties": {
+            "limits": {
+              "type": "object",
+              "title": "资源限制",
+              "properties": {
+                "cpu": {
+                  "type": "string",
+                  "title": "CPU限制",
+                  "default": "200m"
+                },
+                "memory": {
+                  "type": "string",
+                  "title": "内存限制",
+                  "default": "256Mi"
+                }
+              }
+            },
+            "requests": {
+              "type": "object",
+              "title": "资源请求",
+              "properties": {
+                "cpu": {
+                  "type": "string",
+                  "title": "CPU请求",
+                  "default": "100m"
+                },
+                "memory": {
+                  "type": "string",
+                  "title": "内存请求",
+                  "default": "128Mi"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "livenessProbe": {
+      "type": "object",
+      "title": "存活探针配置",
+      "description": "容器存活探针配置",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "title": "启用存活探针",
+          "description": "是否启用存活探针",
+          "default": true
+        },
+        "initialDelaySeconds": {
+          "type": "integer",
+          "title": "初始延迟秒数",
+          "description": "容器启动后多少秒开始探测",
+          "default": 60
+        },
+        "periodSeconds": {
+          "type": "integer",
+          "title": "探测周期秒数",
+          "description": "探测的频率（秒）",
+          "default": 10
+        },
+        "timeoutSeconds": {
+          "type": "integer",
+          "title": "探测超时秒数",
+          "description": "探测超时时间（秒）",
+          "default": 5
+        },
+        "failureThreshold": {
+          "type": "integer",
+          "title": "失败阈值",
+          "description": "探测失败多少次后认为容器不健康",
+          "default": 6
+        }
+      }
+    },
+    "readinessProbe": {
+      "type": "object",
+      "title": "就绪探针配置",
+      "description": "容器就绪探针配置",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "title": "启用就绪探针",
+          "description": "是否启用就绪探针",
+          "default": true
+        },
+        "initialDelaySeconds": {
+          "type": "integer",
+          "title": "初始延迟秒数",
+          "description": "容器启动后多少秒开始探测",
+          "default": 30
+        },
+        "periodSeconds": {
+          "type": "integer",
+          "title": "探测周期秒数",
+          "description": "探测的频率（秒）",
+          "default": 10
+        },
+        "timeoutSeconds": {
+          "type": "integer",
+          "title": "探测超时秒数",
+          "description": "探测超时时间（秒）",
+          "default": 5
+        },
+        "failureThreshold": {
+          "type": "integer",
+          "title": "失败阈值",
+          "description": "探测失败多少次后认为容器不就绪",
+          "default": 3
+        }
+      }
     },
     "service": {
       "type": "object",
@@ -216,7 +354,7 @@
               "title": "CPU限制",
               "description": "CPU资源限制，可以是m或核心数，留空表示无限制",
               "pattern": "^[0-9]+m?$|^$",
-              "default": "200m"
+              "default": "1000m"
             },
             "memory": {
               "type": [
@@ -226,7 +364,7 @@
               "title": "内存限制",
               "description": "内存资源限制，可以是Mi或Gi，留空表示无限制",
               "pattern": "^[0-9]+(Mi|Gi)$|^$",
-              "default": "256Mi"
+              "default": "4Gi"
             },
             "ephemeral-storage": {
               "type": [
@@ -256,7 +394,7 @@
               "title": "CPU请求",
               "description": "CPU资源请求，可以是m或核心数，留空表示无限制",
               "pattern": "^[0-9]+m?$|^$",
-              "default": "100m"
+              "default": "500m"
             },
             "memory": {
               "type": [
@@ -266,7 +404,7 @@
               "title": "内存请求",
               "description": "内存资源请求，可以是Mi或Gi，留空表示无限制",
               "pattern": "^[0-9]+(Mi|Gi)$|^$",
-              "default": "128Mi"
+              "default": "1Gi"
             },
             "ephemeral-storage": {
               "type": [

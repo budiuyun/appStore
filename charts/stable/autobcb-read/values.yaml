@@ -1,12 +1,36 @@
 workloadType: Deployment
 replicaCount: 1
 image:
-  imageRegistry: docker-0.unsee.tech
-  repository: bitnami/java
-  tag: latest
+  imageRegistry: docker.1ms.run
+  repository: eclipse-temurin
+  tag: "22-jre"
   pullPolicy: IfNotPresent
-command: ["sh", "-c"]
-args: ["java -jar /app/read.jar"]
+command: ["java"]
+# 可以通过覆盖javaOpts来自定义Java参数
+javaOpts: "-Xms1g -Xmx4g"
+args: ["-jar", "/app/read.jar"]
+initContainer:
+  enabled: true
+  jarUrl: "https://github.com/autobcb/read/releases/download/v2.16.1/read.jar"
+  resources:
+    limits:
+      cpu: 200m
+      memory: 256Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+livenessProbe:
+  enabled: true
+  initialDelaySeconds: 60
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 6
+readinessProbe:
+  enabled: true
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 3
 service:
   type: ClusterIP
   ports:
@@ -19,12 +43,12 @@ networkLimits:
   ingress: 1M
 resources:
   limits:
-    cpu: 500m
-    memory: 512Mi
+    cpu: 1000m
+    memory: 4Gi
     ephemeral-storage: 10Gi
   requests:
-    cpu: 200m
-    memory: 256Mi
+    cpu: 500m
+    memory: 1Gi
     ephemeral-storage: 5Gi
 persistence:
   enabled: true
