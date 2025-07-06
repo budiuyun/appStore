@@ -46,4 +46,4 @@ extraVolumes:
   - name: localtime
     hostPath:
       path: /etc/localtime
-icon: https://images.budiuyun.net/i/2025/07/03/6866263917409.png 
+icon: https://images.budiuyun.net/i/2025/06/19/6854064e8b43a.png 
