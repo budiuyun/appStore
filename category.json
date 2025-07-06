@@ -1270,6 +1270,34 @@
       }}
 
     ]
+,
+    "阅读工具": [
+      {"autobcb-read": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "autobcb-read",
+  "version": "v1.0.0",
+  "appVersion": "2.16.1",
+  "description": "一款开源的多平台阅读应用，支持多种书源、在线朗读和听书功能",
+  "icon": "https://images.budiuyun.net/i/2025/06/19/6854064e8b43a.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "sources": [
+    "https://github.com/autobcb/read"
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "阅读工具"
+  }
+}
+
+      }}
+
+    ]
   },
-  "count": 23
+  "count": 24
 }
