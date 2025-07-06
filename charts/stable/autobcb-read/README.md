@@ -18,8 +18,8 @@
 | image.repository    | 镜像名称           | `bitnami/java`         |
 | image.tag           | 镜像标签           | `latest`               |
 | image.pullPolicy    | 镜像拉取策略       | `IfNotPresent`         |
-| command             | 容器启动命令       | `["java"]`             |
-| args                | 命令参数           | `["-jar", "/app/read.jar"]` |
+| command             | 容器启动命令       | `["sh", "-c"]`         |
+| args                | 命令参数           | `["java -jar /app/read.jar"]` |
 | service.type        | 服务类型           | `ClusterIP`            |
 | persistence.enabled | 是否启用持久化存储 | `true`                 |
 | persistence.size    | 存储大小           | `2Gi`                  |

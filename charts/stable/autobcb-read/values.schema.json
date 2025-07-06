@@ -75,7 +75,8 @@
         "type": "string"
       },
       "default": [
-        "java"
+        "sh",
+        "-c"
       ]
     },
     "args": {
@@ -86,8 +87,7 @@
         "type": "string"
       },
       "default": [
-        "-jar",
-        "/app/read.jar"
+        "java -jar /app/read.jar"
       ]
     },
     "service": {

@@ -1,6 +1,6 @@
 apiVersion: v2
 name: autobcb-read
-version: v1.0.1
+version: v1.0.2
 appVersion: 2.16.1
 description: 一款开源的多平台阅读应用，支持多种书源、在线朗读和听书功能，基于Java实现
 icon: https://images.budiuyun.net/i/2025/06/19/6854064e8b43a.png

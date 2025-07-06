@@ -5,8 +5,8 @@ image:
   repository: bitnami/java
   tag: latest
   pullPolicy: IfNotPresent
-command: ["java"]
-args: ["-jar", "/app/read.jar"]
+command: ["sh", "-c"]
+args: ["java -jar /app/read.jar"]
 service:
   type: ClusterIP
   ports:
