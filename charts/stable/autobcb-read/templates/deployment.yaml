@@ -43,15 +43,18 @@ spec:
                   cp -rp {{ $path }}/.[^.]* /data{{ $path }}/ 2>/dev/null || true
                 fi
                 
-                # 如果是/app目录，确保read.jar存在
+                # 如果是/app目录，创建README文件而不是空的jar
                 if [[ "{{ $path }}" == "/app" ]]; then
-                  echo "Checking for read.jar in /app directory"
-                  if [ ! -f "/data/app/read.jar" ]; then
-                    echo "read.jar not found in persistent volume, creating empty file"
-                    # 创建一个空的read.jar文件作为占位符，后续需要用户上传实际文件
-                    touch /data/app/read.jar
-                    echo "Please upload the actual read.jar file to the persistent volume"
-                  fi
+                  echo "Creating README file in /app directory"
+                  cat > /data/app/README.txt << EOF
+请上传read.jar文件到此目录。
+
+您可以使用以下命令上传:
+kubectl cp /path/to/your/read.jar POD_NAME:/app/read.jar -n NAMESPACE
+
+上传完成后，重启Pod:
+kubectl rollout restart deployment DEPLOYMENT_NAME -n NAMESPACE
+EOF
                 fi
               else
                 echo "Directory /data{{ $path }} already initialized, skipping"
@@ -70,7 +73,18 @@ spec:
           command:
             - /bin/sh
             - -c
-            - {{ .Values.command.value | quote }}
+            - |
+              if [ -f "/app/read.jar" ] && [ -s "/app/read.jar" ]; then
+                echo "Starting application with read.jar"
+                {{ .Values.command.value }}
+              else
+                echo "ERROR: read.jar not found or empty!"
+                echo "Please upload read.jar file to the persistent volume."
+                echo "See /app/README.txt for instructions."
+                # 保持容器运行，不退出，这样用户可以连接到容器上传文件
+                echo "Container will sleep for 1 hour before checking again..."
+                sleep 3600
+              fi
           {{- end }}
           {{- if .Values.service.ports }}
           ports:
