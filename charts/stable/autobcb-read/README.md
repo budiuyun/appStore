@@ -10,17 +10,20 @@
 
 ## 参数
 
-| 参数                | 描述               | 默认值         |
-|---------------------|--------------------|---------------|
-| replicaCount        | 副本数量           | `1`           |
-| workloadType        | 工作负载类型       | `Deployment`  |
-| image.repository    | 镜像名称           | `read`        |
-| image.tag           | 镜像标签           | `latest`      |
-| image.pullPolicy    | 镜像拉取策略       | `IfNotPresent`|
-| service.type        | 服务类型           | `ClusterIP`   |
-| persistence.enabled | 是否启用持久化存储 | `true`        |
-| persistence.size    | 存储大小           | `2Gi`         |
-| env                 | 环境变量配置       | 见下文        |
+| 参数                | 描述               | 默认值                  |
+|---------------------|--------------------|------------------------|
+| replicaCount        | 副本数量           | `1`                    |
+| workloadType        | 工作负载类型       | `Deployment`           |
+| image.imageRegistry | 镜像仓库           | `docker-0.unsee.tech`  |
+| image.repository    | 镜像名称           | `bitnami/java`         |
+| image.tag           | 镜像标签           | `latest`               |
+| image.pullPolicy    | 镜像拉取策略       | `IfNotPresent`         |
+| command             | 容器启动命令       | `["java"]`             |
+| args                | 命令参数           | `["-jar", "/app/read.jar"]` |
+| service.type        | 服务类型           | `ClusterIP`            |
+| persistence.enabled | 是否启用持久化存储 | `true`                 |
+| persistence.size    | 存储大小           | `2Gi`                  |
+| env                 | 环境变量配置       | 见下文                 |
 
 ## 环境变量
 
@@ -29,6 +32,7 @@
 | 环境变量        | 描述                 | 默认值          |
 |-----------------|----------------------|----------------|
 | TZ              | 时区设置             | `Asia/Shanghai`|
+| JAVA_OPTS       | Java虚拟机参数       | ``             |
 | http_proxyHost  | HTTP代理服务器地址   | ``             |
 | http_proxyPort  | HTTP代理服务器端口   | ``             |
 | https_proxyHost | HTTPS代理服务器地址  | ``             |

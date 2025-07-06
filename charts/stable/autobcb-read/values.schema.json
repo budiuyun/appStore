@@ -41,12 +41,13 @@
           "type": "string",
           "title": "镜像仓库地址",
           "description": "容器镜像的仓库地址",
-          "default": "docker.io"
+          "default": "docker-0.unsee.tech"
         },
         "repository": {
           "type": "string",
           "title": "镜像名称",
-          "description": "容器镜像的名称"
+          "description": "容器镜像的名称",
+          "default": "bitnami/java"
         },
         "tag": {
           "type": "string",
@@ -64,6 +65,29 @@
           "default": "IfNotPresent"
         }
       }
+    },
+    "command": {
+      "type": "array",
+      "title": "容器启动命令",
+      "description": "容器启动时执行的命令",
+      "items": {
+        "type": "string"
+      },
+      "default": [
+        "java"
+      ]
+    },
+    "args": {
+      "type": "array",
+      "title": "命令参数",
+      "description": "容器启动命令的参数",
+      "items": {
+        "type": "string"
+      },
+      "default": [
+        "-jar",
+        "/app/read.jar"
+      ]
     },
     "service": {
       "type": "object",
@@ -353,6 +377,41 @@
         },
         "env2": {
           "type": "object",
+          "title": "Java参数",
+          "description": "Java虚拟机参数（可选）",
+          "required": [
+            "name",
+            "value"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名称",
+              "description": "环境变量的名称",
+              "default": "JAVA_OPTS"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量的值",
+              "default": ""
+            },
+            "title": {
+              "type": "string",
+              "title": "中文名称",
+              "description": "环境变量的中文名称",
+              "default": "Java参数"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量的详细描述",
+              "default": "Java虚拟机参数（可选）"
+            }
+          }
+        },
+        "env3": {
+          "type": "object",
           "title": "HTTP代理",
           "description": "HTTP代理服务器地址（可选）",
           "required": [
@@ -386,7 +445,7 @@
             }
           }
         },
-        "env3": {
+        "env4": {
           "type": "object",
           "title": "HTTP代理端口",
           "description": "HTTP代理服务器端口（可选）",
@@ -421,7 +480,7 @@
             }
           }
         },
-        "env4": {
+        "env5": {
           "type": "object",
           "title": "HTTPS代理",
           "description": "HTTPS代理服务器地址（可选）",
@@ -456,7 +515,7 @@
             }
           }
         },
-        "env5": {
+        "env6": {
           "type": "object",
           "title": "HTTPS代理端口",
           "description": "HTTPS代理服务器端口（可选）",

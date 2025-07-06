@@ -1,10 +1,12 @@
 workloadType: Deployment
 replicaCount: 1
 image:
-  imageRegistry: docker.1ms.run
-  repository: niehaoran/read
+  imageRegistry: docker-0.unsee.tech
+  repository: bitnami/java
   tag: latest
   pullPolicy: IfNotPresent
+command: ["java"]
+args: ["-jar", "/app/read.jar"]
 service:
   type: ClusterIP
   ports:
@@ -30,7 +32,7 @@ persistence:
   accessMode: ReadWriteOnce
   storageClass: local
   mounts:
-    - /app/storage
+    - /app
 env:
   env1:
     name: TZ
@@ -38,21 +40,26 @@ env:
     description: 设置容器的时区
     title: 时区设置
   env2:
+    name: JAVA_OPTS
+    value: ''
+    description: Java虚拟机参数（可选）
+    title: Java参数
+  env3:
     name: http_proxyHost
     value: ''
     description: HTTP代理服务器地址（可选）
     title: HTTP代理
-  env3:
+  env4:
     name: http_proxyPort
     value: ''
     description: HTTP代理服务器端口（可选）
     title: HTTP代理端口
-  env4:
+  env5:
     name: https_proxyHost
     value: ''
     description: HTTPS代理服务器地址（可选）
     title: HTTPS代理
-  env5:
+  env6:
     name: https_proxyPort
     value: ''
     description: HTTPS代理服务器端口（可选）
