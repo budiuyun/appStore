@@ -15,11 +15,11 @@ networkLimits:
   ingress: 1M
 resources:
   limits:
-    cpu: 2000m
+    cpu: 1000m
     memory: 2000Mi
     ephemeral-storage: 2Gi
   requests:
-    cpu: 500m
+    cpu: 300m
     memory: 512Mi
     ephemeral-storage: 1Gi
 persistence:
