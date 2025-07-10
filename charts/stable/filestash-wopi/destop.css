@@ -1,0 +1,159 @@
+:root {
+    --color-box-shadow: rgba(0, 0, 0, 0.1);
+    --header-font-size: 13px;
+    --btn-size: 25px;
+    --color-border: #d1d1d1;
+    --co-border-radius: 4px;
+    --color-main-background: #f5f5f5;
+    --color-background-darker: #f5f5f5;
+    --color-btn-border: transparent;
+    --co-color-border-dark: #fafafa;
+    --header-height: 35px;
+    --color-border-darker: transparent;
+    --color-border-dark: rgba(0, 0, 0, 0.05);
+    --color-main-text: #404040;
+    --tb-min-fs: 13.5px;
+    --tb-max-fs: 13.5px;
+    --btn-padding: 3px;
+}
+
+#document-header, #save,
+#toggleuimode-button, #optionstoolboxdown, #toggledarktheme-button, #home-reset-attributes, #zoomreset {
+    display: none!important;
+}
+
+button#home-brush-button, button#home-reset-attributes {
+    display: none;
+}
+
+#document-name-input {
+    display: none!important;
+}
+
+.ui-scroll-left, .ui-scroll-right {
+    opacity: 0.1;
+    filter: grayscale(1);
+}
+
+#toolbar-wrapper {
+    border: none;
+    background: var(--color-main-background)!important;
+    padding: 0 !important;
+}
+#toolbar-row {
+    background: white;
+    margin: 10px 10px 0 10px;
+    border-radius: 5px;
+    margin-top: 0;
+    padding: 5px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.05);
+}
+[data-doctype='text'] {
+    --doc-type: 24, 90, 189;
+}
+html:not([data-theme=dark]) .hasnotebookbar .ui-content.unotoolbutton.selected:not(.has-label):not(.inline):not([class*=unospan-options-]), html:not([data-theme=dark]) .sidebar.unotoolbutton.selected {
+    border-color: var(--color-border)!important;
+}
+#toolbar-up .ui-tab.selected.notebookbar {
+    font-weight: bolder;
+}
+#toolbar-up .ui-listbox, .ui-combobox, .ui-timefield {
+    background: transparent;
+}
+
+#Home-container #home-undo-redo {
+    border-right: 2px solid var(--color-main-background);
+}
+
+#Home-container > .notebookbar:nth-child(4),
+#Home-container > .notebookbar:nth-child(6) {
+    border-left: 2px solid var(--color-main-background);
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    height: 100%;
+}
+#toolbar-up .arrowbackground {
+    opacity: 0.5;
+    transform: scale(0.8);
+}
+#toolbar-up .ui-tabpage .notebookbar.vertical {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+#toolbar-up #fontnamecombobox input {
+    width: 160px;
+}
+
+#toolbar-up .unotoolbutton.has-label .unolabel {
+    margin-top: 6px;
+    display: block;
+}
+#toolbar-up .unotoolbutton.has-label.has-dropdown .arrowbackground {
+    grid-column: inherit;
+    display: block;
+    margin: -5px auto 0 auto;
+}
+
+.unotoolbutton.notebookbar .unolabel {
+    font-size: 0.75rem;
+}
+
+.ui-listbox-arrow {
+    opacity: 0.5;
+    transform: scale(0.8);
+}
+.hasnotebookbar .ui-content.unotoolbutton.has-label:hover, .hasnotebookbar .ui-content.unotoolbutton.inline:hover, .hasnotebookbar .ui-content.unotoolbutton:not(.has-label):not(.inline):hover, .sidebar.unotoolbutton:hover, .jsdialog.unotoolbutton:hover, .notebookbar.unotoolbutton:hover {
+    border-color: transparent;
+}
+
+
+/* Dialog */
+.lokdialog_container .ui-dialog-titlebar-close .ui-icon {
+    transform: scale(0.7);
+}
+
+/* Sidebar */
+#sidebar-dock-wrapper {
+    background: var(--color-main-background);
+    padding-top: 20px!important;
+}
+
+/* tooltip */
+.cooltip-text {
+    background: white;
+    color: #666;
+    padding: 2px 10px;
+    font-size: 0.75rem;
+    border-radius: 3px;
+    margin-top: -10px;
+    box-shadow: none;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+/* bottom toolbar */
+#toolbar-wrapper:not(.mobile) ~ #toolbar-down {
+    background: #fafafa!important;
+}
+#toolbar-wrapper:not(.mobile) ~ #toolbar-down .ui-badge, #toolbar-wrapper:not(.mobile) ~ #toolbar-down .unolabel {
+    color: rgba(97,97,97)!important;
+}
+#toolbar-down img { filter: brightness(0.4); }
+#toolbar-down > .root-container { border-top: 1px solid #e1e1e1; }
+
+@media screen and (max-width: 1400px) {
+    #home-insert-annotation { display: none; }
+}
+@media screen and (max-width: 1600px) {
+    #home-insert-table, #home-insert-page-break, #home-search, #home-search-dialog, #home-insert-graphic, #CharmapControl { display: none; }
+}
+
+/* excel specific */
+#formulabar-row { border-top: none; }
+#expand.formulabar { }
+
+/* modal */
+.jsdialog-overlay.dimmed {
+    background: #f2f3f5f0;
+}
+.iframe-welcome-wrap {  display: none; }
+.leaflet-progress-label.brand-label { display: none; }
