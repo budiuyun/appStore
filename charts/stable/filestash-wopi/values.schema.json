@@ -120,7 +120,7 @@
               "type": "string",
               "title": "CPU限制",
               "description": "CPU资源限制",
-              "default": "2000m"
+              "default": "1000m"
             },
             "memory": {
               "type": "string",
@@ -144,7 +144,7 @@
               "type": "string",
               "title": "CPU请求",
               "description": "CPU资源请求",
-              "default": "500m"
+              "default": "300m"
             },
             "memory": {
               "type": "string",
