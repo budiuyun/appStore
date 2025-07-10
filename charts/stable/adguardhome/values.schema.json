@@ -83,6 +83,32 @@
               "default": 3000
             }
           }
+        },
+        "udpPorts": {
+          "type": "array",
+          "title": "UDP端口配置",
+          "description": "UDP服务端口配置",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "title": "端口名称",
+                "description": "UDP端口名称"
+              },
+              "port": {
+                "type": "integer",
+                "title": "端口号",
+                "description": "UDP端口号"
+              },
+              "protocol": {
+                "type": "string",
+                "title": "协议",
+                "description": "端口协议",
+                "default": "UDP"
+              }
+            }
+          }
         }
       }
     },
@@ -245,6 +271,45 @@
           }
         }
       }
+    },
+    "extraVolumeMounts": {
+      "type": "array",
+      "title": "额外挂载卷",
+      "description": "额外的卷挂载配置",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "卷名称",
+            "description": "卷的名称"
+          },
+          "mountPath": {
+            "type": "string",
+            "title": "挂载路径",
+            "description": "卷在容器中的挂载路径"
+          },
+          "readOnly": {
+            "type": "boolean",
+            "title": "只读",
+            "description": "卷是否为只读",
+            "default": false
+          }
+        }
+      }
+    },
+    "extraVolumes": {
+      "type": "array",
+      "title": "额外卷",
+      "description": "额外的卷配置",
+      "items": {
+        "type": "object"
+      }
+    },
+    "icon": {
+      "type": "string",
+      "title": "图标",
+      "description": "应用图标URL"
     }
   }
 }
