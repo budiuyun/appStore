@@ -50,7 +50,7 @@ command:
   value: |
     /bin/bash
     -c
-    /bin/su -s /bin/bash -c '/start-collabora-online.sh' cool
+    /start-collabora-online.sh
 extraVolumeMounts:
   - name: localtime
     mountPath: /etc/localtime
