@@ -35,6 +35,7 @@ helm install filestash-app budiu/filestash-app
 
 | 参数 | 描述 | 默认值 |
 | ---- | ---- | ------ |
+| `workloadType` | 工作负载类型 | `Deployment` |
 | `replicaCount` | 副本数量 | `1` |
 | `image.imageRegistry` | 镜像仓库 | `docker.io` |
 | `image.repository` | 镜像名称 | `machines/filestash` |
@@ -53,6 +54,8 @@ helm install filestash-app budiu/filestash-app
 | `env.env4.value` | Office服务器URL | `"http://wopi_server:9980"` |
 | `env.env5.value` | Filestash应用URL | `"http://app:8334"` |
 | `env.env6.value` | Office重写URL | `"http://127.0.0.1:9980"` |
+| `extraVolumeMounts` | 额外的卷挂载 | 见values.yaml |
+| `extraVolumes` | 额外的卷 | 见values.yaml |
 
 ## 使用方法
 

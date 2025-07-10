@@ -35,6 +35,7 @@ helm install filestash-wopi budiu/filestash-wopi
 
 | 参数 | 描述 | 默认值 |
 | ---- | ---- | ------ |
+| `workloadType` | 工作负载类型 | `Deployment` |
 | `replicaCount` | 副本数量 | `1` |
 | `image.imageRegistry` | 镜像仓库 | `docker.io` |
 | `image.repository` | 镜像名称 | `collabora/code` |
@@ -52,6 +53,8 @@ helm install filestash-wopi budiu/filestash-wopi
 | `env.env3.value` | 域名别名组 | `"https://.*:443"` |
 | `command.enabled` | 启用自定义命令 | `true` |
 | `command.value` | 自定义命令内容 | 见values.yaml |
+| `extraVolumeMounts` | 额外的卷挂载 | 见values.yaml |
+| `extraVolumes` | 额外的卷 | 见values.yaml |
 
 ## 使用方法
 

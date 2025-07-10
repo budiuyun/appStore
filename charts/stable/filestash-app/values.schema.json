@@ -2,6 +2,16 @@
   "$schema": "http://json-schema.org/schema#",
   "type": "object",
   "properties": {
+    "workloadType": {
+      "type": "string",
+      "title": "工作负载类型",
+      "description": "Kubernetes工作负载类型",
+      "default": "Deployment",
+      "enum": [
+        "Deployment",
+        "StatefulSet"
+      ]
+    },
     "replicaCount": {
       "type": "integer",
       "title": "副本数量",
@@ -383,6 +393,45 @@
           }
         }
       }
+    },
+    "extraVolumeMounts": {
+      "type": "array",
+      "title": "额外挂载卷",
+      "description": "额外的卷挂载配置",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "卷名称",
+            "description": "卷的名称"
+          },
+          "mountPath": {
+            "type": "string",
+            "title": "挂载路径",
+            "description": "卷在容器中的挂载路径"
+          },
+          "readOnly": {
+            "type": "boolean",
+            "title": "只读",
+            "description": "卷是否为只读",
+            "default": false
+          }
+        }
+      }
+    },
+    "extraVolumes": {
+      "type": "array",
+      "title": "额外卷",
+      "description": "额外的卷配置",
+      "items": {
+        "type": "object"
+      }
+    },
+    "icon": {
+      "type": "string",
+      "title": "图标",
+      "description": "应用图标URL"
     }
   }
 }

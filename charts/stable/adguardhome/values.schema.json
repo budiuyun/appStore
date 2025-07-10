@@ -2,6 +2,16 @@
   "$schema": "http://json-schema.org/schema#",
   "type": "object",
   "properties": {
+    "workloadType": {
+      "type": "string",
+      "title": "工作负载类型",
+      "description": "Kubernetes工作负载类型",
+      "default": "Deployment",
+      "enum": [
+        "Deployment",
+        "StatefulSet"
+      ]
+    },
     "replicaCount": {
       "type": "integer",
       "title": "副本数量",

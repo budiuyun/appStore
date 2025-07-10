@@ -35,6 +35,7 @@ helm install adguardhome budiu/adguardhome
 
 | 参数 | 描述 | 默认值 |
 | ---- | ---- | ------ |
+| `workloadType` | 工作负载类型 | `Deployment` |
 | `replicaCount` | 副本数量 | `1` |
 | `image.imageRegistry` | 镜像仓库 | `docker.io` |
 | `image.repository` | 镜像名称 | `adguard/adguardhome` |
@@ -49,6 +50,10 @@ helm install adguardhome budiu/adguardhome
 | `persistence.accessMode` | 持久化存储访问模式 | `ReadWriteOnce` |
 | `persistence.storageClass` | 持久化存储类 | `local` |
 | `persistence.mounts` | 持久化存储挂载点 | `["/opt/adguardhome/work"]` |
+| `env.env1.name` | 环境变量名称 | `TZ` |
+| `env.env1.value` | 环境变量值 | `Asia/Shanghai` |
+| `extraVolumeMounts` | 额外的卷挂载 | 见values.yaml |
+| `extraVolumes` | 额外的卷 | 见values.yaml |
 
 ## 使用方法
 
