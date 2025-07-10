@@ -151,6 +151,31 @@
 
     ]
 ,
+    "办公套件": [
+      {"filestash-wopi": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "filestash-wopi",
+  "version": "v1.0.0",
+  "appVersion": "24.04.10.2.1",
+  "description": "Collabora Online是一个功能强大的在线办公套件，为Filestash提供文档编辑功能",
+  "icon": "https://images.budiuyun.net/i/2025/06/19/6854064e8b43a.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "办公套件"
+  }
+}
+
+      }}
+
+    ]
+,
     "图床": [
       {"lsky-pro": {
         "v1.0.0": 
@@ -697,6 +722,31 @@
 
     ]
 ,
+    "文件管理": [
+      {"filestash-app": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "filestash-app",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "Filestash是一个现代化的Web文件管理器，支持多种存储后端",
+  "icon": "https://images.budiuyun.net/i/2025/06/19/6854064e8b43a.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "文件管理"
+  }
+}
+
+      }}
+
+    ]
+,
     "文档管理": [
       {"paperless-ngx": {
         "v1.0.0": 
@@ -1081,6 +1131,28 @@
 
       }}
 ,
+      {"adguardhome": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "adguardhome",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "AdGuard Home 是一款全网广告拦截与反跟踪软件，保护所有家用设备",
+  "icon": "https://images.budiuyun.net/i/2025/06/19/6854064e8b43a.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "网络工具"
+  }
+}
+
+      }}
+,
       {"nginx": {
         "v1.0.0": 
 {
@@ -1296,5 +1368,5 @@
 
     ]
   },
-  "count": 24
+  "count": 26
 }
