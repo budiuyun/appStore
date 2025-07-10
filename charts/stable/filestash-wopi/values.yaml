@@ -65,7 +65,7 @@ extraVolumes:
       path: /etc/localtime
   - name: css-config
     configMap:
-      name: filestash-wopi-css
+      name: filestash-wopi-css-config
       items:
         - key: destop.css
           path: destop.css
