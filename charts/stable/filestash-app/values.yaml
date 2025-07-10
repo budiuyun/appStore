@@ -1,0 +1,71 @@
+workloadType: Deployment
+replicaCount: 1
+image:
+  imageRegistry: docker.io
+  repository: machines/filestash
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  ports:
+    http: 8334
+networkLimits:
+  enabled: true
+  egress: 1M
+  ingress: 1M
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1000Mi
+    ephemeral-storage: 2Gi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+    ephemeral-storage: 500Mi
+persistence:
+  enabled: true
+  size: 2Gi
+  accessMode: ReadWriteOnce
+  storageClass: local
+  mounts:
+    - /app/data/state
+env:
+  env1:
+    name: TZ
+    value: Asia/Shanghai
+    description: 时区设置
+    title: 时区
+  env2:
+    name: APPLICATION_URL
+    value: ""
+    description: 应用URL
+    title: 应用URL
+  env3:
+    name: CANARY
+    value: "true"
+    description: 启用Canary
+    title: Canary
+  env4:
+    name: OFFICE_URL
+    value: "http://wopi_server:9980"
+    description: Office服务器URL
+    title: Office服务器URL
+  env5:
+    name: OFFICE_FILESTASH_URL
+    value: "http://app:8334"
+    description: Filestash应用URL
+    title: Filestash应用URL
+  env6:
+    name: OFFICE_REWRITE_URL
+    value: "http://127.0.0.1:9980"
+    description: Office重写URL
+    title: Office重写URL
+extraVolumeMounts:
+  - name: localtime
+    mountPath: /etc/localtime
+    readOnly: true
+extraVolumes:
+  - name: localtime
+    hostPath:
+      path: /etc/localtime
+icon: https://images.budiuyun.net/i/2025/06/19/6854064e8b43a.png

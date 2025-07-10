@@ -1,0 +1,52 @@
+workloadType: Deployment
+replicaCount: 1
+image:
+  imageRegistry: docker.io
+  repository: adguard/adguardhome
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  ports:
+    dns-tcp: 53
+    dns-udp: 53
+    http: 3000
+  udpPorts:
+    - name: dns-udp
+      port: 53
+      protocol: UDP
+networkLimits:
+  enabled: true
+  egress: 1M
+  ingress: 1M
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1000Mi
+    ephemeral-storage: 2Gi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+    ephemeral-storage: 500Mi
+persistence:
+  enabled: true
+  size: 2Gi
+  accessMode: ReadWriteOnce
+  storageClass: local
+  mounts:
+    - /opt/adguardhome/work
+env:
+  env1:
+    name: TZ
+    value: Asia/Shanghai
+    description: 时区设置
+    title: 时区
+extraVolumeMounts:
+  - name: localtime
+    mountPath: /etc/localtime
+    readOnly: true
+extraVolumes:
+  - name: localtime
+    hostPath:
+      path: /etc/localtime
+icon: https://images.budiuyun.net/i/2025/06/19/6854064e8b43a.png

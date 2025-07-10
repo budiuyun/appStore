@@ -1,0 +1,11 @@
+apiVersion: v2
+name: filestash-app
+version: v1.0.0
+appVersion: latest
+description: Filestash是一个现代化的Web文件管理器，支持多种存储后端
+icon: https://images.budiuyun.net/i/2025/06/19/6854064e8b43a.png
+maintainers:
+  - name: 陈不丢
+    email: 179866495@qq.com
+annotations:
+  budiu/app-category-zh: 文件管理

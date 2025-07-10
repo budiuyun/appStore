@@ -1,0 +1,103 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "adguardhome.fullname" . }}
+  labels:
+    {{- include "adguardhome.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "adguardhome.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "adguardhome.selectorLabels" . | nindent 8 }}
+    spec:
+      initContainers:
+        - name: init-volume
+          image: "{{ .Values.image.imageRegistry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          resources:
+            limits:
+              cpu: "100m"
+              memory: "100Mi"
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
+          command:
+            - /bin/sh
+            - -c
+            - |
+              # 确保持久卷数据完整性
+              {{- range $index, $path := .Values.persistence.mounts }}
+              # 检查目录是否为空或不存在
+              if [ ! -d "/data{{ $path }}" ] || [ -z "$(ls -A /data{{ $path }} 2>/dev/null)" ]; then
+                echo "Initializing data for {{ $path }}"
+                # 确保目标目录存在
+                mkdir -p /data{{ $path }}
+                # 使用cp保留所有属性和权限
+                if [ -d "{{ $path }}" ]; then
+                  # 复制所有文件并保留权限、所有权和链接
+                  cp -rp {{ $path }}/* /data{{ $path }}/ 2>/dev/null || true
+                  cp -rp {{ $path }}/.[^.]* /data{{ $path }}/ 2>/dev/null || true
+                fi
+              else
+                echo "Directory /data{{ $path }} already initialized, skipping"
+              fi
+              {{- end }}
+          {{- if and .Values.persistence.enabled .Values.persistence.mounts }}
+          volumeMounts:
+            - name: data
+              mountPath: /data
+          {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.imageRegistry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if .Values.service.ports }}
+          ports:
+            {{- range $name, $port := .Values.service.ports }}
+            - name: {{ $name }}
+              containerPort: {{ $port }}
+              protocol: TCP
+            {{- end }}
+            {{- if .Values.service.udpPorts }}
+            {{- range $port := .Values.service.udpPorts }}
+            - name: {{ $port.name }}
+              containerPort: {{ $port.port }}
+              protocol: UDP
+            {{- end }}
+            {{- end }}
+          {{- end }}
+          {{- if .Values.env }}
+          env:
+            {{- range $key, $value := .Values.env }}
+            - name: {{ $value.name }}
+              value: {{ $value.value | quote }}
+            {{- end }}
+          {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          {{- if and .Values.persistence.enabled .Values.persistence.mounts }}
+          volumeMounts:
+            {{- range $index, $path := .Values.persistence.mounts }}
+            - name: data
+              mountPath: {{ $path }}
+              subPath: {{ $path | trimPrefix "/" }}
+            {{- end }}
+            {{- if .Values.extraVolumeMounts }}
+            {{- toYaml .Values.extraVolumeMounts | nindent 12 }}
+            {{- end }}
+          {{- end }}
+      {{- if or (and .Values.persistence.enabled .Values.persistence.mounts) .Values.extraVolumes }}
+      volumes:
+        {{- if and .Values.persistence.enabled .Values.persistence.mounts }}
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ include "adguardhome.fullname" . }}
+        {{- end }}
+        {{- if .Values.extraVolumes }}
+        {{- toYaml .Values.extraVolumes | nindent 8 }}
+        {{- end }}
+      {{- end }} 

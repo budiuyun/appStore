@@ -1,0 +1,388 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "properties": {
+    "replicaCount": {
+      "type": "integer",
+      "title": "副本数量",
+      "description": "部署的副本数量",
+      "default": 1,
+      "minimum": 1
+    },
+    "image": {
+      "type": "object",
+      "title": "镜像配置",
+      "properties": {
+        "imageRegistry": {
+          "type": "string",
+          "title": "镜像仓库地址",
+          "description": "镜像仓库地址",
+          "default": "docker.io"
+        },
+        "repository": {
+          "type": "string",
+          "title": "镜像名称",
+          "description": "镜像名称",
+          "default": "machines/filestash"
+        },
+        "tag": {
+          "type": "string",
+          "title": "镜像标签",
+          "description": "镜像标签",
+          "default": "latest"
+        },
+        "pullPolicy": {
+          "type": "string",
+          "title": "镜像拉取策略",
+          "description": "镜像拉取策略",
+          "default": "IfNotPresent",
+          "enum": [
+            "Always",
+            "IfNotPresent",
+            "Never"
+          ]
+        }
+      }
+    },
+    "service": {
+      "type": "object",
+      "title": "服务配置",
+      "properties": {
+        "type": {
+          "type": "string",
+          "title": "服务类型",
+          "description": "服务类型",
+          "default": "ClusterIP",
+          "enum": [
+            "ClusterIP",
+            "NodePort",
+            "LoadBalancer"
+          ]
+        },
+        "ports": {
+          "type": "object",
+          "title": "端口配置",
+          "description": "服务端口配置",
+          "properties": {
+            "http": {
+              "type": "integer",
+              "title": "HTTP端口",
+              "description": "Web界面端口",
+              "default": 8334
+            }
+          }
+        }
+      }
+    },
+    "networkLimits": {
+      "type": "object",
+      "title": "网络限制",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "title": "启用网络限制",
+          "description": "是否启用网络限制",
+          "default": true
+        },
+        "egress": {
+          "type": "string",
+          "title": "出站限制",
+          "description": "出站网络带宽限制",
+          "default": "1M"
+        },
+        "ingress": {
+          "type": "string",
+          "title": "入站限制",
+          "description": "入站网络带宽限制",
+          "default": "1M"
+        }
+      }
+    },
+    "resources": {
+      "type": "object",
+      "title": "资源配置",
+      "properties": {
+        "limits": {
+          "type": "object",
+          "title": "资源限制",
+          "properties": {
+            "cpu": {
+              "type": "string",
+              "title": "CPU限制",
+              "description": "CPU资源限制",
+              "default": "1000m"
+            },
+            "memory": {
+              "type": "string",
+              "title": "内存限制",
+              "description": "内存资源限制",
+              "default": "1000Mi"
+            },
+            "ephemeral-storage": {
+              "type": "string",
+              "title": "临时存储限制",
+              "description": "临时存储资源限制",
+              "default": "2Gi"
+            }
+          }
+        },
+        "requests": {
+          "type": "object",
+          "title": "资源请求",
+          "properties": {
+            "cpu": {
+              "type": "string",
+              "title": "CPU请求",
+              "description": "CPU资源请求",
+              "default": "100m"
+            },
+            "memory": {
+              "type": "string",
+              "title": "内存请求",
+              "description": "内存资源请求",
+              "default": "128Mi"
+            },
+            "ephemeral-storage": {
+              "type": "string",
+              "title": "临时存储请求",
+              "description": "临时存储资源请求",
+              "default": "500Mi"
+            }
+          }
+        }
+      }
+    },
+    "persistence": {
+      "type": "object",
+      "title": "持久化配置",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "title": "启用持久化",
+          "description": "是否启用持久化存储",
+          "default": true
+        },
+        "size": {
+          "type": "string",
+          "title": "存储大小",
+          "description": "持久化存储大小",
+          "default": "2Gi"
+        },
+        "accessMode": {
+          "type": "string",
+          "title": "访问模式",
+          "description": "持久化存储访问模式",
+          "default": "ReadWriteOnce",
+          "enum": [
+            "ReadWriteOnce",
+            "ReadOnlyMany",
+            "ReadWriteMany"
+          ]
+        },
+        "storageClass": {
+          "type": "string",
+          "title": "存储类",
+          "description": "持久化存储类",
+          "default": "local"
+        },
+        "mounts": {
+          "type": "array",
+          "title": "挂载点",
+          "description": "持久化存储挂载点",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "/app/data/state"
+          ]
+        }
+      }
+    },
+    "env": {
+      "type": "object",
+      "title": "环境变量",
+      "properties": {
+        "env1": {
+          "type": "object",
+          "title": "时区",
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名",
+              "description": "环境变量名",
+              "default": "TZ"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量值",
+              "default": "Asia/Shanghai"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量描述",
+              "default": "时区设置"
+            },
+            "title": {
+              "type": "string",
+              "title": "标题",
+              "description": "环境变量标题",
+              "default": "时区"
+            }
+          }
+        },
+        "env2": {
+          "type": "object",
+          "title": "应用URL",
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名",
+              "description": "环境变量名",
+              "default": "APPLICATION_URL"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量值",
+              "default": ""
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量描述",
+              "default": "应用URL"
+            },
+            "title": {
+              "type": "string",
+              "title": "标题",
+              "description": "环境变量标题",
+              "default": "应用URL"
+            }
+          }
+        },
+        "env3": {
+          "type": "object",
+          "title": "Canary",
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名",
+              "description": "环境变量名",
+              "default": "CANARY"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量值",
+              "default": "true"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量描述",
+              "default": "启用Canary"
+            },
+            "title": {
+              "type": "string",
+              "title": "标题",
+              "description": "环境变量标题",
+              "default": "Canary"
+            }
+          }
+        },
+        "env4": {
+          "type": "object",
+          "title": "Office服务器URL",
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名",
+              "description": "环境变量名",
+              "default": "OFFICE_URL"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量值",
+              "default": "http://wopi_server:9980"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量描述",
+              "default": "Office服务器URL"
+            },
+            "title": {
+              "type": "string",
+              "title": "标题",
+              "description": "环境变量标题",
+              "default": "Office服务器URL"
+            }
+          }
+        },
+        "env5": {
+          "type": "object",
+          "title": "Filestash应用URL",
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名",
+              "description": "环境变量名",
+              "default": "OFFICE_FILESTASH_URL"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量值",
+              "default": "http://app:8334"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量描述",
+              "default": "Filestash应用URL"
+            },
+            "title": {
+              "type": "string",
+              "title": "标题",
+              "description": "环境变量标题",
+              "default": "Filestash应用URL"
+            }
+          }
+        },
+        "env6": {
+          "type": "object",
+          "title": "Office重写URL",
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "变量名",
+              "description": "环境变量名",
+              "default": "OFFICE_REWRITE_URL"
+            },
+            "value": {
+              "type": "string",
+              "title": "变量值",
+              "description": "环境变量值",
+              "default": "http://127.0.0.1:9980"
+            },
+            "description": {
+              "type": "string",
+              "title": "描述",
+              "description": "环境变量描述",
+              "default": "Office重写URL"
+            },
+            "title": {
+              "type": "string",
+              "title": "标题",
+              "description": "环境变量标题",
+              "default": "Office重写URL"
+            }
+          }
+        }
+      }
+    }
+  }
+}

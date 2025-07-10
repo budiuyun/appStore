@@ -1,0 +1,11 @@
+apiVersion: v2
+name: filestash-wopi
+version: v1.0.0
+appVersion: 24.04.10.2.1
+description: Collabora Online是一个功能强大的在线办公套件，为Filestash提供文档编辑功能
+icon: https://images.budiuyun.net/i/2025/06/19/6854064e8b43a.png
+maintainers:
+  - name: 陈不丢
+    email: 179866495@qq.com
+annotations:
+  budiu/app-category-zh: 办公套件
