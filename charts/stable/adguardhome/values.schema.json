@@ -80,12 +80,6 @@
               "description": "DNS TCP服务端口",
               "default": 53
             },
-            "dns-udp": {
-              "type": "integer",
-              "title": "DNS UDP端口",
-              "description": "DNS UDP服务端口",
-              "default": 53
-            },
             "http": {
               "type": "integer",
               "title": "HTTP端口",

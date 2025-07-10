@@ -43,8 +43,9 @@ helm install adguardhome budiu/adguardhome
 | `image.pullPolicy` | 镜像拉取策略 | `IfNotPresent` |
 | `service.type` | 服务类型 | `ClusterIP` |
 | `service.ports.dns-tcp` | DNS TCP 端口 | `53` |
-| `service.ports.dns-udp` | DNS UDP 端口 | `53` |
 | `service.ports.http` | HTTP 管理界面端口 | `3000` |
+| `service.udpPorts[0].name` | UDP 端口名称 | `dns-udp` |
+| `service.udpPorts[0].port` | UDP 端口号 | `53` |
 | `persistence.enabled` | 是否启用持久化存储 | `true` |
 | `persistence.size` | 持久化存储大小 | `2Gi` |
 | `persistence.accessMode` | 持久化存储访问模式 | `ReadWriteOnce` |

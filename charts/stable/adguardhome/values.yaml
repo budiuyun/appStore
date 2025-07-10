@@ -9,7 +9,6 @@ service:
   type: ClusterIP
   ports:
     dns-tcp: 53
-    dns-udp: 53
     http: 3000
   udpPorts:
     - name: dns-udp
