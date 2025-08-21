@@ -9,7 +9,7 @@
   "version": "v1.0.0",
   "appVersion": "latest",
   "description": "AingDesk 服务端，远程桌面管理解决方案",
-  "icon": "https://images.budiuyun.net/i/2025/06/18/6852af37c15dc.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/aingdesk.png",
   "maintainers": [
     {
       "name": "陈不丢",
@@ -31,7 +31,7 @@
   "version": "v1.0.0",
   "appVersion": "latest",
   "description": "松耦合、异步、支持多消息平台部署、具有易用的插件系统和完善的大语言模型（LLM）接入功能的聊天机器人及开发框架",
-  "icon": "https://images.budiuyun.net/i/2025/06/18/6852baac702fd.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/astrbot.png",
   "maintainers": [
     {
       "name": "陈不丢",
@@ -56,7 +56,7 @@
   "version": "v1.0.0",
   "appVersion": "latest",
   "description": "一键免费部署你的私人ChatGPT网页应用",
-  "icon": "https://images.budiuyun.net/i/2025/06/18/6852b18b1800f.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/chatgptnextweb.png",
   "maintainers": [
     {
       "name": "陈不丢",
@@ -66,31 +66,6 @@
   "sources": [
     "https://github.com/Yidadaa/chatgpt-next-web",
     "https://github.com/Yidadaa/chatgpt-next-web/blob/main/README.zh-CN.md"
-  ],
-  "annotations": {
-    "budiu/app-category-zh": "AI大模型"
-  }
-}
-
-      }}
-,
-      {"one-api": {
-        "v1.0.0": 
-{
-  "apiVersion": "v2",
-  "name": "one-api",
-  "version": "v1.0.0",
-  "appVersion": "latest",
-  "description": "一站式大语言模型API管理平台，支持OpenAI、Azure、Claude、Gemini等多种模型",
-  "icon": "https://images.budiuyun.net/i/2025/06/18/6852b8da7398e.png",
-  "maintainers": [
-    {
-      "name": "陈不丢",
-      "email": "179866495@qq.com"
-    }
-  ],
-  "sources": [
-    "https://github.com/songquanpeng/one-api"
   ],
   "annotations": {
     "budiu/app-category-zh": "AI大模型"
@@ -110,7 +85,7 @@
   "version": "v1.0.0",
   "appVersion": "latest",
   "description": "Dashy是一个可自托管的个人仪表盘，包含状态检查、小部件、主题和图标包等功能",
-  "icon": "https://images.budiuyun.net/i/2025/06/09/6846e3a714f05.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/dashy.png",
   "maintainers": [
     {
       "name": "陈不丢",
@@ -135,7 +110,7 @@
   "version": "v1.0.0",
   "appVersion": "latest",
   "description": "最简单的方式在任何Linux主机上安装和管理WireGuard",
-  "icon": "https://images.budiuyun.net/i/2025/06/15/684e6a8adcb5b.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/wireguard-easy.png",
   "maintainers": [
     {
       "name": "陈不丢",
@@ -154,31 +129,6 @@
 
     ]
 ,
-    "制作工具": [
-      {"layui-app": {
-        "v1.0.0": 
-{
-  "apiVersion": "v2",
-  "name": "layui-app",
-  "version": "v1.0.0",
-  "appVersion": "latest",
-  "description": "广告在线制作",
-  "icon": "https://images.budiuyun.net/i/2025/06/19/6853ef9a60a74.png",
-  "maintainers": [
-    {
-      "name": "陈不丢",
-      "email": "179866495@qq.com"
-    }
-  ],
-  "annotations": {
-    "budiu/app-category-zh": "制作工具"
-  }
-}
-
-      }}
-
-    ]
-,
     "图床": [
       {"lsky-pro": {
         "v1.0.0": 
@@ -188,7 +138,7 @@
   "version": "v1.0.0",
   "appVersion": "2.0.0",
   "description": "兰空图床 - 简单优雅的图片托管程序",
-  "icon": "https://images.budiuyun.net/i/2025/06/09/684683bbc7a28.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/lsky-pro.png",
   "maintainers": [
     {
       "name": "陈不丢",
@@ -216,7 +166,7 @@
   "version": "v1.0.0",
   "appVersion": "latest",
   "description": "AList 是一个支持多种存储的文件列表程序，基于 Gin 和 React（Solidjs）开发。",
-  "icon": "https://images.budiuyun.net/i/2025/06/13/684bbcccab631.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/alist.png",
   "sources": [
     "https://github.com/alist-org/alist",
     "https://hub.docker.com/r/xhofe/alist"
@@ -234,31 +184,6 @@
 
       }}
 ,
-      {"baidunetdisk": {
-        "v4.17.7": 
-{
-  "apiVersion": "v2",
-  "name": "baidunetdisk",
-  "version": "v4.17.7",
-  "appVersion": "4.17.7",
-  "description": "BaiduNetDisk（百度网盘）Docker版，适用于群晖NAS等环境，支持Web和VNC访问，便于文件下载与管理。",
-  "icon": "https://images.budiuyun.net/i/2025/06/13/684bbf3800a30.png",
-  "maintainers": [
-    {
-      "name": "陈不丢",
-      "email": "179866495@qq.com"
-    }
-  ],
-  "sources": [
-    "https://hub.docker.com/r/johngong/baidunetdisk"
-  ],
-  "annotations": {
-    "budiu/app-category-zh": "存储"
-  }
-}
-
-      }}
-,
       {"cloudreve": {
         "v1.0.0": 
 {
@@ -267,7 +192,7 @@
   "version": "v1.0.0",
   "appVersion": "latest",
   "description": "Cloudreve 是一款支持多家云存储的自托管云盘系统，支持本地和多种主流云存储，具备丰富的文件管理与分享功能。",
-  "icon": "https://images.budiuyun.net/i/2025/06/13/684bbd7ad76b8.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/cloudreve.png",
   "maintainers": [
     {
       "name": "陈不丢",
@@ -289,7 +214,7 @@
   "version": "v1.0.0",
   "appVersion": "latest",
   "description": "MinIO 是一个高性能的多云对象存储服务，兼容 Amazon S3 API，适用于机器学习、分析和应用数据等多种场景。",
-  "icon": "https://images.budiuyun.net/i/2025/06/13/684bbd25dd314.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/minio.png",
   "sources": [
     "https://github.com/minio/minio",
     "https://hub.docker.com/r/minio/minio"
@@ -315,7 +240,7 @@
   "version": "v1.0.0",
   "appVersion": "31.0.5",
   "description": "Nextcloud 是一个安全的私有云存储和协作平台。",
-  "icon": "https://images.budiuyun.net/i/2025/06/13/684bb7a424156.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/nextcloud.png",
   "maintainers": [
     {
       "name": "陈不丢",
@@ -324,28 +249,6 @@
   ],
   "sources": [
     "https://github.com/nextcloud/docker"
-  ],
-  "annotations": {
-    "budiu/app-category-zh": "存储"
-  }
-}
-
-      }}
-,
-      {"personal-cloud": {
-        "v1.0.0": 
-{
-  "apiVersion": "v2",
-  "name": "personal-cloud",
-  "version": "v1.0.0",
-  "appVersion": "1.0.0",
-  "description": "强大的PHP个人云盘系统，支持图床功能、文件外链、文件夹操作、文件上传与管理等全方位功能",
-  "icon": "https://images.budiuyun.net/i/2025/06/19/6853e2a613712.png",
-  "maintainers": [
-    {
-      "name": "陈不丢",
-      "email": "179866495@qq.com"
-    }
   ],
   "annotations": {
     "budiu/app-category-zh": "存储"
@@ -365,7 +268,7 @@
   "version": "v1.0.0",
   "appVersion": "latest",
   "description": "开源免费的 SSL 证书自动化管理平台，集证书申请、管理、部署和监控于一体，支持多平台自动化部署和站点证书监控。请通过 ip地址＋端口/allinssl 访问。",
-  "icon": "https://images.budiuyun.net/i/2025/06/13/684c450bba5e9.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/allinssl.png",
   "maintainers": [
     {
       "name": "陈不丢",
@@ -374,31 +277,6 @@
   ],
   "annotations": {
     "budiu/app-category-zh": "安全工具"
-  }
-}
-
-      }}
-
-    ]
-,
-    "工具": [
-      {"kami-verify": {
-        "v1.0.0": 
-{
-  "apiVersion": "v2",
-  "name": "kami-verify",
-  "version": "v1.0.0",
-  "appVersion": "0.2",
-  "description": "卡密验证系统 - 初始化成功了之后自己删除index.php",
-  "icon": "https://images.budiuyun.net/i/2025/06/19/6854064e8b43a.png",
-  "maintainers": [
-    {
-      "name": "陈不丢",
-      "email": "179866495@qq.com"
-    }
-  ],
-  "annotations": {
-    "budiu/app-category-zh": "工具"
   }
 }
 
@@ -415,29 +293,7 @@
   "version": "v1.0.0",
   "appVersion": "latest",
   "description": "浏览器中运行的VS Code，随时随地编写代码",
-  "icon": "https://images.budiuyun.net/i/2025/06/18/6852d6dd2bc9c.png",
-  "maintainers": [
-    {
-      "name": "陈不丢",
-      "email": "179866495@qq.com"
-    }
-  ],
-  "annotations": {
-    "budiu/app-category-zh": "开发工具"
-  }
-}
-
-      }}
-,
-      {"dabus-api": {
-        "v1.0.0": 
-{
-  "apiVersion": "v2",
-  "name": "dabus-api",
-  "version": "v1.0.0",
-  "appVersion": "latest",
-  "description": "达不四API管理系统",
-  "icon": "https://images.budiuyun.net/i/2025/06/19/6853f55179b0e.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/code-server.png",
   "maintainers": [
     {
       "name": "陈不丢",
@@ -459,7 +315,7 @@
   "version": "v1.0.0",
   "appVersion": "latest",
   "description": "🔋 (PHP / Hyperf) 生产就绪的Docker镜像，带有自动Hyperf安装程序，需要下载，开始请等待几分钟",
-  "icon": "https://images.budiuyun.net/i/2025/06/09/6846f62f3a3f6.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/hyperf.png",
   "maintainers": [
     {
       "name": "陈不丢",
@@ -481,7 +337,7 @@
   "version": "v1.0.0",
   "appVersion": "latest",
   "description": "基于Alpine Linux的轻量级JupyterLab环境，支持Python开发和数据可视化",
-  "icon": "https://images.budiuyun.net/i/2025/06/09/6846b63c66965.ico",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/jupyterlab.png",
   "maintainers": [
     {
       "name": "陈不丢",
@@ -509,7 +365,7 @@
   "version": "v1.0.0",
   "appVersion": "22.04",
   "description": "带有SSH服务的Ubuntu镜像，支持远程管理",
-  "icon": "https://images.budiuyun.net/i/2025/06/08/68446389305d0.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/ubuntu.png",
   "maintainers": [
     {
       "name": "陈不丢",
@@ -534,7 +390,7 @@
   "version": "v1.0.0",
   "appVersion": "11.7.2",
   "description": "MariaDB Server是一个高性能开源关系型数据库，从MySQL分支而来",
-  "icon": "https://images.budiuyun.net/i/2025/06/09/6846fd5e91157.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/mariadb.png",
   "maintainers": [
     {
       "name": "陈不丢",
@@ -556,7 +412,7 @@
   "version": "v1.0.0",
   "appVersion": "8.0",
   "description": "官方MySQL数据库服务",
-  "icon": "https://images.budiuyun.net/i/2025/05/13/6823652c31c05.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/mysql.png",
   "sources": [
     "https://github.com/mysql/mysql-server",
     "https://hub.docker.com/_/mysql"
@@ -582,7 +438,7 @@
   "version": "v1.0.0",
   "appVersion": "16.2.0",
   "description": "PostgreSQL是一个开源的对象关系型数据库，以可靠性和数据完整性著称",
-  "icon": "https://images.budiuyun.net/i/2025/06/09/6846fe3f36848.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/postgresql.png",
   "maintainers": [
     {
       "name": "陈不丢",
@@ -604,7 +460,7 @@
   "version": "v8.0.2",
   "appVersion": "8.0.2",
   "description": "Redis 是全球最快的数据平台，广泛用于缓存、向量搜索和 NoSQL 数据库，支持多种持久化和高可用部署方案，适合各种高性能应用场景。",
-  "icon": "https://images.budiuyun.net/i/2025/06/14/684c4f47776d5.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/redis.png",
   "sources": [
     "https://github.com/redis/redis"
   ],
@@ -613,32 +469,6 @@
       "name": "陈不丢",
       "email": "179866495@qq.com"
     }
-  ],
-  "annotations": {
-    "budiu/app-category-zh": "数据库"
-  }
-}
-
-      }}
-,
-      {"vitess-lite": {
-        "v1.0.0": 
-{
-  "apiVersion": "v2",
-  "name": "vitess-lite",
-  "version": "v1.0.0",
-  "appVersion": "latest",
-  "description": "MySQL数据库水平扩展集群系统的轻量级版本",
-  "icon": "https://images.budiuyun.net/i/2025/06/18/6852d449655ba.png",
-  "maintainers": [
-    {
-      "name": "陈不丢",
-      "email": "179866495@qq.com"
-    }
-  ],
-  "sources": [
-    "https://hub.docker.com/r/vitess/lite",
-    "https://github.com/vitessio/vitess"
   ],
   "annotations": {
     "budiu/app-category-zh": "数据库"
@@ -658,7 +488,7 @@
   "version": "v5.2.2",
   "appVersion": "5.2.2",
   "description": "phpMyAdmin 是一款流行的基于 Web 的 MySQL 和 MariaDB 数据库管理工具，支持数据库、表、用户、权限等多种操作，界面友好，易于使用。",
-  "icon": "https://images.budiuyun.net/i/2025/06/14/684c4bd043f5e.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/phpmyadmin.png",
   "sources": [
     "https://hub.docker.com/r/phpmyadmin/phpmyadmin",
     "https://github.com/phpmyadmin/phpmyadmin"
@@ -678,35 +508,6 @@
 
     ]
 ,
-    "文档管理": [
-      {"paperless-ngx": {
-        "v1.0.0": 
-{
-  "apiVersion": "v2",
-  "name": "paperless-ngx",
-  "version": "v1.0.0",
-  "appVersion": "latest",
-  "description": "Paperless-ngx 是一款开源文档管理系统，支持扫描件归档、全文检索、标签分类、元数据管理等功能，适合个人和企业实现无纸化办公。",
-  "icon": "https://images.budiuyun.net/i/2025/06/14/684c4de430dd5.png",
-  "maintainers": [
-    {
-      "name": "陈不丢",
-      "email": "179866495@qq.com"
-    }
-  ],
-  "sources": [
-    "https://hub.docker.com/r/linuxserver/paperless-ngx",
-    "https://github.com/linuxserver/docker-paperless-ngx"
-  ],
-  "annotations": {
-    "budiu/app-category-zh": "文档管理"
-  }
-}
-
-      }}
-
-    ]
-,
     "智能家居": [
       {"home-assistant": {
         "v1.0.0": 
@@ -716,7 +517,7 @@
   "version": "v1.0.0",
   "appVersion": "latest",
   "description": "Home Assistant 是一款开源的本地化智能家居自动化平台，注重隐私和本地控制，拥有丰富的集成和强大的自动化能力，适合树莓派或本地服务器部署。",
-  "icon": "https://images.budiuyun.net/i/2025/06/14/684c4d6af303c.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/home-assistant.png",
   "maintainers": [
     {
       "name": "陈不丢",
@@ -745,7 +546,7 @@
   "version": "v4.1.1",
   "appVersion": "4.1.1",
   "description": "RabbitMQ 是一款开源的多协议消息中间件，支持 AMQP、MQTT、STOMP 等协议，广泛应用于消息队列、异步通信和微服务架构中，支持高可用和集群部署。",
-  "icon": "https://images.budiuyun.net/i/2025/06/14/684c505914e99.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/rabbitmq.png",
   "sources": [
     "https://hub.docker.com/r/rabbitmq/rabbitmq"
   ],
@@ -773,7 +574,7 @@
   "version": "v1.0.0",
   "appVersion": "1.0.0",
   "description": "Minecraft 是一款广受欢迎的沙盒游戏，玩家可以在其中探索、建造、合作与战斗。本 Chart 部署 Minecraft 服务器，为玩家提供多人在线游戏世界，并支持自定义插件、模组和配置，满足社区服务器和私人服务器需求。该服务器支持官方版和 Forge、Paper 等模组版，为玩家提供丰富的游戏体验。",
-  "icon": "https://images.budiuyun.net/i/2025/06/06/6842e0ec61115.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/minecraft.png",
   "maintainers": [
     {
       "name": "陈不丢",
@@ -801,7 +602,7 @@
   "version": "v1.0.0",
   "appVersion": "latest",
   "description": "Apache HertzBeat（incubating）是一款开源、易用、无代理的实时监控系统，支持高性能集群、Prometheus 兼容、自定义监控和状态页搭建，适用于网站、数据库、云原生、网络等多场景。开始需等待几分钟",
-  "icon": "https://images.budiuyun.net/i/2025/06/13/684c48ba34797.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/hertzbeat.png",
   "maintainers": [
     {
       "name": "陈不丢",
@@ -827,7 +628,7 @@
   "version": "v1.0.0",
   "appVersion": "1.0.0",
   "description": "'Uptime Kuma 是一个开源、轻量的自托管监控工具，支持对网站、服务器和 API 的正常运行时间进行实时监控，帮助用户快速了解服务的运行状况。它提供友好的用户界面、支持多种通知方式（如邮件、Telegram、Slack\n  等）以及历史记录追踪功能。 '",
-  "icon": "https://images.budiuyun.net/i/2025/05/13/6823632a4fc3c.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/uptime-kuma.png",
   "maintainers": [
     {
       "name": "陈不丢",
@@ -855,7 +656,7 @@
   "version": "v1.0.0",
   "appVersion": "latest",
   "description": "emlog是一款基于PHP和MySQL的功能强大的博客及CMS建站系统",
-  "icon": "https://images.budiuyun.net/i/2025/06/09/6846aea30adbb.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/emlog.png",
   "maintainers": [
     {
       "name": "陈不丢",
@@ -872,33 +673,6 @@
 
       }}
 ,
-      {"halo": {
-        "v1.0.0": 
-{
-  "apiVersion": "v2",
-  "name": "halo",
-  "version": "v1.0.0",
-  "appVersion": "2.21",
-  "description": "强大易用的开源建站工具。",
-  "icon": "https://images.budiuyun.net/i/2025/06/18/6852aabcdad48.png",
-  "maintainers": [
-    {
-      "name": "陈不丢",
-      "email": "179866495@qq.com"
-    }
-  ],
-  "sources": [
-    "https://www.halo.run",
-    "https://bbs.halo.run",
-    "https://github.com/halo-dev"
-  ],
-  "annotations": {
-    "budiu/app-category-zh": "网站建设"
-  }
-}
-
-      }}
-,
       {"mblog": {
         "v1.0.0": 
 {
@@ -907,7 +681,7 @@
   "version": "v1.0.0",
   "appVersion": "latest",
   "description": "一个支持自部署的前后端分离的微博系统，可单用户或多用户使用",
-  "icon": "https://images.budiuyun.net/i/2025/06/09/6846eaea44af8.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/mblog.png",
   "maintainers": [
     {
       "name": "陈不丢",
@@ -929,7 +703,7 @@
   "version": "v1.0.0",
   "appVersion": "latest",
   "description": "多端同步、美观易用的在线导航和书签工具",
-  "icon": "https://images.budiuyun.net/i/2025/06/09/6846df60afbb3.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/mtab.png",
   "maintainers": [
     {
       "name": "陈不丢",
@@ -951,7 +725,7 @@
   "version": "v1.0.0",
   "appVersion": "nightly",
   "description": "Typecho是一个轻量级的开源博客程序",
-  "icon": "https://images.budiuyun.net/i/2025/06/09/6846e11076903.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/typecho.png",
   "maintainers": [
     {
       "name": "陈不丢",
@@ -976,7 +750,7 @@
   "version": "v1.0.0",
   "appVersion": "6.8.1",
   "description": "WordPress是一个功能强大的内容管理系统，可以使用插件、小部件和主题",
-  "icon": "https://images.budiuyun.net/i/2025/06/09/6846911733f80.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/wordpress.png",
   "maintainers": [
     {
       "name": "陈不丢",
@@ -1001,7 +775,7 @@
   "version": "v1.0.0",
   "appVersion": "1.27.5",
   "description": "高性能Web服务器和反向代理",
-  "icon": "https://images.budiuyun.net/i/2025/06/18/6852d5758ebb0.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/nginx.png",
   "maintainers": [
     {
       "name": "陈不丢",
@@ -1027,7 +801,7 @@
   "version": "v1.0.0",
   "appVersion": "latest",
   "description": "NPMplus 是 nginx-proxy-manager 的改进分支，提供更易用的反向代理和 TLS 证书管理，支持 HTTP/3、CrowdSec、ModSecurity、GoAccess、负载均衡等高级功能，适合家庭和企业用户轻松实现网站转发与安全防护。",
-  "icon": "https://images.budiuyun.net/i/2025/06/13/684c49cfd97f4.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/npmplus.png",
   "maintainers": [
     {
       "name": "陈不丢",
@@ -1056,7 +830,7 @@
   "version": "v9.3.0",
   "appVersion": "9.3.0",
   "description": "宝塔Linux面板是一款提升运维效率的服务器管理软件，支持一键LAMP/LNMP/集群/监控/网站/FTP/数据库/JAVA等100多项服务器管理功能，界面友好，安全可靠，适合个人和企业服务器运维。",
-  "icon": "https://images.budiuyun.net/i/2025/06/14/684c510c2ba85.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/baota.png",
   "maintainers": [
     {
       "name": "陈不丢",
@@ -1081,7 +855,7 @@
   "version": "v1.0.0",
   "appVersion": "latest",
   "description": "Qinglong（青龙面板）是一款支持 Python3、JavaScript、Shell、Typescript 等多种脚本语言的定时任务管理平台，支持在线管理脚本、环境变量、配置文件，支持日志查看、系统通知、暗黑模式及移动端操作。",
-  "icon": "https://images.budiuyun.net/i/2025/06/13/684c4710118d2.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/qinglong.png",
   "sources": [
     "https://hub.docker.com/r/whyour/qinglong",
     "https://github.com/whyour/qinglong"
@@ -1110,7 +884,7 @@
   "version": "v1.0.0",
   "appVersion": "latest",
   "description": "RustDesk 是一款全功能开源远程桌面控制软件，支持自托管和安全访问，配置简单，适合个人和企业远程运维、桌面协作等场景。",
-  "icon": "https://images.budiuyun.net/i/2025/06/14/684c4b2193d4c.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/rustdesk.png",
   "sources": [
     "https://hub.docker.com/r/rustdesk/rustdesk-server",
     "https://github.com/rustdesk/rustdesk-server"
@@ -1139,7 +913,7 @@
   "version": "v3.0.0",
   "appVersion": "3.0.0",
   "description": "Docker Registry 是 OCI 分发规范的实现，用于本地或私有云环境下存储和分发容器镜像和制品，支持多架构和高可用部署。",
-  "icon": "https://images.budiuyun.net/i/2025/06/14/684c5176a97a4.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/registry.png",
   "sources": [
     "https://github.com/docker/distribution"
   ],
@@ -1167,7 +941,7 @@
   "version": "v1.0.0",
   "appVersion": "latest",
   "description": "卷王 SurveyKing - 人人都可快速搭建的专业问卷考试系统，安装后需等待几分钟才能访问",
-  "icon": "https://images.budiuyun.net/i/2025/06/09/6846ed896739c.png",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/surveyking.png",
   "maintainers": [
     {
       "name": "陈不丢",
@@ -1183,5 +957,5 @@
 
     ]
   },
-  "count": 23
+  "count": 20
 }
