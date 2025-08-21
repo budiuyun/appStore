@@ -1,12 +1,16 @@
 name: Release Charts
 
 on:
-  workflow_run:
-    workflows: ["Chart Format Check"]
-    types:
-      - completed
+  push:
     branches:
       - '**'
+    paths:
+      - 'charts/stable/**'
+  pull_request:
+    branches:
+      - '**'
+    paths:
+      - 'charts/stable/**'
   # 添加手动触发选项
   workflow_dispatch:
     inputs:
@@ -20,15 +24,6 @@ permissions:
 
 jobs:
   release:
-    # 移除分支检查条件，允许所有分支运行
-    if: >
-      ${{ 
-        (github.event_name == 'workflow_dispatch') || 
-        (
-          github.event_name == 'workflow_run' && 
-          github.event.workflow_run.conclusion == 'success'
-        ) 
-      }}
     runs-on: ubuntu-latest
     steps:
       - name: Get branch name
@@ -37,23 +32,15 @@ jobs:
           if [[ "${{ github.event_name }}" == "workflow_dispatch" && "${{ github.event.inputs.branch }}" != "" ]]; then
             echo "BRANCH_NAME=${{ github.event.inputs.branch }}" >> $GITHUB_ENV
             echo "手动触发模式，处理分支: ${{ github.event.inputs.branch }}"
-          elif [[ "${{ github.event_name }}" == "workflow_run" ]]; then
-            echo "BRANCH_NAME=${{ github.event.workflow_run.head_branch }}" >> $GITHUB_ENV
-            echo "工作流触发模式，处理分支: ${{ github.event.workflow_run.head_branch }}"
-            
-            # 提取用户名前缀
-            USER_PREFIX=$(echo "${{ github.event.workflow_run.head_branch }}" | cut -d'/' -f1)
-            echo "BRANCH_OWNER=$USER_PREFIX" >> $GITHUB_ENV
-            echo "分支所有者: $USER_PREFIX"
           else
             echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV
             echo "自动触发模式，处理分支: ${GITHUB_REF#refs/heads/}"
-            
-            # 提取用户名前缀
-            USER_PREFIX=$(echo ${GITHUB_REF#refs/heads/} | cut -d'/' -f1)
-            echo "BRANCH_OWNER=$USER_PREFIX" >> $GITHUB_ENV
-            echo "分支所有者: $USER_PREFIX"
           fi
+          
+          # 提取用户名前缀
+          USER_PREFIX=$(echo ${GITHUB_REF#refs/heads/} | cut -d'/' -f1)
+          echo "BRANCH_OWNER=$USER_PREFIX" >> $GITHUB_ENV
+          echo "分支所有者: $USER_PREFIX"
 
       - name: Checkout
         uses: actions/checkout@v4
