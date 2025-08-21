@@ -65,6 +65,31 @@
         }
       }
     },
+    "securityContext": {
+      "type": "object",
+      "title": "安全上下文",
+      "description": "容器安全上下文配置",
+      "properties": {
+        "privileged": {
+          "type": "boolean",
+          "title": "特权模式",
+          "description": "是否启用特权模式，建议设置为false以提高安全性",
+          "default": false
+        },
+        "runAsNonRoot": {
+          "type": "boolean",
+          "title": "以非root用户运行",
+          "description": "是否以非root用户运行容器",
+          "default": false
+        },
+        "readOnlyRootFilesystem": {
+          "type": "boolean",
+          "title": "只读根文件系统",
+          "description": "是否将根文件系统设置为只读",
+          "default": false
+        }
+      }
+    },
     "service": {
       "type": "object",
       "title": "服务配置",

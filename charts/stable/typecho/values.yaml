@@ -120,4 +120,4 @@ env:
     value: admin@example.com
     description: 要创建的管理员邮箱
     title: 管理员邮箱
-icon: https://images.budiuyun.net/i/2025/06/09/6846e11076903.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/typecho.png"

@@ -3,7 +3,7 @@ name: ubuntu-22-04
 version: v1.0.0
 appVersion: '22.04'
 description: 带有SSH服务的Ubuntu镜像，支持远程管理
-icon: https://images.budiuyun.net/i/2025/06/08/68446389305d0.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/ubuntu.png"
 maintainers:
   - name: 陈不丢
     email: 179866495@qq.com

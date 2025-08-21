@@ -60,4 +60,4 @@ env:
     value: pgaudit
     description: 预加载的PostgreSQL库列表
     title: 共享预加载库
-icon: https://images.budiuyun.net/i/2025/06/09/6846fe3f36848.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/postgresql.png"

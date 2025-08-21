@@ -45,4 +45,4 @@ env:
     value: 'yes'
     description: 设置为yes启用JupyterLab界面
     title: 启用JupyterLab
-icon: https://images.budiuyun.net/i/2025/06/09/6846b63c66965.ico
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/jupyterlab.png"

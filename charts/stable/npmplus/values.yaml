@@ -48,4 +48,4 @@ env:
     value: 'true'
     description: 自动清理无效 certbot 证书
     title: 清理无效证书
-icon: https://images.budiuyun.net/i/2025/06/13/684c49cfd97f4.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/npmplus.png"

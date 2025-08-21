@@ -60,4 +60,4 @@ env:
     value: utf8mb4_unicode_ci
     description: 数据库默认排序规则
     title: 排序规则
-icon: https://images.budiuyun.net/i/2025/06/09/6846fd5e91157.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/mariadb.png"

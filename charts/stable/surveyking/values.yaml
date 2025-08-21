@@ -53,4 +53,4 @@ env:
     value: surveyking
     description: MySQL数据库密码
     title: 数据库密码
-icon: https://images.budiuyun.net/i/2025/06/09/6846ed896739c.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/surveyking.png"

@@ -37,4 +37,4 @@ env:
     value: astrbot
     description: 管理员密码，请务必修改
     title: 管理员密码
-icon: https://images.budiuyun.net/i/2025/06/18/6852baac702fd.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/astrbot.png"

@@ -55,4 +55,4 @@ env:
     value: abc
     description: WEB界面HTTP Basic认证密码，默认abc
     title: HTTP认证密码
-icon: https://images.budiuyun.net/i/2025/06/14/684c4b2193d4c.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/rustdesk.png"

@@ -65,4 +65,4 @@ env:
     value: 'false'
     description: 是否允许HTTP访问Web界面(不推荐)
     title: 不安全模式
-icon: https://images.budiuyun.net/i/2025/06/15/684e6a8adcb5b.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/wireguard-easy.png"

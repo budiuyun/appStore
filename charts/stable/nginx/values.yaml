@@ -50,4 +50,4 @@ env:
     value: '0'
     description: 设置为1可以静默入口点日志输出
     title: 静默日志
-icon: https://images.budiuyun.net/i/2025/06/18/6852d5758ebb0.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/nginx.png"

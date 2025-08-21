@@ -3,7 +3,7 @@ name: mblog
 version: v1.0.0
 appVersion: latest
 description: 一个支持自部署的前后端分离的微博系统，可单用户或多用户使用
-icon: https://images.budiuyun.net/i/2025/06/09/6846eaea44af8.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/mblog.png"
 maintainers:
   - name: 陈不丢
     email: 179866495@qq.com

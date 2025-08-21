@@ -42,4 +42,4 @@ env:
     value: Asia/Shanghai
     description: 设置系统时区，默认 Asia/Shanghai
     title: 时区
-icon: https://images.budiuyun.net/i/2025/06/13/684c48ba34797.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/hertzbeat.png"

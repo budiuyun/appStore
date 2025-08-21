@@ -3,7 +3,7 @@ name: jupyterlab
 version: v1.0.0
 appVersion: latest
 description: 基于Alpine Linux的轻量级JupyterLab环境，支持Python开发和数据可视化
-icon: https://images.budiuyun.net/i/2025/06/09/6846b63c66965.ico
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/jupyterlab.png"
 maintainers:
   - name: 陈不丢
     email: 179866495@qq.com

@@ -3,7 +3,7 @@ name: cloudreve
 version: v1.0.0
 appVersion: latest
 description: Cloudreve 是一款支持多家云存储的自托管云盘系统，支持本地和多种主流云存储，具备丰富的文件管理与分享功能。
-icon: https://images.budiuyun.net/i/2025/06/13/684bbd7ad76b8.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/cloudreve.png"
 maintainers:
   - name: 陈不丢
     email: 179866495@qq.com

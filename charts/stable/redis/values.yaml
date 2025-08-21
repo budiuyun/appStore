@@ -35,4 +35,4 @@ env:
     value: Asia/Shanghai
     description: 设置容器时区
     title: 时区
-icon: https://images.budiuyun.net/i/2025/06/14/684c4f47776d5.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/redis.png"

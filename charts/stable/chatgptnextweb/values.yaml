@@ -47,4 +47,4 @@ env:
     value: https://api.openai.com
     description: API请求的基本URL
     title: API基本URL
-icon: https://images.budiuyun.net/i/2025/06/18/6852b18b1800f.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/chatgptnextweb.png"

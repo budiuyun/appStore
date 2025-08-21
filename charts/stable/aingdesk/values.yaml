@@ -35,4 +35,4 @@ persistence:
     - /logs
     - /aingdesk/bin
     - /sys_data
-icon: https://images.budiuyun.net/i/2025/06/18/6852af37c15dc.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/aingdesk.png"

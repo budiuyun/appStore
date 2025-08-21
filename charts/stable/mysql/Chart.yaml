@@ -3,7 +3,7 @@ name: mysql
 version: v1.0.0
 appVersion: "8.0"
 description: "官方MySQL数据库服务"
-icon: https://images.budiuyun.net/i/2025/05/13/6823652c31c05.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/mysql.png"
 sources:
   - https://github.com/mysql/mysql-server
   - https://hub.docker.com/_/mysql

@@ -50,4 +50,4 @@ env:
     value: ''
     description: MySQL/MariaDB主机地址
     title: 数据库主机
-icon: https://images.budiuyun.net/i/2025/06/13/684bb7a424156.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/nextcloud.png"

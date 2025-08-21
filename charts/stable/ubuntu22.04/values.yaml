@@ -47,4 +47,4 @@ env:
     value: Asia/Shanghai
     description: 容器的时区设置
     title: 时区设置
-icon: https://images.budiuyun.net/i/2025/06/08/68446389305d0.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/ubuntu.png"

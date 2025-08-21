@@ -75,4 +75,4 @@ env:
     value: 'false'
     description: 是否开启Swagger API文档
     title: 开启API文档
-icon: https://images.budiuyun.net/i/2025/06/09/6846eaea44af8.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/mblog.png"

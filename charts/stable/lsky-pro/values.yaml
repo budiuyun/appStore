@@ -35,4 +35,4 @@ env:
     value: '8089'
     description: 容器内Apache监听的端口
     title: Web端口
-icon: https://images.budiuyun.net/i/2025/06/09/684683bbc7a28.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/lsky-pro.png"

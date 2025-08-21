@@ -40,4 +40,4 @@ env:
     value: changeme
     description: Dashy管理员密码
     title: 管理员密码
-icon: https://images.budiuyun.net/i/2025/06/09/6846e3a714f05.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/dashy.png"

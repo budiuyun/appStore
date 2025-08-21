@@ -3,7 +3,7 @@ name: typecho
 version: v1.0.0
 appVersion: nightly
 description: Typecho是一个轻量级的开源博客程序
-icon: https://images.budiuyun.net/i/2025/06/09/6846e11076903.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/typecho.png"
 maintainers:
   - name: 陈不丢
     email: 179866495@qq.com

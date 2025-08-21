@@ -3,7 +3,7 @@ name: code-server
 version: v1.0.0
 appVersion: latest
 description: 浏览器中运行的VS Code，随时随地编写代码
-icon: https://images.budiuyun.net/i/2025/06/18/6852d6dd2bc9c.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/code-server.png"
 maintainers:
   - name: 陈不丢
     email: 179866495@qq.com

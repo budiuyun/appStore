@@ -3,7 +3,7 @@ name: redis
 version: v8.0.2
 appVersion: 8.0.2
 description: Redis 是全球最快的数据平台，广泛用于缓存、向量搜索和 NoSQL 数据库，支持多种持久化和高可用部署方案，适合各种高性能应用场景。
-icon: https://images.budiuyun.net/i/2025/06/14/684c4f47776d5.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/redis.png"
 sources:
   - https://github.com/redis/redis
 maintainers:

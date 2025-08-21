@@ -35,4 +35,4 @@ env:
     value: example.com
     description: emlog站点域名
     title: 域名
-icon: https://images.budiuyun.net/i/2025/06/09/6846aea30adbb.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/emlog.png"

@@ -41,4 +41,4 @@ env:
     value: minioadmin
     description: MinIO 管理员密码
     title: 管理员密码
-icon: https://images.budiuyun.net/i/2025/06/13/684bbd25dd314.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/minio.png"

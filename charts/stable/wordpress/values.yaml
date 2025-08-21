@@ -55,4 +55,4 @@ env:
     value: ''
     description: 是否启用WordPress调试模式
     title: 调试模式
-icon: https://images.budiuyun.net/i/2025/06/09/6846911733f80.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/wordpress.png"

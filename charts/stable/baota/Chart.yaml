@@ -4,7 +4,7 @@ version: v9.3.0
 appVersion: 9.3.0
 description: >-
   宝塔Linux面板是一款提升运维效率的服务器管理软件，支持一键LAMP/LNMP/集群/监控/网站/FTP/数据库/JAVA等100多项服务器管理功能，界面友好，安全可靠，适合个人和企业服务器运维。
-icon: https://images.budiuyun.net/i/2025/06/14/684c510c2ba85.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/baota.png"
 maintainers:
   - name: 陈不丢
     email: 179866495@qq.com

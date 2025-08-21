@@ -45,4 +45,4 @@ env:
     value: allinssl
     description: 自定义WEB访问路径，默认 allinssl
     title: WEB访问路径
-icon: https://images.budiuyun.net/i/2025/06/13/684c450bba5e9.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/allinssl.png"

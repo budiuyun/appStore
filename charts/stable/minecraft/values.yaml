@@ -65,4 +65,4 @@ env:
     description: 用于远程管理Minecraft服务器的RCON密码
     title: 远程控制台密码
 
-icon: https://images.budiuyun.net/i/2025/06/06/6842e0ec61115.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/minecraft.png"

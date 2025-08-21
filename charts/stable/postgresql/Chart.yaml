@@ -3,7 +3,7 @@ name: postgresql
 version: v1.0.0
 appVersion: 16.2.0
 description: PostgreSQL是一个开源的对象关系型数据库，以可靠性和数据完整性著称
-icon: https://images.budiuyun.net/i/2025/06/09/6846fe3f36848.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/postgresql.png"
 maintainers:
   - name: 陈不丢
     email: 179866495@qq.com

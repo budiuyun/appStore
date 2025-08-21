@@ -3,7 +3,7 @@ name: mariadb
 version: v1.0.0
 appVersion: 11.7.2
 description: MariaDB Server是一个高性能开源关系型数据库，从MySQL分支而来
-icon: https://images.budiuyun.net/i/2025/06/09/6846fd5e91157.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/mariadb.png"
 maintainers:
   - name: 陈不丢
     email: 179866495@qq.com

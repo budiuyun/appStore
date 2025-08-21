@@ -47,4 +47,4 @@ env:
     value: latest
     description: PHP运行版本
     title: PHP版本
-icon: https://images.budiuyun.net/i/2025/06/09/6846f62f3a3f6.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/hyperf.png"

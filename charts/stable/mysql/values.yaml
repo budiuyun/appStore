@@ -46,4 +46,4 @@ env:
     name: MYSQL_PASSWORD
     value: "password" 
 
-icon: https://images.budiuyun.net/i/2025/05/13/6823652c31c05.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/mysql.png"

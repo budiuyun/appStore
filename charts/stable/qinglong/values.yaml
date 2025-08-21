@@ -40,4 +40,4 @@ env:
     value: '5700'
     description: 自定义WEB服务端口，默认 5700
     title: WEB端口
-icon: https://images.budiuyun.net/i/2025/06/13/684c4710118d2.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/qinglong.png"

@@ -3,7 +3,7 @@ name: mtab
 version: v1.0.0
 appVersion: latest
 description: 多端同步、美观易用的在线导航和书签工具
-icon: https://images.budiuyun.net/i/2025/06/09/6846df60afbb3.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/mtab.png"
 maintainers:
   - name: 陈不丢
     email: 179866495@qq.com

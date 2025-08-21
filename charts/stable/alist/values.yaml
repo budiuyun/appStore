@@ -45,4 +45,4 @@ env:
     value: '022'
     description: 新建文件的权限掩码
     title: 文件权限掩码
-icon: https://images.budiuyun.net/i/2025/06/13/684bbcccab631.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/alist.png"

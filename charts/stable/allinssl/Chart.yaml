@@ -3,7 +3,7 @@ name: allinssl
 version: v1.0.0
 appVersion: latest
 description: 开源免费的 SSL 证书自动化管理平台，集证书申请、管理、部署和监控于一体，支持多平台自动化部署和站点证书监控。请通过 ip地址＋端口/allinssl 访问。
-icon: https://images.budiuyun.net/i/2025/06/13/684c450bba5e9.png
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/allinssl.png"
 maintainers:
   - name: 陈不丢
     email: 179866495@qq.com
