@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "easytier.fullname" . }}
+  labels:
+    {{- include "easytier.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    {{- range .Values.service.ports }}
+    - port: {{ .port }}
+      targetPort: {{ .name }}
+      protocol: {{ .protocol }}
+      name: {{ .name }}
+    {{- end }}
+  selector:
+    {{- include "easytier.selectorLabels" . | nindent 4 }} 

@@ -1,0 +1,287 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "workloadType": {
+      "type": "string",
+      "enum": ["Deployment", "StatefulSet", "DaemonSet"],
+      "default": "Deployment",
+      "description": "工作负载类型"
+    },
+    "replicaCount": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10,
+      "default": 1,
+      "description": "副本数量"
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "imageRegistry": {
+          "type": "string",
+          "default": "docker.io",
+          "description": "镜像仓库地址"
+        },
+        "repository": {
+          "type": "string",
+          "default": "easytier/easytier",
+          "description": "镜像名称"
+        },
+        "tag": {
+          "type": "string",
+          "default": "latest",
+          "description": "镜像标签"
+        },
+        "pullPolicy": {
+          "type": "string",
+          "enum": ["Always", "IfNotPresent", "Never"],
+          "default": "IfNotPresent",
+          "description": "镜像拉取策略"
+        }
+      },
+      "required": ["repository", "tag"]
+    },
+    "easytier": {
+      "type": "object",
+      "properties": {
+        "networkName": {
+          "type": "string",
+          "description": "EasyTier网络名称",
+          "title": "网络名称"
+        },
+        "networkSecret": {
+          "type": "string",
+          "description": "EasyTier网络密钥",
+          "title": "网络密钥"
+        },
+        "publicNode": {
+          "type": "string",
+          "default": "",
+          "description": "公共节点地址（可选，如果不指定则使用默认节点）",
+          "title": "公共节点"
+        },
+        "daemon": {
+          "type": "boolean",
+          "default": true,
+          "description": "是否以守护进程模式运行",
+          "title": "守护进程模式"
+        },
+        "extraArgs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "额外的命令行参数",
+          "title": "额外参数"
+        }
+      },
+      "required": ["networkName", "networkSecret"]
+    },
+    "service": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["ClusterIP", "NodePort", "LoadBalancer"],
+          "default": "ClusterIP",
+          "description": "服务类型"
+        },
+        "ports": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "端口名称"
+              },
+              "port": {
+                "type": "integer",
+                "description": "服务端口"
+              },
+              "protocol": {
+                "type": "string",
+                "enum": ["TCP", "UDP"],
+                "default": "TCP",
+                "description": "协议类型"
+              }
+            },
+            "required": ["name", "port"]
+          }
+        }
+      }
+    },
+    "networkLimits": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "是否启用网络限制"
+        },
+        "egress": {
+          "type": "string",
+          "default": "10M",
+          "description": "出站带宽限制"
+        },
+        "ingress": {
+          "type": "string",
+          "default": "10M",
+          "description": "入站带宽限制"
+        }
+      }
+    },
+    "resources": {
+      "type": "object",
+      "properties": {
+        "limits": {
+          "type": "object",
+          "properties": {
+            "cpu": {
+              "type": "string",
+              "description": "CPU限制"
+            },
+            "memory": {
+              "type": "string",
+              "description": "内存限制"
+            },
+            "ephemeral-storage": {
+              "type": "string",
+              "description": "临时存储限制"
+            }
+          }
+        },
+        "requests": {
+          "type": "object",
+          "properties": {
+            "cpu": {
+              "type": "string",
+              "description": "CPU请求"
+            },
+            "memory": {
+              "type": "string",
+              "description": "内存请求"
+            },
+            "ephemeral-storage": {
+              "type": "string",
+              "description": "临时存储请求"
+            }
+          }
+        }
+      }
+    },
+    "persistence": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "是否启用持久化存储"
+        },
+        "size": {
+          "type": "string",
+          "default": "1Gi",
+          "description": "存储大小"
+        },
+        "accessMode": {
+          "type": "string",
+          "enum": ["ReadWriteOnce", "ReadOnlyMany", "ReadWriteMany"],
+          "default": "ReadWriteOnce",
+          "description": "访问模式"
+        },
+        "storageClass": {
+          "type": "string",
+          "description": "存储类名称"
+        },
+        "mounts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": ["/root"],
+          "description": "挂载路径列表"
+        }
+      }
+    },
+         "env": {
+       "type": "object",
+       "properties": {
+         "env1": {
+           "type": "object",
+           "properties": {
+             "name": {"type": "string", "default": "TZ"},
+             "value": {"type": "string", "default": "Asia/Shanghai"},
+             "description": {"type": "string", "default": "时区设置"},
+             "title": {"type": "string", "default": "时区"}
+           }
+         },
+         "env2": {
+           "type": "object",
+           "properties": {
+             "name": {"type": "string", "default": "EASYTIER_ADMIN_USER"},
+             "value": {"type": "string", "default": "admin"},
+             "description": {"type": "string", "default": "管理员用户名"},
+             "title": {"type": "string", "default": "管理员用户名"}
+           }
+         },
+         "env3": {
+           "type": "object",
+           "properties": {
+             "name": {"type": "string", "default": "EASYTIER_ADMIN_PASSWORD"},
+             "value": {"type": "string", "default": "admin123"},
+             "description": {"type": "string", "default": "管理员密码"},
+             "title": {"type": "string", "default": "管理员密码"}
+           }
+         }
+       },
+       "additionalProperties": {
+         "type": "object",
+         "properties": {
+           "name": {
+             "type": "string",
+             "description": "环境变量名称"
+           },
+           "value": {
+             "type": "string",
+             "description": "环境变量值"
+           },
+           "description": {
+             "type": "string",
+             "description": "环境变量描述"
+           },
+           "title": {
+             "type": "string",
+             "description": "环境变量标题"
+           }
+         },
+         "required": ["name", "value"]
+       }
+     },
+    "security": {
+      "type": "object",
+      "properties": {
+        "privileged": {
+          "type": "boolean",
+          "default": true,
+          "description": "是否使用特权模式"
+        },
+        "capabilities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": ["NET_ADMIN", "NET_RAW"],
+          "description": "添加的网络权限"
+        }
+      }
+    },
+    "hostNetwork": {
+      "type": "boolean",
+      "default": true,
+      "description": "是否使用主机网络模式"
+    }
+  },
+  "required": ["easytier"]
+} 
