@@ -65,10 +65,12 @@ spec:
             - /bin/sh
             - -c
             - |
-              /easytier-core {{- if .Values.easytier.daemon }} -d{{- end }} \
+              easytier-core {{- if .Values.easytier.daemon }} -d{{- end }} \
                 --network-name {{ .Values.easytier.networkName }} \
                 --network-secret {{ .Values.easytier.networkSecret }} \
+                {{- if .Values.easytier.publicNode }}
                 -p {{ .Values.easytier.publicNode }} \
+                {{- end }}
                 {{- if .Values.easytier.extraArgs }}
                 {{- range .Values.easytier.extraArgs }}
                 {{ . }} \
