@@ -1,6 +1,6 @@
 replicaCount: 1
 image:
-  imageRegistry: docker.1ms.run
+  imageRegistry: budiu.yunnaio.cn
   repository: louislam/uptime-kuma
   tag: latest
   pullPolicy: IfNotPresent

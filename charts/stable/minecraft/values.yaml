@@ -1,7 +1,7 @@
 replicaCount: 1
 workloadType: StatefulSet
 image:
-  imageRegistry: docker.1ms.run
+  imageRegistry: budiu.yunnaio.cn
   repository: itzg/minecraft-server
   tag: latest
   pullPolicy: IfNotPresent

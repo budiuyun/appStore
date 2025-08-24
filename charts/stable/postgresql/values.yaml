@@ -1,7 +1,7 @@
 workloadType: StatefulSet
 replicaCount: 1
 image:
-  imageRegistry: docker.1ms.run
+  imageRegistry: budiu.yunnaio.cn
   repository: bitnami/postgresql
   tag: latest
   pullPolicy: IfNotPresent
