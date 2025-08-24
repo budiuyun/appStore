@@ -75,6 +75,53 @@
           "default": [],
           "description": "额外的命令行参数",
           "title": "额外参数"
+        },
+        "ports": {
+          "type": "object",
+          "properties": {
+            "tcp": {
+              "type": "integer",
+              "minimum": 1024,
+              "maximum": 65535,
+              "default": 11010,
+              "description": "TCP监听端口",
+              "title": "TCP端口"
+            },
+            "udp": {
+              "type": "integer",
+              "minimum": 1024,
+              "maximum": 65535,
+              "default": 11010,
+              "description": "UDP监听端口",
+              "title": "UDP端口"
+            },
+            "wireguard": {
+              "type": "integer",
+              "minimum": 1024,
+              "maximum": 65535,
+              "default": 11011,
+              "description": "WireGuard监听端口",
+              "title": "WireGuard端口"
+            },
+            "websocket": {
+              "type": "integer",
+              "minimum": 1024,
+              "maximum": 65535,
+              "default": 11011,
+              "description": "WebSocket监听端口",
+              "title": "WebSocket端口"
+            },
+            "wss": {
+              "type": "integer",
+              "minimum": 1024,
+              "maximum": 65535,
+              "default": 11012,
+              "description": "WSS监听端口",
+              "title": "WSS端口"
+            }
+          },
+          "description": "端口配置",
+          "title": "端口设置"
         }
       },
       "required": ["networkName", "networkSecret"]
@@ -205,60 +252,60 @@
         }
       }
     },
-         "env": {
-       "type": "object",
-       "properties": {
-         "env1": {
-           "type": "object",
-           "properties": {
-             "name": {"type": "string", "default": "TZ"},
-             "value": {"type": "string", "default": "Asia/Shanghai"},
-             "description": {"type": "string", "default": "时区设置"},
-             "title": {"type": "string", "default": "时区"}
-           }
-         },
-         "env2": {
-           "type": "object",
-           "properties": {
-             "name": {"type": "string", "default": "EASYTIER_ADMIN_USER"},
-             "value": {"type": "string", "default": "admin"},
-             "description": {"type": "string", "default": "管理员用户名"},
-             "title": {"type": "string", "default": "管理员用户名"}
-           }
-         },
-         "env3": {
-           "type": "object",
-           "properties": {
-             "name": {"type": "string", "default": "EASYTIER_ADMIN_PASSWORD"},
-             "value": {"type": "string", "default": "admin123"},
-             "description": {"type": "string", "default": "管理员密码"},
-             "title": {"type": "string", "default": "管理员密码"}
-           }
-         }
-       },
-       "additionalProperties": {
-         "type": "object",
-         "properties": {
-           "name": {
-             "type": "string",
-             "description": "环境变量名称"
-           },
-           "value": {
-             "type": "string",
-             "description": "环境变量值"
-           },
-           "description": {
-             "type": "string",
-             "description": "环境变量描述"
-           },
-           "title": {
-             "type": "string",
-             "description": "环境变量标题"
-           }
-         },
-         "required": ["name", "value"]
-       }
-     },
+    "env": {
+      "type": "object",
+      "properties": {
+        "env1": {
+          "type": "object",
+          "properties": {
+            "name": {"type": "string", "default": "TZ"},
+            "value": {"type": "string", "default": "Asia/Shanghai"},
+            "description": {"type": "string", "default": "时区设置"},
+            "title": {"type": "string", "default": "时区"}
+          }
+        },
+        "env2": {
+          "type": "object",
+          "properties": {
+            "name": {"type": "string", "default": "EASYTIER_ADMIN_USER"},
+            "value": {"type": "string", "default": "admin"},
+            "description": {"type": "string", "default": "管理员用户名"},
+            "title": {"type": "string", "default": "管理员用户名"}
+          }
+        },
+        "env3": {
+          "type": "object",
+          "properties": {
+            "name": {"type": "string", "default": "EASYTIER_ADMIN_PASSWORD"},
+            "value": {"type": "string", "default": "admin123"},
+            "description": {"type": "string", "default": "管理员密码"},
+            "title": {"type": "string", "default": "管理员密码"}
+          }
+        }
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "环境变量名称"
+          },
+          "value": {
+            "type": "string",
+            "description": "环境变量值"
+          },
+          "description": {
+            "type": "string",
+            "description": "环境变量描述"
+          },
+          "title": {
+            "type": "string",
+            "description": "环境变量标题"
+          }
+        },
+        "required": ["name", "value"]
+      }
+    },
     "security": {
       "type": "object",
       "properties": {
