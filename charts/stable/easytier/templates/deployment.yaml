@@ -14,19 +14,16 @@ spec:
       labels:
         {{- include "easytier.selectorLabels" . | nindent 8 }}
     spec:
-      {{- if .Values.hostNetwork }}
-      hostNetwork: {{ .Values.hostNetwork }}
-      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.imageRegistry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- if .Values.service.ports }}
           ports:
-            {{- range .Values.service.ports }}
-            - name: {{ .name }}
-              containerPort: {{ .port }}
-              protocol: {{ .protocol }}
+            {{- range $name, $port := .Values.service.ports }}
+            - name: {{ $name }}
+              containerPort: {{ $port }}
+              protocol: TCP
             {{- end }}
           {{- end }}
           {{- if .Values.env }}
@@ -34,17 +31,6 @@ spec:
             {{- range $key, $value := .Values.env }}
             - name: {{ $value.name }}
               value: {{ $value.value | quote }}
-            {{- end }}
-          {{- end }}
-          {{- if .Values.security.privileged }}
-          securityContext:
-            privileged: {{ .Values.security.privileged }}
-            {{- if .Values.security.capabilities }}
-            capabilities:
-              add:
-              {{- range .Values.security.capabilities }}
-              - {{ . }}
-              {{- end }}
             {{- end }}
           {{- end }}
           resources:
@@ -55,66 +41,10 @@ spec:
             - name: data
               mountPath: {{ $path }}
             {{- end }}
-            - name: machine-id
-              mountPath: /etc/machine-id
-              readOnly: true
-            - name: tun-device
-              mountPath: /dev/net/tun
-            - name: config
-              mountPath: /etc/easytier
-              readOnly: true
-          {{- else }}
-          volumeMounts:
-            - name: machine-id
-              mountPath: /etc/machine-id
-              readOnly: true
-            - name: tun-device
-              mountPath: /dev/net/tun
-            - name: config
-              mountPath: /etc/easytier
-              readOnly: true
           {{- end }}
-          command:
-            - /bin/sh
-            - -c
-            - |
-              easytier-core {{- if .Values.easytier.daemon }} -d{{- end }} \
-                -c /etc/easytier/easytier.toml \
-                {{- if .Values.easytier.publicNode }}
-                -p {{ .Values.easytier.publicNode }} \
-                {{- end }}
-                {{- if .Values.easytier.extraArgs }}
-                {{- range .Values.easytier.extraArgs }}
-                {{ . }} \
-                {{- end }}
-                {{- end }}
       {{- if and .Values.persistence.enabled .Values.persistence.mounts }}
       volumes:
         - name: data
           persistentVolumeClaim:
             claimName: {{ include "easytier.fullname" . }}
-        - name: machine-id
-          hostPath:
-            path: /etc/machine-id
-            type: File
-        - name: tun-device
-          hostPath:
-            path: /dev/net/tun
-            type: CharDevice
-        - name: config
-          configMap:
-            name: {{ include "easytier.fullname" . }}-config
-      {{- else }}
-      volumes:
-        - name: machine-id
-          hostPath:
-            path: /etc/machine-id
-            type: File
-        - name: tun-device
-          hostPath:
-            path: /dev/net/tun
-            type: CharDevice
-        - name: config
-          configMap:
-            name: {{ include "easytier.fullname" . }}-config
       {{- end }} 

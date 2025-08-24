@@ -1,108 +1,48 @@
 workloadType: Deployment
 replicaCount: 1
-
 image:
-  imageRegistry: docker.io
+  imageRegistry: docker.1ms.run
   repository: easytier/easytier
   tag: latest
   pullPolicy: IfNotPresent
-
-# EasyTier配置
-easytier:
-  # 网络名称
-  networkName: "your-network-name"
-  # 网络密钥
-  networkSecret: "your-network-secret"
-  # 公共节点地址（可选，如果不指定则使用默认节点）
-  publicNode: ""
-  # 是否以守护进程模式运行
-  daemon: true
-  # 监听端口配置
-  ports:
-    tcp: 11010
-    udp: 11010
-    wireguard: 11011
-    websocket: 11011
-    wss: 11012
-  # 其他命令行参数
-  extraArgs: []
-
-# 服务配置
 service:
   type: ClusterIP
   ports:
-    - name: easytier-tcp
-      port: 11010
-      protocol: TCP
-    - name: easytier-udp
-      port: 11010
-      protocol: UDP
-    - name: easytier-wg
-      port: 11011
-      protocol: TCP
-    - name: easytier-ws
-      port: 11011
-      protocol: TCP
-    - name: easytier-wss
-      port: 11012
-      protocol: TCP
-
-# 网络限制
+    easytier: 11010
 networkLimits:
   enabled: true
   egress: 10M
   ingress: 10M
-
-# 资源限制
 resources:
   limits:
     cpu: 500m
     memory: 512Mi
-    ephemeral-storage: 1Gi
+    ephemeral-storage: 10Gi
   requests:
     cpu: 100m
     memory: 128Mi
-    ephemeral-storage: 100Mi
-
-# 持久化存储
+    ephemeral-storage: 0Gi
 persistence:
   enabled: true
   size: 1Gi
   accessMode: ReadWriteOnce
-  storageClass: ""
+  storageClass: local
   mounts:
-    - "/root"
-    - "/etc/easytier"
-
-# 环境变量
+    - /etc/easytier
 env:
   env1:
-    name: "TZ"
-    value: "Asia/Shanghai"
-    description: "时区设置"
-    title: "时区"
+    name: TZ
+    value: Asia/Shanghai
+    description: 设置容器时区
+    title: 时区
   env2:
-    name: "EASYTIER_ADMIN_USER"
-    value: "admin"
-    description: "管理员用户名"
-    title: "管理员用户名"
+    name: EASYTIER_NETWORK
+    value: default-network
+    description: EasyTier网络名称
+    title: 网络名称
   env3:
-    name: "EASYTIER_ADMIN_PASSWORD"
-    value: "admin123"
-    description: "管理员密码"
-    title: "管理员密码"
-
-# 安全配置
-security:
-  # 是否使用特权模式
-  privileged: true
-  # 添加的网络权限
-  capabilities:
-    - "NET_ADMIN"
-    - "NET_RAW"
-
-# 主机网络配置
-hostNetwork: true
-
-# 图标
+    name: EASYTIER_SECRET
+    value: your-secret-key
+    description: EasyTier网络密钥
+    title: 网络密钥
 icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/easytier.png" 

@@ -2,13 +2,10 @@ apiVersion: v2
 name: easytier
 version: v1.0.0
 appVersion: latest
-description: EasyTier是一个简单易用的内网穿透工具，支持多种协议和网络拓扑
+description: EasyTier是一个高性能的点对点虚拟专用网络（P2P VPN）解决方案
 icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/easytier.png"
 maintainers:
   - name: 陈不丢
     email: 179866495@qq.com
-sources:
-  - https://hub.docker.com/r/easytier/easytier
-  - https://github.com/EasyTier/EasyTier
 annotations:
   budiu/app-category-zh: 网络工具 
