@@ -7,6 +7,18 @@ image:
   tag: latest
   pullPolicy: IfNotPresent
 
+# EasyTier配置
+easytier:
+  # 网络名称
+  networkName: "your-network-name"
+  # 网络密钥
+  networkSecret: "your-network-secret"
+  # 公共节点地址（可选，如果不指定则使用默认节点）
+  publicNode: ""
+  # 是否以守护进程模式运行
+  daemon: true
+  # 其他命令行参数
+  extraArgs: []
 
 
 # 服务配置
