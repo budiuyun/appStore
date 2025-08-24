@@ -1,182 +1,191 @@
-# EasyTier
+# EasyTier Helm Chart
 
-EasyTier是一个简单易用的内网穿透工具，支持多种协议和网络拓扑。
+EasyTier 是一款简单、安全、去中心化的内网穿透和异地组网工具，适合远程办公、异地访问、游戏加速等多种场景。
 
-## 简介
+## 功能特性
 
-EasyTier是一个基于Rust开发的内网穿透工具，具有以下特点：
-
-- 简单易用：配置简单，一键连接
-- 多协议支持：支持TCP、UDP、HTTP等协议
-- 安全可靠：使用加密通信，保护数据传输安全
-- 高性能：基于Rust开发，性能优异
-- 跨平台：支持Windows、Linux、macOS等操作系统
+- 🚀 去中心化组网，无需公网 IP
+- 🔒 支持 WireGuard 和 AES-GCM 加密
+- 🌐 跨平台支持 (Linux, Windows, macOS, FreeBSD, Android)
+- 📡 支持多种协议：TCP, UDP, WireGuard, WebSocket, WSS
+- 🎮 游戏加速和联机支持
+- 🔧 支持配置文件自定义
 
 ## 安装
 
-### 使用Helm安装
+### 添加 Helm 仓库
 
 ```bash
-# 添加Helm仓库
-helm repo add appstore https://your-repo-url
-
-# 安装EasyTier
-helm install easytier appstore/easytier \
-  --set easytier.networkName="your-network-name" \
-  --set easytier.networkSecret="your-network-secret"
+helm repo add easytier https://your-repo-url
+helm repo update
 ```
 
-### 手动安装
+### 安装 Chart
 
 ```bash
-# 克隆仓库
-git clone https://github.com/your-repo/appStore.git
-
-# 进入EasyTier目录
-cd appStore/charts/stable/easytier
-
-# 安装
-helm install easytier . \
-  --set easytier.networkName="your-network-name" \
-  --set easytier.networkSecret="your-network-secret"
+helm install easytier easytier/easytier
 ```
 
-## 配置
+### 自定义配置安装
 
-### 必需配置
+```bash
+helm install easytier easytier/easytier \
+  --set easytier.networkName="my-network" \
+  --set easytier.networkSecret="my-secret" \
+  --set easytier.ports.tcp=11010 \
+  --set easytier.ports.udp=11010 \
+  --set easytier.ports.wireguard=11011 \
+  --set easytier.ports.websocket=11011 \
+  --set easytier.ports.wss=11012
+```
 
-- `easytier.networkName`: EasyTier网络名称
-- `easytier.networkSecret`: EasyTier网络密钥
+## 配置说明
 
-### 可选配置
+### 端口配置
 
-- `easytier.publicNode`: 公共节点地址（如果不指定则使用默认节点）
-
-### 默认账号信息
-
-- **用户名**: admin
-- **密码**: admin123
-
-> 注意：为了安全起见，建议在生产环境中修改默认密码
-
-### 可选配置
-
-- `easytier.publicNode`: 公共节点地址（默认：tcp://public.easytier.cn:11010）
-- `easytier.daemon`: 是否以守护进程模式运行（默认：true）
-- `easytier.extraArgs`: 额外的命令行参数
-
-### 完整配置示例
+EasyTier 支持多种协议和端口：
 
 ```yaml
 easytier:
-  networkName: "my-network"
-  networkSecret: "my-secret"
-  publicNode: ""  # 可选，如果不指定则使用默认节点
-  daemon: true
-  extraArgs: []
-
-image:
-  imageRegistry: docker.io
-  repository: easytier/easytier
-  tag: latest
-
-service:
-  type: ClusterIP
   ports:
-    - name: easytier
-      port: 11010
-      protocol: TCP
-
-# 环境变量配置（包含默认账号信息）
-env:
-  env1:
-    name: TZ
-    value: "Asia/Shanghai"
-    description: 时区设置
-    title: 时区
-  env2:
-    name: EASYTIER_ADMIN_USER
-    value: "admin"
-    description: 管理员用户名
-    title: 管理员用户名
-  env3:
-    name: EASYTIER_ADMIN_PASSWORD
-    value: "admin123"
-    description: 管理员密码
-    title: 管理员密码
-
-persistence:
-  enabled: true
-  size: 1Gi
-  accessMode: ReadWriteOnce
-  storageClass: ""
-
-security:
-  privileged: true
-  capabilities:
-    - NET_ADMIN
-    - NET_RAW
-
-hostNetwork: true
+    tcp: 11010        # TCP 监听端口
+    udp: 11010        # UDP 监听端口  
+    wireguard: 11011  # WireGuard 监听端口
+    websocket: 11011  # WebSocket 监听端口
+    wss: 11012        # WSS (WebSocket Secure) 监听端口
 ```
+
+### 网络配置
+
+```yaml
+easytier:
+  networkName: "your-network-name"    # 网络名称
+  networkSecret: "your-network-secret" # 网络密钥
+  publicNode: ""                       # 公共节点地址（可选）
+  daemon: true                         # 守护进程模式
+```
+
+### 服务端口
+
+服务会自动暴露所有配置的端口：
+
+- `11010/TCP` - EasyTier TCP 服务
+- `11010/UDP` - EasyTier UDP 服务  
+- `11011/TCP` - WireGuard 和 WebSocket 服务
+- `11012/TCP` - WSS 服务
 
 ## 使用方法
 
-1. 获取EasyTier网络名称和密钥
-2. 配置必需参数（网络名称和密钥）
-3. 可选：配置公共节点地址（如果不配置则使用默认节点）
-4. 部署到Kubernetes集群
-5. 等待Pod启动完成
-6. 检查日志确认连接状态
-7. 使用默认账号admin/admin123登录管理界面
+### 1. 配置网络参数
 
-### 访问管理界面
+编辑 `values.yaml` 文件，设置你的网络名称和密钥：
 
-部署完成后，您可以通过以下方式访问EasyTier管理界面：
-
-```bash
-# 端口转发到本地
-kubectl port-forward service/easytier 11010:11010
-
-# 在浏览器中访问
-# http://localhost:11010
-# 用户名: admin
-# 密码: admin123
+```yaml
+easytier:
+  networkName: "my-home-network"
+  networkSecret: "my-secret-key"
 ```
 
-## 注意事项
+### 2. 自定义端口（可选）
 
-- EasyTier需要特权模式运行以访问网络接口
-- 需要主机网络模式以获取真实的网络接口
-- 配置文件会持久化存储在PVC中
-- 建议在生产环境中使用特定的存储类
+如果需要修改默认端口：
+
+```yaml
+easytier:
+  ports:
+    tcp: 12010        # 修改 TCP 端口
+    udp: 12010        # 修改 UDP 端口
+    wireguard: 12011  # 修改 WireGuard 端口
+    websocket: 12011  # 修改 WebSocket 端口
+    wss: 12012        # 修改 WSS 端口
+```
+
+### 3. 部署
+
+```bash
+helm upgrade --install easytier easytier/easytier -f values.yaml
+```
+
+### 4. 客户端连接
+
+使用 EasyTier 客户端连接到你的网络：
+
+```bash
+# 使用网络名称和密钥连接
+easytier-core --network-name "my-home-network" --network-secret "my-secret-key"
+```
 
 ## 故障排除
 
-### 常见问题
+### 端口冲突
 
-1. **Pod无法启动**
-   - 检查是否有足够的权限
-   - 确认镜像是否正确拉取
+如果遇到端口冲突，可以修改端口配置：
 
-2. **网络连接失败**
-   - 检查网络名称和密钥是否正确
-   - 确认公共节点是否可达
+```yaml
+easytier:
+  ports:
+    tcp: 12010        # 使用不同的端口
+    udp: 12010
+    wireguard: 12011
+    websocket: 12011
+    wss: 12012
+```
 
-3. **权限不足**
-   - 确认Pod运行在特权模式下
-   - 检查是否有必要的网络权限
+### 连接错误
+
+常见的连接错误及解决方案：
+
+1. **"InvalidPacket("body too long")"** - 检查端口配置和网络设置
+2. **连接超时** - 确认防火墙设置和端口开放
+3. **认证失败** - 检查网络名称和密钥是否正确
 
 ### 查看日志
 
 ```bash
-# 查看Pod日志
 kubectl logs -f deployment/easytier
-
-# 查看Pod状态
-kubectl get pods -l app.kubernetes.io/name=easytier
 ```
+
+## 高级配置
+
+### 自定义命令行参数
+
+```yaml
+easytier:
+  extraArgs:
+    - "--log-level=debug"
+    - "--max-connections=1000"
+```
+
+### 资源限制
+
+```yaml
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1Gi
+  requests:
+    cpu: 200m
+    memory: 256Mi
+```
+
+### 持久化存储
+
+```yaml
+persistence:
+  enabled: true
+  size: 2Gi
+  storageClass: "local"
+  mounts:
+    - /root
+    - /etc/easytier
+```
+
+## 支持
+
+- 📖 [官方文档](https://easytier.cn)
+- 🐛 [问题反馈](https://github.com/EasyTier/EasyTier/issues)
+- 💬 [社区讨论](https://github.com/EasyTier/EasyTier/discussions)
 
 ## 许可证
 
-本项目采用MIT许可证。 
+本项目基于 Apache License 2.0 许可证开源。 

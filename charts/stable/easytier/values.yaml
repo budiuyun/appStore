@@ -17,6 +17,13 @@ easytier:
   publicNode: ""
   # 是否以守护进程模式运行
   daemon: true
+  # 监听端口配置
+  ports:
+    tcp: 11010
+    udp: 11010
+    wireguard: 11011
+    websocket: 11011
+    wss: 11012
   # 其他命令行参数
   extraArgs: []
 
@@ -25,8 +32,20 @@ easytier:
 service:
   type: ClusterIP
   ports:
-    - name: easytier
+    - name: easytier-tcp
       port: 11010
+      protocol: TCP
+    - name: easytier-udp
+      port: 11010
+      protocol: UDP
+    - name: easytier-wg
+      port: 11011
+      protocol: TCP
+    - name: easytier-ws
+      port: 11011
+      protocol: TCP
+    - name: easytier-wss
+      port: 11012
       protocol: TCP
 
 # 网络限制
