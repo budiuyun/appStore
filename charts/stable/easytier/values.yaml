@@ -50,24 +50,24 @@ service:
 # 网络限制
 networkLimits:
   enabled: true
-  egress: "10M"
-  ingress: "10M"
+  egress: 10M
+  ingress: 10M
 
 # 资源限制
 resources:
   limits:
-    cpu: "500m"
-    memory: "512Mi"
-    ephemeral-storage: "1Gi"
+    cpu: 500m
+    memory: 512Mi
+    ephemeral-storage: 1Gi
   requests:
-    cpu: "100m"
-    memory: "128Mi"
-    ephemeral-storage: "100Mi"
+    cpu: 100m
+    memory: 128Mi
+    ephemeral-storage: 100Mi
 
 # 持久化存储
 persistence:
   enabled: true
-  size: "1Gi"
+  size: 1Gi
   accessMode: ReadWriteOnce
   storageClass: ""
   mounts:
