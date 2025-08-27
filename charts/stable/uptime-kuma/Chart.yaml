@@ -13,4 +13,4 @@ maintainers:
 sources:
   - https://github.com/louislam/uptime-kuma
 annotations:
-  budiu/app-category-zh: 监控工具
+  budiu/app-category-zh: 运维监控

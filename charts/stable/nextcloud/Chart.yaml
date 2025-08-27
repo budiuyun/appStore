@@ -10,4 +10,4 @@ maintainers:
 sources:
   - https://github.com/nextcloud/docker
 annotations:
-  budiu/app-category-zh: 存储
+  budiu/app-category-zh: 内容管理

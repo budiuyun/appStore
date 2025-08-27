@@ -13,4 +13,4 @@ maintainers:
 sources:
   - https://github.com/itzg/docker-minecraft-server
 annotations:
-  budiu/app-category-zh: 游戏服务器
+  budiu/app-category-zh: 应用服务

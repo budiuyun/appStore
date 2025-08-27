@@ -11,4 +11,4 @@ sources:
   - https://hub.docker.com/r/homeassistant/home-assistant
   - https://github.com/home-assistant/home-assistant
 annotations:
-  budiu/app-category-zh: 智能家居
+  budiu/app-category-zh: 应用服务
