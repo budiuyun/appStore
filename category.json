@@ -1,163 +1,6 @@
 {
   "categories": {
-    "AI大模型": [
-      {"aingdesk": {
-        "v1.0.0": 
-{
-  "apiVersion": "v2",
-  "name": "aingdesk",
-  "version": "v1.0.0",
-  "appVersion": "latest",
-  "description": "AingDesk 服务端，远程桌面管理解决方案",
-  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/aingdesk.png",
-  "maintainers": [
-    {
-      "name": "陈不丢",
-      "email": "179866495@qq.com"
-    }
-  ],
-  "annotations": {
-    "budiu/app-category-zh": "AI大模型"
-  }
-}
-
-      }}
-,
-      {"astrbot": {
-        "v1.0.0": 
-{
-  "apiVersion": "v2",
-  "name": "astrbot",
-  "version": "v1.0.0",
-  "appVersion": "latest",
-  "description": "松耦合、异步、支持多消息平台部署、具有易用的插件系统和完善的大语言模型（LLM）接入功能的聊天机器人及开发框架",
-  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/astrbot.png",
-  "maintainers": [
-    {
-      "name": "陈不丢",
-      "email": "179866495@qq.com"
-    }
-  ],
-  "sources": [
-    "https://github.com/AstrBotDevs/AstrBot"
-  ],
-  "annotations": {
-    "budiu/app-category-zh": "AI大模型"
-  }
-}
-
-      }}
-,
-      {"chatgptnextweb": {
-        "v1.0.0": 
-{
-  "apiVersion": "v2",
-  "name": "chatgpt-next-web",
-  "version": "v1.0.0",
-  "appVersion": "latest",
-  "description": "一键免费部署你的私人ChatGPT网页应用",
-  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/chatgptnextweb.png",
-  "maintainers": [
-    {
-      "name": "陈不丢",
-      "email": "179866495@qq.com"
-    }
-  ],
-  "sources": [
-    "https://github.com/Yidadaa/chatgpt-next-web",
-    "https://github.com/Yidadaa/chatgpt-next-web/blob/main/README.zh-CN.md"
-  ],
-  "annotations": {
-    "budiu/app-category-zh": "AI大模型"
-  }
-}
-
-      }}
-
-    ]
-,
-    "仪表盘": [
-      {"dashy": {
-        "v1.0.0": 
-{
-  "apiVersion": "v2",
-  "name": "dashy",
-  "version": "v1.0.0",
-  "appVersion": "latest",
-  "description": "Dashy是一个可自托管的个人仪表盘，包含状态检查、小部件、主题和图标包等功能",
-  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/dashy.png",
-  "maintainers": [
-    {
-      "name": "陈不丢",
-      "email": "179866495@qq.com"
-    }
-  ],
-  "annotations": {
-    "budiu/app-category-zh": "仪表盘"
-  }
-}
-
-      }}
-
-    ]
-,
-    "内网穿透": [
-      {"wireguard-easy": {
-        "v1.0.0": 
-{
-  "apiVersion": "v2",
-  "name": "wireguard-easy",
-  "version": "v1.0.0",
-  "appVersion": "latest",
-  "description": "最简单的方式在任何Linux主机上安装和管理WireGuard",
-  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/wireguard-easy.png",
-  "maintainers": [
-    {
-      "name": "陈不丢",
-      "email": "179866495@qq.com"
-    }
-  ],
-  "sources": [
-    "https://github.com/wg-easy/wg-easy"
-  ],
-  "annotations": {
-    "budiu/app-category-zh": "内网穿透"
-  }
-}
-
-      }}
-
-    ]
-,
-    "图床": [
-      {"lsky-pro": {
-        "v1.0.0": 
-{
-  "apiVersion": "v2",
-  "name": "lsky-pro",
-  "version": "v1.0.0",
-  "appVersion": "2.0.0",
-  "description": "兰空图床 - 简单优雅的图片托管程序",
-  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/lsky-pro.png",
-  "maintainers": [
-    {
-      "name": "陈不丢",
-      "email": "179866495@qq.com"
-    }
-  ],
-  "sources": [
-    "https://github.com/lsky-org/lsky-pro"
-  ],
-  "annotations": {
-    "budiu/app-category-zh": "图床"
-  }
-}
-
-      }}
-
-    ]
-,
-    "存储": [
+    "内容管理": [
       {"alist": {
         "v1.0.0": 
 {
@@ -178,7 +21,7 @@
     }
   ],
   "annotations": {
-    "budiu/app-category-zh": "存储"
+    "budiu/app-category-zh": "内容管理"
   }
 }
 
@@ -200,7 +43,79 @@
     }
   ],
   "annotations": {
-    "budiu/app-category-zh": "存储"
+    "budiu/app-category-zh": "内容管理"
+  }
+}
+
+      }}
+,
+      {"emlog": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "emlog",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "emlog是一款基于PHP和MySQL的功能强大的博客及CMS建站系统",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/emlog.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "sources": [
+    "https://github.com/emlog/emlog"
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "内容管理"
+  }
+}
+
+      }}
+,
+      {"lsky-pro": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "lsky-pro",
+  "version": "v1.0.0",
+  "appVersion": "2.0.0",
+  "description": "兰空图床 - 简单优雅的图片托管程序",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/lsky-pro.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "sources": [
+    "https://github.com/lsky-org/lsky-pro"
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "内容管理"
+  }
+}
+
+      }}
+,
+      {"mblog": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "mblog",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "一个支持自部署的前后端分离的微博系统，可单用户或多用户使用",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/mblog.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "内容管理"
   }
 }
 
@@ -226,7 +141,29 @@
     }
   ],
   "annotations": {
-    "budiu/app-category-zh": "存储"
+    "budiu/app-category-zh": "内容管理"
+  }
+}
+
+      }}
+,
+      {"mtab": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "mtab",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "多端同步、美观易用的在线导航和书签工具",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/mtab.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "内容管理"
   }
 }
 
@@ -251,24 +188,46 @@
     "https://github.com/nextcloud/docker"
   ],
   "annotations": {
-    "budiu/app-category-zh": "存储"
+    "budiu/app-category-zh": "内容管理"
   }
 }
 
       }}
-
-    ]
 ,
-    "安全工具": [
-      {"allinssl": {
+      {"typecho": {
         "v1.0.0": 
 {
   "apiVersion": "v2",
-  "name": "allinssl",
+  "name": "typecho",
   "version": "v1.0.0",
-  "appVersion": "latest",
-  "description": "开源免费的 SSL 证书自动化管理平台，集证书申请、管理、部署和监控于一体，支持多平台自动化部署和站点证书监控。请通过 ip地址＋端口/allinssl 访问。",
-  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/allinssl.png",
+  "appVersion": "nightly",
+  "description": "Typecho是一个轻量级的开源博客程序",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/typecho.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "sources": [
+    "https://github.com/typecho/typecho"
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "内容管理"
+  }
+}
+
+      }}
+,
+      {"wordpress": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "wordpress",
+  "version": "v1.0.0",
+  "appVersion": "6.8.1",
+  "description": "WordPress是一个功能强大的内容管理系统，可以使用插件、小部件和主题",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/wordpress.png",
   "maintainers": [
     {
       "name": "陈不丢",
@@ -276,7 +235,156 @@
     }
   ],
   "annotations": {
-    "budiu/app-category-zh": "安全工具"
+    "budiu/app-category-zh": "内容管理"
+  }
+}
+
+      }}
+
+    ]
+,
+    "应用服务": [
+      {"aingdesk": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "aingdesk",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "AingDesk 服务端，远程桌面管理解决方案",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/aingdesk.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "应用服务"
+  }
+}
+
+      }}
+,
+      {"astrbot": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "astrbot",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "松耦合、异步、支持多消息平台部署、具有易用的插件系统和完善的大语言模型（LLM）接入功能的聊天机器人及开发框架",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/astrbot.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "sources": [
+    "https://github.com/AstrBotDevs/AstrBot"
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "应用服务"
+  }
+}
+
+      }}
+,
+      {"chatgptnextweb": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "chatgpt-next-web",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "一键免费部署你的私人ChatGPT网页应用",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/chatgptnextweb.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "sources": [
+    "https://github.com/Yidadaa/chatgpt-next-web",
+    "https://github.com/Yidadaa/chatgpt-next-web/blob/main/README.zh-CN.md"
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "应用服务"
+  }
+}
+
+      }}
+,
+      {"home-assistant": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "home-assistant",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "Home Assistant 是一款开源的本地化智能家居自动化平台，注重隐私和本地控制，拥有丰富的集成和强大的自动化能力，适合树莓派或本地服务器部署。",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/home-assistant.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "sources": [
+    "https://hub.docker.com/r/homeassistant/home-assistant",
+    "https://github.com/home-assistant/home-assistant"
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "应用服务"
+  }
+}
+
+      }}
+,
+      {"minecraft": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "minecraft",
+  "version": "v1.0.0",
+  "appVersion": "1.0.0",
+  "description": "Minecraft 是一款广受欢迎的沙盒游戏，玩家可以在其中探索、建造、合作与战斗。本 Chart 部署 Minecraft 服务器，为玩家提供多人在线游戏世界，并支持自定义插件、模组和配置，满足社区服务器和私人服务器需求。该服务器支持官方版和 Forge、Paper 等模组版，为玩家提供丰富的游戏体验。",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/minecraft.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "sources": [
+    "https://github.com/itzg/docker-minecraft-server"
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "应用服务"
+  }
+}
+
+      }}
+,
+      {"surveyking": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "surveyking",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "卷王 SurveyKing - 人人都可快速搭建的专业问卷考试系统，安装后需等待几分钟才能访问",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/surveyking.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "应用服务"
   }
 }
 
@@ -353,19 +461,19 @@
 }
 
       }}
-
-    ]
 ,
-    "操作系统": [
-      {"ubuntu22.04": {
-        "v1.0.0": 
+      {"registry": {
+        "v3.0.0": 
 {
   "apiVersion": "v2",
-  "name": "ubuntu-22-04",
-  "version": "v1.0.0",
-  "appVersion": "22.04",
-  "description": "带有SSH服务的Ubuntu镜像，支持远程管理",
-  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/ubuntu.png",
+  "name": "registry",
+  "version": "v3.0.0",
+  "appVersion": "3.0.0",
+  "description": "Docker Registry 是 OCI 分发规范的实现，用于本地或私有云环境下存储和分发容器镜像和制品，支持多架构和高可用部署。",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/registry.png",
+  "sources": [
+    "https://github.com/docker/distribution"
+  ],
   "maintainers": [
     {
       "name": "陈不丢",
@@ -373,7 +481,7 @@
     }
   ],
   "annotations": {
-    "budiu/app-category-zh": "操作系统"
+    "budiu/app-category-zh": "开发工具"
   }
 }
 
@@ -381,7 +489,7 @@
 
     ]
 ,
-    "数据库": [
+    "数据服务": [
       {"mariadb": {
         "v1.0.0": 
 {
@@ -398,7 +506,7 @@
     }
   ],
   "annotations": {
-    "budiu/app-category-zh": "数据库"
+    "budiu/app-category-zh": "数据服务"
   }
 }
 
@@ -424,7 +532,33 @@
     }
   ],
   "annotations": {
-    "budiu/app-category-zh": "数据库"
+    "budiu/app-category-zh": "数据服务"
+  }
+}
+
+      }}
+,
+      {"phpmyadmin": {
+        "v5.2.2": 
+{
+  "apiVersion": "v2",
+  "name": "phpmyadmin",
+  "version": "v5.2.2",
+  "appVersion": "5.2.2",
+  "description": "phpMyAdmin 是一款流行的基于 Web 的 MySQL 和 MariaDB 数据库管理工具，支持数据库、表、用户、权限等多种操作，界面友好，易于使用。",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/phpmyadmin.png",
+  "sources": [
+    "https://hub.docker.com/r/phpmyadmin/phpmyadmin",
+    "https://github.com/phpmyadmin/phpmyadmin"
+  ],
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "数据服务"
   }
 }
 
@@ -446,7 +580,32 @@
     }
   ],
   "annotations": {
-    "budiu/app-category-zh": "数据库"
+    "budiu/app-category-zh": "数据服务"
+  }
+}
+
+      }}
+,
+      {"rabbitmq": {
+        "v4.1.1": 
+{
+  "apiVersion": "v2",
+  "name": "rabbitmq",
+  "version": "v4.1.1",
+  "appVersion": "4.1.1",
+  "description": "RabbitMQ 是一款开源的多协议消息中间件，支持 AMQP、MQTT、STOMP 等协议，广泛应用于消息队列、异步通信和微服务架构中，支持高可用和集群部署。",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/rabbitmq.png",
+  "sources": [
+    "https://hub.docker.com/r/rabbitmq/rabbitmq"
+  ],
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "数据服务"
   }
 }
 
@@ -471,7 +630,7 @@
     }
   ],
   "annotations": {
-    "budiu/app-category-zh": "数据库"
+    "budiu/app-category-zh": "数据服务"
   }
 }
 
@@ -479,77 +638,16 @@
 
     ]
 ,
-    "数据库管理": [
-      {"phpmyadmin": {
-        "v5.2.2": 
-{
-  "apiVersion": "v2",
-  "name": "phpmyadmin",
-  "version": "v5.2.2",
-  "appVersion": "5.2.2",
-  "description": "phpMyAdmin 是一款流行的基于 Web 的 MySQL 和 MariaDB 数据库管理工具，支持数据库、表、用户、权限等多种操作，界面友好，易于使用。",
-  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/phpmyadmin.png",
-  "sources": [
-    "https://hub.docker.com/r/phpmyadmin/phpmyadmin",
-    "https://github.com/phpmyadmin/phpmyadmin"
-  ],
-  "maintainers": [
-    {
-      "name": "陈不丢",
-      "email": "179866495@qq.com"
-    }
-  ],
-  "annotations": {
-    "budiu/app-category-zh": "数据库管理"
-  }
-}
-
-      }}
-
-    ]
-,
-    "智能家居": [
-      {"home-assistant": {
+    "系统工具": [
+      {"allinssl": {
         "v1.0.0": 
 {
   "apiVersion": "v2",
-  "name": "home-assistant",
+  "name": "allinssl",
   "version": "v1.0.0",
   "appVersion": "latest",
-  "description": "Home Assistant 是一款开源的本地化智能家居自动化平台，注重隐私和本地控制，拥有丰富的集成和强大的自动化能力，适合树莓派或本地服务器部署。",
-  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/home-assistant.png",
-  "maintainers": [
-    {
-      "name": "陈不丢",
-      "email": "179866495@qq.com"
-    }
-  ],
-  "sources": [
-    "https://hub.docker.com/r/homeassistant/home-assistant",
-    "https://github.com/home-assistant/home-assistant"
-  ],
-  "annotations": {
-    "budiu/app-category-zh": "智能家居"
-  }
-}
-
-      }}
-
-    ]
-,
-    "消息队列": [
-      {"rabbitmq": {
-        "v4.1.1": 
-{
-  "apiVersion": "v2",
-  "name": "rabbitmq",
-  "version": "v4.1.1",
-  "appVersion": "4.1.1",
-  "description": "RabbitMQ 是一款开源的多协议消息中间件，支持 AMQP、MQTT、STOMP 等协议，广泛应用于消息队列、异步通信和微服务架构中，支持高可用和集群部署。",
-  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/rabbitmq.png",
-  "sources": [
-    "https://hub.docker.com/r/rabbitmq/rabbitmq"
-  ],
+  "description": "开源免费的 SSL 证书自动化管理平台，集证书申请、管理、部署和监控于一体，支持多平台自动化部署和站点证书监控。请通过 ip地址＋端口/allinssl 访问。",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/allinssl.png",
   "maintainers": [
     {
       "name": "陈不丢",
@@ -557,131 +655,21 @@
     }
   ],
   "annotations": {
-    "budiu/app-category-zh": "消息队列"
+    "budiu/app-category-zh": "系统工具"
   }
 }
 
       }}
-
-    ]
 ,
-    "游戏服务器": [
-      {"minecraft": {
+      {"ubuntu22.04": {
         "v1.0.0": 
 {
   "apiVersion": "v2",
-  "name": "minecraft",
+  "name": "ubuntu-22-04",
   "version": "v1.0.0",
-  "appVersion": "1.0.0",
-  "description": "Minecraft 是一款广受欢迎的沙盒游戏，玩家可以在其中探索、建造、合作与战斗。本 Chart 部署 Minecraft 服务器，为玩家提供多人在线游戏世界，并支持自定义插件、模组和配置，满足社区服务器和私人服务器需求。该服务器支持官方版和 Forge、Paper 等模组版，为玩家提供丰富的游戏体验。",
-  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/minecraft.png",
-  "maintainers": [
-    {
-      "name": "陈不丢",
-      "email": "179866495@qq.com"
-    }
-  ],
-  "sources": [
-    "https://github.com/itzg/docker-minecraft-server"
-  ],
-  "annotations": {
-    "budiu/app-category-zh": "游戏服务器"
-  }
-}
-
-      }}
-
-    ]
-,
-    "监控工具": [
-      {"hertzbeat": {
-        "v1.0.0": 
-{
-  "apiVersion": "v2",
-  "name": "hertzbeat",
-  "version": "v1.0.0",
-  "appVersion": "latest",
-  "description": "Apache HertzBeat（incubating）是一款开源、易用、无代理的实时监控系统，支持高性能集群、Prometheus 兼容、自定义监控和状态页搭建，适用于网站、数据库、云原生、网络等多场景。开始需等待几分钟",
-  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/hertzbeat.png",
-  "maintainers": [
-    {
-      "name": "陈不丢",
-      "email": "179866495@qq.com"
-    }
-  ],
-  "sources": [
-    "https://hub.docker.com/r/apache/hertzbeat",
-    "https://github.com/apache/hertzbeat"
-  ],
-  "annotations": {
-    "budiu/app-category-zh": "监控工具"
-  }
-}
-
-      }}
-,
-      {"uptime-kuma": {
-        "v1.0.0": 
-{
-  "apiVersion": "v2",
-  "name": "uptime-kuma",
-  "version": "v1.0.0",
-  "appVersion": "1.0.0",
-  "description": "'Uptime Kuma 是一个开源、轻量的自托管监控工具，支持对网站、服务器和 API 的正常运行时间进行实时监控，帮助用户快速了解服务的运行状况。它提供友好的用户界面、支持多种通知方式（如邮件、Telegram、Slack\n  等）以及历史记录追踪功能。 '",
-  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/uptime-kuma.png",
-  "maintainers": [
-    {
-      "name": "陈不丢",
-      "email": "179866495@qq.com"
-    }
-  ],
-  "sources": [
-    "https://github.com/louislam/uptime-kuma"
-  ],
-  "annotations": {
-    "budiu/app-category-zh": "监控工具"
-  }
-}
-
-      }}
-
-    ]
-,
-    "网站建设": [
-      {"emlog": {
-        "v1.0.0": 
-{
-  "apiVersion": "v2",
-  "name": "emlog",
-  "version": "v1.0.0",
-  "appVersion": "latest",
-  "description": "emlog是一款基于PHP和MySQL的功能强大的博客及CMS建站系统",
-  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/emlog.png",
-  "maintainers": [
-    {
-      "name": "陈不丢",
-      "email": "179866495@qq.com"
-    }
-  ],
-  "sources": [
-    "https://github.com/emlog/emlog"
-  ],
-  "annotations": {
-    "budiu/app-category-zh": "网站建设"
-  }
-}
-
-      }}
-,
-      {"mblog": {
-        "v1.0.0": 
-{
-  "apiVersion": "v2",
-  "name": "mblog",
-  "version": "v1.0.0",
-  "appVersion": "latest",
-  "description": "一个支持自部署的前后端分离的微博系统，可单用户或多用户使用",
-  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/mblog.png",
+  "appVersion": "22.04",
+  "description": "带有SSH服务的Ubuntu镜像，支持远程管理",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/ubuntu.png",
   "maintainers": [
     {
       "name": "陈不丢",
@@ -689,76 +677,7 @@
     }
   ],
   "annotations": {
-    "budiu/app-category-zh": "网站建设"
-  }
-}
-
-      }}
-,
-      {"mtab": {
-        "v1.0.0": 
-{
-  "apiVersion": "v2",
-  "name": "mtab",
-  "version": "v1.0.0",
-  "appVersion": "latest",
-  "description": "多端同步、美观易用的在线导航和书签工具",
-  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/mtab.png",
-  "maintainers": [
-    {
-      "name": "陈不丢",
-      "email": "179866495@qq.com"
-    }
-  ],
-  "annotations": {
-    "budiu/app-category-zh": "网站建设"
-  }
-}
-
-      }}
-,
-      {"typecho": {
-        "v1.0.0": 
-{
-  "apiVersion": "v2",
-  "name": "typecho",
-  "version": "v1.0.0",
-  "appVersion": "nightly",
-  "description": "Typecho是一个轻量级的开源博客程序",
-  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/typecho.png",
-  "maintainers": [
-    {
-      "name": "陈不丢",
-      "email": "179866495@qq.com"
-    }
-  ],
-  "sources": [
-    "https://github.com/typecho/typecho"
-  ],
-  "annotations": {
-    "budiu/app-category-zh": "网站建设"
-  }
-}
-
-      }}
-,
-      {"wordpress": {
-        "v1.0.0": 
-{
-  "apiVersion": "v2",
-  "name": "wordpress",
-  "version": "v1.0.0",
-  "appVersion": "6.8.1",
-  "description": "WordPress是一个功能强大的内容管理系统，可以使用插件、小部件和主题",
-  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/wordpress.png",
-  "maintainers": [
-    {
-      "name": "陈不丢",
-      "email": "179866495@qq.com"
-    }
-  ],
-  "annotations": {
-    "budiu/app-category-zh": "网站建设"
+    "budiu/app-category-zh": "系统工具"
   }
 }
 
@@ -840,10 +759,61 @@
 }
 
       }}
+,
+      {"rustdesk": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "rustdesk",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "RustDesk 是一款全功能开源远程桌面控制软件，支持自托管和安全访问，配置简单，适合个人和企业远程运维、桌面协作等场景。",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/rustdesk.png",
+  "sources": [
+    "https://hub.docker.com/r/rustdesk/rustdesk-server",
+    "https://github.com/rustdesk/rustdesk-server"
+  ],
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "网络工具"
+  }
+}
+
+      }}
+,
+      {"wireguard-easy": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "wireguard-easy",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "最简单的方式在任何Linux主机上安装和管理WireGuard",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/wireguard-easy.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "sources": [
+    "https://github.com/wg-easy/wg-easy"
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "网络工具"
+  }
+}
+
+      }}
 
     ]
 ,
-    "运维工具": [
+    "运维监控": [
       {"baota": {
         "v9.3.0": 
 {
@@ -863,7 +833,55 @@
     "https://hub.docker.com/r/btpanel/baota"
   ],
   "annotations": {
-    "budiu/app-category-zh": "运维工具"
+    "budiu/app-category-zh": "运维监控"
+  }
+}
+
+      }}
+,
+      {"dashy": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "dashy",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "Dashy是一个可自托管的个人仪表盘，包含状态检查、小部件、主题和图标包等功能",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/dashy.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "运维监控"
+  }
+}
+
+      }}
+,
+      {"hertzbeat": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "hertzbeat",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "Apache HertzBeat（incubating）是一款开源、易用、无代理的实时监控系统，支持高性能集群、Prometheus 兼容、自定义监控和状态页搭建，适用于网站、数据库、云原生、网络等多场景。开始需等待几分钟",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/hertzbeat.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "sources": [
+    "https://hub.docker.com/r/apache/hertzbeat",
+    "https://github.com/apache/hertzbeat"
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "运维监控"
   }
 }
 
@@ -889,89 +907,32 @@
     }
   ],
   "annotations": {
-    "budiu/app-category-zh": "运维工具"
+    "budiu/app-category-zh": "运维监控"
   }
 }
 
       }}
-
-    ]
 ,
-    "远程工具": [
-      {"rustdesk": {
+      {"uptime-kuma": {
         "v1.0.0": 
 {
   "apiVersion": "v2",
-  "name": "rustdesk",
+  "name": "uptime-kuma",
   "version": "v1.0.0",
-  "appVersion": "latest",
-  "description": "RustDesk 是一款全功能开源远程桌面控制软件，支持自托管和安全访问，配置简单，适合个人和企业远程运维、桌面协作等场景。",
-  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/rustdesk.png",
+  "appVersion": "1.0.0",
+  "description": "'Uptime Kuma 是一个开源、轻量的自托管监控工具，支持对网站、服务器和 API 的正常运行时间进行实时监控，帮助用户快速了解服务的运行状况。它提供友好的用户界面、支持多种通知方式（如邮件、Telegram、Slack\n  等）以及历史记录追踪功能。 '",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/uptime-kuma.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
   "sources": [
-    "https://hub.docker.com/r/rustdesk/rustdesk-server",
-    "https://github.com/rustdesk/rustdesk-server"
-  ],
-  "maintainers": [
-    {
-      "name": "陈不丢",
-      "email": "179866495@qq.com"
-    }
+    "https://github.com/louislam/uptime-kuma"
   ],
   "annotations": {
-    "budiu/app-category-zh": "远程工具"
-  }
-}
-
-      }}
-
-    ]
-,
-    "镜像仓库": [
-      {"registry": {
-        "v3.0.0": 
-{
-  "apiVersion": "v2",
-  "name": "registry",
-  "version": "v3.0.0",
-  "appVersion": "3.0.0",
-  "description": "Docker Registry 是 OCI 分发规范的实现，用于本地或私有云环境下存储和分发容器镜像和制品，支持多架构和高可用部署。",
-  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/registry.png",
-  "sources": [
-    "https://github.com/docker/distribution"
-  ],
-  "maintainers": [
-    {
-      "name": "陈不丢",
-      "email": "179866495@qq.com"
-    }
-  ],
-  "annotations": {
-    "budiu/app-category-zh": "镜像仓库"
-  }
-}
-
-      }}
-
-    ]
-,
-    "问卷系统": [
-      {"surveyking": {
-        "v1.0.0": 
-{
-  "apiVersion": "v2",
-  "name": "surveyking",
-  "version": "v1.0.0",
-  "appVersion": "latest",
-  "description": "卷王 SurveyKing - 人人都可快速搭建的专业问卷考试系统，安装后需等待几分钟才能访问",
-  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/surveyking.png",
-  "maintainers": [
-    {
-      "name": "陈不丢",
-      "email": "179866495@qq.com"
-    }
-  ],
-  "annotations": {
-    "budiu/app-category-zh": "问卷系统"
+    "budiu/app-category-zh": "运维监控"
   }
 }
 
@@ -979,5 +940,5 @@
 
     ]
   },
-  "count": 20
+  "count": 7
 }
