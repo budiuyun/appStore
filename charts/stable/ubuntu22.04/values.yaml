@@ -24,7 +24,7 @@ resources:
     ephemeral-storage: 5Gi
 persistence:
   enabled: true
-  size: 10Gi
+  size: 1Gi
   accessMode: ReadWriteOnce
   storageClass: local
   mounts:
