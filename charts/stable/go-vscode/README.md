@@ -4,17 +4,18 @@
 
 ## 描述
 
-Go VSCode 是一个基于 code-server 的Go开发环境，提供了完整的Go开发体验。该镜像预装了Go 1.21、常用的Go开发工具（gopls、delve、goimports）以及优化的国内网络配置。
+Go VSCode 是一个基于 code-server 的Go开发环境，使用官方扩展的 `ghcr.io/frost-tb-voo/code-server-go` 镜像，提供了完整的Go开发体验。该镜像预装了最新版Go、vscode-go扩展以及完整的开发工具链。
 
 ## 特性
 
-- 🐹 Go 1.21 运行时环境
+- 🐹 最新版Go运行时环境
 - 📝 VSCode编辑器界面
-- 🛠️ 预装开发工具：gopls、delve、goimports
+- 🛠️ 预装vscode-go扩展和开发工具
 - 🌐 国内网络优化：GOPROXY、GOSUMDB配置
-- 💾 持久化存储支持
+- 💾 持久化存储支持（项目、配置、扩展）
 - 🔐 密码保护访问
 - 🌐 Web界面访问
+- 🚀 基于官方维护的专业Go开发镜像
 
 ## 配置说明
 
@@ -22,7 +23,7 @@ Go VSCode 是一个基于 code-server 的Go开发环境，提供了完整的Go�
 
 | 参数 | 描述 | 默认值 |
 |------|------|--------|
-| `image.repository` | 镜像名称 | `niehaoran/go-vscode` |
+| `image.repository` | 镜像名称 | `ghcr.io/frost-tb-voo/code-server-go` |
 | `image.tag` | 镜像标签 | `latest` |
 | `service.ports[0].port` | 服务端口 | `8080` |
 
@@ -30,24 +31,22 @@ Go VSCode 是一个基于 code-server 的Go开发环境，提供了完整的Go�
 
 | 变量名 | 描述 | 默认值 |
 |--------|------|--------|
-| `CODE_SERVER_PASSWORD` | code-server访问密码 | `golang123` |
-| `CODE_SERVER_PORT` | code-server运行端口 | `8080` |
+| `PASSWORD` | code-server访问密码 | `golang123` |
+| `SUDO_PASSWORD` | sudo访问密码 | `golang123` |
 | `GO111MODULE` | Go模块支持 | `on` |
 | `GOPROXY` | Go代理设置 | `https://goproxy.cn,https://goproxy.io,direct` |
 | `GOSUMDB` | Go校验数据库 | `sum.golang.google.cn` |
-| `CGO_ENABLED` | CGO支持 | `0` |
-| `GOOS` | 目标操作系统 | `linux` |
-| `GOARCH` | 目标架构 | `amd64` |
+| `GOPATH` | Go工作空间路径 | `/home/coder/go` |
 
 ### 存储配置
 
-默认启用持久化存储，将 `/app` 目录挂载到持久卷。
+默认启用持久化存储，挂载Go开发相关目录到持久卷。
 
 | 参数 | 描述 | 默认值 |
 |------|------|--------|
 | `persistence.enabled` | 启用持久化存储 | `true` |
-| `persistence.size` | 存储大小 | `10Gi` |
-| `persistence.mounts[0]` | 挂载路径 | `/app` |
+| `persistence.size` | 存储大小 | `2Gi` |
+| `persistence.mounts` | 挂载路径 | `/home/coder/project`, `/home/coder`, `/home/coder/go`, `/home/coder/.local/share/code-server` |
 
 ### 资源配置
 
@@ -65,7 +64,7 @@ Go VSCode 是一个基于 code-server 的Go开发环境，提供了完整的Go�
 
 1. 部署应用后，通过Web浏览器访问应用地址
 2. 使用配置的密码登录（默认：`golang123`）
-3. 在 `/app` 目录下创建和编辑Go代码
+3. 在 `/home/coder/project` 目录下创建和编辑Go代码
 4. 使用内置终端运行Go程序
 
 ## 预装工具

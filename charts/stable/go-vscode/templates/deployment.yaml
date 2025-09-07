@@ -18,6 +18,7 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.imageRegistry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          workingDir: /home/coder/project
           {{- if .Values.service.ports }}
           ports:
             {{- range .Values.service.ports }}

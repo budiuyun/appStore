@@ -2,7 +2,7 @@ workloadType: Deployment
 replicaCount: 1
 image:
   imageRegistry: "budiu.yunnaio.cn"
-  repository: niehaoran/go-codeserver
+  repository: ghcr.io/frost-tb-voo/code-server-go
   tag: "latest"
   pullPolicy: IfNotPresent
 
@@ -35,35 +35,40 @@ persistence:
   storageClass: local
   mounts:
     - /home/coder/project
+    - /home/coder
     - /home/coder/go
-    - /home/coder/.config
-    - /home/coder/.cache
+    - /home/coder/.local/share/code-server
 
 env:
   env1:
-    name: CODE_SERVER_PASSWORD
+    name: PASSWORD
     value: "golang123"
     description: "code-server访问密码"
     title: "密码"
   env2:
+    name: SUDO_PASSWORD
+    value: "golang123"
+    description: "sudo访问密码"
+    title: "Sudo密码"
+  env3:
     name: GO111MODULE
     value: "on"
     description: "Go模块支持"
     title: "Go模块"
-  env3:
+  env4:
     name: GOPROXY
     value: "https://goproxy.cn,https://goproxy.io,direct"
     description: "Go代理设置"
     title: "Go代理"
-  env4:
+  env5:
     name: GOSUMDB
     value: "sum.golang.google.cn"
     description: "Go校验数据库"
     title: "Go校验DB"
-  env5:
-    name: CGO_ENABLED
-    value: "0"
-    description: "CGO支持"
-    title: "CGO"
+  env6:
+    name: GOPATH
+    value: "/home/coder/go"
+    description: "Go工作空间路径"
+    title: "GOPATH"
 
 icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/go-codeserver.png" 
