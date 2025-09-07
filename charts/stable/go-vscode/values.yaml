@@ -30,7 +30,7 @@ resources:
 
 persistence:
   enabled: true
-  size: 1Gi
+  size: 2Gi
   accessMode: ReadWriteOnce
   storageClass: local
   mounts:

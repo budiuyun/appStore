@@ -19,14 +19,14 @@ resources:
   limits:
     cpu: 500m
     memory: 1024Mi
-    ephemeral-storage: 2Gi
+    ephemeral-storage: 2048Mi
   requests:
     cpu: 200m
     memory: 512Mi
     ephemeral-storage: 512Mi
 persistence:
   enabled: true
-  size: 1Gi
+  size: 2Gi
   accessMode: ReadWriteOnce
   storageClass: local
   mounts:
