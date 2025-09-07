@@ -1,11 +1,11 @@
 apiVersion: v2
-name: go-vscode
+name: go-codeserver
 version: v1.0.0
 appVersion: latest
 description: 浏览器中运行的Go开发环境，集成VSCode编辑器和Go运行时
 icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/go-vscode.png"
 maintainers:
-  - name: niehaoran
-    email: niehaoran@example.com
+  - name: 陈不丢
+    email: 179866495@qq.com
 annotations:
   budiu/app-category-zh: 开发工具 

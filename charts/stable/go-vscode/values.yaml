@@ -2,7 +2,7 @@ workloadType: Deployment
 replicaCount: 1
 image:
   imageRegistry: "budiu.yunnaio.cn"
-  repository: niehaoran/go-vscode
+  repository: niehaoran/go-codeserver
   tag: "latest"
   pullPolicy: IfNotPresent
 
