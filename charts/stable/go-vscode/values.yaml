@@ -34,8 +34,10 @@ persistence:
   accessMode: ReadWriteOnce
   storageClass: local
   mounts:
-    - /app
+    - /home/coder/project
+    - /home/coder/go
     - /home/coder/.config
+    - /home/coder/.cache
 
 env:
   env1:
@@ -44,26 +46,21 @@ env:
     description: "code-server访问密码"
     title: "密码"
   env2:
-    name: CODE_SERVER_PORT
-    value: "8080"
-    description: "code-server运行端口"
-    title: "端口"
-  env3:
     name: GO111MODULE
     value: "on"
     description: "Go模块支持"
     title: "Go模块"
-  env4:
+  env3:
     name: GOPROXY
     value: "https://goproxy.cn,https://goproxy.io,direct"
     description: "Go代理设置"
     title: "Go代理"
-  env5:
+  env4:
     name: GOSUMDB
     value: "sum.golang.google.cn"
     description: "Go校验数据库"
     title: "Go校验DB"
-  env6:
+  env5:
     name: CGO_ENABLED
     value: "0"
     description: "CGO支持"

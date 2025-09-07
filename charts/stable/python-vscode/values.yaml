@@ -34,8 +34,10 @@ persistence:
   accessMode: ReadWriteOnce
   storageClass: local
   mounts:
-    - /app
+    - /home/coder/project
     - /home/coder/.config
+    - /home/coder/.cache
+    - /home/coder/.local
 
 env:
   env1:
@@ -44,14 +46,29 @@ env:
     description: "code-server访问密码"
     title: "密码"
   env2:
-    name: CODE_SERVER_PORT
-    value: "8080"
-    description: "code-server运行端口"
-    title: "端口"
-  env3:
     name: PYTHONUNBUFFERED
     value: "1"
     description: "Python输出无缓冲"
     title: "Python无缓冲输出"
+  env3:
+    name: PYTHONDONTWRITEBYTECODE
+    value: "1"
+    description: "禁止生成.pyc文件"
+    title: "禁止字节码"
+  env4:
+    name: PIP_NO_CACHE_DIR
+    value: "1"
+    description: "禁用pip缓存"
+    title: "禁用pip缓存"
+  env5:
+    name: PIP_DISABLE_PIP_VERSION_CHECK
+    value: "1"
+    description: "禁用pip版本检查"
+    title: "禁用pip版本检查"
+  env6:
+    name: PYTHONPATH
+    value: "/home/coder/project"
+    description: "Python模块搜索路径"
+    title: "Python路径"
 
 icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/python-vscode.png" 
