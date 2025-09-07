@@ -462,6 +462,28 @@
 
       }}
 ,
+      {"python-vscode": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "python-vscode",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "浏览器中运行的Python开发环境，集成VSCode编辑器和Python运行时",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/python-vscode.png",
+  "maintainers": [
+    {
+      "name": "陈不丢",
+      "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "开发工具"
+  }
+}
+
+      }}
+,
       {"registry": {
         "v3.0.0": 
 {
