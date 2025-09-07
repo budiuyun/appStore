@@ -22,10 +22,10 @@ resources:
   requests:
     cpu: 200m
     memory: 512Mi
-    ephemeral-storage: 5Gi
+    ephemeral-storage: 1Gi
 persistence:
   enabled: true
-  size: 10Gi
+  size: 1Gi
   accessMode: ReadWriteOnce
   storageClass: local
   mounts:

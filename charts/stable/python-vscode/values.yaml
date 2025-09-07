@@ -1,0 +1,56 @@
+workloadType: Deployment
+replicaCount: 1
+image:
+  imageRegistry: "docker.io"
+  repository: niehaoran/python-vscode
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 8080
+      protocol: TCP
+
+networkLimits:
+  enabled: true
+  egress: "5M"
+  ingress: "5M"
+
+resources:
+  limits:
+    cpu: 1000m
+    memory: 2Gi
+    ephemeral-storage: 10Gi
+  requests:
+    cpu: 500m
+    memory: 1Gi
+    ephemeral-storage: 1Gi
+
+persistence:
+  enabled: true
+  size: 1Gi
+  accessMode: ReadWriteOnce
+  storageClass: local
+  mounts:
+    - /app
+
+env:
+  env1:
+    name: CODE_SERVER_PASSWORD
+    value: "python123"
+    description: "code-server访问密码"
+    title: "密码"
+  env2:
+    name: CODE_SERVER_PORT
+    value: "8080"
+    description: "code-server运行端口"
+    title: "端口"
+  env3:
+    name: PYTHONUNBUFFERED
+    value: "1"
+    description: "Python输出无缓冲"
+    title: "Python无缓冲输出"
+
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/python-vscode.png" 

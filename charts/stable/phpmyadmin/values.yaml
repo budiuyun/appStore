@@ -21,7 +21,7 @@ resources:
   requests:
     cpu: 100m
     memory: 128Mi
-    ephemeral-storage: 5Gi
+    ephemeral-storage: 1Gi
 persistence:
   enabled: false
   size: 1Gi
