@@ -1,0 +1,17 @@
+apiVersion: v2
+name: go-vscode
+description: Go VSCode - 浏览器中运行的Go开发环境，集成VSCode编辑器和Go运行时
+type: application
+version: 1.0.0
+appVersion: "1.21"
+keywords:
+  - go
+  - golang
+  - vscode
+  - ide
+  - development
+  - code-server
+home: https://github.com/niehaoran/go-vscode
+maintainers:
+  - name: niehaoran
+    email: niehaoran@example.com 

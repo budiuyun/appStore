@@ -1,0 +1,53 @@
+replicaCount: 1
+image:
+  imageRegistry: "budiu.yunnaio.cn"
+  repository: niehaoran/go-vscode
+  tag: "latest"
+  pullPolicy: IfNotPresent
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+service:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+      name: http
+networkPolicy:
+  enabled: true
+  egress: 5M
+  ingress: 5M
+resources:
+  limits:
+    cpu: 500m
+    memory: 1024Mi
+    ephemeral-storage: 2Gi
+  requests:
+    cpu: 250m
+    memory: 512Mi
+    ephemeral-storage: 1Gi
+persistence:
+  enabled: true
+  size: 10Gi
+  accessMode: ReadWriteOnce
+  mounts:
+    - name: data
+      path: /app
+env:
+  - name: CODE_SERVER_PASSWORD
+    value: "golang123"
+  - name: CODE_SERVER_PORT
+    value: "8080"
+  - name: GO111MODULE
+    value: "on"
+  - name: GOPROXY
+    value: "https://goproxy.cn,https://goproxy.io,direct"
+  - name: GOSUMDB
+    value: "sum.golang.google.cn"
+  - name: CGO_ENABLED
+    value: "0"
+  - name: GOOS
+    value: "linux"
+  - name: GOARCH
+    value: "amd64" 
