@@ -40,6 +40,7 @@ spec:
             {{- range $index, $path := .Values.persistence.mounts }}
             - name: data
               mountPath: {{ $path }}
+              subPath: {{ printf "mount-%d" $index }}
             {{- end }}
           {{- end }}
       {{- if and .Values.persistence.enabled .Values.persistence.mounts }}
