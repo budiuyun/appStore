@@ -36,8 +36,6 @@ persistence:
   mounts:
     - /app
     - /home/coder/.config
-    - /home/coder/.vscode-server
-    - /home/coder/.ssh
 
 env:
   env1:
