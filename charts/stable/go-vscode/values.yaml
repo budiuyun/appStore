@@ -68,4 +68,4 @@ env:
     description: "CGO支持"
     title: "CGO"
 
-icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/go-vscode.png" 
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/go-codeserver.png" 
