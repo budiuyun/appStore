@@ -1,14 +1,5 @@
 {
   "categories": {
-    "其他": [
-      {"go-vscode": {
-        "1.0.0": 
-{"apiVersion": "v2", "name": "go-vscode", "description": "Go VSCode - \u6d4f\u89c8\u5668\u4e2d\u8fd0\u884c\u7684Go\u5f00\u53d1\u73af\u5883\uff0c\u96c6\u6210VSCode\u7f16\u8f91\u5668\u548cGo\u8fd0\u884c\u65f6", "type": "application", "version": "1.0.0", "appVersion": "1.21", "keywords": ["go", "golang", "vscode", "ide", "development", "code-server"], "home": "https://github.com/niehaoran/go-vscode", "maintainers": [{"name": "niehaoran", "email": "niehaoran@example.com"}]}
-
-      }}
-
-    ]
-,
     "内容管理": [
       {"alist": {
         "v1.0.0": 
@@ -415,6 +406,28 @@
     {
       "name": "陈不丢",
       "email": "179866495@qq.com"
+    }
+  ],
+  "annotations": {
+    "budiu/app-category-zh": "开发工具"
+  }
+}
+
+      }}
+,
+      {"go-vscode": {
+        "v1.0.0": 
+{
+  "apiVersion": "v2",
+  "name": "go-vscode",
+  "version": "v1.0.0",
+  "appVersion": "latest",
+  "description": "浏览器中运行的Go开发环境，集成VSCode编辑器和Go运行时",
+  "icon": "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/go-vscode.png",
+  "maintainers": [
+    {
+      "name": "niehaoran",
+      "email": "niehaoran@example.com"
     }
   ],
   "annotations": {
@@ -946,5 +959,5 @@
 
     ]
   },
-  "count": 8
+  "count": 7
 }
