@@ -1,23 +1,23 @@
+workloadType: Deployment
 replicaCount: 1
 image:
   imageRegistry: "budiu.yunnaio.cn"
   repository: niehaoran/go-vscode
   tag: "latest"
   pullPolicy: IfNotPresent
-imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
+
 service:
   type: ClusterIP
   ports:
-    - port: 8080
-      targetPort: 8080
+    - name: http
+      port: 8080
       protocol: TCP
-      name: http
-networkPolicy:
+
+networkLimits:
   enabled: true
-  egress: 5M
-  ingress: 5M
+  egress: "5M"
+  ingress: "5M"
+
 resources:
   limits:
     cpu: 500m
@@ -27,27 +27,45 @@ resources:
     cpu: 250m
     memory: 512Mi
     ephemeral-storage: 1Gi
+
 persistence:
   enabled: true
   size: 10Gi
   accessMode: ReadWriteOnce
+  storageClass: local
   mounts:
-    - name: data
-      path: /app
+    - /app
+
 env:
-  - name: CODE_SERVER_PASSWORD
+  env1:
+    name: CODE_SERVER_PASSWORD
     value: "golang123"
-  - name: CODE_SERVER_PORT
+    description: "code-server访问密码"
+    title: "密码"
+  env2:
+    name: CODE_SERVER_PORT
     value: "8080"
-  - name: GO111MODULE
+    description: "code-server运行端口"
+    title: "端口"
+  env3:
+    name: GO111MODULE
     value: "on"
-  - name: GOPROXY
+    description: "Go模块支持"
+    title: "Go模块"
+  env4:
+    name: GOPROXY
     value: "https://goproxy.cn,https://goproxy.io,direct"
-  - name: GOSUMDB
+    description: "Go代理设置"
+    title: "Go代理"
+  env5:
+    name: GOSUMDB
     value: "sum.golang.google.cn"
-  - name: CGO_ENABLED
+    description: "Go校验数据库"
+    title: "Go校验DB"
+  env6:
+    name: CGO_ENABLED
     value: "0"
-  - name: GOOS
-    value: "linux"
-  - name: GOARCH
-    value: "amd64" 
+    description: "CGO支持"
+    title: "CGO"
+
+icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/go-vscode.png" 

@@ -1,52 +1,50 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "common.names.fullname" . }}
+  name: {{ include "go-vscode.fullname" . }}
   labels:
-    {{- include "common.labels.standard" . | nindent 4 }}
+    {{- include "go-vscode.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "common.labels.matchLabels" . | nindent 6 }}
+      {{- include "go-vscode.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "common.labels.matchLabels" . | nindent 8 }}
+        {{- include "go-vscode.selectorLabels" . | nindent 8 }}
     spec:
-      {{- with .Values.imagePullSecrets }}
-      imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.imageRegistry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if .Values.service.ports }}
           ports:
-            - name: http
-              containerPort: {{ .Values.service.ports[0].targetPort }}
-              protocol: TCP
-          {{- if .Values.env }}
-          env:
-            {{- range .Values.env }}
+            {{- range .Values.service.ports }}
             - name: {{ .name }}
-              value: {{ .value | quote }}
+              containerPort: {{ .port }}
+              protocol: {{ .protocol }}
             {{- end }}
           {{- end }}
-          {{- if .Values.persistence.enabled }}
-          volumeMounts:
-            {{- range .Values.persistence.mounts }}
-            - name: {{ .name }}
-              mountPath: {{ .path }}
+          {{- if .Values.env }}
+          env:
+            {{- range $key, $value := .Values.env }}
+            - name: {{ $value.name }}
+              value: {{ $value.value | quote }}
             {{- end }}
           {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-      {{- if .Values.persistence.enabled }}
+          {{- if and .Values.persistence.enabled .Values.persistence.mounts }}
+          volumeMounts:
+            {{- range $index, $path := .Values.persistence.mounts }}
+            - name: data
+              mountPath: {{ $path }}
+            {{- end }}
+          {{- end }}
+      {{- if and .Values.persistence.enabled .Values.persistence.mounts }}
       volumes:
-        {{- range .Values.persistence.mounts }}
-        - name: {{ .name }}
+        - name: data
           persistentVolumeClaim:
-            claimName: {{ include "common.names.fullname" $ }}-{{ .name }}
-        {{- end }}
+            claimName: {{ include "go-vscode.fullname" . }}
       {{- end }} 

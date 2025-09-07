@@ -1,17 +1,17 @@
 {{- if .Values.persistence.enabled }}
-{{- range .Values.persistence.mounts }}
----
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "common.names.fullname" $ }}-{{ .name }}
+  name: {{ include "go-vscode.fullname" . }}
   labels:
-    {{- include "common.labels.standard" $ | nindent 4 }}
+    {{- include "go-vscode.labels" . | nindent 4 }}
 spec:
   accessModes:
-    - {{ $.Values.persistence.accessMode }}
+    - {{ .Values.persistence.accessMode }}
+  {{- if .Values.persistence.storageClass }}
+  storageClassName: {{ .Values.persistence.storageClass }}
+  {{- end }}
   resources:
     requests:
-      storage: {{ $.Values.persistence.size }}
-{{- end }}
+      storage: {{ .Values.persistence.size }}
 {{- end }} 

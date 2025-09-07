@@ -1,17 +1,17 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "common.names.fullname" . }}
+  name: {{ include "go-vscode.fullname" . }}
   labels:
-    {{- include "common.labels.standard" . | nindent 4 }}
+    {{- include "go-vscode.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
     {{- range .Values.service.ports }}
     - port: {{ .port }}
-      targetPort: {{ .targetPort }}
+      targetPort: {{ .port }}
       protocol: {{ .protocol }}
       name: {{ .name }}
     {{- end }}
   selector:
-    {{- include "common.labels.matchLabels" . | nindent 4 }} 
+    {{- include "go-vscode.selectorLabels" . | nindent 4 }} 
