@@ -1,7 +1,7 @@
 workloadType: Deployment
 replicaCount: 1
 image:
-  imageRegistry: "docker.io"
+  imageRegistry: "budiu.yunnaio.cn"
   repository: niehaoran/python-vscode
   tag: "latest"
   pullPolicy: IfNotPresent
