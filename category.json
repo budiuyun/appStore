@@ -1,5 +1,14 @@
 {
   "categories": {
+    "其他": [
+      {"go-vscode": {
+        "1.0.0": 
+{"apiVersion": "v2", "name": "go-vscode", "description": "Go VSCode - \u6d4f\u89c8\u5668\u4e2d\u8fd0\u884c\u7684Go\u5f00\u53d1\u73af\u5883\uff0c\u96c6\u6210VSCode\u7f16\u8f91\u5668\u548cGo\u8fd0\u884c\u65f6", "type": "application", "version": "1.0.0", "appVersion": "1.21", "keywords": ["go", "golang", "vscode", "ide", "development", "code-server"], "home": "https://github.com/niehaoran/go-vscode", "maintainers": [{"name": "niehaoran", "email": "niehaoran@example.com"}]}
+
+      }}
+
+    ]
+,
     "内容管理": [
       {"alist": {
         "v1.0.0": 
@@ -937,5 +946,5 @@
 
     ]
   },
-  "count": 7
+  "count": 8
 }
