@@ -14,6 +14,60 @@ spec:
       labels:
         {{- include "lsky-pro.selectorLabels" . | nindent 8 }}
     spec:
+      initContainers:
+        - name: init-volume
+          image: "{{ .Values.image.imageRegistry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          resources:
+            limits:
+              cpu: "50m"
+              memory: "64Mi"
+            requests:
+              cpu: "25m"
+              memory: "32Mi"
+          command:
+            - /bin/bash
+            - -c
+            - |
+              # 确保持久卷数据完整性
+              {{- range $index, $path := .Values.persistence.mounts }}
+              # 检查目录是否为空或不存在
+              if [ ! -d "/data{{ $path }}" ] || [ -z "$(ls -A /data{{ $path }} 2>/dev/null)" ]; then
+                echo "Initializing data for {{ $path }}"
+                # 确保目标目录存在
+                mkdir -p /data{{ $path }}
+                # 使用cp保留所有属性和权限
+                if [ -d "{{ $path }}" ]; then
+                  # 复制所有文件并保留权限、所有权和链接
+                  cp -rp {{ $path }}/* /data{{ $path }}/ 2>/dev/null || true
+                  cp -rp {{ $path }}/.[^.]* /data{{ $path }}/ 2>/dev/null || true
+                  
+                  # 设置正确的文件权限
+                  if [[ "{{ $path }}" == "/var/www/html" ]]; then
+                    echo "Setting correct permissions for web files"
+                    # 确保web目录权限正确
+                    find /data{{ $path }} -type d -exec chmod 755 {} \;
+                    find /data{{ $path }} -type f -exec chmod 644 {} \;
+                    # 确保可执行文件权限
+                    find /data{{ $path }} -name "*.sh" -exec chmod +x {} \; 2>/dev/null || true
+                  fi
+                fi
+              else
+                echo "Directory /data{{ $path }} already initialized, skipping"
+                # 即使目录已初始化，也确保权限正确
+                if [[ "{{ $path }}" == "/var/www/html" ]]; then
+                  echo "Checking web files permissions in existing volume"
+                  find /data{{ $path }} -type d -exec chmod 755 {} \;
+                  find /data{{ $path }} -type f -exec chmod 644 {} \;
+                  find /data{{ $path }} -name "*.sh" -exec chmod +x {} \; 2>/dev/null || true
+                fi
+              fi
+              {{- end }}
+          {{- if and .Values.persistence.enabled .Values.persistence.mounts }}
+          volumeMounts:
+            - name: data
+              mountPath: /data
+          {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.imageRegistry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -40,6 +94,7 @@ spec:
             {{- range $index, $path := .Values.persistence.mounts }}
             - name: data
               mountPath: {{ $path }}
+              subPath: {{ $path | trimPrefix "/" }}
             {{- end }}
           {{- end }}
       {{- if and .Values.persistence.enabled .Values.persistence.mounts }}
