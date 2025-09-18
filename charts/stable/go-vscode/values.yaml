@@ -4,7 +4,7 @@ image:
   imageRegistry: "budiu.yunnaio.cn"
   repository: ghcr.io/frost-tb-voo/code-server-go
   tag: "latest"
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 service:
   type: ClusterIP

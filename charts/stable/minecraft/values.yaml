@@ -4,7 +4,7 @@ image:
   imageRegistry: budiu.yunnaio.cn
   repository: itzg/minecraft-server
   tag: latest
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 service:
   type: ClusterIP
   ports:

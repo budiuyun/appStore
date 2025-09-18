@@ -4,7 +4,7 @@ image:
   imageRegistry: budiu.yunnaio.cn
   repository: joyqi/typecho
   tag: nightly-php8.2-apache
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 service:
   type: ClusterIP
   ports:

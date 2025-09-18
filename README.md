@@ -130,7 +130,7 @@ image:
   imageRegistry: "registry-2.yunna.net"  # 镜像仓库地址
   repository: myapp/web                  # 镜像名称
   tag: "1.0.0"                          # 镜像标签
-  pullPolicy: IfNotPresent              # 拉取策略，必须使用IfNotPresent
+  pullPolicy: Always              # 拉取策略，必须使用IfNotPresent
 ```
 
 #### 资源限制详解

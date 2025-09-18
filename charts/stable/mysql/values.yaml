@@ -3,7 +3,7 @@ image:
   imageRegistry: "budiu.yunnaio.cn"
   repository: mysql
   tag: "8.0"
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 service:
   type: ClusterIP

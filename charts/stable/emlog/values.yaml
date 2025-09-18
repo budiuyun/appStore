@@ -4,7 +4,7 @@ image:
   imageRegistry: budiu.yunnaio.cn
   repository: emlog/emlog
   tag: pro-latest-php7.4-apache
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 service:
   type: ClusterIP
   ports:

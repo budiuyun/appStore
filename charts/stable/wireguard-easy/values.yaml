@@ -4,7 +4,7 @@ image:
   imageRegistry: ghcr.nju.edu.cn
   repository: wg-easy/wg-easy
   tag: latest
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 service:
   type: ClusterIP
   ports:

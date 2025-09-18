@@ -3,7 +3,7 @@ image:
   imageRegistry: budiu.yunnaio.cn
   repository: louislam/uptime-kuma
   tag: latest
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 service:
   type: ClusterIP
   ports:
