@@ -32,7 +32,7 @@ persistence:
 env:
   env1:
     name: WEB_PORT
-    value: '8089'
+    value: "8089"
     description: 容器内Apache监听的端口
     title: Web端口
 icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/lsky-pro.png"

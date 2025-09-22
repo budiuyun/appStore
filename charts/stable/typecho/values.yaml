@@ -62,7 +62,7 @@ env:
     title: 数据库主机
   env7:
     name: TYPECHO_DB_PORT
-    value: '3306'
+    value: "3306"
     description: 数据库服务器端口
     title: 数据库端口
   env8:
