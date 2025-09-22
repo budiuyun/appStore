@@ -37,7 +37,7 @@ env:
     title: WEB访问路径
   env2:
     name: QlPort
-    value: '5700'
+    value: 5700
     description: 自定义WEB服务端口，默认 5700
     title: WEB端口
 icon: "https://pub-cceec1ab61b144cbbf184f36d84774f7.r2.dev/qinglong.png"
