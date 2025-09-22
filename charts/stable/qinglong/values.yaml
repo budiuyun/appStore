@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   imageRegistry: budiu.yunnaio.cn
   repository: whyour/qinglong
-  tag: latest
+  tag: 2.19.2
   pullPolicy: Always
 service:
   type: ClusterIP
